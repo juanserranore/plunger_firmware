@@ -1,0 +1,313 @@
+\doxysection{TFT\+\_\+config.\+h}
+\label{_t_f_t__config_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_config.h@{lib/TFT\_eSPI-\/master/TFT\_config.h}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ Support\ file\ for\ ESP32\ IDF\ use\ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00004\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ \ \ See\ library\ docs\ folder\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00005\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00006\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ \ \ DO\ NOT\ EDIT\ THIS\ FILE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00007\ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifndef\ TFT\_CONFIG\_H}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ TFT\_CONFIG\_H}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}sdkconfig.h"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00027\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Others}}
+\DoxyCodeLine{00028\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_DISABLE\_WARNINGS}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\ \ \ \ \#define\ DISABLE\_ALL\_LIBRARY\_WARNINGS}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00035\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TFT\_eSPI\ Configuration\ defines}}
+\DoxyCodeLine{00036\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ Override\ defaults}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ USER\_SETUP\_LOADED}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00041\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Section\ 1:\ Load\ TFT\ driver}}
+\DoxyCodeLine{00042\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#if\ defined\ (CONFIG\_TFT\_ILI9341\_DRIVER)}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\ \ \ \ \#define\ ILI9341\_DRIVER}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ILI9341\_2\_DRIVER)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\ \ \ \ \#define\ ILI9341\_2\_DRIVER}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ST7735\_DRIVER)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\ \ \ \ \#define\ ST7735\_DRIVER}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ILI9163\_DRIVER)}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\ \ \ \ \#define\ ILI9163\_DRIVER}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_S6D02A1\_DRIVER)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\ \ \ \ \#define\ S6D02A1\_DRIVER}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_HX8357D\_DRIVER)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \ \ \#define\ HX8357D\_DRIVER}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ILI9481\_DRIVER)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\ \ \ \ \#define\ ILI9481\_DRIVER}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ILI9486\_DRIVER)}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\ \ \ \ \#define\ ILI9486\_DRIVER}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ILI9488\_DRIVER)}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\ \ \ \ \#define\ ILI9488\_DRIVER}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ST7789\_DRIVER)}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\ \ \ \ \#define\ ST7789\_DRIVER}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ST7789\_2\_DRIVER)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\ \ \ \ \#define\ ST7789\_2\_DRIVER}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_R61581\_DRIVER)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\ \ \ \ \#define\ R61581\_DRIVER}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_RM68140\_DRIVER)}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\ \ \ \ \#define\ RM68140\_DRIVER}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ST7796\_DRIVER)}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\ \ \ \ \#define\ ST7796\_DRIVER}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_SSD1351\_DRIVER)}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\ \ \ \ \#define\ SSD1351\_DRIVER}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_SSD1963\_480\_DRIVER)}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\ \ \ \ \#define\ SSD1963\_480\_DRIVER}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_SSD1963\_800\_DRIVER)}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\ \ \ \ \#define\ SSD1963\_800\_DRIVER}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_SSD1963\_800ALT\_DRIVER)}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\ \ \ \ \#define\ SSD1963\_800ALT\_DRIVER}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ILI9225\_DRIVER)}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\ \ \ \ \#define\ ILI9225\_DRIVER}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_GC9A01\_DRIVER)}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\ \ \ \ \#define\ GC9A01\_DRIVER}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_TFT\_RGB\_ORDER}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_RGB\_ORDER\ TFT\_RGB}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_TFT\_BGR\_ORDER}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_RGB\_ORDER\ TFT\_BGR}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_TFT\_M5STACK}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\ \ \ \ \#define\ M5STACK}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_TFT\_WIDTH}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_WIDTH\ \ \ CONFIG\_TFT\_WIDTH}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_TFT\_HEIGHT}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_HEIGHT\ \ \ CONFIG\_TFT\_HEIGHT}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#if\ defined\ (CONFIG\_TFT\_ST7735\_INITB)}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\ \ \ \ \#define\ ST7735\_INITB}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ST7735\_GREENTAB)}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\ \ \ \ \#define\ ST7735\_GREENTAB}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ST7735\_GREENTAB2)}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\ \ \ \ \#define\ ST7735\_GREENTAB2}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ST7735\_GREENTAB3)}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\ \ \ \ \#define\ ST7735\_GREENTAB3}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ST7735\_GREENTAB128)}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\ \ \ \ \#define\ ST7735\_GREENTAB128}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ST7735\_GREENTAB160x80)}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\ \ \ \ \#define\ ST7735\_GREENTAB160x80}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ST7735\_REDTAB)}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\ \ \ \ \#define\ ST7735\_REDTAB}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ST7735\_BLACKTAB)}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\ \ \ \ \#define\ ST7735\_BLACKTAB}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_ST7735\_REDTAB160x80)}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\ \ \ \ \#define\ ST7735\_REDTAB160x80}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#if\ defined\ (CONFIG\_TFT\_INVERSION\_ON)}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_INVERSION\_ON}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#elif\ defined\ (CONFIG\_TFT\_INVERSION\_OFF)}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_INVERSION\_OFF}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00132\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Section\ 2:\ General\ Pin\ configuration}}
+\DoxyCodeLine{00133\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00134\ \textcolor{comment}{//\ General\ pins}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#if\ CONFIG\_TFT\_CS\ ==\ -\/1}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\ \ \ \ \#error\ "{}Invalid\ Chip\ Select\ pin.\ Check\ TFT\_eSPI\ configuration"{}}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_CS\ \ \ \ \ \ \ \ \ \ CONFIG\_TFT\_CS}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#if\ CONFIG\_TFT\_DC\ ==\ -\/1}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\ \ \ \ \#error\ "{}Invalid\ Data/Command\ pin.\ Check\ TFT\_eSPI\ configuration"{}}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_DC\ \ \ \ \ \ \ \ \ \ CONFIG\_TFT\_DC}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#if\ CONFIG\_TFT\_RST\ ==\ -\/1}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\ \ \ \ \#if\ !defined(DISABLE\_ALL\_LIBRARY\_WARNINGS)}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#warning\ "{}Invalid\ Reset\ pin.\ Check\ TFT\_eSPI\ configuration"{}}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_RST\ \ \ \ \ \ \ \ \ CONFIG\_TFT\_RST}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{comment}{//\ Backlight\ config}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_ENABLE\_BL}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\ \ \ \ \#if\ CONFIG\_TFT\_BL\ ==\ -\/1}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}Invalid\ backlight\ control\ pin.\ Check\ TFT\_eSPI\ configuration"{}}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ TFT\_BL\ \ \ \ \ \ CONFIG\_TFT\_BL}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_BACKLIGHT\_ON\ CONFIG\_TFT\_BACKLIGHT\_ON}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00168\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Section\ 3:\ Data\ bus\ Pin\ configuration}}
+\DoxyCodeLine{00169\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \textcolor{comment}{//\ 8\ BIT\ PARALLEL\ BUS}}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_TFT\_PARALLEL\_8\_BIT}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_PARALLEL\_8\_BIT}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\ \ \ \ \#if\ CONFIG\_TFT\_D0\ ==\ -\/1}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}Invalid\ Data\ 0\ pin.\ Check\ TFT\_eSPI\ configuration"{}}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ TFT\_D0\ \ \ \ \ \ CONFIG\_TFT\_D0}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\ \ \ \ \#if\ CONFIG\_TFT\_D1\ ==\ -\/1}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}Invalid\ Data\ 1\ pin.\ Check\ TFT\_eSPI\ configuration"{}}}
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ TFT\_D1\ \ \ \ \ \ CONFIG\_TFT\_D1}}
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\ \ \ \ \#if\ CONFIG\_TFT\_D2\ ==\ -\/1}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}Invalid\ Data\ 2\ pin.\ Check\ TFT\_eSPI\ configuration"{}}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ TFT\_D2\ \ \ \ \ \ CONFIG\_TFT\_D2}}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\ \ \ \ \#if\ CONFIG\_TFT\_D3\ ==\ -\/1}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}Invalid\ Data\ 3\ pin.\ Check\ TFT\_eSPI\ configuration"{}}}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ TFT\_D3\ \ \ \ \ \ CONFIG\_TFT\_D3}}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\ \ \ \ \#if\ CONFIG\_TFT\_D4\ ==\ -\/1}}
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}Invalid\ Data\ 4\ pin.\ Check\ TFT\_eSPI\ configuration"{}}}
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ TFT\_D4\ \ \ \ \ \ CONFIG\_TFT\_D4}}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\ \ \ \ \#if\ CONFIG\_TFT\_D5\ ==\ -\/1}}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}Invalid\ Data\ 5\ pin.\ Check\ TFT\_eSPI\ configuration"{}}}
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ TFT\_D5\ \ \ \ \ \ CONFIG\_TFT\_D5}}
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\ \ \ \ \#if\ CONFIG\_TFT\_D6\ ==\ -\/1}}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}Invalid\ Data\ 6\ pin.\ Check\ TFT\_eSPI\ configuration"{}}}
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ TFT\_D6\ \ \ \ \ \ CONFIG\_TFT\_D6}}
+\DoxyCodeLine{00216\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\ \ \ \ \#if\ CONFIG\_TFT\_D7\ ==\ -\/1}}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}Invalid\ Data\ 7\ pin.\ Check\ TFT\_eSPI\ configuration"{}}}
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ TFT\_D7\ \ \ \ \ \ CONFIG\_TFT\_D7}}
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00223\ \ \ \ \ }
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\ \ \ \ \#if\ CONFIG\_TFT\_WR\ ==\ -\/1}}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}Invalid\ Write\ strobe\ pin.\ Check\ TFT\_eSPI\ configuration"{}}}
+\DoxyCodeLine{00226\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ TFT\_WR\ \ \ \ \ \ CONFIG\_TFT\_WR}}
+\DoxyCodeLine{00228\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\ \ \ \ \#if\ CONFIG\_TFT\_RD\ ==\ -\/1}}
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}Invalid\ Read\ strobe\ pin.\ Check\ TFT\_eSPI\ configuration"{}}}
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ TFT\_RD\ \ \ \ \ \ CONFIG\_TFT\_RD}}
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \textcolor{comment}{//\ SPI\ BUS}}
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\ \ \ \ \#if\ CONFIG\_TFT\_HSPI\_PORT}}
+\DoxyCodeLine{00239\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ USE\_HSPI\_PORT}}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\ \ \ \ \#if\ CONFIG\_TFT\_MISO\ !=\ -\/1}}
+\DoxyCodeLine{00243\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ TFT\_MISO\ \ \ \ \ \ CONFIG\_TFT\_MISO}}
+\DoxyCodeLine{00244\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \textcolor{preprocessor}{\ \ \ \ \#if\ CONFIG\_TFT\_MOSI\ ==\ -\/1}}
+\DoxyCodeLine{00247\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}Invalid\ MOSI\ pin.\ Check\ TFT\_eSPI\ configuration"{}}}
+\DoxyCodeLine{00248\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00249\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ TFT\_MOSI\ \ \ \ \ \ CONFIG\_TFT\_MOSI}}
+\DoxyCodeLine{00250\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \textcolor{preprocessor}{\ \ \ \ \#if\ CONFIG\_TFT\_SCLK\ ==\ -\/1}}
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}Invalid\ Clock\ pin.\ Check\ TFT\_eSPI\ configuration"{}}}
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00255\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ TFT\_SCLK\ \ \ \ \ \ CONFIG\_TFT\_SCLK}}
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\ \ \ \ \#define\ SPI\_FREQUENCY\ \ \ CONFIG\_TFT\_SPI\_FREQUENCY}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\ \ \ \ \#if\ CONFIG\_TFT\_SPI\_READ\_FREQ\ !=\ -\/1}}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ SPI\_READ\_FREQUENCY\ CONFIG\_TFT\_SPI\_READ\_FREQ}}
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00263\ \ \ \ \ }
+\DoxyCodeLine{00264\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ CONFIG\_TFT\_SDA\_READ}}
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ TFT\_SDA\_READ}}
+\DoxyCodeLine{00266\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00267\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00271\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Section\ 4:\ Setup\ Fonts}}
+\DoxyCodeLine{00272\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_TFT\_LOAD\_GLCD}}
+\DoxyCodeLine{00275\ \textcolor{preprocessor}{\ \ \ \ \#define\ LOAD\_GLCD\ \ \ \ \ \ \ }\textcolor{comment}{//\ Font\ 1.\ Original\ Adafruit\ 8\ pixel\ font\ needs\ \string~1820\ bytes\ in\ FLASH}}
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_TFT\_LOAD\_FONT2}}
+\DoxyCodeLine{00279\ \textcolor{preprocessor}{\ \ \ \ \#define\ LOAD\_FONT2\ \ \ \ \ \ }\textcolor{comment}{//\ Font\ 2.\ Small\ 16\ pixel\ high\ font,\ needs\ \string~3534\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_TFT\_LOAD\_FONT4}}
+\DoxyCodeLine{00283\ \textcolor{preprocessor}{\ \ \ \ \#define\ LOAD\_FONT4\ \ \ \ \ \ }\textcolor{comment}{//\ Font\ 4.\ Medium\ 26\ pixel\ high\ font,\ needs\ \string~5848\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00284\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_TFT\_LOAD\_FONT6}}
+\DoxyCodeLine{00287\ \textcolor{preprocessor}{\ \ \ \ \#define\ LOAD\_FONT6\ \ \ \ \ \ }\textcolor{comment}{//\ Font\ 6.\ Large\ 48\ pixel\ font,\ needs\ \string~2666\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.apm}}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_TFT\_LOAD\_FONT7}}
+\DoxyCodeLine{00291\ \textcolor{preprocessor}{\ \ \ \ \#define\ LOAD\_FONT7\ \ \ \ \ \ }\textcolor{comment}{//\ Font\ 7.\ 7\ segment\ 48\ pixel\ font,\ needs\ \string~2438\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:.}}
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_TFT\_LOAD\_FONT8}}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\ \ \ \ \#define\ LOAD\_FONT8\ \ \ \ \ \ }\textcolor{comment}{//\ Font\ 8.\ Large\ 75\ pixel\ font\ needs\ \string~3256\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.}}
+\DoxyCodeLine{00296\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_TFT\_LOAD\_GFXFF}}
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\ \ \ \ \#define\ LOAD\_GFXFF\ \ \ \ \ \ }\textcolor{comment}{//\ FreeFonts.\ Include\ access\ to\ the\ 48\ Adafruit\_GFX\ free\ fonts\ FF1\ to\ FF48\ and\ custom\ fonts}}
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \textcolor{preprocessor}{\#if\ CONFIG\_TFT\_SMOOTH\_FONT}}
+\DoxyCodeLine{00303\ \textcolor{preprocessor}{\ \ \ \ \#define\ SMOOTH\_FONT}}
+\DoxyCodeLine{00304\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00307\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Section\ 5:\ Touchscreen\ configuration}}
+\DoxyCodeLine{00308\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_ENABLE\_TOUCH}}
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\ \ \ \ \#if\ CONFIG\_TOUCH\_CS\ ==\ -\/1}}
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#error\ "{}Invalid\ Touch\ Chip\ Select\ pin.\ Check\ TFT\_eSPI\ configuration"{}}}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ TOUCH\_CS\ \ \ \ \ \ \ \ \ \ \ \ CONFIG\_TOUCH\_CS}}
+\DoxyCodeLine{00315\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\ \ \ \ \#define\ SPI\_TOUCH\_FREQUENCY\ CONFIG\_SPI\_TOUCH\_FREQUENCY}}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TFT\_CONFIG\_H}}
+
+\end{DoxyCode}

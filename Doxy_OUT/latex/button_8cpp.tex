@@ -1,0 +1,85 @@
+\doxysection{button/button.cpp File Reference}
+\hypertarget{button_8cpp}{}\label{button_8cpp}\index{button/button.cpp@{button/button.cpp}}
+
+
+Implementation file for button press handling functions.  
+
+
+{\ttfamily \#include "{}button.\+h"{}}\newline
+{\ttfamily \#include $<$globals/globals.\+h$>$}\newline
+{\ttfamily \#include $<$motor/motor.\+h$>$}\newline
+{\ttfamily \#include $<$GUI/\+GUI.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{button_8cpp_a0d9c04fe4434f768c15608b82479f830}{single\+Press\+Handler}} (Bf\+Button \texorpdfstring{$\ast$}{*}btn, Bf\+Button\+::press\+\_\+pattern\+\_\+t pattern)
+\begin{DoxyCompactList}\small\item\em Handles single button press events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{button_8cpp_a8fe924418a98a66f1f468f74e24868fd}{double\+Press\+Handler}} (Bf\+Button \texorpdfstring{$\ast$}{*}btn, Bf\+Button\+::press\+\_\+pattern\+\_\+t pattern)
+\begin{DoxyCompactList}\small\item\em Handles double button press events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{button_8cpp_aac93b2619e700e5c61bb53a8d9a62f0e}{long\+Press\+Handler}} (Bf\+Button \texorpdfstring{$\ast$}{*}btn, Bf\+Button\+::press\+\_\+pattern\+\_\+t pattern)
+\begin{DoxyCompactList}\small\item\em Handles long button press events. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation file for button press handling functions. 
+
+This file contains the implementation of functions that handle button press events, including single, double, and long presses. These functions allow users to navigate through menus, control the motor, adjust screen settings, and perform other actions. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{button_8cpp_a8fe924418a98a66f1f468f74e24868fd}\index{button.cpp@{button.cpp}!doublePressHandler@{doublePressHandler}}
+\index{doublePressHandler@{doublePressHandler}!button.cpp@{button.cpp}}
+\doxysubsubsection{\texorpdfstring{doublePressHandler()}{doublePressHandler()}}
+{\footnotesize\ttfamily \label{button_8cpp_a8fe924418a98a66f1f468f74e24868fd} 
+void double\+Press\+Handler (\begin{DoxyParamCaption}\item[{Bf\+Button \texorpdfstring{$\ast$}{*}}]{btn}{, }\item[{Bf\+Button\+::press\+\_\+pattern\+\_\+t}]{pattern}{}\end{DoxyParamCaption})}
+
+
+
+Handles double button press events. 
+
+This function toggles the engineering mode when a double press is detected.
+
+
+\begin{DoxyParams}{Parameters}
+{\em btn} & Pointer to the button object. \\
+\hline
+{\em pattern} & The press pattern detected (double press in this case). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{button_8cpp_aac93b2619e700e5c61bb53a8d9a62f0e}\index{button.cpp@{button.cpp}!longPressHandler@{longPressHandler}}
+\index{longPressHandler@{longPressHandler}!button.cpp@{button.cpp}}
+\doxysubsubsection{\texorpdfstring{longPressHandler()}{longPressHandler()}}
+{\footnotesize\ttfamily \label{button_8cpp_aac93b2619e700e5c61bb53a8d9a62f0e} 
+void long\+Press\+Handler (\begin{DoxyParamCaption}\item[{Bf\+Button \texorpdfstring{$\ast$}{*}}]{btn}{, }\item[{Bf\+Button\+::press\+\_\+pattern\+\_\+t}]{pattern}{}\end{DoxyParamCaption})}
+
+
+
+Handles long button press events. 
+
+This function toggles the screen on/off. If the screen is turned off, it reduces the brightness to zero and puts the display into sleep mode. When turned back on, the display is woken up and the brightness is restored to the previous level.
+
+
+\begin{DoxyParams}{Parameters}
+{\em btn} & Pointer to the button object. \\
+\hline
+{\em pattern} & The press pattern detected (long press in this case). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{button_8cpp_a0d9c04fe4434f768c15608b82479f830}\index{button.cpp@{button.cpp}!singlePressHandler@{singlePressHandler}}
+\index{singlePressHandler@{singlePressHandler}!button.cpp@{button.cpp}}
+\doxysubsubsection{\texorpdfstring{singlePressHandler()}{singlePressHandler()}}
+{\footnotesize\ttfamily \label{button_8cpp_a0d9c04fe4434f768c15608b82479f830} 
+void single\+Press\+Handler (\begin{DoxyParamCaption}\item[{Bf\+Button \texorpdfstring{$\ast$}{*}}]{btn}{, }\item[{Bf\+Button\+::press\+\_\+pattern\+\_\+t}]{pattern}{}\end{DoxyParamCaption})}
+
+
+
+Handles single button press events. 
+
+This function manages the navigation between different menus (main menu, settings, motor control, etc.) based on the current state and selection. It sends update commands to the screen to reflect the changes in the UI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em btn} & Pointer to the button object. \\
+\hline
+{\em pattern} & The press pattern detected (single press in this case). \\
+\hline
+\end{DoxyParams}

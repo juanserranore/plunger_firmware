@@ -1,0 +1,60 @@
+\doxysection{uip\+\_\+udp\+\_\+conn Struct Reference}
+\label{structuip__udp__conn}\index{uip\_udp\_conn@{uip\_udp\_conn}}
+
+
+{\ttfamily \#include $<$uip.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uip\+\_\+ipaddr\+\_\+t \textbf{ ripaddr}
+\item 
+u16\+\_\+t \textbf{ lport}
+\item 
+u16\+\_\+t \textbf{ rport}
+\item 
+u8\+\_\+t \textbf{ ttl}
+\item 
+\textbf{ uip\+\_\+udp\+\_\+appstate\+\_\+t} \textbf{ appstate}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Representation of a u\+IP UDP connection. 
+
+\doxysubsection{Member Data Documentation}
+\index{uip\_udp\_conn@{uip\_udp\_conn}!appstate@{appstate}}
+\index{appstate@{appstate}!uip\_udp\_conn@{uip\_udp\_conn}}
+\doxysubsubsection{appstate}
+{\footnotesize\ttfamily \label{structuip__udp__conn_ac8afa29e0aa5e789d6929b366d98ba56} 
+\textbf{ uip\+\_\+udp\+\_\+appstate\+\_\+t} uip\+\_\+udp\+\_\+conn\+::appstate}
+
+The application state. \index{uip\_udp\_conn@{uip\_udp\_conn}!lport@{lport}}
+\index{lport@{lport}!uip\_udp\_conn@{uip\_udp\_conn}}
+\doxysubsubsection{lport}
+{\footnotesize\ttfamily \label{structuip__udp__conn_a981392e295db4d024eea95805c51c371} 
+u16\+\_\+t uip\+\_\+udp\+\_\+conn\+::lport}
+
+The local port number in network byte order. \index{uip\_udp\_conn@{uip\_udp\_conn}!ripaddr@{ripaddr}}
+\index{ripaddr@{ripaddr}!uip\_udp\_conn@{uip\_udp\_conn}}
+\doxysubsubsection{ripaddr}
+{\footnotesize\ttfamily \label{structuip__udp__conn_a8a661a2d544100b82d0d14a1985083d5} 
+uip\+\_\+ipaddr\+\_\+t uip\+\_\+udp\+\_\+conn\+::ripaddr}
+
+The IP address of the remote peer. \index{uip\_udp\_conn@{uip\_udp\_conn}!rport@{rport}}
+\index{rport@{rport}!uip\_udp\_conn@{uip\_udp\_conn}}
+\doxysubsubsection{rport}
+{\footnotesize\ttfamily \label{structuip__udp__conn_a280a0c2a93544e597f92bbacf36ee1dc} 
+u16\+\_\+t uip\+\_\+udp\+\_\+conn\+::rport}
+
+The remote port number in network byte order. \index{uip\_udp\_conn@{uip\_udp\_conn}!ttl@{ttl}}
+\index{ttl@{ttl}!uip\_udp\_conn@{uip\_udp\_conn}}
+\doxysubsubsection{ttl}
+{\footnotesize\ttfamily \label{structuip__udp__conn_a4da1d7815516cd2b5bda3a66fdf05198} 
+u8\+\_\+t uip\+\_\+udp\+\_\+conn\+::ttl}
+
+Default time-\/to-\/live. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Ethernet\+ENC-\/2.\+0.\+5/src/utility/\textbf{ uip.\+h}\end{DoxyCompactItemize}

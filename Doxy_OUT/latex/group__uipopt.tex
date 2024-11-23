@@ -1,0 +1,370 @@
+\doxysection{Configuration options for u\+IP}
+\label{group__uipopt}\index{Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \textbf{ uipopt.\+h}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\label{group__uipopt_gab6e04358481bd2057524fb874cfa472b} 
+\#define {\bfseries UIP\+\_\+\+LITTLE\+\_\+\+ENDIAN}~1234
+\item 
+\label{group__uipopt_ga6836f92f3692f3a4429eb599db40cbae} 
+\#define {\bfseries UIP\+\_\+\+BIG\+\_\+\+ENDIAN}~4321
+\end{DoxyCompactItemize}
+\doxysubsubsection*{General configuration options}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ uip\+\_\+log} (char $\ast$msg)
+\item 
+\#define \textbf{ UIP\+\_\+\+BUFSIZE}
+\item 
+\#define \textbf{ UIP\+\_\+\+STATISTICS}
+\item 
+\#define \textbf{ UIP\+\_\+\+LOGGING}
+\item 
+\#define \textbf{ UIP\+\_\+\+BROADCAST}
+\item 
+\#define \textbf{ UIP\+\_\+\+LLH\+\_\+\+LEN}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static configuration options}
+These configuration options can be used for setting the IP address settings statically, but only if UIP\+\_\+\+FIXEDADDR is set to 1. The configuration options for a specific node includes IP address, netmask and default router as well as the Ethernet address. The netmask, default router and Ethernet address are appliciable only if u\+IP should be run over Ethernet.
+
+All of these should be changed to suit your project. \begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ UIP\+\_\+\+FIXEDADDR}
+\item 
+\#define \textbf{ UIP\+\_\+\+PINGADDRCONF}
+\item 
+\#define \textbf{ UIP\+\_\+\+FIXEDETHADDR}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{IP configuration options}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ UIP\+\_\+\+TTL}~64
+\item 
+\#define \textbf{ UIP\+\_\+\+REASSEMBLY}
+\item 
+\#define \textbf{ UIP\+\_\+\+REASS\+\_\+\+MAXAGE}~40
+\end{DoxyCompactItemize}
+\doxysubsubsection*{UDP configuration options}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ UIP\+\_\+\+UDP}
+\item 
+\#define \textbf{ UIP\+\_\+\+UDP\+\_\+\+CHECKSUMS}
+\item 
+\#define \textbf{ UIP\+\_\+\+UDP\+\_\+\+CONNS}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{TCP configuration options}
+The name of the function that should be called when UDP datagrams arrive. \begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ UIP\+\_\+\+ACTIVE\+\_\+\+OPEN}
+\item 
+\#define \textbf{ UIP\+\_\+\+CONNS}
+\item 
+\#define \textbf{ UIP\+\_\+\+LISTENPORTS}
+\item 
+\#define \textbf{ UIP\+\_\+\+URGDATA}
+\item 
+\#define \textbf{ UIP\+\_\+\+RTO}~3
+\item 
+\#define \textbf{ UIP\+\_\+\+MAXRTX}~8
+\item 
+\#define \textbf{ UIP\+\_\+\+MAXSYNRTX}~5
+\item 
+\#define \textbf{ UIP\+\_\+\+TCP\+\_\+\+MSS}~UIP\+\_\+\+CONF\+\_\+\+TCP\+\_\+\+MSS
+\item 
+\#define \textbf{ UIP\+\_\+\+RECEIVE\+\_\+\+WINDOW}
+\item 
+\#define \textbf{ UIP\+\_\+\+TIME\+\_\+\+WAIT\+\_\+\+TIMEOUT}~120
+\end{DoxyCompactItemize}
+\doxysubsubsection*{ARP configuration options}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ UIP\+\_\+\+ARPTAB\+\_\+\+SIZE}
+\item 
+\#define \textbf{ UIP\+\_\+\+ARP\+\_\+\+MAXAGE}~120
+\end{DoxyCompactItemize}
+\doxysubsubsection*{CPU architecture configuration}
+The CPU architecture configuration is where the endianess of the CPU on which u\+IP is to be run is specified. Most CPUs today are little endian, and the most notable exception are the Motorolas which are big endian. The BYTE\+\_\+\+ORDER macro should be changed to reflect the CPU architecture on which u\+IP is to be run. \begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ UIP\+\_\+\+BYTE\+\_\+\+ORDER}
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ UIP\+\_\+\+APPCALL}~uipclient\+\_\+appcall
+\item 
+typedef void $\ast$ \textbf{ uip\+\_\+tcp\+\_\+appstate\+\_\+t}
+\item 
+typedef void $\ast$ \textbf{ uip\+\_\+udp\+\_\+appstate\+\_\+t}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+u\+IP is configured using the per-\/project configuration file \doxyref{uipopt.\+h}{p.}{uipopt_8h}. This file contains all compile-\/time options for u\+IP and should be tweaked to match each specific project. The u\+IP distribution contains a documented example "{}uipopt.\+h"{} that can be copied and modified for each project.
+
+\begin{DoxyNote}{Note}
+Most of the configuration options in the \doxyref{uipopt.\+h}{p.}{uipopt_8h} should not be changed, but rather the per-\/project \doxyref{uip-\/conf.\+h}{p.}{uip-conf_8h_source} file. 
+\end{DoxyNote}
+
+
+\doxysubsection{Macro Definition Documentation}
+\index{Configuration options for uIP@{Configuration options for uIP}!UIP\_ACTIVE\_OPEN@{UIP\_ACTIVE\_OPEN}}
+\index{UIP\_ACTIVE\_OPEN@{UIP\_ACTIVE\_OPEN}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_ACTIVE\_OPEN}
+{\footnotesize\ttfamily \label{group__uipopt_gaac0de06236b02659460445de30776e00} 
+\#define UIP\+\_\+\+ACTIVE\+\_\+\+OPEN}
+
+Determines if support for opening connections from u\+IP should be compiled in.
+
+If the applications that are running on top of u\+IP for this project do not need to open outgoing TCP connections, this configration option can be turned off to reduce the code size of u\+IP. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_APPCALL@{UIP\_APPCALL}}
+\index{UIP\_APPCALL@{UIP\_APPCALL}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_APPCALL}
+{\footnotesize\ttfamily \label{group__uipopt_gae28f6cb60e86088d8886d0f804b4f37c} 
+\#define UIP\+\_\+\+APPCALL~uipclient\+\_\+appcall}
+
+The name of the application function that u\+IP should call in response to TCP/\+IP events. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_ARP\_MAXAGE@{UIP\_ARP\_MAXAGE}}
+\index{UIP\_ARP\_MAXAGE@{UIP\_ARP\_MAXAGE}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_ARP\_MAXAGE}
+{\footnotesize\ttfamily \label{group__uipopt_ga3090117ef3ff5775b77cb1960e442d07} 
+\#define UIP\+\_\+\+ARP\+\_\+\+MAXAGE~120}
+
+The maxium age of ARP table entries measured in 10ths of seconds.
+
+An UIP\+\_\+\+ARP\+\_\+\+MAXAGE of 120 corresponds to 20 minutes (BSD default). \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_ARPTAB\_SIZE@{UIP\_ARPTAB\_SIZE}}
+\index{UIP\_ARPTAB\_SIZE@{UIP\_ARPTAB\_SIZE}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_ARPTAB\_SIZE}
+{\footnotesize\ttfamily \label{group__uipopt_gab1455b27c06532a399cf06d2c1d6d08d} 
+\#define UIP\+\_\+\+ARPTAB\+\_\+\+SIZE}
+
+The size of the ARP table.
+
+This option should be set to a larger value if this u\+IP node will have many connections from the local network. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_BROADCAST@{UIP\_BROADCAST}}
+\index{UIP\_BROADCAST@{UIP\_BROADCAST}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_BROADCAST}
+{\footnotesize\ttfamily \label{group__uipopt_ga156dd2891a57035e4afdc4c2bc0b0ebf} 
+\#define UIP\+\_\+\+BROADCAST}
+
+Broadcast support.
+
+This flag configures IP broadcast support. This is useful only together with UDP. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_BUFSIZE@{UIP\_BUFSIZE}}
+\index{UIP\_BUFSIZE@{UIP\_BUFSIZE}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_BUFSIZE}
+{\footnotesize\ttfamily \label{group__uipopt_ga3589822ecb9d9c4145209756396b8a6b} 
+\#define UIP\+\_\+\+BUFSIZE}
+
+The size of the u\+IP packet buffer.
+
+The u\+IP packet buffer should not be smaller than 60 bytes, and does not need to be larger than 1500 bytes. Lower size results in lower TCP throughput, larger size results in higher TCP throughput. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_BYTE\_ORDER@{UIP\_BYTE\_ORDER}}
+\index{UIP\_BYTE\_ORDER@{UIP\_BYTE\_ORDER}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_BYTE\_ORDER}
+{\footnotesize\ttfamily \label{group__uipopt_ga285a80366aed9428f64282b8d13c918b} 
+\#define UIP\+\_\+\+BYTE\+\_\+\+ORDER}
+
+The byte order of the CPU architecture on which u\+IP is to be run.
+
+This option can be either BIG\+\_\+\+ENDIAN (Motorola byte order) or LITTLE\+\_\+\+ENDIAN (Intel byte order). \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_CONNS@{UIP\_CONNS}}
+\index{UIP\_CONNS@{UIP\_CONNS}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_CONNS}
+{\footnotesize\ttfamily \label{group__uipopt_gaf5fe83be78b78b9e7d9e7f1e34ab1cc5} 
+\#define UIP\+\_\+\+CONNS}
+
+The maximum number of simultaneously open TCP connections.
+
+Since the TCP connections are statically allocated, turning this configuration knob down results in less RAM used. Each TCP connection requires approximatly 30 bytes of memory. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_FIXEDADDR@{UIP\_FIXEDADDR}}
+\index{UIP\_FIXEDADDR@{UIP\_FIXEDADDR}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_FIXEDADDR}
+{\footnotesize\ttfamily \label{group__uipopt_ga51195ea7cd5aa387a87f9d3b23905b62} 
+\#define UIP\+\_\+\+FIXEDADDR}
+
+Determines if u\+IP should use a fixed IP address or not.
+
+If u\+IP should use a fixed IP address, the settings are set in the \doxyref{uipopt.\+h}{p.}{uipopt_8h} file. If not, the macros \doxyref{uip\+\_\+sethostaddr()}{p.}{group__uipconffunc_ga12b467f314489259dd718228d0827a51}, \doxyref{uip\+\_\+setdraddr()}{p.}{group__uipconffunc_ga41d37ea1e3bd24f7b51e9409aceaaa80} and \doxyref{uip\+\_\+setnetmask()}{p.}{group__uipconffunc_gaeb79c914cf137e6d27fd7583e5a66679} should be used instead. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_FIXEDETHADDR@{UIP\_FIXEDETHADDR}}
+\index{UIP\_FIXEDETHADDR@{UIP\_FIXEDETHADDR}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_FIXEDETHADDR}
+{\footnotesize\ttfamily \label{group__uipopt_gae0f8cbeca9731af2171ffd37e79de893} 
+\#define UIP\+\_\+\+FIXEDETHADDR}
+
+Specifies if the u\+IP ARP module should be compiled with a fixed Ethernet MAC address or not.
+
+If this configuration option is 0, the macro \doxyref{uip\+\_\+setethaddr()}{p.}{group__uipconffunc_ga30e827f33eacff55ecb4d8fb5a11d5d1} can be used to specify the Ethernet address at run-\/time. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_LISTENPORTS@{UIP\_LISTENPORTS}}
+\index{UIP\_LISTENPORTS@{UIP\_LISTENPORTS}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_LISTENPORTS}
+{\footnotesize\ttfamily \label{group__uipopt_ga8f4ebd8ef6c0ea665ed351d87fec09fd} 
+\#define UIP\+\_\+\+LISTENPORTS}
+
+The maximum number of simultaneously listening TCP ports.
+
+Each listening TCP port requires 2 bytes of memory. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_LLH\_LEN@{UIP\_LLH\_LEN}}
+\index{UIP\_LLH\_LEN@{UIP\_LLH\_LEN}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_LLH\_LEN}
+{\footnotesize\ttfamily \label{group__uipopt_gae6f4a2453dbd8bc60e6a82774552366a} 
+\#define UIP\+\_\+\+LLH\+\_\+\+LEN}
+
+The link level header length.
+
+This is the offset into the uip\+\_\+buf where the IP header can be found. For Ethernet, this should be set to 14. For SLIP, this should be set to 0. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_LOGGING@{UIP\_LOGGING}}
+\index{UIP\_LOGGING@{UIP\_LOGGING}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_LOGGING}
+{\footnotesize\ttfamily \label{group__uipopt_ga21664b7441cfa37d280228d23316d609} 
+\#define UIP\+\_\+\+LOGGING}
+
+Determines if logging of certain events should be compiled in.
+
+This is useful mostly for debugging. The function \doxyref{uip\+\_\+log()}{p.}{group__uipopt_gab58e1ceb7cb73ca2bcd73146b6c1b4e7} must be implemented to suit the architecture of the project, if logging is turned on. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_MAXRTX@{UIP\_MAXRTX}}
+\index{UIP\_MAXRTX@{UIP\_MAXRTX}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_MAXRTX}
+{\footnotesize\ttfamily \label{group__uipopt_ga67cf1e0d2324c93f332c1f020c0fe8b3} 
+\#define UIP\+\_\+\+MAXRTX~8}
+
+The maximum number of times a segment should be retransmitted before the connection should be aborted.
+
+This should not be changed. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_MAXSYNRTX@{UIP\_MAXSYNRTX}}
+\index{UIP\_MAXSYNRTX@{UIP\_MAXSYNRTX}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_MAXSYNRTX}
+{\footnotesize\ttfamily \label{group__uipopt_ga24aa5bc36939cc9a0833e1df01478a7e} 
+\#define UIP\+\_\+\+MAXSYNRTX~5}
+
+The maximum number of times a SYN segment should be retransmitted before a connection request should be deemed to have been unsuccessful.
+
+This should not need to be changed. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_PINGADDRCONF@{UIP\_PINGADDRCONF}}
+\index{UIP\_PINGADDRCONF@{UIP\_PINGADDRCONF}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_PINGADDRCONF}
+{\footnotesize\ttfamily \label{group__uipopt_ga9069474ea570fd78c481aa164317dbaf} 
+\#define UIP\+\_\+\+PINGADDRCONF}
+
+Ping IP address asignment.
+
+u\+IP uses a "{}ping"{} packets for setting its own IP address if this option is set. If so, u\+IP will start with an empty IP address and the destination IP address of the first incoming "{}ping"{} (ICMP echo) packet will be used for setting the hosts IP address.
+
+\begin{DoxyNote}{Note}
+This works only if UIP\+\_\+\+FIXEDADDR is 0. 
+\end{DoxyNote}
+\index{Configuration options for uIP@{Configuration options for uIP}!UIP\_REASS\_MAXAGE@{UIP\_REASS\_MAXAGE}}
+\index{UIP\_REASS\_MAXAGE@{UIP\_REASS\_MAXAGE}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_REASS\_MAXAGE}
+{\footnotesize\ttfamily \label{group__uipopt_gac3882366feda1cb759ccbfe98327a7db} 
+\#define UIP\+\_\+\+REASS\+\_\+\+MAXAGE~40}
+
+The maximum time an IP fragment should wait in the reassembly buffer before it is dropped. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_REASSEMBLY@{UIP\_REASSEMBLY}}
+\index{UIP\_REASSEMBLY@{UIP\_REASSEMBLY}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_REASSEMBLY}
+{\footnotesize\ttfamily \label{group__uipopt_gaf963fdea2b75d27ef31e92d1d01359ee} 
+\#define UIP\+\_\+\+REASSEMBLY}
+
+Turn on support for IP packet reassembly.
+
+u\+IP supports reassembly of fragmented IP packets. This features requires an additonal amount of RAM to hold the reassembly buffer and the reassembly code size is approximately 700 bytes. The reassembly buffer is of the same size as the uip\+\_\+buf buffer (configured by UIP\+\_\+\+BUFSIZE).
+
+\begin{DoxyNote}{Note}
+IP packet reassembly is not heavily tested. 
+\end{DoxyNote}
+\index{Configuration options for uIP@{Configuration options for uIP}!UIP\_RECEIVE\_WINDOW@{UIP\_RECEIVE\_WINDOW}}
+\index{UIP\_RECEIVE\_WINDOW@{UIP\_RECEIVE\_WINDOW}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_RECEIVE\_WINDOW}
+{\footnotesize\ttfamily \label{group__uipopt_ga5b9dba2123705bce1ce95c3deca0bdad} 
+\#define UIP\+\_\+\+RECEIVE\+\_\+\+WINDOW}
+
+The size of the advertised receiver\textquotesingle{}s window.
+
+Should be set low (i.\+e., to the size of the uip\+\_\+buf buffer) is the application is slow to process incoming data, or high (32768 bytes) if the application processes data quickly. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_RTO@{UIP\_RTO}}
+\index{UIP\_RTO@{UIP\_RTO}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_RTO}
+{\footnotesize\ttfamily \label{group__uipopt_ga15de27b044603284f68db05a378235a7} 
+\#define UIP\+\_\+\+RTO~3}
+
+The initial retransmission timeout counted in timer pulses.
+
+This should not be changed. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_STATISTICS@{UIP\_STATISTICS}}
+\index{UIP\_STATISTICS@{UIP\_STATISTICS}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_STATISTICS}
+{\footnotesize\ttfamily \label{group__uipopt_ga5726142fec34f35fb9ea19e5a45975c6} 
+\#define UIP\+\_\+\+STATISTICS}
+
+Determines if statistics support should be compiled in.
+
+The statistics is useful for debugging and to show the user. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_TCP\_MSS@{UIP\_TCP\_MSS}}
+\index{UIP\_TCP\_MSS@{UIP\_TCP\_MSS}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_TCP\_MSS}
+{\footnotesize\ttfamily \label{group__uipopt_ga4910467b83a639f06739c82cd362037e} 
+\#define UIP\+\_\+\+TCP\+\_\+\+MSS~UIP\+\_\+\+CONF\+\_\+\+TCP\+\_\+\+MSS}
+
+The TCP maximum segment size.
+
+This is should not be to set to more than UIP\+\_\+\+BUFSIZE -\/ UIP\+\_\+\+LLH\+\_\+\+LEN -\/ UIP\+\_\+\+TCPIP\+\_\+\+HLEN. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_TIME\_WAIT\_TIMEOUT@{UIP\_TIME\_WAIT\_TIMEOUT}}
+\index{UIP\_TIME\_WAIT\_TIMEOUT@{UIP\_TIME\_WAIT\_TIMEOUT}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_TIME\_WAIT\_TIMEOUT}
+{\footnotesize\ttfamily \label{group__uipopt_ga2bc3b489923793759526a3181eb667fa} 
+\#define UIP\+\_\+\+TIME\+\_\+\+WAIT\+\_\+\+TIMEOUT~120}
+
+How long a connection should stay in the TIME\+\_\+\+WAIT state.
+
+This configiration option has no real implication, and it should be left untouched. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_TTL@{UIP\_TTL}}
+\index{UIP\_TTL@{UIP\_TTL}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_TTL}
+{\footnotesize\ttfamily \label{group__uipopt_gab61381673de27f31848c5396bf0b338e} 
+\#define UIP\+\_\+\+TTL~64}
+
+The IP TTL (time to live) of IP packets sent by u\+IP.
+
+This should normally not be changed. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_UDP@{UIP\_UDP}}
+\index{UIP\_UDP@{UIP\_UDP}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_UDP}
+{\footnotesize\ttfamily \label{group__uipopt_gadcf372ff9748996f7c05e9822a615384} 
+\#define UIP\+\_\+\+UDP}
+
+Toggles wether UDP support should be compiled in or not. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_UDP\_CHECKSUMS@{UIP\_UDP\_CHECKSUMS}}
+\index{UIP\_UDP\_CHECKSUMS@{UIP\_UDP\_CHECKSUMS}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_UDP\_CHECKSUMS}
+{\footnotesize\ttfamily \label{group__uipopt_ga92f3344ec8ca46893163399c89fafed5} 
+\#define UIP\+\_\+\+UDP\+\_\+\+CHECKSUMS}
+
+Toggles if UDP checksums should be used or not.
+
+\begin{DoxyNote}{Note}
+Support for UDP checksums is currently not included in u\+IP, so this option has no function. 
+\end{DoxyNote}
+\index{Configuration options for uIP@{Configuration options for uIP}!UIP\_UDP\_CONNS@{UIP\_UDP\_CONNS}}
+\index{UIP\_UDP\_CONNS@{UIP\_UDP\_CONNS}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_UDP\_CONNS}
+{\footnotesize\ttfamily \label{group__uipopt_ga196379ceb1219a99f4495e41ccc9bbfb} 
+\#define UIP\+\_\+\+UDP\+\_\+\+CONNS}
+
+The maximum amount of concurrent UDP connections. \index{Configuration options for uIP@{Configuration options for uIP}!UIP\_URGDATA@{UIP\_URGDATA}}
+\index{UIP\_URGDATA@{UIP\_URGDATA}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{UIP\_URGDATA}
+{\footnotesize\ttfamily \label{group__uipopt_ga51c1cd531ff0afb81620151f2248cd21} 
+\#define UIP\+\_\+\+URGDATA}
+
+Determines if support for TCP urgent data notification should be compiled in.
+
+Urgent data (out-\/of-\/band data) is a rarely used TCP feature that very seldom would be required. 
+
+\doxysubsection{Typedef Documentation}
+\index{Configuration options for uIP@{Configuration options for uIP}!uip\_tcp\_appstate\_t@{uip\_tcp\_appstate\_t}}
+\index{uip\_tcp\_appstate\_t@{uip\_tcp\_appstate\_t}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{uip\_tcp\_appstate\_t}
+{\footnotesize\ttfamily \label{group__uipopt_ga2ed2c1a15169cfd6b29c6db7e67feb75} 
+typedef void$\ast$ \textbf{ uip\+\_\+tcp\+\_\+appstate\+\_\+t}}
+
+The type of the application state that is to be stored in the \doxyref{uip\+\_\+conn}{p.}{structuip__conn} structure. This usually is typedef\+:ed to a struct holding application state information. \index{Configuration options for uIP@{Configuration options for uIP}!uip\_udp\_appstate\_t@{uip\_udp\_appstate\_t}}
+\index{uip\_udp\_appstate\_t@{uip\_udp\_appstate\_t}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{uip\_udp\_appstate\_t}
+{\footnotesize\ttfamily \label{group__uipopt_ga876a514d7bae84d48071f85a30eb7a05} 
+typedef void$\ast$ \textbf{ uip\+\_\+udp\+\_\+appstate\+\_\+t}}
+
+The type of the application state that is to be stored in the \doxyref{uip\+\_\+conn}{p.}{structuip__conn} structure. This usually is typedef\+:ed to a struct holding application state information. 
+
+\doxysubsection{Function Documentation}
+\index{Configuration options for uIP@{Configuration options for uIP}!uip\_log@{uip\_log}}
+\index{uip\_log@{uip\_log}!Configuration options for uIP@{Configuration options for uIP}}
+\doxysubsubsection{uip\_log()}
+{\footnotesize\ttfamily \label{group__uipopt_gab58e1ceb7cb73ca2bcd73146b6c1b4e7} 
+void uip\+\_\+log (\begin{DoxyParamCaption}\item[{char $\ast$}]{msg}{}\end{DoxyParamCaption})}
+
+Print out a u\+IP log message.
+
+This function must be implemented by the module that uses u\+IP, and is called by u\+IP whenever a log message is generated. 

@@ -1,0 +1,26 @@
+\doxysubsection{Variables used in u\+IP device drivers}
+\label{group__uipdrivervars}\index{Variables used in uIP device drivers@{Variables used in uIP device drivers}}
+\doxysubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+u16\+\_\+t \textbf{ uip\+\_\+len}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+u\+IP has a few global variables that are used in device drivers for u\+IP. 
+
+\doxysubsubsection{Variable Documentation}
+\index{Variables used in uIP device drivers@{Variables used in uIP device drivers}!uip\_len@{uip\_len}}
+\index{uip\_len@{uip\_len}!Variables used in uIP device drivers@{Variables used in uIP device drivers}}
+\doxysubsubsubsection{uip\_len}
+{\footnotesize\ttfamily \label{group__uipdrivervars_ga12a33f0c09711167bdf3dd7d7cf8c5a1} 
+u16\+\_\+t uip\+\_\+len\hspace{0.3cm}{\ttfamily [extern]}}
+
+The length of the packet in the uip\+\_\+buf buffer.
+
+The global variable uip\+\_\+len holds the length of the packet in the uip\+\_\+buf buffer.
+
+When the network device driver calls the u\+IP input function, uip\+\_\+len should be set to the length of the packet in the uip\+\_\+buf buffer.
+
+When sending packets, the device driver should use the contents of the uip\+\_\+len variable to determine the length of the outgoing packet. 

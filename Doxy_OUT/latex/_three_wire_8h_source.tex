@@ -1,0 +1,133 @@
+\doxysection{Three\+Wire.\+h}
+\label{_three_wire_8h_source}\index{lib/Rtc-\/master/src/ThreeWire.h@{lib/Rtc-\/master/src/ThreeWire.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00002\ \textcolor{comment}{RTC\ library}}
+\DoxyCodeLine{00003\ \textcolor{comment}{}}
+\DoxyCodeLine{00004\ \textcolor{comment}{Written\ by\ Michael\ C.\ Miller.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{}}
+\DoxyCodeLine{00006\ \textcolor{comment}{I\ invest\ time\ and\ resources\ providing\ this\ open\ source\ code,}}
+\DoxyCodeLine{00007\ \textcolor{comment}{please\ support\ me\ by\ dontating\ (see\ https://github.com/Makuna/Rtc)}}
+\DoxyCodeLine{00008\ \textcolor{comment}{}}
+\DoxyCodeLine{00009\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00010\ \textcolor{comment}{This\ file\ is\ part\ of\ the\ Makuna/Rtc\ library.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Rtc\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00013\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as}}
+\DoxyCodeLine{00014\ \textcolor{comment}{published\ by\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of}}
+\DoxyCodeLine{00015\ \textcolor{comment}{the\ License,\ or\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{Rtc\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00018\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00019\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00020\ \textcolor{comment}{GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public}}
+\DoxyCodeLine{00023\ \textcolor{comment}{License\ along\ with\ Rtc.\ \ If\ not,\ see}}
+\DoxyCodeLine{00024\ \textcolor{comment}{<http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{//ThreeWire\ command\ Read/Write\ flag\ }}
+\DoxyCodeLine{00032\ \textcolor{keyword}{const}\ uint8\_t\ THREEWIRE\_READFLAG\ =\ 0x01;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }ThreeWire\ }
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ ThreeWire(uint8\_t\ ioPin,\ uint8\_t\ clkPin,\ uint8\_t\ cePin)\ :}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \_ioPin(ioPin),}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \_clkPin(clkPin),}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \_cePin(cePin)}
+\DoxyCodeLine{00041\ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ begin()\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ resetPins();}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ end()\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ resetPins();}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ beginTransmission(uint8\_t\ command)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ digitalWrite(\_cePin,\ LOW);\ \textcolor{comment}{//\ default,\ not\ enabled}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ pinMode(\_cePin,\ OUTPUT);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ digitalWrite(\_clkPin,\ LOW);\ \textcolor{comment}{//\ default,\ clock\ low}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ pinMode(\_clkPin,\ OUTPUT);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ pinMode(\_ioPin,\ OUTPUT);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ digitalWrite(\_cePin,\ HIGH);\ \textcolor{comment}{//\ start\ the\ session}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ delayMicroseconds(4);\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ tCC\ =\ 4us}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ write(command,\ (command\ \&\ THREEWIRE\_READFLAG)\ ==\ THREEWIRE\_READFLAG);}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ endTransmission()\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ digitalWrite(\_cePin,\ LOW);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ delayMicroseconds(4);\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ tCWH\ =\ 4us}}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ write(uint8\_t\ value,\ \textcolor{keywordtype}{bool}\ isDataRequestCommand\ =\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ bit\ =\ 0;\ bit\ <\ 8;\ bit++)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ digitalWrite(\_ioPin,\ value\ \&\ 0x01);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ delayMicroseconds(1);\ \ \ \ \ \textcolor{comment}{//\ tDC\ =\ 200ns}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ clock\ up,\ data\ is\ read\ by\ DS1302}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ digitalWrite(\_clkPin,\ HIGH);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ delayMicroseconds(1);\ \ \ \ \ \textcolor{comment}{//\ tCH\ =\ 1000ns,\ tCDH\ =\ 800ns}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ the\ last\ bit\ before\ a\ read}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ IO\ line\ for\ input\ before\ the\ clock\ down}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bit\ ==\ 7\ \&\&\ isDataRequestCommand)\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pinMode(\_ioPin,\ INPUT);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ digitalWrite(\_clkPin,\ LOW);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ delayMicroseconds(1);\ \ \ \ \ \textcolor{comment}{//\ tCL=1000ns,\ tCDD=800ns}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ value\ >>=\ 1;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ uint8\_t\ read()\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ uint8\_t\ value\ =\ 0;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ bit\ =\ 0;\ bit\ <\ 8;\ bit++)\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ first\ bit\ is\ present\ on\ io\ pin,\ so\ only\ clock\ the\ other}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ bits}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ value\ |=\ (digitalRead(\_ioPin)\ <<\ bit);}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clock\ up,\ prepare\ for\ next}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ digitalWrite(\_clkPin,\ HIGH);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ delayMicroseconds(1);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clock\ down,\ value\ is\ ready\ after\ some\ time.}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ digitalWrite(\_clkPin,\ LOW);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ delayMicroseconds(1);\ \ \ \ \ \ \ \ \textcolor{comment}{//\ tCL=1000ns,\ tCDD=800ns}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ \_ioPin;}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ \_clkPin;}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ \_cePin;}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{void}\ resetPins()\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ just\ making\ sure\ they\ are\ in\ a\ default\ low\ power\ use\ state}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ as\ required\ state\ is\ set\ when\ transmissions\ are\ started}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ three\ wire\ devices\ have\ internal\ pull\ downs\ so\ they\ will\ be\ low}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ pinMode(\_clkPin,\ INPUT);}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ pinMode(\_ioPin,\ INPUT);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ pinMode(\_cePin,\ INPUT);}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \};}
+
+\end{DoxyCode}

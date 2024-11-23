@@ -1,0 +1,51 @@
+\doxysection{uipethernet-\/conf.h}
+\label{uipethernet-conf_8h_source}\index{lib/EthernetENC-\/2.0.5/src/utility/uipethernet-\/conf.h@{lib/EthernetENC-\/2.0.5/src/utility/uipethernet-\/conf.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ UIPETHERNET\_CONF\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ UIPETHERNET\_CONF\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ https://github.com/jandrassy/EthernetENC/wiki/Settings}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{/*\ for\ TCP\ */}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ UIP\_SOCKET\_NUMPACKETS}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ UIP\_SOCKET\_NUMPACKETS\ \ \ \ 3}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ UIP\_CONF\_MAX\_CONNECTIONS}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ UIP\_CONF\_MAX\_CONNECTIONS\ 4}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{/*\ for\ UDP}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ set\ UIP\_CONF\_UDP\ to\ 0\ to\ disable\ UDP\ (saves\ aprox.\ 4kB\ flash)\ */}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#ifndef\ UIP\_CONF\_UDP}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ UIP\_CONF\_UDP\ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#ifndef\ UIP\_CONF\_UDP\_CONNS}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ UIP\_CONF\_UDP\_CONNS\ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#ifndef\ UIP\_UDP\_BACKLOG}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ UIP\_UDP\_BACKLOG\ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{/*\ timeout\ in\ ms\ for\ attempts\ to\ get\ a\ free\ memory\ block\ to\ write}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *\ before\ returning\ number\ of\ bytes\ sent\ so\ far}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ *\ set\ to\ 0\ to\ block\ until\ connection\ is\ closed\ by\ timeout\ */}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#ifndef\ UIP\_WRITE\_TIMEOUT}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ UIP\_WRITE\_TIMEOUT\ \ \ \ 2000}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{/*\ timeout\ after\ which\ UIPClient::connect\ gives\ up.\ The\ timeout\ is\ specified\ in\ seconds.}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ *\ if\ set\ to\ a\ number\ <=\ 0\ connect\ will\ timeout\ when\ uIP\ does\ (which\ might\ be\ longer\ than\ you\ expect...)\ */}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#ifndef\ UIP\_CONNECT\_TIMEOUT}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ UIP\_CONNECT\_TIMEOUT\ \ \ \ \ \ 5}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{/*\ periodic\ timer\ for\ uip\ (in\ ms)\ */}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#ifndef\ UIP\_PERIODIC\_TIMER}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ UIP\_PERIODIC\_TIMER\ \ \ \ \ \ \ 100}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

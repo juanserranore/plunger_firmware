@@ -1,0 +1,51 @@
+\doxysection{Setup104\+\_\+\+RP2040\+\_\+\+ST7796\+\_\+parallel.\+h}
+\label{_setup104___r_p2040___s_t7796__parallel_8h_source}\index{lib/TFT\_eSPI-\/master/User\_Setups/Setup104\_RP2040\_ST7796\_parallel.h@{lib/TFT\_eSPI-\/master/User\_Setups/Setup104\_RP2040\_ST7796\_parallel.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ setup\ is\ for\ the\ RP2040\ processor\ only\ when\ used\ with\ 8-\/bit\ parallel\ displays}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ See\ SetupX\_Template.h\ for\ all\ options\ available}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ USER\_SETUP\_ID\ 104}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Interface}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ TFT\_PARALLEL\_8\_BIT}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Display\ driver\ type}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ ST7796\_DRIVER}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ RP2040\ pins\ used}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\#define\ TFT\_CS\ \ \ -\/1\ \ //\ Do\ not\ define,\ chip\ select\ control\ pin\ permanently\ connected\ to\ 0V}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ These\ pins\ can\ be\ moved\ and\ are\ controlled\ directly\ by\ the\ library\ software}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ TFT\_DC\ \ \ 28\ \ \ \ }\textcolor{comment}{//\ Data\ Command\ control\ pin}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ TFT\_RST\ \ \ 2\ \ \ \ }\textcolor{comment}{//\ Reset\ pin}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\#define\ TFT\_RD\ \ \ -\/1\ \ //\ Do\ not\ define,\ read\ pin\ permanently\ connected\ to\ 3V3}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ Note:\ All\ the\ following\ pins\ are\ PIO\ hardware\ configured\ and\ driven}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\ \ \#define\ TFT\_WR\ \ \ 22}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \textcolor{comment}{//\ PIO\ requires\ these\ to\ be\ sequentially\ increasing\ -\/\ do\ not\ change}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D0\ \ \ \ 6}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D1\ \ \ \ 7}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D2\ \ \ \ 8}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D3\ \ \ \ 9}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D4\ \ \ 10}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D5\ \ \ 11}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D6\ \ \ 12}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D7\ \ \ 13}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//*/}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ Fonts\ to\ be\ available}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ LOAD\_GLCD\ \ \ }\textcolor{comment}{//\ Font\ 1.\ Original\ Adafruit\ 8\ pixel\ font\ needs\ \string~1820\ bytes\ in\ FLASH}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ LOAD\_FONT2\ \ }\textcolor{comment}{//\ Font\ 2.\ Small\ 16\ pixel\ high\ font,\ needs\ \string~3534\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ LOAD\_FONT4\ \ }\textcolor{comment}{//\ Font\ 4.\ Medium\ 26\ pixel\ high\ font,\ needs\ \string~5848\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ LOAD\_FONT6\ \ }\textcolor{comment}{//\ Font\ 6.\ Large\ 48\ pixel\ font,\ needs\ \string~2666\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.apm}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ LOAD\_FONT7\ \ }\textcolor{comment}{//\ Font\ 7.\ 7\ segment\ 48\ pixel\ font,\ needs\ \string~2438\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:.}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ LOAD\_FONT8\ \ }\textcolor{comment}{//\ Font\ 8.\ Large\ 75\ pixel\ font\ needs\ \string~3256\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ LOAD\_GFXFF\ \ }\textcolor{comment}{//\ FreeFonts.\ Include\ access\ to\ the\ 48\ Adafruit\_GFX\ free\ fonts\ FF1\ to\ FF48\ and\ custom\ fonts}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ SMOOTH\_FONT}}
+\DoxyCodeLine{00053\ }
+
+\end{DoxyCode}

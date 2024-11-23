@@ -1,0 +1,137 @@
+\doxysection{setup/setup.h File Reference}
+\hypertarget{setup_8h}{}\label{setup_8h}\index{setup/setup.h@{setup/setup.h}}
+
+
+Contains all setup configurations for the project including Ethernet, LCD, Motor, Pin, RTC, and Task setups.  
+
+
+{\ttfamily \#include $<$globals/globals.\+h$>$}\newline
+{\ttfamily \#include $<$libraries.\+h$>$}\newline
+{\ttfamily \#include $<$GUI/\+GUI.\+h$>$}\newline
+{\ttfamily \#include $<$project\+\_\+tasks/project\+Tasks.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{setup_8h_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains all setup configurations for the project including Ethernet, LCD, Motor, Pin, RTC, and Task setups. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{setup_8h_a4fc01d736fe50cf5b977f755b675f11d}\index{setup.h@{setup.h}!setup@{setup}}
+\index{setup@{setup}!setup.h@{setup.h}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{setup_8h_a4fc01d736fe50cf5b977f755b675f11d} 
+void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Ethernet setup configuration for ENC28\+J60 module.
+
+Initializes SPI communication and configures the Ethernet with the provided MAC address and IP.
+
+\texorpdfstring{$<$}{<} Initializes SPI communication
+
+\texorpdfstring{$<$}{<} CS pin for ENC28\+J60 module
+
+\texorpdfstring{$<$}{<} Start Ethernet with MAC address and IP
+
+LCD setup configuration for the TFT display.
+
+Configures serial communication, initializes the display, sets text properties, and creates necessary queues and semaphores for screen management.
+
+\texorpdfstring{$<$}{<} Initialize serial communication at 115200 baud
+
+\texorpdfstring{$<$}{<} Initialize TFT display
+
+\texorpdfstring{$<$}{<} Disable text wrapping
+
+\texorpdfstring{$<$}{<} Set text size to small
+
+\texorpdfstring{$<$}{<} Set display rotation
+
+\texorpdfstring{$<$}{<} Create a queue for screen updates
+
+\texorpdfstring{$<$}{<} Set initial screen brightness
+
+\texorpdfstring{$<$}{<} Enable byte swapping for better display rendering
+
+\texorpdfstring{$<$}{<} Create a mutex for controlling screen updates
+
+Motor setup configuration.
+
+Configures motor speed, acceleration, and reads initial state from encoder.
+
+\texorpdfstring{$<$}{<} Read initial state of the encoder
+
+\texorpdfstring{$<$}{<} Set maximum motor speed
+
+\texorpdfstring{$<$}{<} Set motor acceleration
+
+Pin setup configuration.
+
+Configures the pins for the encoder and motor control.
+
+\texorpdfstring{$<$}{<} Set CLK pin as input with pull-\/up resistor
+
+\texorpdfstring{$<$}{<} Set DT pin as input with pull-\/up resistor
+
+\texorpdfstring{$<$}{<} Set direction pin as output
+
+\texorpdfstring{$<$}{<} Set step pin as output
+
+RTC setup configuration.
+
+Initializes the Real-\/\+Time Clock (RTC) and sets the date and time based on the compilation time. Verifies if the RTC is write-\/protected and ensures it is running.
+
+\texorpdfstring{$<$}{<} Initialize RTC communication
+
+\texorpdfstring{$<$}{<} Display the compilation date
+
+\texorpdfstring{$<$}{<} Display the compilation time
+
+\texorpdfstring{$<$}{<} Set compiled date and time
+
+Check if the RTC\textquotesingle{}s date and time are valid, and if not, set the compiled date and time.
+
+\texorpdfstring{$<$}{<} Set RTC to compilation time
+
+Check if the RTC is write-\/protected, and disable write protection if necessary.
+
+\texorpdfstring{$<$}{<} Disable write protection
+
+Check if the RTC is running, and start it if it is not.
+
+\texorpdfstring{$<$}{<} Start RTC
+
+\texorpdfstring{$<$}{<} Get the current date and time from the RTC
+
+Compare the RTC time with the compiled time and update the RTC if necessary.
+
+\texorpdfstring{$<$}{<} Update RTC to compiled date and time
+
+Task setup configuration.
+
+Creates various Free\+RTOS tasks for managing display, button presses, Ethernet, motor control, and screen updates.
+
+\texorpdfstring{$<$}{<} Create task for displaying time
+
+\texorpdfstring{$<$}{<} Create task for starting the screen (core 0)
+
+\texorpdfstring{$<$}{<} Create task for reading encoder (core 0)
+
+\texorpdfstring{$<$}{<} Create task for managing screen timeout
+
+\texorpdfstring{$<$}{<} Create task for handling button presses
+
+\texorpdfstring{$<$}{<} Create task for Ethernet communication
+
+\texorpdfstring{$<$}{<} Create task for updating screen (core 1)
+
+\texorpdfstring{$<$}{<} Create task for rotary motor control
+
+\texorpdfstring{$<$}{<} Create task for motor control
+
+\texorpdfstring{$<$}{<} Start the Free\+RTOS scheduler

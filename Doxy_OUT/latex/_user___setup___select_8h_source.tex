@@ -1,0 +1,306 @@
+\doxysection{User\+\_\+\+Setup\+\_\+\+Select.\+h}
+\label{_user___setup___select_8h_source}\index{lib/TFT\_eSPI-\/master/User\_Setup\_Select.h@{lib/TFT\_eSPI-\/master/User\_Setup\_Select.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ header\ file\ contains\ a\ list\ of\ user\ setup\ files\ and\ defines\ which\ one\ the}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ compiler\ uses\ when\ the\ IDE\ performs\ a\ Verify/Compile\ or\ Upload.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Users\ can\ create\ configurations\ for\ different\ boards\ and\ TFT\ displays.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ This\ makes\ selecting\ between\ hardware\ setups\ easy\ by\ "{}uncommenting"{}\ one\ line.}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ The\ advantage\ of\ this\ hardware\ configuration\ method\ is\ that\ the\ examples\ provided}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ with\ the\ library\ should\ work\ with\ immediately\ without\ any\ other\ changes\ being}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ needed.\ It\ also\ improves\ the\ portability\ of\ users\ sketches\ to\ other\ hardware}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ configurations\ and\ compatible\ libraries.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ Create\ a\ shortcut\ to\ this\ file\ on\ your\ desktop\ to\ permit\ quick\ access\ for\ editing.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Re-\/compile\ and\ upload\ after\ making\ and\ saving\ any\ changes\ to\ this\ file.}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ Example\ User\_Setup\ files\ are\ stored\ in\ the\ "{}User\_Setups"{}\ folder.\ These\ can\ be\ used}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ unmodified\ or\ adapted\ for\ a\ particular\ hardware\ configuration.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifndef\ USER\_SETUP\_LOADED\ }\textcolor{comment}{//\ \ Lets\ PlatformIO\ users\ define\ settings\ in}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ platformio.ini,\ see\ notes\ in\ "{}Tools"{}\ folder.}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ \ \ User\ configuration\ selection\ lines\ are\ below\ \ \ \ //}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ Only\ ONE\ line\ below\ should\ be\ uncommented\ to\ define\ your\ setup.\ \ Add\ extra\ lines\ and\ files\ as\ needed.}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <User\_Setup.h>}\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Default\ setup\ is\ root\ library\ folder}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\#include\ <User\_Setups/Setup1\_ILI9341.h>\ \ //\ Setup\ file\ for\ ESP8266\ configured\ for\ my\ ILI9341}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\#include\ <User\_Setups/Setup2\_ST7735.h>\ \ \ //\ Setup\ file\ for\ ESP8266\ configured\ for\ my\ ST7735}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\#include\ <User\_Setups/Setup3\_ILI9163.h>\ \ //\ Setup\ file\ for\ ESP8266\ configured\ for\ my\ ILI9163}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\#include\ <User\_Setups/Setup4\_S6D02A1.h>\ \ //\ Setup\ file\ for\ ESP8266\ configured\ for\ my\ S6D02A1}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\#include\ <User\_Setups/Setup5\_RPi\_ILI9486.h>\ \ \ \ \ \ \ \ //\ Setup\ file\ for\ ESP8266\ configured\ for\ my\ stock\ RPi\ TFT}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\#include\ <User\_Setups/Setup6\_RPi\_Wr\_ILI9486.h>\ \ \ \ \ //\ Setup\ file\ for\ ESP8266\ configured\ for\ my\ modified\ RPi\ TFT}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\#include\ <User\_Setups/Setup7\_ST7735\_128x128.h>\ \ \ \ \ //\ Setup\ file\ for\ ESP8266\ configured\ for\ my\ ST7735\ 128x128\ display}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\#include\ <User\_Setups/Setup8\_ILI9163\_128x128.h>\ \ \ \ //\ Setup\ file\ for\ ESP8266\ configured\ for\ my\ ILI9163\ 128x128\ display}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\#include\ <User\_Setups/Setup9\_ST7735\_Overlap.h>\ \ \ \ \ //\ Setup\ file\ for\ ESP8266\ configured\ for\ my\ ST7735}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\#include\ <User\_Setups/Setup10\_RPi\_touch\_ILI9486.h>\ //\ Setup\ file\ for\ ESP8266\ configured\ for\ ESP8266\ and\ RPi\ TFT\ with\ touch}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{//\#include\ <User\_Setups/Setup11\_RPi\_touch\_ILI9486.h>\ //\ Setup\ file\ configured\ for\ ESP32\ and\ RPi\ TFT\ with\ touch}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\#include\ <User\_Setups/Setup12\_M5Stack\_Basic\_Core.h>//\ Setup\ file\ for\ the\ ESP32\ based\ M5Stack\ (Basic\ Core\ only)}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\#include\ <User\_Setups/Setup13\_ILI9481\_Parallel.h>\ \ //\ Setup\ file\ for\ the\ ESP32\ with\ parallel\ bus\ TFT}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\#include\ <User\_Setups/Setup14\_ILI9341\_Parallel.h>\ \ //\ Setup\ file\ for\ the\ ESP32\ with\ parallel\ bus\ TFT}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\#include\ <User\_Setups/Setup15\_HX8357D.h>\ \ \ \ \ \ \ \ \ \ \ //\ Setup\ file\ for\ ESP8266\ configured\ for\ HX8357D}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\#include\ <User\_Setups/Setup16\_ILI9488\_Parallel.h>\ \ //\ Setup\ file\ for\ the\ ESP32\ with\ parallel\ bus\ TFT}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\#include\ <User\_Setups/Setup17\_ePaper.h>\ \ \ \ \ \ \ \ \ \ \ \ //\ Setup\ file\ for\ ESP8266\ and\ any\ Waveshare\ ePaper\ display}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\#include\ <User\_Setups/Setup18\_ST7789.h>\ \ \ \ \ \ \ \ \ \ \ \ //\ Setup\ file\ for\ ESP8266\ configured\ for\ ST7789}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{//\#include\ <User\_Setups/Setup19\_RM68140\_Parallel.h>\ \ //\ Setup\ file\ configured\ for\ RM68140\ with\ parallel\ bus}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{//\#include\ <User\_Setups/Setup20\_ILI9488.h>\ \ \ \ \ \ \ \ \ \ \ //\ Setup\ file\ for\ ESP8266\ and\ ILI9488\ SPI\ bus\ TFT}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\#include\ <User\_Setups/Setup21\_ILI9488.h>\ \ \ \ \ \ \ \ \ \ \ //\ Setup\ file\ for\ ESP32\ and\ ILI9488\ SPI\ bus\ TFT}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{comment}{//\#include\ <User\_Setups/Setup22\_TTGO\_T4.h>\ \ \ \ \ \ \ \ \ \ \ //\ Setup\ file\ for\ ESP32\ and\ TTGO\ T4\ version\ 1.2}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\#include\ <User\_Setups/Setup22\_TTGO\_T4\_v1.3.h>\ \ \ \ \ \ //\ Setup\ file\ for\ ESP32\ and\ TTGO\ T4\ version\ 1.3}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\#include\ <User\_Setups/Setup23\_TTGO\_TM.h>\ \ \ \ \ \ \ \ \ \ \ //\ Setup\ file\ for\ ESP32\ and\ TTGO\ TM\ ST7789\ SPI\ bus\ TFT}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\#include\ <User\_Setups/Setup24\_ST7789.h>\ \ \ \ \ \ \ \ \ \ \ \ //\ Setup\ file\ for\ DSTIKE/ESP32/ESP8266\ configured\ for\ ST7789\ 240\ x\ 240}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//\#include\ <User\_Setups/Setup25\_TTGO\_T\_Display.h>\ \ \ \ //\ Setup\ file\ for\ ESP32\ and\ TTGO\ T-\/Display\ ST7789V\ SPI\ bus\ TFT}}
+\DoxyCodeLine{00059\ \textcolor{comment}{//\#include\ <User\_Setups/Setup26\_TTGO\_T\_Wristband.h>\ \ //\ Setup\ file\ for\ ESP32\ and\ TTGO\ T-\/Wristband\ ST7735\ SPI\ bus\ TFT}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{//\#include\ <User\_Setups/Setup27\_RPi\_ST7796\_ESP32.h>\ \ \ \ //\ ESP32\ \ \ RPi\ MHS-\/4.0\ inch\ Display-\/B}}
+\DoxyCodeLine{00062\ \textcolor{comment}{//\#include\ <User\_Setups/Setup28\_RPi\_ST7796\_ESP8266.h>\ \ //\ ESP8266\ RPi\ MHS-\/4.0\ inch\ Display-\/B}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{comment}{//\#include\ <User\_Setups/Setup29\_ILI9341\_STM32.h>\ \ \ \ \ \ \ \ \ \ //\ Setup\ for\ Nucleo\ board}}
+\DoxyCodeLine{00065\ \textcolor{comment}{//\#include\ <User\_Setups/Setup30\_ILI9341\_Parallel\_STM32.h>\ //\ Setup\ for\ Nucleo\ board\ and\ parallel\ display}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\#include\ <User\_Setups/Setup31\_ST7796\_Parallel\_STM32.h>\ \ //\ Setup\ for\ Nucleo\ board\ and\ parallel\ display}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//\#include\ <User\_Setups/Setup32\_ILI9341\_STM32F103.h>\ \ \ \ \ \ //\ Setup\ for\ "{}Blue/Black\ Pill"{}}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{comment}{//\#include\ <User\_Setups/Setup33\_RPi\_ILI9486\_STM32.h>\ \ \ \ \ \ //\ Setup\ for\ Nucleo\ board}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{comment}{//\#include\ <User\_Setups/Setup34\_ILI9481\_Parallel\_STM32.h>\ //\ Setup\ for\ Nucleo\ board\ and\ parallel\ display}}
+\DoxyCodeLine{00072\ \textcolor{comment}{//\#include\ <User\_Setups/Setup35\_ILI9341\_STM32\_Port\_Bus.h>\ //\ Setup\ for\ STM32\ port\ A\ parallel\ display}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{//\#include\ <User\_Setups/Setup36\_RPi\_touch\_ST7796.h>\ \ \ \ \ \ //\ Setup\ file\ configured\ for\ ESP32\ and\ RPi\ ST7796\ TFT\ with\ touch}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{comment}{//\#include\ <User\_Setups/Setup42\_ILI9341\_ESP32.h>\ \ \ \ \ \ \ \ \ \ \ //\ Setup\ file\ for\ ESP32\ and\ SPI\ ILI9341\ 240x320}}
+\DoxyCodeLine{00077\ \textcolor{comment}{//\#include\ <User\_Setups/Setup43\_ST7735.h>\ \ \ \ \ \ \ \ \ \ \ \ //\ Setup\ file\ for\ ESP8266\ \&\ ESP32\ configured\ for\ my\ ST7735S\ 80x160}}
+\DoxyCodeLine{00078\ \textcolor{comment}{//\#include\ <User\_Setups/Setup44\_TTGO\_CameraPlus.h>\ \ \ //\ Setup\ file\ for\ ESP32\ and\ TTGO\ T-\/CameraPlus\ ST7789\ SPI\ bus\ TFT\ \ \ \ 240x240}}
+\DoxyCodeLine{00079\ \textcolor{comment}{//\#include\ <User\_Setups/Setup45\_TTGO\_T\_Watch.h>\ \ \ \ \ \ //\ Setup\ file\ for\ ESP32\ and\ TTGO\ T-\/Watch\ ST7789\ SPI\ bus\ TFT\ \ 240x240}}
+\DoxyCodeLine{00080\ \textcolor{comment}{//\#include\ <User\_Setups/Setup46\_GC9A01\_ESP32.h>\ \ \ \ \ \ //\ Setup\ file\ for\ ESP32\ and\ GC9A01\ SPI\ bus\ TFT\ \ 240x240}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#include\ <User\_Setups/Setup47\_ST7735.h>}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Setup\ file\ for\ ESP32\ configured\ for\ ST7735\ 128\ x\ 128\ animated\ eyes}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{comment}{//\#include\ <User\_Setups/Setup50\_SSD1963\_Parallel.h>\ \ //\ Setup\ file\ for\ ESP32\ and\ SSD1963\ TFT\ display}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{comment}{//\#include\ <User\_Setups/Setup51\_LilyPi\_ILI9481.h>\ \ \ \ //\ Setup\ file\ for\ LilyGo\ LilyPi\ with\ ILI9481\ display}}
+\DoxyCodeLine{00087\ \textcolor{comment}{//\#include\ <User\_Setups/Setup52\_LilyPi\_ST7796.h>\ \ \ \ \ //\ Setup\ file\ for\ LilyGo\ LilyPi\ with\ ST7796\ display}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{//\#include\ <User\_Setups/Setup60\_RP2040\_ILI9341.h>\ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ Setup\ file\ for\ RP2040\ with\ SPI\ ILI9341}}
+\DoxyCodeLine{00090\ \textcolor{comment}{//\#include\ <User\_Setups/Setup61\_RP2040\_ILI9341\_PIO\_SPI.h>\ \ \ \ \ \ //\ Setup\ file\ for\ RP2040\ with\ PIO\ SPI\ ILI9341}}
+\DoxyCodeLine{00091\ \textcolor{comment}{//\#include\ <User\_Setups/Setup62\_RP2040\_Nano\_Connect\_ILI9341.h>\ //\ Setup\ file\ for\ RP2040\ with\ SPI\ ILI9341}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{comment}{//\#include\ <User\_Setups/Setup66\_Seeed\_XIAO\_Round.h>\ \ \ \ \ //\ Setup\ file\ for\ Seeed\ XIAO\ with\ GC9A01\ 240x240}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{comment}{//\#include\ <User\_Setups/Setup70\_ESP32\_S2\_ILI9341.h>\ \ \ \ \ //\ Setup\ file\ for\ ESP32\ S2\ with\ SPI\ ILI9341}}
+\DoxyCodeLine{00096\ \textcolor{comment}{//\#include\ <User\_Setups/Setup70b\_ESP32\_S3\_ILI9341.h>\ \ \ \ //\ Setup\ file\ for\ ESP32\ S3\ with\ SPI\ ILI9341}}
+\DoxyCodeLine{00097\ \textcolor{comment}{//\#include\ <User\_Setups/Setup70c\_ESP32\_C3\_ILI9341.h>\ \ \ \ //\ Setup\ file\ for\ ESP32\ C3\ with\ SPI\ ILI9341}}
+\DoxyCodeLine{00098\ \textcolor{comment}{//\#include\ <User\_Setups/Setup70d\_ILI9488\_S3\_Parallel.h>\ //\ Setup\ file\ for\ ESP32\ S3\ with\ SPI\ ILI9488}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{comment}{//\#include\ <User\_Setups/Setup71\_ESP32\_S2\_ST7789.h>\ \ \ \ \ \ \ //\ Setup\ file\ for\ ESP32\ S2\ with\ ST7789}}
+\DoxyCodeLine{00101\ \textcolor{comment}{//\#include\ <User\_Setups/Setup72\_ESP32\_ST7789\_172x320.h>\ \ //\ Setup\ file\ for\ ESP32\ with\ ST7789\ 1.47"{}\ 172x320}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{comment}{//\#include\ <User\_Setups/Setup100\_RP2040\_ILI9488\_parallel.h>\ //\ Setup\ file\ for\ Pico/RP2040\ with\ 8-\/bit\ parallel\ ILI9488}}
+\DoxyCodeLine{00104\ \textcolor{comment}{//\#include\ <User\_Setups/Setup101\_RP2040\_ILI9481\_parallel.h>\ //\ Setup\ file\ for\ Pico/RP2040\ with\ 8-\/bit\ parallel\ ILI9481}}
+\DoxyCodeLine{00105\ \textcolor{comment}{//\#include\ <User\_Setups/Setup102\_RP2040\_ILI9341\_parallel.h>\ //\ Setup\ file\ for\ Pico/RP2040\ with\ 8-\/bit\ parallel\ ILI9341}}
+\DoxyCodeLine{00106\ \textcolor{comment}{//\#include\ <User\_Setups/Setup103\_RP2040\_ILI9486\_parallel.h>\ //\ Setup\ file\ for\ Pico/RP2040\ with\ 8-\/bit\ parallel\ ILI9486}}
+\DoxyCodeLine{00107\ \textcolor{comment}{//\#include\ <User\_Setups/Setup104\_RP2040\_ST7796\_parallel.h>\ \ //\ Setup\ file\ for\ Pico/RP2040\ with\ 8-\/bit\ parallel\ ST7796}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{comment}{//\#include\ <User\_Setups/Setup105\_RP2040\_ST7796\_16bit\_parallel.h>\ \ //\ Setup\ file\ for\ RP2040\ 16-\/bit\ parallel\ display}}
+\DoxyCodeLine{00110\ \textcolor{comment}{//\#include\ <User\_Setups/Setup106\_RP2040\_ILI9481\_16bit\_parallel.h>\ //\ Setup\ file\ for\ RP2040\ 16-\/bit\ parallel\ display}}
+\DoxyCodeLine{00111\ \textcolor{comment}{//\#include\ <User\_Setups/Setup107\_RP2040\_ILI9341\_16bit\_parallel.h>\ //\ Setup\ file\ for\ RP2040\ 16-\/bit\ parallel\ display}}
+\DoxyCodeLine{00112\ \textcolor{comment}{//\#include\ <User\_Setups/Setup108\_RP2040\_ST7735.h>\ //\ Setup\ file\ for\ Waveshare\ RP2040\ board\ with\ onboard\ ST7735\ 0.96"{}\ 160x80\ display}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{comment}{//\#include\ <User\_Setups/Setup135\_ST7789.h>\ \ \ \ \ \ \ \ \ \ \ //\ Setup\ file\ for\ ESP8266\ and\ ST7789\ 135\ x\ 240\ TFT}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{comment}{//\#include\ <User\_Setups/Setup136\_LilyGo\_TTV.h>\ \ \ \ \ \ \ //\ Setup\ file\ for\ ESP32\ and\ Lilygo\ TTV\ ST7789\ SPI\ bus\ TFT\ \ 135x240}}
+\DoxyCodeLine{00117\ \textcolor{comment}{//\#include\ <User\_Setups/Setup137\_LilyGo\_TDisplay\_RP2040.h>\ \ //\ Setup\ file\ for\ Lilygo\ T-\/Display\ RP2040\ (ST7789\ on\ SPI\ bus\ with\ 135x240\ TFT)}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{comment}{//\#include\ <User\_Setups/Setup138\_Pico\_Explorer\_Base\_RP2040\_ST7789.h>\ //\ Setup\ file\ for\ Pico\ Explorer\ Base\ by\ Pimoroni\ for\ RP2040\ (ST7789\ on\ SPI\ bus\ with\ 240x240\ TFT)}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{comment}{//\#include\ <User\_Setups/Setup200\_GC9A01.h>\ \ \ \ \ \ \ \ \ \ \ //\ Setup\ file\ for\ ESP32\ and\ GC9A01\ 240\ x\ 240\ TFT}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{comment}{//\#include\ <User\_Setups/Setup201\_WT32\_SC01.h>\ \ \ \ \ \ \ \ //\ Setup\ file\ for\ ESP32\ based\ WT32\_SC01\ from\ Seeed}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{comment}{//\#include\ <User\_Setups/Setup202\_SSD1351\_128.h>\ \ \ \ \ \ //\ Setup\ file\ for\ ESP32/ESP8266\ based\ SSD1351\ 128x128\ 1.5inch\ OLED\ display}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{comment}{//\#include\ <User\_Setups/Setup203\_ST7789.h>\ \ \ \ \ //\ Setup\ file\ for\ ESP32/ESP8266\ based\ ST7789\ 240X280\ 1.69inch\ TFT\ }}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{comment}{//\#include\ <User\_Setups/Setup204\_ESP32\_TouchDown.h>\ \ \ \ \ //\ Setup\ file\ for\ the\ ESP32\ TouchDown\ based\ on\ ILI9488\ 480\ x\ 320\ TFT\ }}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{comment}{//\#include\ <User\_Setups/Setup205\_ESP32\_TouchDown\_S3.h>\ \ \ \ \ //\ Setup\ file\ for\ the\ ESP32\ TouchDown\ S3\ based\ on\ ILI9488\ 480\ x\ 320\ TFT\ }}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{comment}{//\#include\ <User\_Setups/Setup206\_LilyGo\_T\_Display\_S3.h>\ \ \ \ \ //\ For\ the\ LilyGo\ T-\/Display\ S3\ based\ ESP32S3\ with\ ST7789\ 170\ x\ 320\ TFT}}
+\DoxyCodeLine{00134\ \textcolor{comment}{//\#include\ <User\_Setups/Setup207\_LilyGo\_T\_HMI.h>\ \ \ \ \ \ \ \ \ \ \ \ //\ For\ the\ LilyGo\ T-\/HMI\ S3\ based\ ESP32S3\ with\ ST7789\ 240\ x\ 320\ TFT}}
+\DoxyCodeLine{00135\ \textcolor{comment}{//\#include\ <User\_Setups/Setup209\_LilyGo\_T\_Dongle\_S3.h>\ \ \ \ \ \ //\ For\ the\ LilyGo\ T-\/Dongle\ S3\ based\ ESP32\ with\ ST7735\ 80\ x\ 160\ TFT}}
+\DoxyCodeLine{00136\ \textcolor{comment}{//\#include\ <User\_Setups/Setup210\_LilyGo\_T\_Embed\_S3.h>\ \ \ \ \ \ \ \ \ //\ For\ the\ LilyGo\ T-\/Embed\ S3\ based\ ESP32S3\ with\ ST7789\ 170\ x\ 320\ TFT}}
+\DoxyCodeLine{00137\ \textcolor{comment}{//\#include\ <User\_Setups/Setup211\_LilyGo\_T\_QT\_Pro\_S3.h>\ \ \ \ \ \ \ \ \ //\ For\ the\ LilyGo\ T-\/QT\ Pro\ S3\ based\ ESP32S3\ with\ GC9A01\ 128\ x\ 128\ TFT}}
+\DoxyCodeLine{00138\ \textcolor{comment}{//\ \#include\ <User\_Setups/Setup212\_LilyGo\_T\_PicoPro.h>\ \ \ \ \ \ \ \ \ //\ For\ the\ LilyGo\ T-\/PICO-\/Pro\ with\ ST7796\ 222\ x\ 480\ TFT}}
+\DoxyCodeLine{00139\ \textcolor{comment}{//\ \#include\ <User\_Setups/Setup213\_LilyGo\_T\_Beam\_Shield.h>\ \ \ \ \ \ \ \ \ //\ For\ the\ LilyGo\ T-\/BEAM\ V1.x\ with\ ST7796\ 222\ x\ 480\ TFT}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{comment}{//\#include\ <User\_Setups/Setup250\_ESP32\_S3\_Box\_Lite.h>\ \ \ \ \ \ //\ For\ the\ ESP32\ S3\ Box\ Lite}}
+\DoxyCodeLine{00142\ \textcolor{comment}{//\#include\ <User\_Setups/Setup251\_ESP32\_S3\_Box.h>\ \ \ \ \ \ \ \ \ \ \ \ //\ For\ the\ ESP32\ S3\ Box}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{comment}{//\#include\ <User\_Setups/Setup301\_BW16\_ST7735.h>\ \ \ \ \ \ \ \ \ \ \ \ //\ Setup\ file\ for\ Bw16-\/based\ boards\ with\ ST7735\ 160\ x\ 80\ TFT}}
+\DoxyCodeLine{00145\ \textcolor{comment}{//\#include\ <User\_Setups/Setup302\_Waveshare\_ESP32S3\_GC9A01.h>\ \ \ \ \ \ \ \ \ \ \ \ //\ Setup\ file\ for\ Waveshare\ ESP32-\/S3-\/Touch-\/LCD-\/1.28\ board\ with\ GC9A01\ 240*240\ TFT}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{comment}{//\#include\ <User\_Setups/SetupX\_Template.h>\ \ \ \ \ //\ Template\ file\ for\ a\ setup}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{comment}{//\#include\ <User\_Setups/Dustin\_ILI9488.h>\ \ \ \ \ \ \ \ \ \ //\ Setup\ file\ for\ Dustin\ Watts\ PCB\ with\ ILI9488}}
+\DoxyCodeLine{00151\ \textcolor{comment}{//\#include\ <User\_Setups/Dustin\_ST7796.h>\ \ \ \ \ \ \ \ \ \ \ //\ Setup\ file\ for\ Dustin\ Watts\ PCB\ with\ ST7796}}
+\DoxyCodeLine{00152\ \textcolor{comment}{//\#include\ <User\_Setups/Dustin\_ILI9488\_Pico.h>\ \ \ \ \ //\ Setup\ file\ for\ Dustin\ Watts\ Pico\ PCB\ with\ ST7796}}
+\DoxyCodeLine{00153\ \textcolor{comment}{//\#include\ <User\_Setups/Dustin\_ST7789\_Pico.h>\ \ \ \ \ \ //\ Setup\ file\ for\ Dustin\ Watts\ PCB\ with\ ST7789\ 240\ x\ 240\ on\ 3.3V\ adapter\ board}}
+\DoxyCodeLine{00154\ \textcolor{comment}{//\#include\ <User\_Setups/Dustin\_GC9A01\_Pico.h>\ \ \ \ \ \ //\ Setup\ file\ for\ Dustin\ Watts\ PCB\ with\ GC9A01\ 240\ x\ 240\ on\ 3.3V\ adapter\ board}}
+\DoxyCodeLine{00155\ \textcolor{comment}{//\#include\ <User\_Setups/Dustin\_GC9A01\_ESP32.h>\ \ \ \ \ //\ Setup\ file\ for\ Dustin\ Watts\ PCB\ with\ GC9A01\ 240\ x\ 240\ on\ 3.3V\ adapter\ board}}
+\DoxyCodeLine{00156\ \textcolor{comment}{//\#include\ <User\_Setups/Dustin\_STT7789\_ESP32.h>\ \ \ \ //\ Setup\ file\ for\ Dustin\ Watts\ PCB\ with\ ST7789\ 240\ x\ 240\ on\ 3.3V\ adapter\ board}}
+\DoxyCodeLine{00157\ \textcolor{comment}{//\#include\ <User\_Setups/Dustin\_ILI9341\_ESP32.h>\ \ \ \ //\ Setup\ file\ for\ Dustin\ Watts\ PCB\ with\ ILI9341}}
+\DoxyCodeLine{00158\ \textcolor{comment}{//\#include\ <User\_Setups/ILI9225.h>}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ USER\_SETUP\_LOADED}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00165\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00166\ \textcolor{comment}{//\ \ \ \ \ DON'T\ TINKER\ WITH\ ANY\ OF\ THE\ FOLLOWING\ LINES,\ THESE\ ADD\ THE\ TFT\ DRIVERS\ \ \ \ \ //}}
+\DoxyCodeLine{00167\ \textcolor{comment}{//\ \ \ \ \ \ \ AND\ ESP8266\ PIN\ DEFINITONS,\ THEY\ ARE\ HERE\ FOR\ BODMER'S\ CONVENIENCE!\ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00168\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{comment}{//\ Identical\ looking\ TFT\ displays\ may\ have\ a\ different\ colour\ ordering\ in\ the\ 16-\/bit\ colour}}
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#define\ TFT\_BGR\ 0\ \ \ }\textcolor{comment}{//\ Colour\ order\ Blue-\/Green-\/Red}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#define\ TFT\_RGB\ 1\ \ \ }\textcolor{comment}{//\ Colour\ order\ Red-\/Green-\/Blue}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \textcolor{comment}{//\ Legacy\ setup\ support,\ RPI\_DISPLAY\_TYPE\ replaces\ RPI\_DRIVER}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#if\ defined\ (RPI\_DRIVER)}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\ \ \#if\ !defined\ (RPI\_DISPLAY\_TYPE)}}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\ \ \ \ \#define\ RPI\_DISPLAY\_TYPE}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \textcolor{comment}{//\ Legacy\ setup\ support,\ RPI\_ILI9486\_DRIVER\ form\ is\ deprecated}}
+\DoxyCodeLine{00184\ \textcolor{comment}{//\ Instead\ define\ RPI\_DISPLAY\_TYPE\ and\ also\ define\ driver\ (e.g.\ ILI9486\_DRIVER)\ }}
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#if\ defined\ (RPI\_ILI9486\_DRIVER)}}
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\ \ \#if\ !defined\ (ILI9486\_DRIVER)}}
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\ \ \ \ \#define\ ILI9486\_DRIVER}}
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\ \ \#if\ !defined\ (RPI\_DISPLAY\_TYPE)}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\ \ \ \ \#define\ RPI\_DISPLAY\_TYPE}}
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{comment}{//\ Invoke\ 18-\/bit\ colour\ for\ selected\ displays}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#if\ !defined\ (RPI\_DISPLAY\_TYPE)\ \&\&\ !defined\ (TFT\_PARALLEL\_8\_BIT)\ \&\&\ !defined\ (TFT\_PARALLEL\_16\_BIT)\ \&\&\ !defined\ (ESP32\_PARALLEL)}}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\ \ \#if\ defined\ (ILI9481\_DRIVER)\ ||\ defined\ (ILI9486\_DRIVER)\ ||\ defined\ (ILI9488\_DRIVER)}}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\ \ \ \ \#define\ SPI\_18BIT\_DRIVER}}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \textcolor{comment}{//\ Load\ the\ right\ driver\ definition\ -\/\ do\ not\ tinker\ here\ !}}
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\#if\ \ \ defined\ (ILI9341\_DRIVER)\ ||\ defined(ILI9341\_2\_DRIVER)\ ||\ defined\ (ILI9342\_DRIVER)}}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ <TFT\_Drivers/ILI9341\_Defines.h>}}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x9341}}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#elif\ defined\ (ST7735\_DRIVER)}}
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ <TFT\_Drivers/ST7735\_Defines.h>}}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x7735}}
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\#elif\ defined\ (ILI9163\_DRIVER)}}
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ <TFT\_Drivers/ILI9163\_Defines.h>}}
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x9163}}
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\#elif\ defined\ (S6D02A1\_DRIVER)}}
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ <TFT\_Drivers/S6D02A1\_Defines.h>}}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x6D02}}
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\#elif\ defined\ (ST7796\_DRIVER)}}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\ \ \ \ \ \ \#include\ "{}TFT\_Drivers/ST7796\_Defines.h"{}}}
+\DoxyCodeLine{00216\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x7796}}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#elif\ defined\ (ILI9486\_DRIVER)}}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ <TFT\_Drivers/ILI9486\_Defines.h>}}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x9486}}
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\#elif\ defined\ (ILI9481\_DRIVER)}}
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ <TFT\_Drivers/ILI9481\_Defines.h>}}
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x9481}}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#elif\ defined\ (ILI9488\_DRIVER)}}
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ <TFT\_Drivers/ILI9488\_Defines.h>}}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x9488}}
+\DoxyCodeLine{00226\ \textcolor{preprocessor}{\#elif\ defined\ (HX8357D\_DRIVER)}}
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ "{}TFT\_Drivers/HX8357D\_Defines.h"{}}}
+\DoxyCodeLine{00228\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x8357}}
+\DoxyCodeLine{00229\ \textcolor{preprocessor}{\#elif\ defined\ (EPD\_DRIVER)}}
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ "{}TFT\_Drivers/EPD\_Defines.h"{}}}
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0xE9D}}
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\#elif\ defined\ (ST7789\_DRIVER)}}
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ "{}TFT\_Drivers/ST7789\_Defines.h"{}}}
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x7789}}
+\DoxyCodeLine{00235\ \textcolor{preprocessor}{\#elif\ defined\ (R61581\_DRIVER)}}
+\DoxyCodeLine{00236\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ "{}TFT\_Drivers/R61581\_Defines.h"{}}}
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x6158}}
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\#elif\ defined\ (ST7789\_2\_DRIVER)}}
+\DoxyCodeLine{00239\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ "{}TFT\_Drivers/ST7789\_2\_Defines.h"{}}}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x778B}}
+\DoxyCodeLine{00241\ \textcolor{preprocessor}{\#elif\ defined\ (RM68140\_DRIVER)}}
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ "{}TFT\_Drivers/RM68140\_Defines.h"{}}}
+\DoxyCodeLine{00243\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x6814}}
+\DoxyCodeLine{00244\ \textcolor{preprocessor}{\#elif\ defined\ (SSD1351\_DRIVER)}}
+\DoxyCodeLine{00245\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ "{}TFT\_Drivers/SSD1351\_Defines.h"{}}}
+\DoxyCodeLine{00246\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x1351}}
+\DoxyCodeLine{00247\ \textcolor{preprocessor}{\#elif\ defined\ (SSD1963\_480\_DRIVER)}}
+\DoxyCodeLine{00248\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ "{}TFT\_Drivers/SSD1963\_Defines.h"{}}}
+\DoxyCodeLine{00249\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x1963}}
+\DoxyCodeLine{00250\ \textcolor{preprocessor}{\#elif\ defined\ (SSD1963\_800\_DRIVER)}}
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ "{}TFT\_Drivers/SSD1963\_Defines.h"{}}}
+\DoxyCodeLine{00252\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x1963}}
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\#elif\ defined\ (SSD1963\_800ALT\_DRIVER)}}
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ "{}TFT\_Drivers/SSD1963\_Defines.h"{}}}
+\DoxyCodeLine{00255\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x1963}}
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\#elif\ defined\ (SSD1963\_800BD\_DRIVER)}}
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ "{}TFT\_Drivers/SSD1963\_Defines.h"{}}}
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x1963}}
+\DoxyCodeLine{00259\ \textcolor{preprocessor}{\#elif\ defined\ (GC9A01\_DRIVER)}}
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ "{}TFT\_Drivers/GC9A01\_Defines.h"{}}}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x9A01}}
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\#elif\ defined\ (ILI9225\_DRIVER)}}
+\DoxyCodeLine{00263\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ "{}TFT\_Drivers/ILI9225\_Defines.h"{}}}
+\DoxyCodeLine{00264\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x9225}}
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\#elif\ defined\ (RM68120\_DRIVER)}}
+\DoxyCodeLine{00266\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ "{}TFT\_Drivers/RM68120\_Defines.h"{}}}
+\DoxyCodeLine{00267\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x6812}}
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\#elif\ defined\ (HX8357B\_DRIVER)}}
+\DoxyCodeLine{00269\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ "{}TFT\_Drivers/HX8357B\_Defines.h"{}}}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x835B}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#elif\ defined\ (HX8357C\_DRIVER)}}
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ "{}TFT\_Drivers/HX8357C\_Defines.h"{}}}
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x835C}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <<<<<<<<<<<<<<<<<<<<<<<<\ ADD\ NEW\ DRIVER\ HERE}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ XYZZY\_init.h\ and\ XYZZY\_rotation.h\ must\ also\ be\ added\ in\ TFT\_eSPI.cpp}}
+\DoxyCodeLine{00277\ \textcolor{preprocessor}{\#elif\ defined\ (XYZZY\_DRIVER)}}
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\ \ \ \ \ \#include\ "{}TFT\_Drivers/XYZZY\_Defines.h"{}}}
+\DoxyCodeLine{00279\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x0000}}
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00281\ \textcolor{preprocessor}{\ \ \ \ \ \#define\ \ TFT\_DRIVER\ 0x0000}}
+\DoxyCodeLine{00282\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \textcolor{comment}{//\ These\ are\ the\ pins\ for\ ESP8266\ boards}}
+\DoxyCodeLine{00285\ \textcolor{comment}{//\ \ \ \ \ \ Name\ \ \ GPIO\ \ \ \ NodeMCU\ \ \ \ \ \ Function}}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#define\ PIN\_D0\ \ 16\ \ }\textcolor{comment}{//\ GPIO16\ \ \ \ \ \ \ WAKE}}
+\DoxyCodeLine{00287\ \textcolor{preprocessor}{\#define\ PIN\_D1\ \ \ 5\ \ }\textcolor{comment}{//\ GPIO5\ \ \ \ \ \ \ \ User\ purpose}}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#define\ PIN\_D2\ \ \ 4\ \ }\textcolor{comment}{//\ GPIO4\ \ \ \ \ \ \ \ User\ purpose}}
+\DoxyCodeLine{00289\ \textcolor{preprocessor}{\#define\ PIN\_D3\ \ \ 0\ \ }\textcolor{comment}{//\ GPIO0\ \ \ \ \ \ \ \ Low\ on\ boot\ means\ enter\ FLASH\ mode}}
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\#define\ PIN\_D4\ \ \ 2\ \ }\textcolor{comment}{//\ GPIO2\ \ \ \ \ \ \ \ TXD1\ (must\ be\ high\ on\ boot\ to\ go\ to\ UART0\ FLASH\ mode)}}
+\DoxyCodeLine{00291\ \textcolor{preprocessor}{\#define\ PIN\_D5\ \ 14\ \ }\textcolor{comment}{//\ GPIO14\ \ \ \ \ \ \ HSCLK}}
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#define\ PIN\_D6\ \ 12\ \ }\textcolor{comment}{//\ GPIO12\ \ \ \ \ \ \ HMISO}}
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\#define\ PIN\_D7\ \ 13\ \ }\textcolor{comment}{//\ GPIO13\ \ \ \ \ \ \ HMOSI\ \ RXD2}}
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\#define\ PIN\_D8\ \ 15\ \ }\textcolor{comment}{//\ GPIO15\ \ \ \ \ \ \ HCS\ \ \ \ TXD0\ (must\ be\ low\ on\ boot\ to\ enter\ UART0\ FLASH\ mode)}}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\#define\ PIN\_D9\ \ \ 3\ \ }\textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ RXD0}}
+\DoxyCodeLine{00296\ \textcolor{preprocessor}{\#define\ PIN\_D10\ \ 1\ \ }\textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ TXD0}}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \textcolor{preprocessor}{\#define\ PIN\_MOSI\ 8\ \ }\textcolor{comment}{//\ SD1\ \ \ \ \ \ \ \ \ \ FLASH\ and\ overlap\ mode}}
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\#define\ PIN\_MISO\ 7\ \ }\textcolor{comment}{//\ SD0}}
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\#define\ PIN\_SCLK\ 6\ \ }\textcolor{comment}{//\ CLK}}
+\DoxyCodeLine{00301\ \textcolor{preprocessor}{\#define\ PIN\_HWCS\ 0\ \ }\textcolor{comment}{//\ D3}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \textcolor{preprocessor}{\#define\ PIN\_D11\ \ 9\ \ }\textcolor{comment}{//\ SD2}}
+\DoxyCodeLine{00304\ \textcolor{preprocessor}{\#define\ PIN\_D12\ 10\ \ }\textcolor{comment}{//\ SD4}}
+
+\end{DoxyCode}

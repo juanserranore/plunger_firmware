@@ -1,0 +1,41 @@
+\doxysection{Memory\+Pool Class Reference}
+\label{class_memory_pool}\index{MemoryPool@{MemoryPool}}
+Inheritance diagram for Memory\+Pool\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_memory_pool}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_memory_pool_ad32fc85a62d18a582b0434752655da01} 
+static void {\bfseries init} ()
+\item 
+\label{class_memory_pool_aaa733d4cbca60d79e27c8ab0176f4b22} 
+static memhandle {\bfseries alloc\+Block} (memaddress)
+\item 
+\label{class_memory_pool_a019286260f252148ebb60990f0f2dcdb} 
+static void {\bfseries free\+Block} (memhandle)
+\item 
+\label{class_memory_pool_a13f76673b1c96c2fd2327cad8442107a} 
+static void {\bfseries resize\+Block} (memhandle handle, memaddress position)
+\item 
+\label{class_memory_pool_a191b4a403f196700f718d884bc047090} 
+static void {\bfseries resize\+Block} (memhandle handle, memaddress position, memaddress size)
+\item 
+\label{class_memory_pool_a70509c92493b088076506425ae263f3f} 
+static memaddress {\bfseries block\+Size} (memhandle)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_memory_pool_a7eac15dfda1fdb8641cba2c04a1d5fa5} 
+static struct \textbf{ memblock} {\bfseries blocks} [MEMPOOL\+\_\+\+NUM\+\_\+\+MEMBLOCKS+1]
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Ethernet\+ENC-\/2.\+0.\+5/src/utility/mempool.\+h\item 
+lib/\+Ethernet\+ENC-\/2.\+0.\+5/src/utility/mempool.\+cpp\end{DoxyCompactItemize}

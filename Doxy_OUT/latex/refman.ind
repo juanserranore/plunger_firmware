@@ -1,0 +1,337 @@
+\begin{theindex}
+
+  \item {AUTO}
+    \subitem {globals.h}, \hyperpage{61}
+
+  \indexspace
+
+  \item {BACKGROUND}
+    \subitem {globals.h}, \hyperpage{61}
+  \item {backgroundcolors}
+    \subitem {globals.cpp}, \hyperpage{53}
+    \subitem {globals.h}, \hyperpage{61}
+  \item {backgroundpossibleColors}
+    \subitem {globals.cpp}, \hyperpage{53}
+    \subitem {globals.h}, \hyperpage{61}
+  \item {BRIGHTNESS}
+    \subitem {globals.h}, \hyperpage{60}
+  \item {button.cpp}
+    \subitem {doublePressHandler}, \hyperpage{7}
+    \subitem {longPressHandler}, \hyperpage{8}
+    \subitem {singlePressHandler}, \hyperpage{8}
+  \item {button.h}
+    \subitem {doublePressHandler}, \hyperpage{9}
+    \subitem {longPressHandler}, \hyperpage{9}
+    \subitem {singlePressHandler}, \hyperpage{10}
+  \item {button/button.cpp}, \hyperpage{7}
+  \item {button/button.h}, \hyperpage{8}, \hyperpage{10}
+
+  \indexspace
+
+  \item {centerX}
+    \subitem {globals.cpp}, \hyperpage{53}
+    \subitem {globals.h}, \hyperpage{61}
+  \item {COLOR}
+    \subitem {globals.h}, \hyperpage{60}
+  \item {colormenuArray}
+    \subitem {globals.cpp}, \hyperpage{53}
+    \subitem {globals.h}, \hyperpage{62}
+  \item {currentMenu}
+    \subitem {globals.cpp}, \hyperpage{53}
+    \subitem {globals.h}, \hyperpage{62}
+  \item {custom\_fonts/arimo12.h}, \hyperpage{11}
+  \item {custom\_fonts/arimo9.h}, \hyperpage{13}
+  \item {custom\_fonts/custom\_fonts.h}, \hyperpage{15}
+  \item {custom\_fonts/dialog12.h}, \hyperpage{16}
+  \item {custom\_fonts/dialog9.h}, \hyperpage{18}
+  \item {custom\_fonts/gothic12.h}, \hyperpage{20}
+  \item {custom\_fonts/gothic9.h}, \hyperpage{23}
+  \item {custom\_fonts/mono12.h}, \hyperpage{25}
+  \item {custom\_fonts/mono9.h}, \hyperpage{28}
+  \item {custom\_fonts/opensans12.h}, \hyperpage{30}
+  \item {custom\_fonts/opensans9.h}, \hyperpage{32}
+  \item {custom\_fonts/roboto12.h}, \hyperpage{35}
+  \item {custom\_fonts/roboto9.h}, \hyperpage{37}
+  \item {custom\_fonts/SansSerif12.h}, \hyperpage{39}
+  \item {custom\_fonts/SansSerif9.h}, \hyperpage{42}
+  \item {custom\_fonts/serif12.h}, \hyperpage{44}
+  \item {custom\_fonts/serif9.h}, \hyperpage{47}
+
+  \indexspace
+
+  \item {DIR\_PIN}
+    \subitem {globals.cpp}, \hyperpage{53}
+    \subitem {globals.h}, \hyperpage{62}
+  \item {doublePressHandler}
+    \subitem {button.cpp}, \hyperpage{7}
+    \subitem {button.h}, \hyperpage{9}
+  \item {drawBrightnessBar}
+    \subitem {GUI.cpp}, \hyperpage{67}
+    \subitem {GUI.h}, \hyperpage{70}
+  \item {drawDialMarks}
+    \subitem {GUI.cpp}, \hyperpage{67}
+    \subitem {GUI.h}, \hyperpage{70}
+  \item {drawNeedle}
+    \subitem {GUI.cpp}, \hyperpage{67}
+    \subitem {GUI.h}, \hyperpage{70}
+  \item {drawSelectionBar}
+    \subitem {GUI.cpp}, \hyperpage{68}
+    \subitem {GUI.h}, \hyperpage{72}
+
+  \indexspace
+
+  \item {globals.cpp}
+    \subitem {backgroundcolors}, \hyperpage{53}
+    \subitem {backgroundpossibleColors}, \hyperpage{53}
+    \subitem {centerX}, \hyperpage{53}
+    \subitem {colormenuArray}, \hyperpage{53}
+    \subitem {currentMenu}, \hyperpage{53}
+    \subitem {DIR\_PIN}, \hyperpage{53}
+    \subitem {images\_main}, \hyperpage{54}
+    \subitem {lastClk}, \hyperpage{54}
+    \subitem {LOOP\_TICKS}, \hyperpage{54}
+    \subitem {menuIndex}, \hyperpage{54}
+    \subitem {minBrightness}, \hyperpage{54}
+    \subitem {possibleFont12}, \hyperpage{55}
+    \subitem {screenOn}, \hyperpage{55}
+    \subitem {screenUpdateQueue}, \hyperpage{55}
+    \subitem {selectedBackgroundColor}, \hyperpage{55}
+  \item {globals.h}
+    \subitem {AUTO}, \hyperpage{61}
+    \subitem {BACKGROUND}, \hyperpage{61}
+    \subitem {backgroundcolors}, \hyperpage{61}
+    \subitem {backgroundpossibleColors}, \hyperpage{61}
+    \subitem {BRIGHTNESS}, \hyperpage{60}
+    \subitem {centerX}, \hyperpage{61}
+    \subitem {COLOR}, \hyperpage{60}
+    \subitem {colormenuArray}, \hyperpage{62}
+    \subitem {currentMenu}, \hyperpage{62}
+    \subitem {DIR\_PIN}, \hyperpage{62}
+    \subitem {images\_main}, \hyperpage{62}
+    \subitem {INITIAL\_SCREEN}, \hyperpage{61}
+    \subitem {lastClk}, \hyperpage{62}
+    \subitem {LOOP\_TICKS}, \hyperpage{63}
+    \subitem {MAIN\_MENU}, \hyperpage{60}
+    \subitem {MANUAL}, \hyperpage{61}
+    \subitem {menuIndex}, \hyperpage{63}
+    \subitem {MenuState}, \hyperpage{60}
+    \subitem {minBrightness}, \hyperpage{63}
+    \subitem {possibleFont12}, \hyperpage{63}
+    \subitem {screenOn}, \hyperpage{63}
+    \subitem {ScreenUpdateCommand}, \hyperpage{61}
+    \subitem {screenUpdateQueue}, \hyperpage{64}
+    \subitem {selectedBackgroundColor}, \hyperpage{64}
+    \subitem {SELECTION\_BAR}, \hyperpage{61}
+    \subitem {SELECTION\_BORDER}, \hyperpage{61}
+    \subitem {SERVIDOR\_TCP}, \hyperpage{61}
+    \subitem {SETTINGS}, \hyperpage{60}
+    \subitem {STEPPER\_MOTOR}, \hyperpage{61}
+    \subitem {TEXT}, \hyperpage{61}
+    \subitem {TEXT\_TYPE}, \hyperpage{60}
+    \subitem {UPDATE\_CONFIG\_ASPECT}, \hyperpage{61}
+    \subitem {UPDATE\_CONFIG\_BACKGROUNDCOLOR}, \hyperpage{61}
+    \subitem {UPDATE\_CONFIG\_BRIGHTNESS}, \hyperpage{61}
+    \subitem {UPDATE\_MAIN\_MENU}, \hyperpage{61}
+  \item {globals/globals.cpp}, \hyperpage{49}
+  \item {globals/globals.h}, \hyperpage{56}, \hyperpage{64}
+  \item {GUI.cpp}
+    \subitem {drawBrightnessBar}, \hyperpage{67}
+    \subitem {drawDialMarks}, \hyperpage{67}
+    \subitem {drawNeedle}, \hyperpage{67}
+    \subitem {drawSelectionBar}, \hyperpage{68}
+    \subitem {printDateTime}, \hyperpage{68}
+    \subitem {setBrightness}, \hyperpage{68}
+    \subitem {updateDial}, \hyperpage{69}
+  \item {GUI.h}
+    \subitem {drawBrightnessBar}, \hyperpage{70}
+    \subitem {drawDialMarks}, \hyperpage{70}
+    \subitem {drawNeedle}, \hyperpage{70}
+    \subitem {drawSelectionBar}, \hyperpage{72}
+    \subitem {printDateTime}, \hyperpage{72}
+    \subitem {setBrightness}, \hyperpage{73}
+    \subitem {updateDial}, \hyperpage{73}
+  \item {GUI/GUI.cpp}, \hyperpage{66}
+  \item {GUI/GUI.h}, \hyperpage{69}, \hyperpage{73}
+
+  \indexspace
+
+  \item {icons/automatic\_icon.h}, \hyperpage{74}
+  \item {icons/brightness\_icon.h}, \hyperpage{75}
+  \item {icons/color\_icon.h}, \hyperpage{76}
+  \item {icons/empty\_sun.h}, \hyperpage{77}
+  \item {icons/ethernet\_active.h}, \hyperpage{78}
+  \item {icons/ethernet\_icon.h}, \hyperpage{79}
+  \item {icons/font\_icon.h}, \hyperpage{80}
+  \item {icons/full\_sun.h}, \hyperpage{82}
+  \item {icons/granasat\_logo.h}, \hyperpage{83}
+  \item {icons/images.h}, \hyperpage{97}
+  \item {icons/manual\_icon.h}, \hyperpage{97}
+  \item {icons/settings\_icon.h}, \hyperpage{98}
+  \item {icons/step\_icon.h}, \hyperpage{100}
+  \item {images\_main}
+    \subitem {globals.cpp}, \hyperpage{54}
+    \subitem {globals.h}, \hyperpage{62}
+  \item {INITIAL\_SCREEN}
+    \subitem {globals.h}, \hyperpage{61}
+
+  \indexspace
+
+  \item {lastClk}
+    \subitem {globals.cpp}, \hyperpage{54}
+    \subitem {globals.h}, \hyperpage{62}
+  \item {libraries.h}, \hyperpage{101}
+  \item {longPressHandler}
+    \subitem {button.cpp}, \hyperpage{8}
+    \subitem {button.h}, \hyperpage{9}
+  \item {loop}
+    \subitem {main.cpp}, \hyperpage{103}
+  \item {LOOP\_TICKS}
+    \subitem {globals.cpp}, \hyperpage{54}
+    \subitem {globals.h}, \hyperpage{63}
+
+  \indexspace
+
+  \item {main.cpp}, \hyperpage{102}
+    \subitem {loop}, \hyperpage{103}
+  \item {MAIN\_MENU}
+    \subitem {globals.h}, \hyperpage{60}
+  \item {MANUAL}
+    \subitem {globals.h}, \hyperpage{61}
+  \item {menuIndex}
+    \subitem {globals.cpp}, \hyperpage{54}
+    \subitem {globals.h}, \hyperpage{63}
+  \item {MenuState}
+    \subitem {globals.h}, \hyperpage{60}
+  \item {minBrightness}
+    \subitem {globals.cpp}, \hyperpage{54}
+    \subitem {globals.h}, \hyperpage{63}
+  \item {motor.cpp}
+    \subitem {moveMotor}, \hyperpage{103}
+  \item {motor.h}
+    \subitem {moveMotor}, \hyperpage{104}
+  \item {motor/motor.cpp}, \hyperpage{103}
+  \item {motor/motor.h}, \hyperpage{104, 105}
+  \item {motorTask}
+    \subitem {projectTasks.cpp}, \hyperpage{106}
+    \subitem {projectTasks.h}, \hyperpage{109}
+  \item {moveMotor}
+    \subitem {motor.cpp}, \hyperpage{103}
+    \subitem {motor.h}, \hyperpage{104}
+
+  \indexspace
+
+  \item {Plunger firmware}, \hyperpage{1}
+  \item {possibleFont12}
+    \subitem {globals.cpp}, \hyperpage{55}
+    \subitem {globals.h}, \hyperpage{63}
+  \item {printDateTime}
+    \subitem {GUI.cpp}, \hyperpage{68}
+    \subitem {GUI.h}, \hyperpage{72}
+  \item {project\_tasks/projectTasks.cpp}, \hyperpage{105}
+  \item {project\_tasks/projectTasks.h}, \hyperpage{108}, 
+		\hyperpage{111}
+  \item {projectTasks.cpp}
+    \subitem {motorTask}, \hyperpage{106}
+    \subitem {rotarymotorTask}, \hyperpage{106}
+    \subitem {taskButtonPress}, \hyperpage{106}
+    \subitem {taskEncoder}, \hyperpage{106}
+    \subitem {taskEthernet}, \hyperpage{107}
+    \subitem {taskScreenTimeout}, \hyperpage{107}
+    \subitem {taskShowTime}, \hyperpage{107}
+    \subitem {taskStartScreen}, \hyperpage{107}
+    \subitem {taskUpdateScreen}, \hyperpage{108}
+  \item {projectTasks.h}
+    \subitem {motorTask}, \hyperpage{109}
+    \subitem {rotarymotorTask}, \hyperpage{109}
+    \subitem {taskButtonPress}, \hyperpage{109}
+    \subitem {taskEncoder}, \hyperpage{110}
+    \subitem {taskEthernet}, \hyperpage{110}
+    \subitem {taskScreenTimeout}, \hyperpage{110}
+    \subitem {taskShowTime}, \hyperpage{110}
+    \subitem {taskStartScreen}, \hyperpage{111}
+    \subitem {taskUpdateScreen}, \hyperpage{111}
+
+  \indexspace
+
+  \item {rotarymotorTask}
+    \subitem {projectTasks.cpp}, \hyperpage{106}
+    \subitem {projectTasks.h}, \hyperpage{109}
+
+  \indexspace
+
+  \item {screenOn}
+    \subitem {globals.cpp}, \hyperpage{55}
+    \subitem {globals.h}, \hyperpage{63}
+  \item {ScreenUpdateCommand}
+    \subitem {globals.h}, \hyperpage{61}
+  \item {screenUpdateQueue}
+    \subitem {globals.cpp}, \hyperpage{55}
+    \subitem {globals.h}, \hyperpage{64}
+  \item {selectedBackgroundColor}
+    \subitem {globals.cpp}, \hyperpage{55}
+    \subitem {globals.h}, \hyperpage{64}
+  \item {SELECTION\_BAR}
+    \subitem {globals.h}, \hyperpage{61}
+  \item {SELECTION\_BORDER}
+    \subitem {globals.h}, \hyperpage{61}
+  \item {SERVIDOR\_TCP}
+    \subitem {globals.h}, \hyperpage{61}
+  \item {setBrightness}
+    \subitem {GUI.cpp}, \hyperpage{68}
+    \subitem {GUI.h}, \hyperpage{73}
+  \item {SETTINGS}
+    \subitem {globals.h}, \hyperpage{60}
+  \item {setup}
+    \subitem {setup.h}, \hyperpage{112}
+  \item {setup.h}
+    \subitem {setup}, \hyperpage{112}
+  \item {setup/setup.h}, \hyperpage{112}, \hyperpage{114}
+  \item {singlePressHandler}
+    \subitem {button.cpp}, \hyperpage{8}
+    \subitem {button.h}, \hyperpage{10}
+  \item {STEPPER\_MOTOR}
+    \subitem {globals.h}, \hyperpage{61}
+
+  \indexspace
+
+  \item {taskButtonPress}
+    \subitem {projectTasks.cpp}, \hyperpage{106}
+    \subitem {projectTasks.h}, \hyperpage{109}
+  \item {taskEncoder}
+    \subitem {projectTasks.cpp}, \hyperpage{106}
+    \subitem {projectTasks.h}, \hyperpage{110}
+  \item {taskEthernet}
+    \subitem {projectTasks.cpp}, \hyperpage{107}
+    \subitem {projectTasks.h}, \hyperpage{110}
+  \item {taskScreenTimeout}
+    \subitem {projectTasks.cpp}, \hyperpage{107}
+    \subitem {projectTasks.h}, \hyperpage{110}
+  \item {taskShowTime}
+    \subitem {projectTasks.cpp}, \hyperpage{107}
+    \subitem {projectTasks.h}, \hyperpage{110}
+  \item {taskStartScreen}
+    \subitem {projectTasks.cpp}, \hyperpage{107}
+    \subitem {projectTasks.h}, \hyperpage{111}
+  \item {taskUpdateScreen}
+    \subitem {projectTasks.cpp}, \hyperpage{108}
+    \subitem {projectTasks.h}, \hyperpage{111}
+  \item {TEXT}
+    \subitem {globals.h}, \hyperpage{61}
+  \item {TEXT\_TYPE}
+    \subitem {globals.h}, \hyperpage{60}
+
+  \indexspace
+
+  \item {UPDATE\_CONFIG\_ASPECT}
+    \subitem {globals.h}, \hyperpage{61}
+  \item {UPDATE\_CONFIG\_BACKGROUNDCOLOR}
+    \subitem {globals.h}, \hyperpage{61}
+  \item {UPDATE\_CONFIG\_BRIGHTNESS}
+    \subitem {globals.h}, \hyperpage{61}
+  \item {UPDATE\_MAIN\_MENU}
+    \subitem {globals.h}, \hyperpage{61}
+  \item {updateDial}
+    \subitem {GUI.cpp}, \hyperpage{69}
+    \subitem {GUI.h}, \hyperpage{73}
+
+\end{theindex}

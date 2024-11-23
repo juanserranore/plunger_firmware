@@ -1,0 +1,102 @@
+\doxysection{lib/\+Ethernet\+ENC-\/2.0.5/src/utility/uipopt.h File Reference}
+\label{uipopt_8h}\index{lib/EthernetENC-\/2.0.5/src/utility/uipopt.h@{lib/EthernetENC-\/2.0.5/src/utility/uipopt.h}}
+{\ttfamily \#include "{}uip-\/conf.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries UIP\+\_\+\+LITTLE\+\_\+\+ENDIAN}~1234
+\item 
+\#define {\bfseries UIP\+\_\+\+BIG\+\_\+\+ENDIAN}~4321
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Static configuration options}\par
+{\em These configuration options can be used for setting the IP address settings statically, but only if UIP\+\_\+\+FIXEDADDR is set to 1. The configuration options for a specific node includes IP address, netmask and default router as well as the Ethernet address. The netmask, default router and Ethernet address are appliciable only if u\+IP should be run over Ethernet.
+
+All of these should be changed to suit your project. }\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ UIP\+\_\+\+FIXEDADDR}
+\item 
+\#define \textbf{ UIP\+\_\+\+PINGADDRCONF}
+\item 
+\#define \textbf{ UIP\+\_\+\+FIXEDETHADDR}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ IP configuration options}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ UIP\+\_\+\+TTL}~64
+\item 
+\#define \textbf{ UIP\+\_\+\+REASSEMBLY}
+\item 
+\#define \textbf{ UIP\+\_\+\+REASS\+\_\+\+MAXAGE}~40
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ UDP configuration options}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ UIP\+\_\+\+UDP}
+\item 
+\#define \textbf{ UIP\+\_\+\+UDP\+\_\+\+CHECKSUMS}
+\item 
+\#define \textbf{ UIP\+\_\+\+UDP\+\_\+\+CONNS}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ TCP configuration options}\par
+{\em The name of the function that should be called when UDP datagrams arrive. }\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ UIP\+\_\+\+ACTIVE\+\_\+\+OPEN}
+\item 
+\#define \textbf{ UIP\+\_\+\+CONNS}
+\item 
+\#define \textbf{ UIP\+\_\+\+LISTENPORTS}
+\item 
+\#define \textbf{ UIP\+\_\+\+URGDATA}
+\item 
+\#define \textbf{ UIP\+\_\+\+RTO}~3
+\item 
+\#define \textbf{ UIP\+\_\+\+MAXRTX}~8
+\item 
+\#define \textbf{ UIP\+\_\+\+MAXSYNRTX}~5
+\item 
+\#define \textbf{ UIP\+\_\+\+TCP\+\_\+\+MSS}~UIP\+\_\+\+CONF\+\_\+\+TCP\+\_\+\+MSS
+\item 
+\#define \textbf{ UIP\+\_\+\+RECEIVE\+\_\+\+WINDOW}
+\item 
+\#define \textbf{ UIP\+\_\+\+TIME\+\_\+\+WAIT\+\_\+\+TIMEOUT}~120
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ARP configuration options}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ UIP\+\_\+\+ARPTAB\+\_\+\+SIZE}
+\item 
+\#define \textbf{ UIP\+\_\+\+ARP\+\_\+\+MAXAGE}~120
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ CPU architecture configuration}\par
+{\em The CPU architecture configuration is where the endianess of the CPU on which u\+IP is to be run is specified. Most CPUs today are little endian, and the most notable exception are the Motorolas which are big endian. The BYTE\+\_\+\+ORDER macro should be changed to reflect the CPU architecture on which u\+IP is to be run. }\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ UIP\+\_\+\+BYTE\+\_\+\+ORDER}
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{General configuration options}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ UIP\+\_\+\+BUFSIZE}
+\item 
+\#define \textbf{ UIP\+\_\+\+STATISTICS}
+\item 
+\#define \textbf{ UIP\+\_\+\+LOGGING}
+\item 
+\#define \textbf{ UIP\+\_\+\+BROADCAST}
+\item 
+\#define \textbf{ UIP\+\_\+\+LLH\+\_\+\+LEN}
+\item 
+void \textbf{ uip\+\_\+log} (char $\ast$msg)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuration options for u\+IP. \begin{DoxyAuthor}{Author}
+Adam Dunkels {\texttt{ adam@dunkels.\+com}}
+\end{DoxyAuthor}
+This file is used for tweaking various configuration options for u\+IP. You should make a copy of this file into one of your project\textquotesingle{}s directories instead of editing this example "{}uipopt.\+h"{} file that comes with the u\+IP distribution. 

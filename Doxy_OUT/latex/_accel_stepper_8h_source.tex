@@ -1,0 +1,193 @@
+\doxysection{Accel\+Stepper.\+h}
+\label{_accel_stepper_8h_source}\index{lib/AccelStepper-\/1.64.0/src/AccelStepper.h@{lib/AccelStepper-\/1.64.0/src/AccelStepper.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ AccelStepper.h}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00267\ \textcolor{comment}{//\ Copyright\ (C)\ 2009-\/2020\ Mike\ McCauley}}
+\DoxyCodeLine{00268\ \textcolor{comment}{//\ \$Id:\ AccelStepper.h,v\ 1.28\ 2020/04/20\ 00:15:03\ mikem\ Exp\ mikem\ \$}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\#ifndef\ AccelStepper\_h}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#define\ AccelStepper\_h}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#if\ ARDUINO\ >=\ 100}}
+\DoxyCodeLine{00275\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00277\ \textcolor{preprocessor}{\#include\ <WProgram.h>}}
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\#include\ <wiring.h>}}
+\DoxyCodeLine{00279\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \textcolor{comment}{//\ These\ defs\ cause\ trouble\ on\ some\ versions\ of\ Arduino}}
+\DoxyCodeLine{00282\ \textcolor{preprocessor}{\#undef\ round}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \textcolor{comment}{//\ Use\ the\ system\ yield()\ whenever\ possoible,\ since\ some\ platforms\ require\ it\ for\ housekeeping,\ especially}}
+\DoxyCodeLine{00285\ \textcolor{comment}{//\ ESP8266}}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#if\ (defined(ARDUINO)\ \&\&\ ARDUINO\ >=\ 155)\ ||\ defined(ESP8266)}}
+\DoxyCodeLine{00287\ \textcolor{preprocessor}{\ \#define\ YIELD\ yield();}}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00289\ \textcolor{preprocessor}{\ \#define\ YIELD}}
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00337\ \textcolor{keyword}{class\ }AccelStepper}
+\DoxyCodeLine{00338\ \{}
+\DoxyCodeLine{00339\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00345\ \ \ \ \ \{}
+\DoxyCodeLine{00346\ \ \ \ \ FUNCTION\ \ =\ 0,\ }
+\DoxyCodeLine{00347\ \ \ \ \ DRIVER\ \ \ \ =\ 1,\ }
+\DoxyCodeLine{00348\ \ \ \ \ FULL2WIRE\ =\ 2,\ }
+\DoxyCodeLine{00349\ \ \ \ \ FULL3WIRE\ =\ 3,\ }
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ FULL4WIRE\ =\ 4,\ }
+\DoxyCodeLine{00351\ \ \ \ \ HALF3WIRE\ =\ 6,\ }
+\DoxyCodeLine{00352\ \ \ \ \ HALF4WIRE\ =\ 8\ \ }
+\DoxyCodeLine{00353\ \ \ \ \ \}\ MotorInterfaceType;}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00386\ \ \ \ \ AccelStepper(uint8\_t\ interface\ =\ AccelStepper::FULL4WIRE,\ uint8\_t\ pin1\ =\ 2,\ uint8\_t\ pin2\ =\ 3,\ uint8\_t\ pin3\ =\ 4,\ uint8\_t\ pin4\ =\ 5,\ \textcolor{keywordtype}{bool}\ enable\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00396\ \ \ \ \ AccelStepper(\textcolor{keywordtype}{void}\ (*forward)(),\ \textcolor{keywordtype}{void}\ (*backward)());}
+\DoxyCodeLine{00397\ \ \ \ \ }
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ moveTo(\textcolor{keywordtype}{long}\ absolute);\ }
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ move(\textcolor{keywordtype}{long}\ relative);}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00417\ \ \ \ \ \textcolor{keywordtype}{boolean}\ run();}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{keywordtype}{boolean}\ runSpeed();}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ setMaxSpeed(\textcolor{keywordtype}{float}\ speed);}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00437\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ maxSpeed();}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00443\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ setAcceleration(\textcolor{keywordtype}{float}\ acceleration);}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00448\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ acceleration();}
+\DoxyCodeLine{00449\ \ \ \ \ }
+\DoxyCodeLine{00457\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ setSpeed(\textcolor{keywordtype}{float}\ speed);}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ speed();}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00466\ \ \ \ \ \textcolor{keywordtype}{long}\ \ \ \ distanceToGo();}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00471\ \ \ \ \ \textcolor{keywordtype}{long}\ \ \ \ targetPosition();}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00476\ \ \ \ \ \textcolor{keywordtype}{long}\ \ \ \ currentPosition();\ \ }
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00485\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ setCurrentPosition(\textcolor{keywordtype}{long}\ position);\ \ }
+\DoxyCodeLine{00486\ \ \ \ \ }
+\DoxyCodeLine{00490\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ runToPosition();}
+\DoxyCodeLine{00491\ }
+\DoxyCodeLine{00498\ \ \ \ \ \textcolor{keywordtype}{boolean}\ runSpeedToPosition();}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00504\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ runToNewPosition(\textcolor{keywordtype}{long}\ position);}
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00508\ \ \ \ \ \textcolor{keywordtype}{void}\ stop();}
+\DoxyCodeLine{00509\ }
+\DoxyCodeLine{00517\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ disableOutputs();}
+\DoxyCodeLine{00518\ }
+\DoxyCodeLine{00522\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ enableOutputs();}
+\DoxyCodeLine{00523\ }
+\DoxyCodeLine{00528\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ setMinPulseWidth(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ minWidth);}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00537\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ setEnablePin(uint8\_t\ enablePin\ =\ 0xff);}
+\DoxyCodeLine{00538\ }
+\DoxyCodeLine{00543\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ setPinsInverted(\textcolor{keywordtype}{bool}\ directionInvert\ =\ \textcolor{keyword}{false},\ \textcolor{keywordtype}{bool}\ stepInvert\ =\ \textcolor{keyword}{false},\ \textcolor{keywordtype}{bool}\ enableInvert\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00544\ }
+\DoxyCodeLine{00551\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ setPinsInverted(\textcolor{keywordtype}{bool}\ pin1Invert,\ \textcolor{keywordtype}{bool}\ pin2Invert,\ \textcolor{keywordtype}{bool}\ pin3Invert,\ \textcolor{keywordtype}{bool}\ pin4Invert,\ \textcolor{keywordtype}{bool}\ enableInvert);}
+\DoxyCodeLine{00552\ }
+\DoxyCodeLine{00555\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ isRunning();}
+\DoxyCodeLine{00556\ }
+\DoxyCodeLine{00558\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~AccelStepper()\ \{\};}
+\DoxyCodeLine{00559\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00560\ }
+\DoxyCodeLine{00563\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00564\ \ \ \ \ \{}
+\DoxyCodeLine{00565\ \ \ \ \ DIRECTION\_CCW\ =\ 0,\ \ }
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ DIRECTION\_CW\ \ =\ 1\ \ \ }
+\DoxyCodeLine{00567\ \ \ \ \ \}\ Direction;}
+\DoxyCodeLine{00568\ }
+\DoxyCodeLine{00578\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \ computeNewSpeed();}
+\DoxyCodeLine{00579\ }
+\DoxyCodeLine{00585\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ setOutputPins(uint8\_t\ mask);}
+\DoxyCodeLine{00586\ }
+\DoxyCodeLine{00592\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ step(\textcolor{keywordtype}{long}\ step);}
+\DoxyCodeLine{00593\ \ \ \ \ }
+\DoxyCodeLine{00597\ \ \ \ \ \textcolor{keywordtype}{long}\ \ \ stepForward();}
+\DoxyCodeLine{00598\ }
+\DoxyCodeLine{00602\ \ \ \ \ \textcolor{keywordtype}{long}\ \ \ stepBackward();}
+\DoxyCodeLine{00603\ }
+\DoxyCodeLine{00607\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ step0(\textcolor{keywordtype}{long}\ step);}
+\DoxyCodeLine{00608\ }
+\DoxyCodeLine{00615\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ step1(\textcolor{keywordtype}{long}\ step);}
+\DoxyCodeLine{00616\ }
+\DoxyCodeLine{00621\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ step2(\textcolor{keywordtype}{long}\ step);}
+\DoxyCodeLine{00622\ }
+\DoxyCodeLine{00628\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ step3(\textcolor{keywordtype}{long}\ step);}
+\DoxyCodeLine{00629\ }
+\DoxyCodeLine{00635\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ step4(\textcolor{keywordtype}{long}\ step);}
+\DoxyCodeLine{00636\ }
+\DoxyCodeLine{00642\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ step6(\textcolor{keywordtype}{long}\ step);}
+\DoxyCodeLine{00643\ }
+\DoxyCodeLine{00649\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ step8(\textcolor{keywordtype}{long}\ step);}
+\DoxyCodeLine{00650\ }
+\DoxyCodeLine{00653\ \ \ \ \ \textcolor{keywordtype}{boolean}\ \_direction;\ \textcolor{comment}{//\ 1\ ==\ CW}}
+\DoxyCodeLine{00654\ \ \ \ \ }
+\DoxyCodeLine{00657\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \ \_stepInterval;}
+\DoxyCodeLine{00658\ }
+\DoxyCodeLine{00659\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00662\ \ \ \ \ uint8\_t\ \ \ \ \ \ \ \ \_interface;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0,\ 1,\ 2,\ 4,\ 8,\ See\ MotorInterfaceType}}
+\DoxyCodeLine{00663\ }
+\DoxyCodeLine{00666\ \ \ \ \ uint8\_t\ \ \ \ \ \ \ \ \_pin[4];}
+\DoxyCodeLine{00667\ }
+\DoxyCodeLine{00669\ \ \ \ \ uint8\_t\ \ \ \ \ \ \ \ \_pinInverted[4];}
+\DoxyCodeLine{00670\ }
+\DoxyCodeLine{00672\ \ \ \ \ \textcolor{keywordtype}{long}\ \ \ \ \ \ \ \ \ \ \ \_currentPos;\ \ \ \ \textcolor{comment}{//\ Steps}}
+\DoxyCodeLine{00673\ }
+\DoxyCodeLine{00677\ \ \ \ \ \textcolor{keywordtype}{long}\ \ \ \ \ \ \ \ \ \ \ \_targetPos;\ \ \ \ \ \textcolor{comment}{//\ Steps}}
+\DoxyCodeLine{00678\ }
+\DoxyCodeLine{00681\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \_speed;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Steps\ per\ second}}
+\DoxyCodeLine{00682\ }
+\DoxyCodeLine{00684\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \_maxSpeed;}
+\DoxyCodeLine{00685\ }
+\DoxyCodeLine{00688\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \_acceleration;}
+\DoxyCodeLine{00689\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \_sqrt\_twoa;\ \textcolor{comment}{//\ Precomputed\ sqrt(2*\_acceleration)}}
+\DoxyCodeLine{00690\ }
+\DoxyCodeLine{00692\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \ \_lastStepTime;}
+\DoxyCodeLine{00693\ }
+\DoxyCodeLine{00695\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \ \ \_minPulseWidth;}
+\DoxyCodeLine{00696\ }
+\DoxyCodeLine{00699\ }
+\DoxyCodeLine{00702\ }
+\DoxyCodeLine{00704\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \_enableInverted;}
+\DoxyCodeLine{00705\ }
+\DoxyCodeLine{00707\ \ \ \ \ uint8\_t\ \ \ \ \ \ \ \ \_enablePin;}
+\DoxyCodeLine{00708\ }
+\DoxyCodeLine{00710\ \ \ \ \ void\ (*\_forward)();}
+\DoxyCodeLine{00711\ }
+\DoxyCodeLine{00713\ \ \ \ \ void\ (*\_backward)();}
+\DoxyCodeLine{00714\ }
+\DoxyCodeLine{00716\ \ \ \ \ \textcolor{keywordtype}{long}\ \_n;}
+\DoxyCodeLine{00717\ }
+\DoxyCodeLine{00719\ \ \ \ \ \textcolor{keywordtype}{float}\ \_c0;}
+\DoxyCodeLine{00720\ }
+\DoxyCodeLine{00722\ \ \ \ \ \textcolor{keywordtype}{float}\ \_cn;}
+\DoxyCodeLine{00723\ }
+\DoxyCodeLine{00725\ \ \ \ \ \textcolor{keywordtype}{float}\ \_cmin;\ \textcolor{comment}{//\ at\ max\ speed}}
+\DoxyCodeLine{00726\ }
+\DoxyCodeLine{00727\ \};}
+\DoxyCodeLine{00728\ }
+\DoxyCodeLine{00731\ }
+\DoxyCodeLine{00736\ }
+\DoxyCodeLine{00741\ }
+\DoxyCodeLine{00745\ }
+\DoxyCodeLine{00750\ }
+\DoxyCodeLine{00754\ }
+\DoxyCodeLine{00758\ }
+\DoxyCodeLine{00763\ }
+\DoxyCodeLine{00767\ }
+\DoxyCodeLine{00773\ }
+\DoxyCodeLine{00777\ }
+\DoxyCodeLine{00782\ }
+\DoxyCodeLine{00783\ \textcolor{preprocessor}{\#endif\ }}
+
+\end{DoxyCode}

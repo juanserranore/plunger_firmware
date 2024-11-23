@@ -1,0 +1,195 @@
+\doxysection{Dhcp.\+h}
+\label{_dhcp_8h_source}\index{lib/EthernetENC-\/2.0.5/src/Dhcp.h@{lib/EthernetENC-\/2.0.5/src/Dhcp.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ DHCP\ Library\ v0.3\ -\/\ April\ 25,\ 2009}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Author:\ Jordan\ Terrell\ -\/\ blog.jordanterrell.com}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#ifndef\ Dhcp\_h}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ Dhcp\_h}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}EthernetUdp.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{/*\ DHCP\ state\ machine.\ */}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ STATE\_DHCP\_START\ 0}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ STATE\_DHCP\_DISCOVER\ 1}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ STATE\_DHCP\_REQUEST\ \ 2}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ STATE\_DHCP\_LEASED\ \ \ 3}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ STATE\_DHCP\_REREQUEST\ \ \ \ 4}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ STATE\_DHCP\_RELEASE\ \ 5}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ DHCP\_FLAGSBROADCAST\ 0x8000}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{/*\ UDP\ port\ numbers\ for\ DHCP\ */}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ DHCP\_SERVER\_PORT\ \ \ \ 67\ \ }\textcolor{comment}{/*\ from\ server\ to\ client\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ DHCP\_CLIENT\_PORT\ \ \ \ 68\ \ }\textcolor{comment}{/*\ from\ client\ to\ server\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{/*\ DHCP\ message\ OP\ code\ */}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ DHCP\_BOOTREQUEST\ \ \ \ 1}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ DHCP\_BOOTREPLY\ \ \ \ \ \ 2}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{/*\ DHCP\ message\ type\ */}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ DHCP\_DISCOVER\ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ DHCP\_OFFER\ \ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ DHCP\_REQUEST\ \ \ \ \ \ \ \ 3}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ DHCP\_DECLINE\ \ \ \ \ \ \ \ 4}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ DHCP\_ACK\ \ \ \ \ \ \ \ \ \ \ \ 5}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ DHCP\_NAK\ \ \ \ \ \ \ \ \ \ \ \ 6}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ DHCP\_RELEASE\ \ \ \ \ \ \ \ 7}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ DHCP\_INFORM\ \ \ \ \ \ \ 8}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ DHCP\_HTYPE10MB\ \ \ \ \ \ 1}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ DHCP\_HTYPE100MB\ \ \ \ \ 2}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ DHCP\_HLENETHERNET\ \ \ 6}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ DHCP\_HOPS\ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ DHCP\_SECS\ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ MAGIC\_COOKIE\ \ \ \ \ \ \ \ 0x63825363}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ MAX\_DHCP\_OPT\ \ \ \ 16}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ HOST\_NAME\ "{}ENC28J"{}}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ DEFAULT\_LEASE\ \ \ (900)\ }\textcolor{comment}{//default\ lease\ time\ in\ seconds}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ DHCP\_CHECK\_NONE\ \ \ \ \ \ \ \ \ (0)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ DHCP\_CHECK\_RENEW\_FAIL\ \ \ (1)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ DHCP\_CHECK\_RENEW\_OK\ \ \ \ \ (2)}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ DHCP\_CHECK\_REBIND\_FAIL\ \ (3)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ DHCP\_CHECK\_REBIND\_OK\ \ \ \ (4)}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ padOption\ \ \ \ \ \ \ =\ \ \ 0,}
+\DoxyCodeLine{00059\ \ \ \ \ subnetMask\ \ \ \ \ \ =\ \ \ 1,}
+\DoxyCodeLine{00060\ \ \ \ \ timerOffset\ \ \ \ \ =\ \ \ 2,}
+\DoxyCodeLine{00061\ \ \ \ \ routersOnSubnet\ \ \ \ \ =\ \ \ 3,}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{/*\ timeServer\ \ \ \ \ \ \ =\ \ \ 4,}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ \ \ \ nameServer\ \ \ \ \ \ =\ \ \ 5,*/}}
+\DoxyCodeLine{00064\ \ \ \ \ dns\ \ \ \ \ \ \ \ \ =\ \ \ 6,}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{/*logServer\ \ \ \ \ =\ \ \ 7,}}
+\DoxyCodeLine{00066\ \textcolor{comment}{\ \ \ \ cookieServer\ \ \ \ \ \ \ \ =\ \ \ 8,}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ \ \ \ lprServer\ \ \ \ \ \ \ =\ \ \ 9,}}
+\DoxyCodeLine{00068\ \textcolor{comment}{\ \ \ \ impressServer\ \ \ \ \ \ \ =\ \ \ 10,}}
+\DoxyCodeLine{00069\ \textcolor{comment}{\ \ \ \ resourceLocationServer\ \ =\ \ \ 11,*/}}
+\DoxyCodeLine{00070\ \ \ \ \ hostName\ \ \ \ \ \ \ \ =\ \ \ 12,}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{/*bootFileSize\ \ \ \ \ \ =\ \ \ 13,}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ \ meritDumpFile\ \ \ \ \ \ \ =\ \ \ 14,*/}}
+\DoxyCodeLine{00073\ \ \ \ \ domainName\ \ \ \ \ \ =\ \ \ 15,}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{/*swapServer\ \ \ \ \ \ \ \ =\ \ \ 16,}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ \ rootPath\ \ \ \ \ \ \ \ =\ \ \ 17,}}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ \ \ \ extentionsPath\ \ \ \ \ \ =\ \ \ 18,}}
+\DoxyCodeLine{00077\ \textcolor{comment}{\ \ \ \ IPforwarding\ \ \ \ \ \ \ \ =\ \ \ 19,}}
+\DoxyCodeLine{00078\ \textcolor{comment}{\ \ \ \ nonLocalSourceRouting\ \ \ =\ \ \ 20,}}
+\DoxyCodeLine{00079\ \textcolor{comment}{\ \ \ \ policyFilter\ \ \ \ \ \ \ \ =\ \ \ 21,}}
+\DoxyCodeLine{00080\ \textcolor{comment}{\ \ \ \ maxDgramReasmSize\ \ \ =\ \ \ 22,}}
+\DoxyCodeLine{00081\ \textcolor{comment}{\ \ \ \ defaultIPTTL\ \ \ \ \ \ \ \ =\ \ \ 23,}}
+\DoxyCodeLine{00082\ \textcolor{comment}{\ \ \ \ pathMTUagingTimeout\ =\ \ \ 24,}}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ \ \ \ pathMTUplateauTable\ =\ \ \ 25,}}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ \ \ \ ifMTU\ \ \ \ \ \ \ \ \ \ \ =\ \ \ 26,}}
+\DoxyCodeLine{00085\ \textcolor{comment}{\ \ \ \ allSubnetsLocal\ \ \ \ \ =\ \ \ 27,}}
+\DoxyCodeLine{00086\ \textcolor{comment}{\ \ \ \ broadcastAddr\ \ \ \ \ \ \ =\ \ \ 28,}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ \ \ \ performMaskDiscovery\ \ \ \ =\ \ \ 29,}}
+\DoxyCodeLine{00088\ \textcolor{comment}{\ \ \ \ maskSupplier\ \ \ \ \ \ \ \ =\ \ \ 30,}}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ \ \ \ performRouterDiscovery\ \ =\ \ \ 31,}}
+\DoxyCodeLine{00090\ \textcolor{comment}{\ \ \ \ routerSolicitationAddr\ \ =\ \ \ 32,}}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ \ \ \ staticRoute\ \ \ \ \ =\ \ \ 33,}}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ \ \ \ trailerEncapsulation\ \ \ \ =\ \ \ 34,}}
+\DoxyCodeLine{00093\ \textcolor{comment}{\ \ \ \ arpCacheTimeout\ \ \ \ \ =\ \ \ 35,}}
+\DoxyCodeLine{00094\ \textcolor{comment}{\ \ \ \ ethernetEncapsulation\ \ \ =\ \ \ 36,}}
+\DoxyCodeLine{00095\ \textcolor{comment}{\ \ \ \ tcpDefaultTTL\ \ \ \ \ \ \ =\ \ \ 37,}}
+\DoxyCodeLine{00096\ \textcolor{comment}{\ \ \ \ tcpKeepaliveInterval\ \ \ \ =\ \ \ 38,}}
+\DoxyCodeLine{00097\ \textcolor{comment}{\ \ \ \ tcpKeepaliveGarbage\ =\ \ \ 39,}}
+\DoxyCodeLine{00098\ \textcolor{comment}{\ \ \ \ nisDomainName\ \ \ \ \ \ \ =\ \ \ 40,}}
+\DoxyCodeLine{00099\ \textcolor{comment}{\ \ \ \ nisServers\ \ \ \ \ \ =\ \ \ 41,}}
+\DoxyCodeLine{00100\ \textcolor{comment}{\ \ \ \ ntpServers\ \ \ \ \ \ =\ \ \ 42,}}
+\DoxyCodeLine{00101\ \textcolor{comment}{\ \ \ \ vendorSpecificInfo\ \ =\ \ \ 43,}}
+\DoxyCodeLine{00102\ \textcolor{comment}{\ \ \ \ netBIOSnameServer\ \ \ =\ \ \ 44,}}
+\DoxyCodeLine{00103\ \textcolor{comment}{\ \ \ \ netBIOSdgramDistServer\ \ =\ \ \ 45,}}
+\DoxyCodeLine{00104\ \textcolor{comment}{\ \ \ \ netBIOSnodeType\ \ \ \ \ =\ \ \ 46,}}
+\DoxyCodeLine{00105\ \textcolor{comment}{\ \ \ \ netBIOSscope\ \ \ \ \ \ \ \ =\ \ \ 47,}}
+\DoxyCodeLine{00106\ \textcolor{comment}{\ \ \ \ xFontServer\ \ \ \ \ =\ \ \ 48,}}
+\DoxyCodeLine{00107\ \textcolor{comment}{\ \ \ \ xDisplayManager\ \ \ \ \ =\ \ \ 49,*/}}
+\DoxyCodeLine{00108\ \ \ \ \ dhcpRequestedIPaddr\ =\ \ \ 50,}
+\DoxyCodeLine{00109\ \ \ \ \ dhcpIPaddrLeaseTime\ =\ \ \ 51,}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{/*dhcpOptionOverload\ \ \ \ =\ \ \ 52,*/}}
+\DoxyCodeLine{00111\ \ \ \ \ dhcpMessageType\ \ \ \ \ =\ \ \ 53,}
+\DoxyCodeLine{00112\ \ \ \ \ dhcpServerIdentifier\ \ \ \ =\ \ \ 54,}
+\DoxyCodeLine{00113\ \ \ \ \ dhcpParamRequest\ \ \ \ =\ \ \ 55,}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{/*dhcpMsg\ \ \ \ \ \ \ \ \ \ \ =\ \ \ 56,}}
+\DoxyCodeLine{00115\ \textcolor{comment}{\ \ \ \ dhcpMaxMsgSize\ \ \ \ \ \ =\ \ \ 57,*/}}
+\DoxyCodeLine{00116\ \ \ \ \ dhcpT1value\ \ \ \ \ =\ \ \ 58,}
+\DoxyCodeLine{00117\ \ \ \ \ dhcpT2value\ \ \ \ \ =\ \ \ 59,}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{/*dhcpClassIdentifier\ \ \ =\ \ \ 60,*/}}
+\DoxyCodeLine{00119\ \ \ \ \ dhcpClientIdentifier\ \ \ \ =\ \ \ 61,}
+\DoxyCodeLine{00120\ \ \ \ \ endOption\ \ \ \ \ \ \ =\ \ \ 255}
+\DoxyCodeLine{00121\ \};}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\_RIP\_MSG\_FIXED}
+\DoxyCodeLine{00124\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ uint8\_t\ \ op;\ }
+\DoxyCodeLine{00126\ \ \ \ \ uint8\_t\ \ htype;\ }
+\DoxyCodeLine{00127\ \ \ \ \ uint8\_t\ \ hlen;}
+\DoxyCodeLine{00128\ \ \ \ \ uint8\_t\ \ hops;}
+\DoxyCodeLine{00129\ \ \ \ \ uint32\_t\ xid;}
+\DoxyCodeLine{00130\ \ \ \ \ uint16\_t\ secs;}
+\DoxyCodeLine{00131\ \ \ \ \ uint16\_t\ flags;}
+\DoxyCodeLine{00132\ \ \ \ \ uint8\_t\ \ ciaddr[4];}
+\DoxyCodeLine{00133\ \ \ \ \ uint8\_t\ \ yiaddr[4];}
+\DoxyCodeLine{00134\ \ \ \ \ uint8\_t\ \ siaddr[4];}
+\DoxyCodeLine{00135\ \ \ \ \ uint8\_t\ \ giaddr[4];}
+\DoxyCodeLine{00136\ \ \ \ \ uint8\_t\ \ chaddr[6];}
+\DoxyCodeLine{00137\ \}RIP\_MSG\_FIXED;}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{keyword}{class\ }DhcpClass\ \{}
+\DoxyCodeLine{00140\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00141\ \ \ uint32\_t\ \_dhcpInitialTransactionId;}
+\DoxyCodeLine{00142\ \ \ uint32\_t\ \_dhcpTransactionId;}
+\DoxyCodeLine{00143\ \ \ uint8\_t\ \ \_dhcpMacAddr[6];}
+\DoxyCodeLine{00144\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \_hostname\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#ifdef\ \_\_arm\_\_}}
+\DoxyCodeLine{00146\ \ \ uint8\_t\ \ \_dhcpLocalIp[4]\ \_\_attribute\_\_((aligned(4)));}
+\DoxyCodeLine{00147\ \ \ uint8\_t\ \ \_dhcpSubnetMask[4]\ \_\_attribute\_\_((aligned(4)));}
+\DoxyCodeLine{00148\ \ \ uint8\_t\ \ \_dhcpGatewayIp[4]\ \_\_attribute\_\_((aligned(4)));}
+\DoxyCodeLine{00149\ \ \ uint8\_t\ \ \_dhcpDhcpServerIp[4]\ \_\_attribute\_\_((aligned(4)));}
+\DoxyCodeLine{00150\ \ \ uint8\_t\ \ \_dhcpDnsServerIp[4]\ \_\_attribute\_\_((aligned(4)));}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00152\ \ \ uint8\_t\ \ \_dhcpLocalIp[4];}
+\DoxyCodeLine{00153\ \ \ uint8\_t\ \ \_dhcpSubnetMask[4];}
+\DoxyCodeLine{00154\ \ \ uint8\_t\ \ \_dhcpGatewayIp[4];}
+\DoxyCodeLine{00155\ \ \ uint8\_t\ \ \_dhcpDhcpServerIp[4];}
+\DoxyCodeLine{00156\ \ \ uint8\_t\ \ \_dhcpDnsServerIp[4];}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00158\ \ \ uint32\_t\ \_dhcpLeaseTime;}
+\DoxyCodeLine{00159\ \ \ uint32\_t\ \_dhcpT1,\ \_dhcpT2;}
+\DoxyCodeLine{00160\ \ \ \textcolor{keywordtype}{signed}\ \textcolor{keywordtype}{long}\ \_renewInSec;}
+\DoxyCodeLine{00161\ \ \ \textcolor{keywordtype}{signed}\ \textcolor{keywordtype}{long}\ \_rebindInSec;}
+\DoxyCodeLine{00162\ \ \ \textcolor{keywordtype}{signed}\ \textcolor{keywordtype}{long}\ \_lastCheck;}
+\DoxyCodeLine{00163\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \_timeout;}
+\DoxyCodeLine{00164\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \_responseTimeout;}
+\DoxyCodeLine{00165\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \_secTimeout;}
+\DoxyCodeLine{00166\ \ \ uint8\_t\ \_dhcp\_state;}
+\DoxyCodeLine{00167\ \ \ EthernetUDP\ \_dhcpUdpSocket;}
+\DoxyCodeLine{00168\ \ \ }
+\DoxyCodeLine{00169\ \ \ \textcolor{keywordtype}{int}\ request\_DHCP\_lease();}
+\DoxyCodeLine{00170\ \ \ \textcolor{keywordtype}{void}\ reset\_DHCP\_lease();}
+\DoxyCodeLine{00171\ \ \ \textcolor{keywordtype}{void}\ presend\_DHCP();}
+\DoxyCodeLine{00172\ \ \ \textcolor{keywordtype}{void}\ send\_DHCP\_MESSAGE(uint8\_t,\ uint16\_t);}
+\DoxyCodeLine{00173\ \ \ \textcolor{keywordtype}{void}\ printByte(\textcolor{keywordtype}{char}\ *,\ uint8\_t);}
+\DoxyCodeLine{00174\ \ \ }
+\DoxyCodeLine{00175\ \ \ uint8\_t\ parseDHCPResponse(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ responseTimeout,\ uint32\_t\&\ transactionId);}
+\DoxyCodeLine{00176\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00177\ \ \ IPAddress\ getLocalIp();}
+\DoxyCodeLine{00178\ \ \ IPAddress\ getSubnetMask();}
+\DoxyCodeLine{00179\ \ \ IPAddress\ getGatewayIp();}
+\DoxyCodeLine{00180\ \ \ IPAddress\ getDhcpServerIp();}
+\DoxyCodeLine{00181\ \ \ IPAddress\ getDnsServerIp();}
+\DoxyCodeLine{00182\ \ \ }
+\DoxyCodeLine{00183\ \ \ \textcolor{keywordtype}{int}\ beginWithDHCP(uint8\_t\ *,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ timeout\ =\ 60000,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ responseTimeout\ =\ 4000);}
+\DoxyCodeLine{00184\ \ \ \textcolor{keywordtype}{int}\ checkLease();}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \textcolor{keywordtype}{void}\ setHostname(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ hostname);}
+\DoxyCodeLine{00187\ \};}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

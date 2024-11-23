@@ -1,0 +1,113 @@
+\doxysection{Button.\+cpp}
+\label{lib_2_t_f_t__e_s_p_i-master_2_extensions_2_button_8cpp_source}\index{lib/TFT\_eSPI-\/master/Extensions/Button.cpp@{lib/TFT\_eSPI-\/master/Extensions/Button.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{**\ Code\ for\ the\ GFX\ button\ UI\ element}}
+\DoxyCodeLine{00003\ \textcolor{comment}{**\ Grabbed\ from\ Adafruit\_GFX\ library\ and\ enhanced\ to\ handle\ any\ label\ font}}
+\DoxyCodeLine{00004\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00005\ TFT\_eSPI\_Button::TFT\_eSPI\_Button(\textcolor{keywordtype}{void})\ \{}
+\DoxyCodeLine{00006\ \ \ \_gfx\ \ \ \ \ \ \ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00007\ \ \ \_xd\ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00008\ \ \ \_yd\ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00009\ \ \ \_textdatum\ =\ MC\_DATUM;}
+\DoxyCodeLine{00010\ \ \ \_label[9]\ \ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00011\ \ \ currstate\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00012\ \ \ laststate\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00013\ \}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ Classic\ initButton()\ function:\ pass\ center\ \&\ size}}
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{void}\ TFT\_eSPI\_Button::initButton(}
+\DoxyCodeLine{00017\ \ TFT\_eSPI\ *gfx,\ int16\_t\ x,\ int16\_t\ y,\ uint16\_t\ w,\ uint16\_t\ h,}
+\DoxyCodeLine{00018\ \ uint16\_t\ outline,\ uint16\_t\ fill,\ uint16\_t\ textcolor,}
+\DoxyCodeLine{00019\ \ \textcolor{keywordtype}{char}\ *label,\ uint8\_t\ textsize)}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \textcolor{comment}{//\ Tweak\ arguments\ and\ pass\ to\ the\ newer\ initButtonUL()\ function...}}
+\DoxyCodeLine{00022\ \ \ initButtonUL(gfx,\ x\ -\/\ (w\ /\ 2),\ y\ -\/\ (h\ /\ 2),\ w,\ h,\ outline,\ fill,}
+\DoxyCodeLine{00023\ \ \ \ \ textcolor,\ label,\ textsize);}
+\DoxyCodeLine{00024\ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ Newer\ function\ instead\ accepts\ upper-\/left\ corner\ \&\ size}}
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{void}\ TFT\_eSPI\_Button::initButtonUL(}
+\DoxyCodeLine{00028\ \ TFT\_eSPI\ *gfx,\ int16\_t\ x1,\ int16\_t\ y1,\ uint16\_t\ w,\ uint16\_t\ h,}
+\DoxyCodeLine{00029\ \ uint16\_t\ outline,\ uint16\_t\ fill,\ uint16\_t\ textcolor,}
+\DoxyCodeLine{00030\ \ \textcolor{keywordtype}{char}\ *label,\ uint8\_t\ textsize)}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \_x1\ \ \ \ \ \ \ \ \ \ \ =\ x1;}
+\DoxyCodeLine{00033\ \ \ \_y1\ \ \ \ \ \ \ \ \ \ \ =\ y1;}
+\DoxyCodeLine{00034\ \ \ \_w\ \ \ \ \ \ \ \ \ \ \ \ =\ w;}
+\DoxyCodeLine{00035\ \ \ \_h\ \ \ \ \ \ \ \ \ \ \ \ =\ h;}
+\DoxyCodeLine{00036\ \ \ \_outlinecolor\ =\ outline;}
+\DoxyCodeLine{00037\ \ \ \_fillcolor\ \ \ \ =\ fill;}
+\DoxyCodeLine{00038\ \ \ \_textcolor\ \ \ \ =\ textcolor;}
+\DoxyCodeLine{00039\ \ \ \_textsize\ \ \ \ \ =\ textsize;}
+\DoxyCodeLine{00040\ \ \ \_gfx\ \ \ \ \ \ \ \ \ \ =\ gfx;}
+\DoxyCodeLine{00041\ \ \ strncpy(\_label,\ label,\ 9);}
+\DoxyCodeLine{00042\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ Adjust\ text\ datum\ and\ x,\ y\ deltas}}
+\DoxyCodeLine{00045\ \textcolor{keywordtype}{void}\ TFT\_eSPI\_Button::setLabelDatum(int16\_t\ x\_delta,\ int16\_t\ y\_delta,\ uint8\_t\ datum)}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \ \ \_xd\ \ \ \ \ \ \ \ =\ x\_delta;}
+\DoxyCodeLine{00048\ \ \ \_yd\ \ \ \ \ \ \ \ =\ y\_delta;}
+\DoxyCodeLine{00049\ \ \ \_textdatum\ =\ datum;}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keywordtype}{void}\ TFT\_eSPI\_Button::drawButton(\textcolor{keywordtype}{bool}\ inverted,\ String\ long\_name)\ \{}
+\DoxyCodeLine{00053\ \ \ uint16\_t\ fill,\ outline,\ text;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordflow}{if}(!inverted)\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ fill\ \ \ \ =\ \_fillcolor;}
+\DoxyCodeLine{00057\ \ \ \ \ outline\ =\ \_outlinecolor;}
+\DoxyCodeLine{00058\ \ \ \ \ text\ \ \ \ =\ \_textcolor;}
+\DoxyCodeLine{00059\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ fill\ \ \ \ =\ \_textcolor;}
+\DoxyCodeLine{00061\ \ \ \ \ outline\ =\ \_outlinecolor;}
+\DoxyCodeLine{00062\ \ \ \ \ text\ \ \ \ =\ \_fillcolor;}
+\DoxyCodeLine{00063\ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ uint8\_t\ r\ =\ min(\_w,\ \_h)\ /\ 4;\ \textcolor{comment}{//\ Corner\ radius}}
+\DoxyCodeLine{00066\ \ \ \_gfx-\/>fillRoundRect(\_x1,\ \_y1,\ \_w,\ \_h,\ r,\ fill);}
+\DoxyCodeLine{00067\ \ \ \_gfx-\/>drawRoundRect(\_x1,\ \_y1,\ \_w,\ \_h,\ r,\ outline);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \textcolor{keywordflow}{if}\ (\_gfx-\/>textfont\ ==\ 255)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \_gfx-\/>setCursor(\_x1\ +\ (\_w\ /\ 8),}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_y1\ +\ (\_h\ /\ 4));}
+\DoxyCodeLine{00072\ \ \ \ \ \_gfx-\/>setTextColor(text);}
+\DoxyCodeLine{00073\ \ \ \ \ \_gfx-\/>setTextSize(\_textsize);}
+\DoxyCodeLine{00074\ \ \ \ \ \_gfx-\/>print(\_label);}
+\DoxyCodeLine{00075\ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \_gfx-\/>setTextColor(text,\ fill);}
+\DoxyCodeLine{00078\ \ \ \ \ \_gfx-\/>setTextSize(\_textsize);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ uint8\_t\ tempdatum\ =\ \_gfx-\/>getTextDatum();}
+\DoxyCodeLine{00081\ \ \ \ \ \_gfx-\/>setTextDatum(\_textdatum);}
+\DoxyCodeLine{00082\ \ \ \ \ uint16\_t\ tempPadding\ =\ \_gfx-\/>getTextPadding();}
+\DoxyCodeLine{00083\ \ \ \ \ \_gfx-\/>setTextPadding(0);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{if}\ (long\_name\ ==\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \_gfx-\/>drawString(\_label,\ \_x1\ +\ (\_w/2)\ +\ \_xd,\ \_y1\ +\ (\_h/2)\ -\/\ 4\ +\ \_yd);}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \_gfx-\/>drawString(long\_name,\ \_x1\ +\ (\_w/2)\ +\ \_xd,\ \_y1\ +\ (\_h/2)\ -\/\ 4\ +\ \_yd);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \_gfx-\/>setTextDatum(tempdatum);}
+\DoxyCodeLine{00091\ \ \ \ \ \_gfx-\/>setTextPadding(tempPadding);}
+\DoxyCodeLine{00092\ \ \ \}}
+\DoxyCodeLine{00093\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keywordtype}{bool}\ TFT\_eSPI\_Button::contains(int16\_t\ x,\ int16\_t\ y)\ \{}
+\DoxyCodeLine{00096\ \ \ \textcolor{keywordflow}{return}\ ((x\ >=\ \_x1)\ \&\&\ (x\ <\ (\_x1\ +\ \_w))\ \&\&}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ (y\ >=\ \_y1)\ \&\&\ (y\ <\ (\_y1\ +\ \_h)));}
+\DoxyCodeLine{00098\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keywordtype}{void}\ TFT\_eSPI\_Button::press(\textcolor{keywordtype}{bool}\ p)\ \{}
+\DoxyCodeLine{00101\ \ \ laststate\ =\ currstate;}
+\DoxyCodeLine{00102\ \ \ currstate\ =\ p;}
+\DoxyCodeLine{00103\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{keywordtype}{bool}\ TFT\_eSPI\_Button::isPressed()\ \ \ \ \{\ \textcolor{keywordflow}{return}\ currstate;\ \}}
+\DoxyCodeLine{00106\ \textcolor{keywordtype}{bool}\ TFT\_eSPI\_Button::justPressed()\ \ \{\ \textcolor{keywordflow}{return}\ (currstate\ \&\&\ !laststate);\ \}}
+\DoxyCodeLine{00107\ \textcolor{keywordtype}{bool}\ TFT\_eSPI\_Button::justReleased()\ \{\ \textcolor{keywordflow}{return}\ (!currstate\ \&\&\ laststate);\ \}}
+
+\end{DoxyCode}

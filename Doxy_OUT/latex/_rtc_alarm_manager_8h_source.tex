@@ -1,0 +1,406 @@
+\doxysection{Rtc\+Alarm\+Manager.\+h}
+\label{_rtc_alarm_manager_8h_source}\index{lib/Rtc-\/master/src/RtcAlarmManager.h@{lib/Rtc-\/master/src/RtcAlarmManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00002\ \textcolor{comment}{RTC\ library}}
+\DoxyCodeLine{00003\ \textcolor{comment}{}}
+\DoxyCodeLine{00004\ \textcolor{comment}{Written\ by\ Michael\ C.\ Miller.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{}}
+\DoxyCodeLine{00006\ \textcolor{comment}{I\ invest\ time\ and\ resources\ providing\ this\ open\ source\ code,}}
+\DoxyCodeLine{00007\ \textcolor{comment}{please\ support\ me\ by\ dontating\ (see\ https://github.com/Makuna/Rtc)}}
+\DoxyCodeLine{00008\ \textcolor{comment}{}}
+\DoxyCodeLine{00009\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00010\ \textcolor{comment}{This\ file\ is\ part\ of\ the\ Makuna/Rtc\ library.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Rtc\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00013\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as}}
+\DoxyCodeLine{00014\ \textcolor{comment}{published\ by\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of}}
+\DoxyCodeLine{00015\ \textcolor{comment}{the\ License,\ or\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{Rtc\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00018\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00019\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00020\ \textcolor{comment}{GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public}}
+\DoxyCodeLine{00023\ \textcolor{comment}{License\ along\ with\ Rtc.\ \ If\ not,\ see}}
+\DoxyCodeLine{00024\ \textcolor{comment}{<http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}RtcUtility.h"{}}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}RtcDateTime.h"{}}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{enum}\ AlarmPeriod}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ AlarmPeriod\_Expired,}
+\DoxyCodeLine{00036\ \ \ \ \ AlarmPeriod\_SingleFire,}
+\DoxyCodeLine{00037\ \ \ \ \ AlarmPeriod\_Yearly,\ }
+\DoxyCodeLine{00038\ \ \ \ \ AlarmPeriod\_Monthly,\ }
+\DoxyCodeLine{00039\ \ \ \ \ AlarmPeriod\_Monthly\_LastDay,}
+\DoxyCodeLine{00040\ \ \ \ \ AlarmPeriod\_Weekly,\ }
+\DoxyCodeLine{00041\ \ \ \ \ AlarmPeriod\_Daily,}
+\DoxyCodeLine{00042\ \ \ \ \ AlarmPeriod\_Hourly,}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ the\ below\ values\ are\ for\ internal\ use\ only}}
+\DoxyCodeLine{00044\ \ \ \ \ AlarmPeriod\_Yearly\_Feb29th,\ \textcolor{comment}{//\ last\ of\ month\ in\ Feb\ if\ days\ less\ than\ and\ not\ a\ leap\ year,\ }}
+\DoxyCodeLine{00045\ \ \ \ \ AlarmPeriod\_Monthly\_29th,\ \textcolor{comment}{//\ last\ of\ month\ if\ days\ less\ than,\ }}
+\DoxyCodeLine{00046\ \ \ \ \ AlarmPeriod\_Monthly\_30th,\ \textcolor{comment}{//\ otherwise\ the\ day\ of\ month\ matching,}}
+\DoxyCodeLine{00047\ \ \ \ \ AlarmPeriod\_Monthly\_31st,\ \textcolor{comment}{//\ this\ will\ be\ set\ internally,\ just\ use\ monthly}}
+\DoxyCodeLine{00048\ \ \ \ \ AlarmPeriod\_StartOfSpecifics\ =\ 60\ \textcolor{comment}{//\ anything\ over\ this\ is\ considered\ a\ specific\ time\ in\ seconds}}
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{enum}\ AlarmAddError}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ AlarmAddError\_PeriodInvalid\ =\ -\/4,}
+\DoxyCodeLine{00054\ \ \ \ \ AlarmAddError\_TimePast,}
+\DoxyCodeLine{00055\ \ \ \ \ AlarmAddError\_TimeInvalid,}
+\DoxyCodeLine{00056\ \ \ \ \ AlarmAddError\_CountExceeded,}
+\DoxyCodeLine{00057\ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{typedef}\ void(*RtcAlarmCallback)(uint8\_t\ id,\ \textcolor{keyword}{const}\ RtcDateTime\&\ alarm);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{template}\ <RtcAlarmCallback\ V\_CALLBACK>\ \textcolor{keyword}{class\ }RtcAlarmManager}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//\ construct}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ count\ -\/\ the\ max\ number\ of\ active\ alarms}}
+\DoxyCodeLine{00066\ \ \ \ \ RtcAlarmManager(uint8\_t\ count)\ :}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \_alarmsCount(count)}
+\DoxyCodeLine{00068\ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \_alarms\ =\ \textcolor{keyword}{new}\ Alarm[\_alarmsCount];}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \string~RtcAlarmManager()}
+\DoxyCodeLine{00073\ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ \_alarms;}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ Sync\ the\ time\ to\ the\ external\ trusted\ source,\ like}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ a\ RTC\ module}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ Do\ this\ at\ regular\ intervals\ as\ the\ internal\ CPU\ timing}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ is\ not\ very\ accurate}}
+\DoxyCodeLine{00081\ \ \ \ \ int32\_t\ Sync(\textcolor{keyword}{const}\ RtcDateTime\&\ now)}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ uint32\_t\ msNow\ =\ millis();}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ uint32\_t\ secondsNow\ =\ now.TotalSeconds();}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ calc\ an\ updated\ seconds\ for\ old\ information}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ uint32\_t\ secondsOld\ =\ \_seconds\ +\ (msNow\ -\/\ \_msLast)\ /\ 1000;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ set\ new\ seconds\ and\ start\ tracking\ the\ millis}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \_msLast\ =\ msNow;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \_seconds\ =\ secondsNow;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ return\ the\ delta\ from\ new\ seconds\ from\ old\ seconds}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (secondsNow\ -\/\ secondsOld);}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ retrieve\ what\ the\ current\ time\ the\ AlarmManager\ thinks\ it\ is}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//\ due\ to\ inacurrancy\ of\ the\ CPU\ timing\ this\ may\ not\ be\ exact,}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ but\ it\ is\ good\ enough\ for\ most\ timing\ needs}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ regular\ use\ of\ Sync()\ will\ improve\ this}}
+\DoxyCodeLine{00098\ \ \ \ \ RtcDateTime\ Now()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ uint32\_t\ msNow\ =\ millis();}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ uint32\_t\ secondsNow\ =\ \_seconds\ +\ (msNow\ -\/\ \_msLast)\ /\ 1000;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RtcDateTime(secondsNow);}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ add\ an\ alarm}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{//\ when\ -\/\ the\ date\ and\ time\ to\ start\ triggering\ alarms}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ period\ -\/\ the\ type\ of\ alarm,\ does\ it\ repeat\ and\ how\ often,\ see\ AlarmPeriod\ enum}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ return\ -\/\ if\ postive,\ the\ id\ of\ the\ Alarm,\ otherwise\ see\ AlarmAddError}}
+\DoxyCodeLine{00109\ \ \ \ \ int8\_t\ AddAlarm(\textcolor{keyword}{const}\ RtcDateTime\&\ when,}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ uint32\_t\ period)}
+\DoxyCodeLine{00111\ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!when.IsValid())}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ AlarmAddError\_TimeInvalid;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (period\ >\ AlarmPeriod\_Monthly\_31st\ \&\&}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ period\ <\ AlarmPeriod\_StartOfSpecifics)}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ AlarmAddError\_PeriodInvalid;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ int8\_t\ result\ =\ AlarmAddError\_TimeInvalid;}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ uint32\_t\ seconds\ =\ when.TotalSeconds();}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (period\ ==\ AlarmPeriod\_Monthly\_LastDay)}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ period\ =\ AlarmPeriod\_Monthly\_31st;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ adjust\ given\ when\ to\ last\ day\ of\ its\ set\ month}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ daysInMonth\ =\ RtcDateTime::DaysInMonth(when.Year(),\ when.Month());}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (when.Day()\ <\ daysInMonth)}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RtcDateTime\ temp(when.Year(),}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ when.Month(),}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ daysInMonth,}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ when.Hour(),}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ when.Minute(),}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ when.Second());}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seconds\ =\ temp.TotalSeconds();}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (period\ ==\ AlarmPeriod\_Monthly\ ||}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ (period\ >=\ AlarmPeriod\_Monthly\_29th\ \&\&\ period\ <=\ AlarmPeriod\_Monthly\_31st))}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ period\ =\ AlarmPeriod\_Monthly;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ adjust\ alarm\ period\ to\ store\ target\ day\ of\ month}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ when\ months\ have\ less\ days\ than\ the\ target}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ it\ will\ trigger\ on\ the\ last\ day\ of\ the\ month\ but}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ retain\ and\ trigger\ on\ specific\ day\ of\ month\ when}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ available}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (when.Day()\ ==\ 29)}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ period\ =\ AlarmPeriod\_Monthly\_29th;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (when.Day()\ ==\ 30)}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ period\ =\ AlarmPeriod\_Monthly\_30th;}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (when.Day()\ ==\ 31)}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ period\ =\ AlarmPeriod\_Monthly\_31st;}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (period\ ==\ AlarmPeriod\_Yearly)}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (when.Day()\ ==\ 29\ \&\&\ when.Month()\ ==\ 2)}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ adjust\ alarm\ period\ to\ store\ target\ day\ of\ month}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ when\ Feb\ 29th\ is\ target\ but\ following\ year\ isn't\ }}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ a\ leap\ year\ it\ will\ trigger\ on\ the\ last\ day\ of\ Feb\ but}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ retain\ and\ trigger\ on\ specific\ day\ of\ month\ when}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ available}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ period\ =\ AlarmPeriod\_Yearly\_Feb29th;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ Alarm\ alarm(seconds,\ period);}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ the\ alarm\ was\ added\ that\ was\ already\ in\ the\ past,}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ increment\ the\ when\ to\ the\ next\ repeat}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ non-\/repeatable\ alarms\ this\ may\ expire\ them}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (seconds\ <=\ \_seconds)}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ alarm.IncrementWhen();}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (alarm.Period\ ==\ AlarmPeriod\_Expired)}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ AlarmAddError\_TimePast;}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ AlarmAddError\_CountExceeded;}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ \textcolor{keywordtype}{id}\ =\ 0;\ \textcolor{keywordtype}{id}\ <\ \_alarmsCount;\ \textcolor{keywordtype}{id}++)}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_alarms[\textcolor{keywordtype}{id}].Period\ ==\ AlarmPeriod\_Expired)}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_alarms[id]\ =\ alarm;}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ id;}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00206\ \ \ \ \ \}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{comment}{//\ remove\ an\ existing\ alarm\ }}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{comment}{//\ id\ -\/\ previously\ returned\ id\ from\ AddAlarm()}}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordtype}{void}\ RemoveAlarm(uint8\_t\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{00211\ \ \ \ \ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ <\ \_alarmsCount)}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \_alarms[id].Period\ =\ AlarmPeriod\_Expired;}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00216\ \ \ \ \ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{comment}{//\ check\ if\ the\ alarm\ is\ still\ active\ }}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{comment}{//\ id\ -\/\ previously\ returned\ id\ from\ AddAlarm()}}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsAlarmActive(uint8\_t\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{00221\ \ \ \ \ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ <\ \_alarmsCount)}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\_alarms[\textcolor{keywordtype}{id}].Period\ !=\ AlarmPeriod\_Expired);}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00227\ \ \ \ \ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{comment}{//\ process\ all\ the\ alarms\ which\ can\ trigger\ callbacks}}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{comment}{//\ call\ at\ regular\ intervals,\ if\ you\ need\ seconds\ accuracy,\ call}}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{comment}{//\ every\ second.\ \ }}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{comment}{//\ There\ is\ little\ need\ to\ call\ this\ faster\ than\ a\ few}}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{comment}{//\ times\ per\ second\ but\ it\ doesn't\ hurt\ anything}}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordtype}{void}\ ProcessAlarms()}
+\DoxyCodeLine{00235\ \ \ \ \ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ uint32\_t\ msNow\ =\ millis();}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ uint32\_t\ msDelta\ =\ (msNow\ -\/\ \_msLast);}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (msDelta\ >\ 1000)}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ update\ seconds\ based\ on\ passed\ time\ using\ millis()}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \_seconds\ +=\ msDelta\ /\ 1000;}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \_msLast\ =\ msNow\ -\/\ (msDelta\ \%\ 1000);\ \textcolor{comment}{//\ retain\ fractional\ second}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ used\ a\ local\ seconds\ in\ case\ a\ callback\ changes\ it}}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ seconds\ =\ \_seconds;\ }
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ \textcolor{keywordtype}{id}\ =\ 0;\ \textcolor{keywordtype}{id}\ <\ \_alarmsCount;\ \textcolor{keywordtype}{id}++)}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_alarms[\textcolor{keywordtype}{id}].Period\ !=\ AlarmPeriod\_Expired)}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_alarms[\textcolor{keywordtype}{id}].When\ <=\ seconds)}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RtcDateTime\ alarm(\_alarms[\textcolor{keywordtype}{id}].When);}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_alarms[\textcolor{keywordtype}{id}].Period\ ==\ AlarmPeriod\_SingleFire)}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ remove\ from\ list}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_alarms[id].Period\ =\ AlarmPeriod\_Expired;}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_alarms[id].IncrementWhen();}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ make\ callback}}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ V\_CALLBACK(\textcolor{keywordtype}{id},\ alarm);}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00272\ \ \ \ \ \}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keyword}{struct\ }Alarm}
+\DoxyCodeLine{00276\ \ \ \ \ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ uint32\_t\ When;\ \textcolor{comment}{//\ seconds\ from\ RtcDateTime.TotalSeconds()}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ uint32\_t\ Period;\ \ }
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ Alarm(uint32\_t\ when\ =\ 0,\ uint32\_t\ period\ =\ AlarmPeriod\_Expired)\ :}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ When(when),}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ Period(period)}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ IncrementWhen()}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (Period)}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ AlarmPeriod\_Expired:}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ AlarmPeriod\_SingleFire:}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Period\ =\ AlarmPeriod\_Expired;}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ AlarmPeriod\_Yearly:}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RtcDateTime\ temp(When);}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RtcDateTime\ next(temp.Year()\ +\ 1,}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp.Month(),}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp.Day(),}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp.Hour(),}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp.Minute(),}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp.Second());}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ When\ =\ next.TotalSeconds();}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ AlarmPeriod\_Yearly\_Feb29th:}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RtcDateTime\ temp(When);}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ year\ =\ temp.Year()\ +\ 1;}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ day\ =\ 28;}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (RtcDateTime::IsLeapYear(year))}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ day\ =\ 29;}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RtcDateTime\ next(year,}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2,}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ day,}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp.Hour(),}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp.Minute(),}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp.Second());}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ When\ =\ next.TotalSeconds();}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ AlarmPeriod\_Monthly:}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ AlarmPeriod\_Monthly\_29th:}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ AlarmPeriod\_Monthly\_30th:}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ AlarmPeriod\_Monthly\_31st:}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RtcDateTime\ temp(When);}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ year\ =\ temp.Year();}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ month\ =\ temp.Month()\ +\ 1;}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ day;}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (month\ >\ 12)}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ year++;}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ month\ =\ 1;}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Period\ ==\ AlarmPeriod\_Monthly)}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ use\ the\ day\ of\ the\ month\ from\ previous\ When}}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ day\ =\ temp.Day();}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ use\ the\ day\ of\ the\ month\ cached\ as\ it\ may\ have}}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ been\ capped\ to\ the\ last\ day\ of\ the\ month\ in\ When}}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ day\ =\ 29\ +\ (Period\ -\/\ AlarmPeriod\_Monthly\_29th);}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ daysInMonth\ =\ RtcDateTime::DaysInMonth(year,\ month);}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (day\ >\ daysInMonth)}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ day\ =\ daysInMonth;}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RtcDateTime\ next(year,}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ month,}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ day,}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp.Hour(),}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp.Minute(),}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp.Second());}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ When\ =\ next.TotalSeconds();}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ AlarmPeriod\_Weekly:}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ When\ +=\ c\_WeekAsSeconds;}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ AlarmPeriod\_Daily:}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ When\ +=\ c\_DayAsSeconds;}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ AlarmPeriod\_Hourly:}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ When\ +=\ c\_HourAsSeconds;}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ When\ +=\ Period;}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00393\ \ \ \ \ \};}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \ \ \ \ Alarm*\ \_alarms;\ \textcolor{comment}{//\ table\ of\ possible\ alarms}}
+\DoxyCodeLine{00396\ \ \ \ \ uint8\_t\ \_alarmsCount;\ \textcolor{comment}{//\ max\ alarms\ in\ \_alarms}}
+\DoxyCodeLine{00397\ \ \ \ \ uint32\_t\ \_msLast;\ \textcolor{comment}{//\ the\ last\ call\ to\ millis()}}
+\DoxyCodeLine{00398\ \ \ \ \ uint32\_t\ \_seconds;\ \textcolor{comment}{//\ the\ approximate\ date\ time,\ as\ seconds\ from\ 2000}}
+\DoxyCodeLine{00399\ \};}
+\DoxyCodeLine{00400\ }
+
+\end{DoxyCode}

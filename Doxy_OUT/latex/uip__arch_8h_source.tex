@@ -1,0 +1,57 @@
+\doxysection{uip\+\_\+arch.\+h}
+\label{uip__arch_8h_source}\index{lib/EthernetENC-\/2.0.5/src/utility/uip\_arch.h@{lib/EthernetENC-\/2.0.5/src/utility/uip\_arch.h}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2001,\ Adam\ Dunkels.}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ *\ All\ rights\ reserved.}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *\ Redistribution\ and\ use\ in\ source\ and\ binary\ forms,\ with\ or\ without}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ *\ modification,\ are\ permitted\ provided\ that\ the\ following\ conditions}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ *\ are\ met:}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ *\ 1.\ Redistributions\ of\ source\ code\ must\ retain\ the\ above\ copyright}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ *\ \ \ \ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer.}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ *\ 2.\ Redistributions\ in\ binary\ form\ must\ reproduce\ the\ above\ copyright}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ *\ \ \ \ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer\ in\ the}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ *\ \ \ \ documentation\ and/or\ other\ materials\ provided\ with\ the\ distribution.}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ *\ 3.\ The\ name\ of\ the\ author\ may\ not\ be\ used\ to\ endorse\ or\ promote}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ *\ \ \ \ products\ derived\ from\ this\ software\ without\ specific\ prior}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ *\ \ \ \ written\ permission.}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ *\ THIS\ SOFTWARE\ IS\ PROVIDED\ BY\ THE\ AUTHOR\ \`{}\`{}AS\ IS''\ AND\ ANY\ EXPRESS}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ *\ OR\ IMPLIED\ WARRANTIES,\ INCLUDING,\ BUT\ NOT\ LIMITED\ TO,\ THE\ IMPLIED}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ *\ WARRANTIES\ OF\ MERCHANTABILITY\ AND\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ *\ ARE\ DISCLAIMED.\ \ IN\ NO\ EVENT\ SHALL\ THE\ AUTHOR\ BE\ LIABLE\ FOR\ ANY}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ *\ DIRECT,\ INDIRECT,\ INCIDENTAL,\ SPECIAL,\ EXEMPLARY,\ OR\ CONSEQUENTIAL}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ *\ DAMAGES\ (INCLUDING,\ BUT\ NOT\ LIMITED\ TO,\ PROCUREMENT\ OF\ SUBSTITUTE}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ *\ GOODS\ OR\ SERVICES;\ LOSS\ OF\ USE,\ DATA,\ OR\ PROFITS;\ OR\ BUSINESS}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ *\ INTERRUPTION)\ HOWEVER\ CAUSED\ AND\ ON\ ANY\ THEORY\ OF\ LIABILITY,}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ *\ WHETHER\ IN\ CONTRACT,\ STRICT\ LIABILITY,\ OR\ TORT\ (INCLUDING}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ *\ NEGLIGENCE\ OR\ OTHERWISE)\ ARISING\ IN\ ANY\ WAY\ OUT\ OF\ THE\ USE\ OF\ THIS}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ *\ SOFTWARE,\ EVEN\ IF\ ADVISED\ OF\ THE\ POSSIBILITY\ OF\ SUCH\ DAMAGE.}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ *\ This\ file\ is\ part\ of\ the\ uIP\ TCP/IP\ stack.}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ *\ \$Id:\ uip\_arch.h,v\ 1.2\ 2006/06/07\ 09:15:19\ adam\ Exp\ \$}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#ifndef\ \_\_UIP\_ARCH\_H\_\_}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ \_\_UIP\_ARCH\_H\_\_}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#include\ "{}uip.h"{}}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00084\ \textcolor{keywordtype}{void}\ uip\_add32(u8\_t\ *op32,\ u16\_t\ op16);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00105\ u16\_t\ uip\_chksum(u16\_t\ *buf,\ u16\_t\ len);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00116\ u16\_t\ uip\_ipchksum(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00131\ u16\_t\ uip\_tcpchksum(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ u16\_t\ uip\_udpchksum(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_UIP\_ARCH\_H\_\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

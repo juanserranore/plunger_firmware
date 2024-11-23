@@ -1,0 +1,167 @@
+\doxysection{Ethernet.\+h}
+\label{_ethernet_8h_source}\index{lib/EthernetENC-\/2.0.5/src/Ethernet.h@{lib/EthernetENC-\/2.0.5/src/Ethernet.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ UIPEthernet.h\ -\/\ Arduino\ implementation\ of\ a\ uIP\ wrapper\ class.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ Copyright\ (c)\ 2013\ Norbert\ Truchsess\ <norbert.truchsess@t-\/online.de>}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ All\ rights\ reserved.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ This\ program\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ This\ program\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ along\ with\ this\ program.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ \ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ UIPETHERNET\_H}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ UIPETHERNET\_H}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\#define\ UIPETHERNET\_DEBUG}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\#define\ UIPETHERNET\_DEBUG\_CHKSUM}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\#define\ UIPETHERNET\_DEBUG\_UDP}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\#define\ UIPETHERNET\_DEBUG\_CLIENT}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}Dhcp.h"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <IPAddress.h>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}utility/Enc28J60Network.h"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}EthernetClient.h"{}}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ "{}EthernetServer.h"{}}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}EthernetUdp.h"{}}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ "{}utility/uip.h"{}}}
+\DoxyCodeLine{00039\ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ UIPETHERNET\_FREEPACKET\ 1}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ UIPETHERNET\_SENDPACKET\ 2}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ UIPETHERNET\_BUFFERREAD\ 4}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ uip\_ip\_addr(addr,\ ip)\ do\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((u16\_t\ *)(addr))[0]\ =\ HTONS(((ip[0])\ <<\ 8)\ |\ (ip[1]));\ \(\backslash\)}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((u16\_t\ *)(addr))[1]\ =\ HTONS(((ip[2])\ <<\ 8)\ |\ (ip[3]));\ \(\backslash\)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ while(0)}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ ip\_addr\_uip(a)\ IPAddress(a[0]\ \&\ 0xFF,\ a[0]\ >>\ 8\ ,\ a[1]\ \&\ 0xFF,\ a[1]\ >>\ 8)\ }\textcolor{comment}{//TODO\ this\ is\ not\ IPV6\ capable}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ uip\_seteth\_addr(eaddr)\ do\ \{uip\_ethaddr.addr[0]\ =\ eaddr[0];\ \(\backslash\)}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_ethaddr.addr[1]\ =\ eaddr[1];\(\backslash\)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_ethaddr.addr[2]\ =\ eaddr[2];\(\backslash\)}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_ethaddr.addr[3]\ =\ eaddr[3];\(\backslash\)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_ethaddr.addr[4]\ =\ eaddr[4];\(\backslash\)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_ethaddr.addr[5]\ =\ eaddr[5];\}\ while(0)}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ BUF\ ((struct\ uip\_tcpip\_hdr\ *)\&uip\_buf[UIP\_LLH\_LEN])}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{enum}\ EthernetLinkStatus\ \{}
+\DoxyCodeLine{00062\ \ \ Unknown,}
+\DoxyCodeLine{00063\ \ \ LinkON,}
+\DoxyCodeLine{00064\ \ \ LinkOFF}
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{enum}\ EthernetHardwareStatus\ \{}
+\DoxyCodeLine{00068\ \ \ EthernetNoHardware,}
+\DoxyCodeLine{00069\ \ \ EthernetW5100,}
+\DoxyCodeLine{00070\ \ \ EthernetW5200,}
+\DoxyCodeLine{00071\ \ \ EthernetW5500,}
+\DoxyCodeLine{00072\ \ \ EthernetENC28J60\ =\ 10}
+\DoxyCodeLine{00073\ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{class\ }UIPEthernetClass}
+\DoxyCodeLine{00076\ \{}
+\DoxyCodeLine{00077\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00078\ \ \ UIPEthernetClass();}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \textcolor{keywordtype}{void}\ init(uint8\_t\ csPin);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \textcolor{keywordtype}{int}\ begin(\textcolor{keyword}{const}\ uint8\_t*\ mac,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ timeout\ =\ 60000,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ responseTimeout\ =\ 4000);}
+\DoxyCodeLine{00083\ \ \ \textcolor{keywordtype}{void}\ begin(\textcolor{keyword}{const}\ uint8\_t*\ mac,\ IPAddress\ ip);}
+\DoxyCodeLine{00084\ \ \ \textcolor{keywordtype}{void}\ begin(\textcolor{keyword}{const}\ uint8\_t*\ mac,\ IPAddress\ ip,\ IPAddress\ dns);}
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordtype}{void}\ begin(\textcolor{keyword}{const}\ uint8\_t*\ mac,\ IPAddress\ ip,\ IPAddress\ dns,\ IPAddress\ gateway);}
+\DoxyCodeLine{00086\ \ \ \textcolor{keywordtype}{void}\ begin(\textcolor{keyword}{const}\ uint8\_t*\ mac,\ IPAddress\ ip,\ IPAddress\ dns,\ IPAddress\ gateway,\ IPAddress\ subnet);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordtype}{void}\ end();}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \textcolor{comment}{//\ maintain()\ must\ be\ called\ at\ regular\ intervals\ to\ process\ the\ incoming\ serial}}
+\DoxyCodeLine{00091\ \ \ \textcolor{comment}{//\ data\ and\ issue\ IP\ events\ to\ the\ sketch.\ \ It\ does\ not\ return\ until\ all\ IP}}
+\DoxyCodeLine{00092\ \ \ \textcolor{comment}{//\ events\ have\ been\ processed.\ Renews\ dhcp-\/lease\ if\ required.}}
+\DoxyCodeLine{00093\ \ \ \textcolor{keywordtype}{int}\ maintain();}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ EthernetLinkStatus\ linkStatus();}
+\DoxyCodeLine{00096\ \ \ EthernetHardwareStatus\ hardwareStatus();}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ uint8\_t*\ macAddress(uint8\_t*\ mac);}
+\DoxyCodeLine{00099\ \ \ \textcolor{keywordtype}{void}\ MACAddress(uint8\_t\ *mac\_address)\ \{\ macAddress(mac\_address);\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ IPAddress\ localIP();}
+\DoxyCodeLine{00102\ \ \ IPAddress\ subnetMask();}
+\DoxyCodeLine{00103\ \ \ IPAddress\ gatewayIP();}
+\DoxyCodeLine{00104\ \ \ IPAddress\ dnsServerIP();}
+\DoxyCodeLine{00105\ \ \ IPAddress\ dnsIP(\textcolor{keywordtype}{int}\ n\ =\ 0);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \textcolor{keywordtype}{void}\ setDnsServerIP(\textcolor{keyword}{const}\ IPAddress\ dns\_server)\ \{\ \_dnsServerAddress\ =\ dns\_server;\ \}}
+\DoxyCodeLine{00108\ \ \ \textcolor{keywordtype}{void}\ setDNS(IPAddress\ dns\_server)\ \ \{\ \_dnsServerAddress\ =\ dns\_server;\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \textcolor{keywordtype}{void}\ setHostname(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ hostname);\ \textcolor{comment}{//\ only\ the\ pointer\ is\ stored!}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \textcolor{keywordtype}{int}\ hostByName(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ hostname,\ IPAddress\&\ result);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00115\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ initialized;}
+\DoxyCodeLine{00116\ \ \ \textcolor{keyword}{static}\ memhandle\ in\_packet;}
+\DoxyCodeLine{00117\ \ \ \textcolor{keyword}{static}\ memhandle\ uip\_packet;}
+\DoxyCodeLine{00118\ \ \ \textcolor{keyword}{static}\ uint8\_t\ uip\_hdrlen;}
+\DoxyCodeLine{00119\ \ \ \textcolor{keyword}{static}\ uint8\_t\ packetstate;}
+\DoxyCodeLine{00120\ \ \ }
+\DoxyCodeLine{00121\ \ \ \textcolor{keyword}{static}\ IPAddress\ \_dnsServerAddress;}
+\DoxyCodeLine{00122\ \ \ \textcolor{keyword}{static}\ DhcpClass*\ \_dhcp;}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ periodic\_timer;}
+\DoxyCodeLine{00125\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ arp\_timer;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ init(\textcolor{keyword}{const}\ uint8\_t*\ mac);}
+\DoxyCodeLine{00128\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ configure(IPAddress\ ip,\ IPAddress\ dns,\ IPAddress\ gateway,\ IPAddress\ subnet);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ tick();}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{boolean}\ network\_send();}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ call\_yield();}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }EthernetServer;}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }EthernetClient;}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }EthernetUDP;}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \textcolor{keyword}{static}\ uint16\_t\ chksum(uint16\_t\ sum,\ \textcolor{keyword}{const}\ uint8\_t*\ data,\ uint16\_t\ len);}
+\DoxyCodeLine{00143\ \ \ \textcolor{keyword}{static}\ uint16\_t\ ipchksum(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#if\ UIP\_UDP}}
+\DoxyCodeLine{00145\ \ \ \textcolor{keyword}{static}\ uint16\_t\ upper\_layer\_chksum(uint8\_t\ proto);}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00147\ \ \ \textcolor{keyword}{friend}\ uint16\_t\ uip\_ipchksum(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00148\ \ \ \textcolor{keyword}{friend}\ uint16\_t\ uip\_tcpchksum(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00149\ \ \ \textcolor{keyword}{friend}\ uint16\_t\ uip\_udpchksum(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \textcolor{keyword}{friend}\ \textcolor{keywordtype}{void}\ uipclient\_appcall(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00152\ \ \ \textcolor{keyword}{friend}\ \textcolor{keywordtype}{void}\ uipudp\_appcall(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#if\ UIP\_CONF\_IPV6}}
+\DoxyCodeLine{00155\ \ \ uint16\_t\ uip\_icmp6chksum(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_CONF\_IPV6\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00157\ \};}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{keyword}{extern}\ UIPEthernetClass\ Ethernet;}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

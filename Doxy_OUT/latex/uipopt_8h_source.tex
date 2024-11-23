@@ -1,0 +1,197 @@
+\doxysection{uipopt.\+h}
+\label{uipopt_8h_source}\index{lib/EthernetENC-\/2.0.5/src/utility/uipopt.h@{lib/EthernetENC-\/2.0.5/src/utility/uipopt.h}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2001-\/2003,\ Adam\ Dunkels.}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *\ All\ rights\ reserved.}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ *\ Redistribution\ and\ use\ in\ source\ and\ binary\ forms,\ with\ or\ without}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *\ modification,\ are\ permitted\ provided\ that\ the\ following\ conditions}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ *\ are\ met:}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ *\ 1.\ Redistributions\ of\ source\ code\ must\ retain\ the\ above\ copyright}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ *\ \ \ \ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer.}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ *\ 2.\ Redistributions\ in\ binary\ form\ must\ reproduce\ the\ above\ copyright}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ *\ \ \ \ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer\ in\ the}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ *\ \ \ \ documentation\ and/or\ other\ materials\ provided\ with\ the\ distribution.}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ *\ 3.\ The\ name\ of\ the\ author\ may\ not\ be\ used\ to\ endorse\ or\ promote}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ *\ \ \ \ products\ derived\ from\ this\ software\ without\ specific\ prior}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ *\ \ \ \ written\ permission.}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ *\ THIS\ SOFTWARE\ IS\ PROVIDED\ BY\ THE\ AUTHOR\ \`{}\`{}AS\ IS''\ AND\ ANY\ EXPRESS}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ *\ OR\ IMPLIED\ WARRANTIES,\ INCLUDING,\ BUT\ NOT\ LIMITED\ TO,\ THE\ IMPLIED}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ *\ WARRANTIES\ OF\ MERCHANTABILITY\ AND\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ *\ ARE\ DISCLAIMED.\ \ IN\ NO\ EVENT\ SHALL\ THE\ AUTHOR\ BE\ LIABLE\ FOR\ ANY}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ *\ DIRECT,\ INDIRECT,\ INCIDENTAL,\ SPECIAL,\ EXEMPLARY,\ OR\ CONSEQUENTIAL}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ *\ DAMAGES\ (INCLUDING,\ BUT\ NOT\ LIMITED\ TO,\ PROCUREMENT\ OF\ SUBSTITUTE}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ *\ GOODS\ OR\ SERVICES;\ LOSS\ OF\ USE,\ DATA,\ OR\ PROFITS;\ OR\ BUSINESS}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ *\ INTERRUPTION)\ HOWEVER\ CAUSED\ AND\ ON\ ANY\ THEORY\ OF\ LIABILITY,}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ *\ WHETHER\ IN\ CONTRACT,\ STRICT\ LIABILITY,\ OR\ TORT\ (INCLUDING}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ *\ NEGLIGENCE\ OR\ OTHERWISE)\ ARISING\ IN\ ANY\ WAY\ OUT\ OF\ THE\ USE\ OF\ THIS}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ *\ SOFTWARE,\ EVEN\ IF\ ADVISED\ OF\ THE\ POSSIBILITY\ OF\ SUCH\ DAMAGE.}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ *\ This\ file\ is\ part\ of\ the\ uIP\ TCP/IP\ stack.}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ *\ \$Id:\ uipopt.h,v\ 1.4\ 2006/06/12\ 08:00:31\ adam\ Exp\ \$}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#ifndef\ \_\_UIPOPT\_H\_\_}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ \_\_UIPOPT\_H\_\_}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#ifndef\ UIP\_LITTLE\_ENDIAN}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\ \ \#if\ defined(LITTLE\_ENDIAN)}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\ \ \ \ \#define\ UIP\_LITTLE\_ENDIAN\ LITTLE\_ENDIAN}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\ \ \#elif\ defined(\_\_ORDER\_LITTLE\_ENDIAN\_\_)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\ \ \ \ \#define\ UIP\_LITTLE\_ENDIAN\ \_\_ORDER\_LITTLE\_ENDIAN\_\_}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \ \ \ \#define\ UIP\_LITTLE\_ENDIAN\ 1234}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_LITTLE\_ENDIAN\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#ifndef\ UIP\_BIG\_ENDIAN}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\ \ \#if\ defined(BIG\_ENDIAN)}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\ \ \ \ \#define\ UIP\_BIG\_ENDIAN\ BIG\_ENDIAN}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\ \ \#elif\ defined(\_\_ORDER\_BIG\_ENDIAN\_\_)}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\ \ \ \ \#define\ UIP\_BIG\_ENDIAN\ \_\_ORDER\_BIG\_ENDIAN\_\_}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\ \ \ \ \#define\ UIP\_BIG\_ENDIAN\ 4321}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_BIG\_ENDIAN\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#include\ "{}uip-\/conf.h"{}}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ UIP\_FIXEDADDR\ \ \ \ 0}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#ifdef\ UIP\_CONF\_PINGADDRCONF}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ UIP\_PINGADDRCONF\ UIP\_CONF\_PINGADDRCONF}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ UIP\_CONF\_PINGADDRCONF\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#define\ UIP\_PINGADDRCONF\ 0}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_CONF\_PINGADDRCONF\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#define\ UIP\_FIXEDETHADDR\ 0}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00142\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#define\ UIP\_TTL\ \ \ \ \ \ \ \ \ 64}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#define\ UIP\_REASSEMBLY\ 0}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#define\ UIP\_REASS\_MAXAGE\ 40}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00179\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#ifdef\ UIP\_CONF\_UDP}}
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\#define\ UIP\_UDP\ UIP\_CONF\_UDP}}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ UIP\_CONF\_UDP\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\#define\ UIP\_UDP\ \ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_CONF\_UDP\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\#ifdef\ UIP\_CONF\_UDP\_CHECKSUMS}}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#define\ UIP\_UDP\_CHECKSUMS\ UIP\_CONF\_UDP\_CHECKSUMS}}
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#define\ UIP\_UDP\_CHECKSUMS\ 0}}
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#ifdef\ UIP\_CONF\_UDP\_CONNS}}
+\DoxyCodeLine{00216\ \textcolor{preprocessor}{\#define\ UIP\_UDP\_CONNS\ UIP\_CONF\_UDP\_CONNS}}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ UIP\_CONF\_UDP\_CONNS\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#define\ UIP\_UDP\_CONNS\ \ \ \ 10}}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_CONF\_UDP\_CONNS\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00229\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00245\ \textcolor{preprocessor}{\#define\ UIP\_ACTIVE\_OPEN\ 1}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\#ifndef\ UIP\_CONF\_MAX\_CONNECTIONS}}
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\#define\ UIP\_CONNS\ \ \ \ \ \ \ 10}}
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ UIP\_CONF\_MAX\_CONNECTIONS\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00259\ \textcolor{preprocessor}{\#define\ UIP\_CONNS\ UIP\_CONF\_MAX\_CONNECTIONS}}
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_CONF\_MAX\_CONNECTIONS\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\#ifndef\ UIP\_CONF\_MAX\_LISTENPORTS}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#define\ UIP\_LISTENPORTS\ 20}}
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ UIP\_CONF\_MAX\_LISTENPORTS\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\#define\ UIP\_LISTENPORTS\ UIP\_CONF\_MAX\_LISTENPORTS}}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_CONF\_MAX\_LISTENPORTS\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00285\ \textcolor{preprocessor}{\#define\ UIP\_URGDATA\ \ \ \ \ \ 0}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#define\ UIP\_RTO\ \ \ \ \ \ \ \ \ 3}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\#define\ UIP\_MAXRTX\ \ \ \ \ \ 8}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00309\ \textcolor{preprocessor}{\#define\ UIP\_MAXSYNRTX\ \ \ \ \ \ 5}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\#ifndef\ UIP\_CONF\_TCP\_MSS}}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\#define\ UIP\_TCP\_MSS\ \ \ \ \ (UIP\_BUFSIZE\ -\/\ UIP\_LLH\_LEN\ -\/\ UIP\_TCPIP\_HLEN)}}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\#define\ UIP\_TCP\_MSS\ UIP\_CONF\_TCP\_MSS}}
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00332\ \textcolor{preprocessor}{\#ifndef\ UIP\_CONF\_RECEIVE\_WINDOW}}
+\DoxyCodeLine{00333\ \textcolor{preprocessor}{\#define\ UIP\_RECEIVE\_WINDOW\ UIP\_TCP\_MSS}}
+\DoxyCodeLine{00334\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00335\ \textcolor{preprocessor}{\#define\ UIP\_RECEIVE\_WINDOW\ UIP\_CONF\_RECEIVE\_WINDOW}}
+\DoxyCodeLine{00336\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00344\ \textcolor{preprocessor}{\#define\ UIP\_TIME\_WAIT\_TIMEOUT\ 120}}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00348\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00362\ \textcolor{preprocessor}{\#ifdef\ UIP\_CONF\_ARPTAB\_SIZE}}
+\DoxyCodeLine{00363\ \textcolor{preprocessor}{\#define\ UIP\_ARPTAB\_SIZE\ UIP\_CONF\_ARPTAB\_SIZE}}
+\DoxyCodeLine{00364\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00365\ \textcolor{preprocessor}{\#define\ UIP\_ARPTAB\_SIZE\ 8}}
+\DoxyCodeLine{00366\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00374\ \textcolor{preprocessor}{\#define\ UIP\_ARP\_MAXAGE\ 120}}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00378\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00394\ \textcolor{preprocessor}{\#ifndef\ UIP\_CONF\_BUFFER\_SIZE}}
+\DoxyCodeLine{00395\ \textcolor{preprocessor}{\#define\ UIP\_BUFSIZE\ \ \ \ \ 400}}
+\DoxyCodeLine{00396\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ UIP\_CONF\_BUFFER\_SIZE\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00397\ \textcolor{preprocessor}{\#define\ UIP\_BUFSIZE\ UIP\_CONF\_BUFFER\_SIZE}}
+\DoxyCodeLine{00398\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_CONF\_BUFFER\_SIZE\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00408\ \textcolor{preprocessor}{\#ifndef\ UIP\_CONF\_STATISTICS}}
+\DoxyCodeLine{00409\ \textcolor{preprocessor}{\#define\ UIP\_STATISTICS\ \ 0}}
+\DoxyCodeLine{00410\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ UIP\_CONF\_STATISTICS\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00411\ \textcolor{preprocessor}{\#define\ UIP\_STATISTICS\ UIP\_CONF\_STATISTICS}}
+\DoxyCodeLine{00412\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_CONF\_STATISTICS\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00423\ \textcolor{preprocessor}{\#ifndef\ UIP\_CONF\_LOGGING}}
+\DoxyCodeLine{00424\ \textcolor{preprocessor}{\#define\ UIP\_LOGGING\ \ \ \ \ 0}}
+\DoxyCodeLine{00425\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ UIP\_CONF\_LOGGING\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00426\ \textcolor{preprocessor}{\#define\ UIP\_LOGGING\ \ \ \ \ UIP\_CONF\_LOGGING}}
+\DoxyCodeLine{00427\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_CONF\_LOGGING\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00438\ \textcolor{preprocessor}{\#if\ UIP\_UDP\ \&\&\ UIP\_CONF\_BROADCAST}}
+\DoxyCodeLine{00439\ \textcolor{preprocessor}{\#define\ UIP\_BROADCAST\ UIP\_CONF\_BROADCAST}}
+\DoxyCodeLine{00440\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ UIP\_CONF\_BROADCAST\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00441\ \textcolor{preprocessor}{\#define\ UIP\_BROADCAST\ 0}}
+\DoxyCodeLine{00442\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_CONF\_BROADCAST\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00450\ \textcolor{keywordtype}{void}\ uip\_log(\textcolor{keywordtype}{char}\ *msg);}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00461\ \textcolor{preprocessor}{\#ifdef\ UIP\_CONF\_LLH\_LEN}}
+\DoxyCodeLine{00462\ \textcolor{preprocessor}{\#define\ UIP\_LLH\_LEN\ UIP\_CONF\_LLH\_LEN}}
+\DoxyCodeLine{00463\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ UIP\_CONF\_LLH\_LEN\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00464\ \textcolor{preprocessor}{\#define\ UIP\_LLH\_LEN\ \ \ \ \ 14}}
+\DoxyCodeLine{00465\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_CONF\_LLH\_LEN\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00468\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00488\ \textcolor{preprocessor}{\#ifdef\ UIP\_CONF\_BYTE\_ORDER}}
+\DoxyCodeLine{00489\ \textcolor{preprocessor}{\#define\ UIP\_BYTE\_ORDER\ \ \ \ \ UIP\_CONF\_BYTE\_ORDER}}
+\DoxyCodeLine{00490\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ UIP\_CONF\_BYTE\_ORDER\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00491\ \textcolor{preprocessor}{\#define\ UIP\_BYTE\_ORDER\ \ \ \ \ UIP\_LITTLE\_ENDIAN}}
+\DoxyCodeLine{00492\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_CONF\_BYTE\_ORDER\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00493\ }
+\DoxyCodeLine{00495\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00555\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_UIPOPT\_H\_\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

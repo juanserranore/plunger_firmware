@@ -1,0 +1,35 @@
+\doxysection{Dns.\+h}
+\label{_dns_8h_source}\index{lib/EthernetENC-\/2.0.5/src/Dns.h@{lib/EthernetENC-\/2.0.5/src/Dns.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Arduino\ DNS\ client\ for\ Enc28J60-\/based\ Ethernet\ shield}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ (c)\ Copyright\ 2009-\/2010\ MCQN\ Ltd.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Released\ under\ Apache\ License,\ version\ 2.0}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ DNSClient\_h}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ DNSClient\_h}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}EthernetUdp.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }DNSClient}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{comment}{//\ ctor}}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{void}\ begin(\textcolor{keyword}{const}\ IPAddress\&\ aDNSServer);}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ inet\_aton(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *aIPAddrString,\ IPAddress\&\ aResult);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{int}\ getHostByName(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ aHostname,\ IPAddress\&\ aResult);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00033\ \ \ \ \ uint16\_t\ BuildRequest(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ aName);}
+\DoxyCodeLine{00034\ \ \ \ \ uint16\_t\ ProcessResponse(uint16\_t\ aTimeout,\ IPAddress\&\ aAddress);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ IPAddress\ iDNSServer;}
+\DoxyCodeLine{00037\ \ \ \ \ uint16\_t\ iRequestId;}
+\DoxyCodeLine{00038\ \ \ \ \ EthernetUDP\ iUdp;}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

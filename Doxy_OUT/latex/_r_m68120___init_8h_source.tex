@@ -1,0 +1,275 @@
+\doxysection{RM68120\+\_\+\+Init.\+h}
+\label{_r_m68120___init_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/RM68120\_Init.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/RM68120\_Init.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Initialisation\ for\ RM68120}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//ENABLE\ PAGE\ 1}}
+\DoxyCodeLine{00004\ writeRegister8(0xF000,\ 0x55);}
+\DoxyCodeLine{00005\ writeRegister8(0xF001,\ 0xAA);}
+\DoxyCodeLine{00006\ writeRegister8(0xF002,\ 0x52);}
+\DoxyCodeLine{00007\ writeRegister8(0xF003,\ 0x08);}
+\DoxyCodeLine{00008\ writeRegister8(0xF004,\ 0x01);}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//GAMMA\ SETING\ \ RED}}
+\DoxyCodeLine{00011\ writeRegister8(0xD400,\ 0x00);}
+\DoxyCodeLine{00012\ writeRegister8(0xD401,\ 0x00);}
+\DoxyCodeLine{00013\ writeRegister8(0xD402,\ 0x1b);}
+\DoxyCodeLine{00014\ writeRegister8(0xD403,\ 0x44);}
+\DoxyCodeLine{00015\ writeRegister8(0xD404,\ 0x62);}
+\DoxyCodeLine{00016\ writeRegister8(0xD405,\ 0x00);}
+\DoxyCodeLine{00017\ writeRegister8(0xD406,\ 0x7b);}
+\DoxyCodeLine{00018\ writeRegister8(0xD407,\ 0xa1);}
+\DoxyCodeLine{00019\ writeRegister8(0xD408,\ 0xc0);}
+\DoxyCodeLine{00020\ writeRegister8(0xD409,\ 0xee);}
+\DoxyCodeLine{00021\ writeRegister8(0xD40A,\ 0x55);}
+\DoxyCodeLine{00022\ writeRegister8(0xD40B,\ 0x10);}
+\DoxyCodeLine{00023\ writeRegister8(0xD40C,\ 0x2c);}
+\DoxyCodeLine{00024\ writeRegister8(0xD40D,\ 0x43);}
+\DoxyCodeLine{00025\ writeRegister8(0xD40E,\ 0x57);}
+\DoxyCodeLine{00026\ writeRegister8(0xD40F,\ 0x55);}
+\DoxyCodeLine{00027\ writeRegister8(0xD410,\ 0x68);}
+\DoxyCodeLine{00028\ writeRegister8(0xD411,\ 0x78);}
+\DoxyCodeLine{00029\ writeRegister8(0xD412,\ 0x87);}
+\DoxyCodeLine{00030\ writeRegister8(0xD413,\ 0x94);}
+\DoxyCodeLine{00031\ writeRegister8(0xD414,\ 0x55);}
+\DoxyCodeLine{00032\ writeRegister8(0xD415,\ 0xa0);}
+\DoxyCodeLine{00033\ writeRegister8(0xD416,\ 0xac);}
+\DoxyCodeLine{00034\ writeRegister8(0xD417,\ 0xb6);}
+\DoxyCodeLine{00035\ writeRegister8(0xD418,\ 0xc1);}
+\DoxyCodeLine{00036\ writeRegister8(0xD419,\ 0x55);}
+\DoxyCodeLine{00037\ writeRegister8(0xD41A,\ 0xcb);}
+\DoxyCodeLine{00038\ writeRegister8(0xD41B,\ 0xcd);}
+\DoxyCodeLine{00039\ writeRegister8(0xD41C,\ 0xd6);}
+\DoxyCodeLine{00040\ writeRegister8(0xD41D,\ 0xdf);}
+\DoxyCodeLine{00041\ writeRegister8(0xD41E,\ 0x95);}
+\DoxyCodeLine{00042\ writeRegister8(0xD41F,\ 0xe8);}
+\DoxyCodeLine{00043\ writeRegister8(0xD420,\ 0xf1);}
+\DoxyCodeLine{00044\ writeRegister8(0xD421,\ 0xfa);}
+\DoxyCodeLine{00045\ writeRegister8(0xD422,\ 0x02);}
+\DoxyCodeLine{00046\ writeRegister8(0xD423,\ 0xaa);}
+\DoxyCodeLine{00047\ writeRegister8(0xD424,\ 0x0b);}
+\DoxyCodeLine{00048\ writeRegister8(0xD425,\ 0x13);}
+\DoxyCodeLine{00049\ writeRegister8(0xD426,\ 0x1d);}
+\DoxyCodeLine{00050\ writeRegister8(0xD427,\ 0x26);}
+\DoxyCodeLine{00051\ writeRegister8(0xD428,\ 0xaa);}
+\DoxyCodeLine{00052\ writeRegister8(0xD429,\ 0x30);}
+\DoxyCodeLine{00053\ writeRegister8(0xD42A,\ 0x3c);}
+\DoxyCodeLine{00054\ writeRegister8(0xD42B,\ 0x4A);}
+\DoxyCodeLine{00055\ writeRegister8(0xD42C,\ 0x63);}
+\DoxyCodeLine{00056\ writeRegister8(0xD42D,\ 0xea);}
+\DoxyCodeLine{00057\ writeRegister8(0xD42E,\ 0x79);}
+\DoxyCodeLine{00058\ writeRegister8(0xD42F,\ 0xa6);}
+\DoxyCodeLine{00059\ writeRegister8(0xD430,\ 0xd0);}
+\DoxyCodeLine{00060\ writeRegister8(0xD431,\ 0x20);}
+\DoxyCodeLine{00061\ writeRegister8(0xD432,\ 0x0f);}
+\DoxyCodeLine{00062\ writeRegister8(0xD433,\ 0x8e);}
+\DoxyCodeLine{00063\ writeRegister8(0xD434,\ 0xff);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{//GAMMA\ SETING\ GREEN}}
+\DoxyCodeLine{00066\ writeRegister8(0xD500,\ 0x00);}
+\DoxyCodeLine{00067\ writeRegister8(0xD501,\ 0x00);}
+\DoxyCodeLine{00068\ writeRegister8(0xD502,\ 0x1b);}
+\DoxyCodeLine{00069\ writeRegister8(0xD503,\ 0x44);}
+\DoxyCodeLine{00070\ writeRegister8(0xD504,\ 0x62);}
+\DoxyCodeLine{00071\ writeRegister8(0xD505,\ 0x00);}
+\DoxyCodeLine{00072\ writeRegister8(0xD506,\ 0x7b);}
+\DoxyCodeLine{00073\ writeRegister8(0xD507,\ 0xa1);}
+\DoxyCodeLine{00074\ writeRegister8(0xD508,\ 0xc0);}
+\DoxyCodeLine{00075\ writeRegister8(0xD509,\ 0xee);}
+\DoxyCodeLine{00076\ writeRegister8(0xD50A,\ 0x55);}
+\DoxyCodeLine{00077\ writeRegister8(0xD50B,\ 0x10);}
+\DoxyCodeLine{00078\ writeRegister8(0xD50C,\ 0x2c);}
+\DoxyCodeLine{00079\ writeRegister8(0xD50D,\ 0x43);}
+\DoxyCodeLine{00080\ writeRegister8(0xD50E,\ 0x57);}
+\DoxyCodeLine{00081\ writeRegister8(0xD50F,\ 0x55);}
+\DoxyCodeLine{00082\ writeRegister8(0xD510,\ 0x68);}
+\DoxyCodeLine{00083\ writeRegister8(0xD511,\ 0x78);}
+\DoxyCodeLine{00084\ writeRegister8(0xD512,\ 0x87);}
+\DoxyCodeLine{00085\ writeRegister8(0xD513,\ 0x94);}
+\DoxyCodeLine{00086\ writeRegister8(0xD514,\ 0x55);}
+\DoxyCodeLine{00087\ writeRegister8(0xD515,\ 0xa0);}
+\DoxyCodeLine{00088\ writeRegister8(0xD516,\ 0xac);}
+\DoxyCodeLine{00089\ writeRegister8(0xD517,\ 0xb6);}
+\DoxyCodeLine{00090\ writeRegister8(0xD518,\ 0xc1);}
+\DoxyCodeLine{00091\ writeRegister8(0xD519,\ 0x55);}
+\DoxyCodeLine{00092\ writeRegister8(0xD51A,\ 0xcb);}
+\DoxyCodeLine{00093\ writeRegister8(0xD51B,\ 0xcd);}
+\DoxyCodeLine{00094\ writeRegister8(0xD51C,\ 0xd6);}
+\DoxyCodeLine{00095\ writeRegister8(0xD51D,\ 0xdf);}
+\DoxyCodeLine{00096\ writeRegister8(0xD51E,\ 0x95);}
+\DoxyCodeLine{00097\ writeRegister8(0xD51F,\ 0xe8);}
+\DoxyCodeLine{00098\ writeRegister8(0xD520,\ 0xf1);}
+\DoxyCodeLine{00099\ writeRegister8(0xD521,\ 0xfa);}
+\DoxyCodeLine{00100\ writeRegister8(0xD522,\ 0x02);}
+\DoxyCodeLine{00101\ writeRegister8(0xD523,\ 0xaa);}
+\DoxyCodeLine{00102\ writeRegister8(0xD524,\ 0x0b);}
+\DoxyCodeLine{00103\ writeRegister8(0xD525,\ 0x13);}
+\DoxyCodeLine{00104\ writeRegister8(0xD526,\ 0x1d);}
+\DoxyCodeLine{00105\ writeRegister8(0xD527,\ 0x26);}
+\DoxyCodeLine{00106\ writeRegister8(0xD528,\ 0xaa);}
+\DoxyCodeLine{00107\ writeRegister8(0xD529,\ 0x30);}
+\DoxyCodeLine{00108\ writeRegister8(0xD52A,\ 0x3c);}
+\DoxyCodeLine{00109\ writeRegister8(0xD52B,\ 0x4a);}
+\DoxyCodeLine{00110\ writeRegister8(0xD52C,\ 0x63);}
+\DoxyCodeLine{00111\ writeRegister8(0xD52D,\ 0xea);}
+\DoxyCodeLine{00112\ writeRegister8(0xD52E,\ 0x79);}
+\DoxyCodeLine{00113\ writeRegister8(0xD52F,\ 0xa6);}
+\DoxyCodeLine{00114\ writeRegister8(0xD530,\ 0xd0);}
+\DoxyCodeLine{00115\ writeRegister8(0xD531,\ 0x20);}
+\DoxyCodeLine{00116\ writeRegister8(0xD532,\ 0x0f);}
+\DoxyCodeLine{00117\ writeRegister8(0xD533,\ 0x8e);}
+\DoxyCodeLine{00118\ writeRegister8(0xD534,\ 0xff);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{comment}{//GAMMA\ SETING\ BLUE}}
+\DoxyCodeLine{00121\ writeRegister8(0xD600,\ 0x00);}
+\DoxyCodeLine{00122\ writeRegister8(0xD601,\ 0x00);}
+\DoxyCodeLine{00123\ writeRegister8(0xD602,\ 0x1b);}
+\DoxyCodeLine{00124\ writeRegister8(0xD603,\ 0x44);}
+\DoxyCodeLine{00125\ writeRegister8(0xD604,\ 0x62);}
+\DoxyCodeLine{00126\ writeRegister8(0xD605,\ 0x00);}
+\DoxyCodeLine{00127\ writeRegister8(0xD606,\ 0x7b);}
+\DoxyCodeLine{00128\ writeRegister8(0xD607,\ 0xa1);}
+\DoxyCodeLine{00129\ writeRegister8(0xD608,\ 0xc0);}
+\DoxyCodeLine{00130\ writeRegister8(0xD609,\ 0xee);}
+\DoxyCodeLine{00131\ writeRegister8(0xD60A,\ 0x55);}
+\DoxyCodeLine{00132\ writeRegister8(0xD60B,\ 0x10);}
+\DoxyCodeLine{00133\ writeRegister8(0xD60C,\ 0x2c);}
+\DoxyCodeLine{00134\ writeRegister8(0xD60D,\ 0x43);}
+\DoxyCodeLine{00135\ writeRegister8(0xD60E,\ 0x57);}
+\DoxyCodeLine{00136\ writeRegister8(0xD60F,\ 0x55);}
+\DoxyCodeLine{00137\ writeRegister8(0xD610,\ 0x68);}
+\DoxyCodeLine{00138\ writeRegister8(0xD611,\ 0x78);}
+\DoxyCodeLine{00139\ writeRegister8(0xD612,\ 0x87);}
+\DoxyCodeLine{00140\ writeRegister8(0xD613,\ 0x94);}
+\DoxyCodeLine{00141\ writeRegister8(0xD614,\ 0x55);}
+\DoxyCodeLine{00142\ writeRegister8(0xD615,\ 0xa0);}
+\DoxyCodeLine{00143\ writeRegister8(0xD616,\ 0xac);}
+\DoxyCodeLine{00144\ writeRegister8(0xD617,\ 0xb6);}
+\DoxyCodeLine{00145\ writeRegister8(0xD618,\ 0xc1);}
+\DoxyCodeLine{00146\ writeRegister8(0xD619,\ 0x55);}
+\DoxyCodeLine{00147\ writeRegister8(0xD61A,\ 0xcb);}
+\DoxyCodeLine{00148\ writeRegister8(0xD61B,\ 0xcd);}
+\DoxyCodeLine{00149\ writeRegister8(0xD61C,\ 0xd6);}
+\DoxyCodeLine{00150\ writeRegister8(0xD61D,\ 0xdf);}
+\DoxyCodeLine{00151\ writeRegister8(0xD61E,\ 0x95);}
+\DoxyCodeLine{00152\ writeRegister8(0xD61F,\ 0xe8);}
+\DoxyCodeLine{00153\ writeRegister8(0xD620,\ 0xf1);}
+\DoxyCodeLine{00154\ writeRegister8(0xD621,\ 0xfa);}
+\DoxyCodeLine{00155\ writeRegister8(0xD622,\ 0x02);}
+\DoxyCodeLine{00156\ writeRegister8(0xD623,\ 0xaa);}
+\DoxyCodeLine{00157\ writeRegister8(0xD624,\ 0x0b);}
+\DoxyCodeLine{00158\ writeRegister8(0xD625,\ 0x13);}
+\DoxyCodeLine{00159\ writeRegister8(0xD626,\ 0x1d);}
+\DoxyCodeLine{00160\ writeRegister8(0xD627,\ 0x26);}
+\DoxyCodeLine{00161\ writeRegister8(0xD628,\ 0xaa);}
+\DoxyCodeLine{00162\ writeRegister8(0xD629,\ 0x30);}
+\DoxyCodeLine{00163\ writeRegister8(0xD62A,\ 0x3c);}
+\DoxyCodeLine{00164\ writeRegister8(0xD62B,\ 0x4A);}
+\DoxyCodeLine{00165\ writeRegister8(0xD62C,\ 0x63);}
+\DoxyCodeLine{00166\ writeRegister8(0xD62D,\ 0xea);}
+\DoxyCodeLine{00167\ writeRegister8(0xD62E,\ 0x79);}
+\DoxyCodeLine{00168\ writeRegister8(0xD62F,\ 0xa6);}
+\DoxyCodeLine{00169\ writeRegister8(0xD630,\ 0xd0);}
+\DoxyCodeLine{00170\ writeRegister8(0xD631,\ 0x20);}
+\DoxyCodeLine{00171\ writeRegister8(0xD632,\ 0x0f);}
+\DoxyCodeLine{00172\ writeRegister8(0xD633,\ 0x8e);}
+\DoxyCodeLine{00173\ writeRegister8(0xD634,\ 0xff);}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \textcolor{comment}{//AVDD\ VOLTAGE\ SETTING}}
+\DoxyCodeLine{00176\ writeRegister8(0xB000,\ 0x05);}
+\DoxyCodeLine{00177\ writeRegister8(0xB001,\ 0x05);}
+\DoxyCodeLine{00178\ writeRegister8(0xB002,\ 0x05);}
+\DoxyCodeLine{00179\ \textcolor{comment}{//AVEE\ VOLTAGE\ SETTING}}
+\DoxyCodeLine{00180\ writeRegister8(0xB100,\ 0x05);}
+\DoxyCodeLine{00181\ writeRegister8(0xB101,\ 0x05);}
+\DoxyCodeLine{00182\ writeRegister8(0xB102,\ 0x05);}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{comment}{//AVDD\ Boosting}}
+\DoxyCodeLine{00185\ writeRegister8(0xB600,\ 0x34);}
+\DoxyCodeLine{00186\ writeRegister8(0xB601,\ 0x34);}
+\DoxyCodeLine{00187\ writeRegister8(0xB603,\ 0x34);}
+\DoxyCodeLine{00188\ \textcolor{comment}{//AVEE\ Boosting}}
+\DoxyCodeLine{00189\ writeRegister8(0xB700,\ 0x24);}
+\DoxyCodeLine{00190\ writeRegister8(0xB701,\ 0x24);}
+\DoxyCodeLine{00191\ writeRegister8(0xB702,\ 0x24);}
+\DoxyCodeLine{00192\ \textcolor{comment}{//VCL\ Boosting}}
+\DoxyCodeLine{00193\ writeRegister8(0xB800,\ 0x24);}
+\DoxyCodeLine{00194\ writeRegister8(0xB801,\ 0x24);}
+\DoxyCodeLine{00195\ writeRegister8(0xB802,\ 0x24);}
+\DoxyCodeLine{00196\ \textcolor{comment}{//VGLX\ VOLTAGE\ SETTING}}
+\DoxyCodeLine{00197\ writeRegister8(0xBA00,\ 0x14);}
+\DoxyCodeLine{00198\ writeRegister8(0xBA01,\ 0x14);}
+\DoxyCodeLine{00199\ writeRegister8(0xBA02,\ 0x14);}
+\DoxyCodeLine{00200\ \textcolor{comment}{//VCL\ Boosting}}
+\DoxyCodeLine{00201\ writeRegister8(0xB900,\ 0x24);}
+\DoxyCodeLine{00202\ writeRegister8(0xB901,\ 0x24);}
+\DoxyCodeLine{00203\ writeRegister8(0xB902,\ 0x24);}
+\DoxyCodeLine{00204\ \textcolor{comment}{//Gamma\ Voltage}}
+\DoxyCodeLine{00205\ writeRegister8(0xBc00,\ 0x00);}
+\DoxyCodeLine{00206\ writeRegister8(0xBc01,\ 0xa0);\textcolor{comment}{//vgmp=5.0}}
+\DoxyCodeLine{00207\ writeRegister8(0xBc02,\ 0x00);}
+\DoxyCodeLine{00208\ writeRegister8(0xBd00,\ 0x00);}
+\DoxyCodeLine{00209\ writeRegister8(0xBd01,\ 0xa0);\textcolor{comment}{//vgmn=5.0}}
+\DoxyCodeLine{00210\ writeRegister8(0xBd02,\ 0x00);}
+\DoxyCodeLine{00211\ \textcolor{comment}{//VCOM\ Setting}}
+\DoxyCodeLine{00212\ writeRegister8(0xBe01,\ 0x3d);\textcolor{comment}{//3}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{comment}{//ENABLE\ PAGE\ 0}}
+\DoxyCodeLine{00215\ writeRegister8(0xF000,\ 0x55);}
+\DoxyCodeLine{00216\ writeRegister8(0xF001,\ 0xAA);}
+\DoxyCodeLine{00217\ writeRegister8(0xF002,\ 0x52);}
+\DoxyCodeLine{00218\ writeRegister8(0xF003,\ 0x08);}
+\DoxyCodeLine{00219\ writeRegister8(0xF004,\ 0x00);}
+\DoxyCodeLine{00220\ \textcolor{comment}{//Vivid\ Color\ Function\ Control}}
+\DoxyCodeLine{00221\ writeRegister8(0xB400,\ 0x10);}
+\DoxyCodeLine{00222\ \textcolor{comment}{//Z-\/INVERSION}}
+\DoxyCodeLine{00223\ writeRegister8(0xBC00,\ 0x05);}
+\DoxyCodeLine{00224\ writeRegister8(0xBC01,\ 0x05);}
+\DoxyCodeLine{00225\ writeRegister8(0xBC02,\ 0x05);}
+\DoxyCodeLine{00226\ \textcolor{comment}{//***************\ add\ on\ 20111021**********************//}}
+\DoxyCodeLine{00227\ writeRegister8(0xB700,\ 0x22);\textcolor{comment}{//GATE\ EQ\ CONTROL}}
+\DoxyCodeLine{00228\ writeRegister8(0xB701,\ 0x22);\textcolor{comment}{//GATE\ EQ\ CONTROL}}
+\DoxyCodeLine{00229\ writeRegister8(0xC80B,\ 0x2A);\textcolor{comment}{//DISPLAY\ TIMING\ CONTROL}}
+\DoxyCodeLine{00230\ writeRegister8(0xC80C,\ 0x2A);\textcolor{comment}{//DISPLAY\ TIMING\ CONTROL}}
+\DoxyCodeLine{00231\ writeRegister8(0xC80F,\ 0x2A);\textcolor{comment}{//DISPLAY\ TIMING\ CONTROL}}
+\DoxyCodeLine{00232\ writeRegister8(0xC810,\ 0x2A);\textcolor{comment}{//DISPLAY\ TIMING\ CONTROL}}
+\DoxyCodeLine{00233\ \textcolor{comment}{//***************\ add\ on\ 20111021**********************//}}
+\DoxyCodeLine{00234\ \textcolor{comment}{//PWM\_ENH\_OE\ =1}}
+\DoxyCodeLine{00235\ writeRegister8(0xd000,\ 0x01);}
+\DoxyCodeLine{00236\ \textcolor{comment}{//DM\_SEL\ =1}}
+\DoxyCodeLine{00237\ writeRegister8(0xb300,\ 0x10);}
+\DoxyCodeLine{00238\ \textcolor{comment}{//VBPDA=07h}}
+\DoxyCodeLine{00239\ writeRegister8(0xBd02,\ 0x07);}
+\DoxyCodeLine{00240\ \textcolor{comment}{//VBPDb=07h}}
+\DoxyCodeLine{00241\ writeRegister8(0xBe02,\ 0x07);}
+\DoxyCodeLine{00242\ \textcolor{comment}{//VBPDc=07h}}
+\DoxyCodeLine{00243\ writeRegister8(0xBf02,\ 0x07);}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \textcolor{comment}{//ENABLE\ PAGE\ 2}}
+\DoxyCodeLine{00246\ writeRegister8(0xF000,\ 0x55);}
+\DoxyCodeLine{00247\ writeRegister8(0xF001,\ 0xAA);}
+\DoxyCodeLine{00248\ writeRegister8(0xF002,\ 0x52);}
+\DoxyCodeLine{00249\ writeRegister8(0xF003,\ 0x08);}
+\DoxyCodeLine{00250\ writeRegister8(0xF004,\ 0x02);}
+\DoxyCodeLine{00251\ \textcolor{comment}{//SDREG0\ =0}}
+\DoxyCodeLine{00252\ writeRegister8(0xc301,\ 0xa9);}
+\DoxyCodeLine{00253\ \textcolor{comment}{//DS=14}}
+\DoxyCodeLine{00254\ writeRegister8(0xfe01,\ 0x94);}
+\DoxyCodeLine{00255\ \textcolor{comment}{//OSC\ =60h}}
+\DoxyCodeLine{00256\ writeRegister8(0xf600,\ 0x60);}
+\DoxyCodeLine{00257\ \textcolor{comment}{//TE\ ON}}
+\DoxyCodeLine{00258\ writeRegister8(0x3500,\ 0x00);}
+\DoxyCodeLine{00259\ writeRegister8(0xFFFF,\ 0xFF);}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \textcolor{comment}{//SLEEP\ OUT}}
+\DoxyCodeLine{00262\ writecommand(0x1100);}
+\DoxyCodeLine{00263\ delay(100);}
+\DoxyCodeLine{00264\ \textcolor{comment}{//DISPLY\ ON}}
+\DoxyCodeLine{00265\ writecommand(0x2900);}
+\DoxyCodeLine{00266\ delay(100);}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ writeRegister16(0x3A00,\ 0x55);}
+\DoxyCodeLine{00269\ writeRegister8(0x3600,\ TFT\_MAD\_COLOR\_ORDER);}
+
+\end{DoxyCode}

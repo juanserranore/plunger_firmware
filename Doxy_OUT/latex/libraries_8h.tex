@@ -1,0 +1,43 @@
+\doxysection{libraries.\+h File Reference}
+\hypertarget{libraries_8h}{}\label{libraries_8h}\index{libraries.h@{libraries.h}}
+
+
+This header file groups all the libraries and external dependencies required for the project. Including this file in the code ensures the correct inclusion of all necessary libraries, simplifying dependency management and keeping the main code clean and organized.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include $<$freertos/\+Free\+RTOS.\+h$>$}\newline
+{\ttfamily \#include $<$freertos/task.\+h$>$}\newline
+{\ttfamily \#include $<$Bf\+Button.\+h$>$}\newline
+{\ttfamily \#include $<$TFT\+\_\+e\+SPI.\+h$>$}\newline
+{\ttfamily \#include $<$Ethernet\+ENC.\+h$>$}\newline
+{\ttfamily \#include $<$SPI.\+h$>$}\newline
+{\ttfamily \#include $<$Three\+Wire.\+h$>$}\newline
+{\ttfamily \#include $<$Rtc\+DS1302.\+h$>$}\newline
+{\ttfamily \#include $<$Accel\+Stepper.\+h$>$}\newline
+{\ttfamily \#include "{}icons/images.\+h"{}}\newline
+{\ttfamily \#include $<$custom\+\_\+fonts/custom\+\_\+fonts.\+h$>$}\newline
+
+
+\doxysubsection{Detailed Description}
+This header file groups all the libraries and external dependencies required for the project. Including this file in the code ensures the correct inclusion of all necessary libraries, simplifying dependency management and keeping the main code clean and organized. 
+
+\begin{DoxyAuthor}{Author}
+Juan Alberto Serrano Redondo 
+\end{DoxyAuthor}
+Included libraries\+:
+\begin{DoxyItemize}
+\item Arduino.\+h\+: Provides essential functions for interacting with Arduino hardware.
+\item Free\+RTOS\+: Enables the use of the real-\/time operating system (RTOS) on compatible microcontrollers.
+\item Bf\+Button\+: Provides advanced functionalities for handling buttons.
+\item TFT\+\_\+e\+SPI\+: Facilitates communication and control of TFT displays.
+\item Ethernet\+ENC\+: Provides support for Ethernet communication using the ENC28\+J60 chip.
+\item SPI\+: Serial Peripheral Interface communication protocol.
+\item Three\+Wire\+: Library for communication on three-\/wire buses.
+\item Rtc\+DS1302\+: Provides functions for interacting with the DS1302 RTC module.
+\item Accel\+Stepper\+: Enables control of stepper motors.
+\item Icons\+: Defines all icons used in the project\textquotesingle{}s graphical interface.
+\item Fonts\+: Defines the fonts used in the project.
+\end{DoxyItemize}
+
+Including this file in any part of the project ensures that all necessary dependencies are available and correctly configured. 

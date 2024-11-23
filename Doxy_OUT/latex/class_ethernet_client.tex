@@ -1,0 +1,88 @@
+\doxysection{Ethernet\+Client Class Reference}
+\label{class_ethernet_client}\index{EthernetClient@{EthernetClient}}
+Inheritance diagram for Ethernet\+Client\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ethernet_client}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_ethernet_client_a4e7a998e5c431082470c87feaf06ef8a} 
+int {\bfseries connect} (IPAddress ip, uint16\+\_\+t port)
+\item 
+\label{class_ethernet_client_aea24f43215ee0a7318c7663974d2c201} 
+int {\bfseries connect} (const char $\ast$host, uint16\+\_\+t port)
+\item 
+\label{class_ethernet_client_a0c7732730a02233336a967ccb1b5a276} 
+int {\bfseries read} (uint8\+\_\+t $\ast$buf, size\+\_\+t size)
+\item 
+\label{class_ethernet_client_a7cce8e4f81a746ca73cabe33975096f5} 
+void {\bfseries stop} ()
+\item 
+\label{class_ethernet_client_a13579c3a45104df8bb5c7887353c6258} 
+uint8\+\_\+t {\bfseries connected} ()
+\item 
+\label{class_ethernet_client_ab8f0b06baacb2df17d999e1e2a336639} 
+{\bfseries operator bool} ()
+\item 
+\label{class_ethernet_client_ab0ae4fdb23bd409ff8e740b078692aef} 
+virtual bool {\bfseries operator==} (const \textbf{ Ethernet\+Client} \&)
+\item 
+\label{class_ethernet_client_aee35265d981a544350f2e0eff90370c4} 
+virtual bool {\bfseries operator!=} (const \textbf{ Ethernet\+Client} \&rhs)
+\item 
+\label{class_ethernet_client_ab0835f855e3f64e27bec11ad6a687b92} 
+size\+\_\+t {\bfseries write} (uint8\+\_\+t)
+\item 
+\label{class_ethernet_client_a93a34e9065f6371b8625640f4642c7c6} 
+size\+\_\+t {\bfseries write} (const uint8\+\_\+t $\ast$buf, size\+\_\+t size)
+\item 
+\label{class_ethernet_client_a53172f6e713eccda0168d3527ef52c18} 
+int {\bfseries available\+For\+Write} ()
+\item 
+\label{class_ethernet_client_a0bd0da017b5edd080b3d545b57d06738} 
+void {\bfseries flush} ()
+\item 
+\label{class_ethernet_client_a8315d0c4369d05d2dc91015b2f2fb2cf} 
+int {\bfseries available} ()
+\item 
+\label{class_ethernet_client_ab16797fb15ebf4bb3aa7c96a60b7e2d2} 
+int {\bfseries read} ()
+\item 
+\label{class_ethernet_client_a16462a60018ebe981aa8407d85551d3d} 
+int {\bfseries peek} ()
+\item 
+\label{class_ethernet_client_a22f17cac2404e07359a1ae7c8e4eca1e} 
+void {\bfseries discard\+Received} ()
+\item 
+\label{class_ethernet_client_a362b8ee54df8a2b47bcdfeeae2f25777} 
+IPAddress {\bfseries remote\+IP} ()
+\item 
+\label{class_ethernet_client_a3aeca1aac65672711b42a64edb06254e} 
+uint16\+\_\+t {\bfseries remote\+Port} ()
+\item 
+\label{class_ethernet_client_a54dfeda35eaaffa9d54f49944dc2a993} 
+uint8\+\_\+t {\bfseries status} ()
+\item 
+\label{class_ethernet_client_a39f6f502862e35cad4937dfe78dd31d8} 
+void {\bfseries set\+Connection\+Timeout} (uint16\+\_\+t millis)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_ethernet_client_a83f433fdf9465565521c590201304d6f} 
+class {\bfseries UIPEthernet\+Class}
+\item 
+\label{class_ethernet_client_a785f428668d14e56fb12f9c51e236fa5} 
+class {\bfseries Ethernet\+Server}
+\item 
+\label{class_ethernet_client_abe149db4e2377c86c67dd8ea22d79491} 
+void {\bfseries uipclient\+\_\+appcall} (void)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Ethernet\+ENC-\/2.\+0.\+5/src/Ethernet\+Client.\+h\end{DoxyCompactItemize}

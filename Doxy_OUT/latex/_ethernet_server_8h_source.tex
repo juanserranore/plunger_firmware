@@ -1,0 +1,61 @@
+\doxysection{Ethernet\+Server.\+h}
+\label{_ethernet_server_8h_source}\index{lib/EthernetENC-\/2.0.5/src/EthernetServer.h@{lib/EthernetENC-\/2.0.5/src/EthernetServer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ UIPServer.h\ -\/\ Arduino\ implementation\ of\ a\ uIP\ wrapper\ class.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ Copyright\ (c)\ 2013\ Norbert\ Truchsess\ <norbert.truchsess@t-\/online.de>}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ All\ rights\ reserved.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ This\ program\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ This\ program\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ along\ with\ this\ program.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ \ */}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#ifndef\ UIPSERVER\_H}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ UIPSERVER\_H}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}EthernetClient.h"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }EthernetServer\ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ EthernetServer(uint16\_t\ port\ =\ 80);}
+\DoxyCodeLine{00028\ \ \ EthernetClient\ available();}
+\DoxyCodeLine{00029\ \ \ EthernetClient\ accept();}
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordtype}{void}\ begin();}
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordtype}{void}\ begin(uint16\_t\ port);}
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordtype}{void}\ end();}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{operator}\ bool();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordtype}{size\_t}\ writeToAllClients(\textcolor{keyword}{const}\ uint8\_t\ *buf,\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00039\ \ \ uint16\_t\ \_port;}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordtype}{bool}\ listening\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00041\ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{class\ }EthernetServerPrint\ :\ \textcolor{keyword}{public}\ EthernetServer,\ \textcolor{keyword}{public}\ Print\ \{}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ EthernetServerPrint(uint16\_t\ port\ =\ 80)\ :\ EthernetServer(port)\ \{\}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ write(uint8\_t);}
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ write(\textcolor{keyword}{const}\ uint8\_t\ *buf,\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{using\ }Print::write;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

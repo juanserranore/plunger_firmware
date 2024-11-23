@@ -1,0 +1,649 @@
+\doxysection{globals/globals.h File Reference}
+\hypertarget{globals_8h}{}\label{globals_8h}\index{globals/globals.h@{globals/globals.h}}
+
+
+Global variable and constant definitions for the project.  
+
+
+{\ttfamily \#include $<$libraries.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{globals_8h_aaddd4fc72f0ef9b8f513c51b502bd95f}\label{globals_8h_aaddd4fc72f0ef9b8f513c51b502bd95f} 
+\#define {\bfseries LOAD\+\_\+\+GFXFF}
+\item 
+\Hypertarget{globals_8h_a12bf309daf47e76d2acd0aaa5d462475}\label{globals_8h_a12bf309daf47e76d2acd0aaa5d462475} 
+\#define {\bfseries BRIGHTNESS\+\_\+\+PIN}~25
+\begin{DoxyCompactList}\small\item\em Pin for brightness control. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a9663e02e20b5b578e6a31adae265cb88}\label{globals_8h_a9663e02e20b5b578e6a31adae265cb88} 
+\#define {\bfseries LIGHT\+\_\+\+GRAY}~0x\+C618
+\begin{DoxyCompactList}\small\item\em Light gray color for UI elements. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a959d1249a76cfbd90fc6d96e2a9744e9}\label{globals_8h_a959d1249a76cfbd90fc6d96e2a9744e9} 
+\#define {\bfseries LIGHT\+\_\+\+BLUE}~0x\+E7\+DF
+\begin{DoxyCompactList}\small\item\em Light blue color for UI elements. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a845bfa94c221be4b5a7e163373e6a142}\label{globals_8h_a845bfa94c221be4b5a7e163373e6a142} 
+\#define {\bfseries PALE\+\_\+\+GRAY}~0x\+E71C
+\begin{DoxyCompactList}\small\item\em Pale gray color for UI elements. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a80e510c7200e9e75f39282e6ead4ea02}\label{globals_8h_a80e510c7200e9e75f39282e6ead4ea02} 
+\#define {\bfseries MINT\+\_\+\+GREEN}~0x97\+F6
+\begin{DoxyCompactList}\small\item\em Mint green color for UI elements. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_abbe885ae219091dc944479d6bac3c5a8}\label{globals_8h_abbe885ae219091dc944479d6bac3c5a8} 
+\#define {\bfseries PALE\+\_\+\+YELLOW}~0x\+FFFB
+\begin{DoxyCompactList}\small\item\em Pale yellow color for UI elements. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_ad608c49dff024e6ddde34cede35c042a}\label{globals_8h_ad608c49dff024e6ddde34cede35c042a} 
+\#define {\bfseries PALE\+\_\+\+PINK}~0x\+FDBC
+\begin{DoxyCompactList}\small\item\em Pale pink color for UI elements. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a1ea47e8fb8d56ffc617fabdc1e3fdb69}\label{globals_8h_a1ea47e8fb8d56ffc617fabdc1e3fdb69} 
+\#define {\bfseries BEIGE}~0x\+FF7B
+\begin{DoxyCompactList}\small\item\em Beige color for UI elements. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a1746136a69201a3ef1738b390b439c9a}\label{globals_8h_a1746136a69201a3ef1738b390b439c9a} 
+\#define {\bfseries LAVENDER}~0x\+E5\+FF
+\begin{DoxyCompactList}\small\item\em Lavender color for UI elements. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a0fec447e4a91ea353278a081496bba14}\label{globals_8h_a0fec447e4a91ea353278a081496bba14} 
+\#define {\bfseries SKY\+\_\+\+BLUE}~0x9\+FFF
+\begin{DoxyCompactList}\small\item\em Sky blue color for UI elements. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a3aaa01c080fbef329d92db1fcae3e620}\label{globals_8h_a3aaa01c080fbef329d92db1fcae3e620} 
+\#define {\bfseries DARK\+\_\+\+ORANGE}~0x\+DBC9
+\begin{DoxyCompactList}\small\item\em Dark orange color for UI elements. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_ab17de36a1b487f9ad9ef7dabd63531ab}\label{globals_8h_ab17de36a1b487f9ad9ef7dabd63531ab} 
+\#define {\bfseries DARK\+\_\+\+BLUE}~0x00\+B1
+\begin{DoxyCompactList}\small\item\em Dark blue color for UI elements. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a2ebb0bf1d379e615bda6e25cccf0f08f}\label{globals_8h_a2ebb0bf1d379e615bda6e25cccf0f08f} 
+\#define {\bfseries DARK\+\_\+\+GREEN}~0x22\+A2
+\begin{DoxyCompactList}\small\item\em Dark green color for UI elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2}{Menu\+State}} \{ \newline
+\mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2ac22743f1fc74de09544ecc9bab74a17b}{MAIN\+\_\+\+MENU}}
+, \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2ac678338caea29d77d56be2ea56325610}{SETTINGS}}
+, \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2a46b1a1705dc1e975e82422901b8ecdf2}{BRIGHTNESS}}
+, \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2a7a5ecb5193db2d5f258ae1abd33714b9}{COLOR}}
+, \newline
+\mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2a3210301d23296d5cf181153c8b435a79}{TEXT\+\_\+\+TYPE}}
+, \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2aa44b734476c2f3d073ee7aca08660a0e}{BACKGROUND}}
+, \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2af9a60b6f3549778932afee28db904f30}{SELECTION\+\_\+\+BAR}}
+, \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2aaac8b72a410fb17e620a6884d1ad6227}{SELECTION\+\_\+\+BORDER}}
+, \newline
+\mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2a9a4a47c1606e295076055a9cc4373197}{TEXT}}
+, \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2a65d59f75bc58f75380983837537920e2}{SERVIDOR\+\_\+\+TCP}}
+, \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2a8fc89282c6047847059874e30568fd3f}{STEPPER\+\_\+\+MOTOR}}
+, \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2a506e8dd29460ea318b68d035f679b01b}{MANUAL}}
+, \newline
+\mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2aeef9468d1b98bca652a04bf5063fd9d6}{AUTO}}
+, \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2a15d3a258bbbfa24e1f6f0180f90644ee}{INITIAL\+\_\+\+SCREEN}}
+ \}
+\begin{DoxyCompactList}\small\item\em Defines various states of the menu interface. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{globals_8h_a1b06255088be0619cf099d600ef17ee2}{Screen\+Update\+Command}} \{ \mbox{\hyperlink{globals_8h_a1b06255088be0619cf099d600ef17ee2ac34814c1f26a778ac75bfc27ccc910fb}{UPDATE\+\_\+\+MAIN\+\_\+\+MENU}}
+, \mbox{\hyperlink{globals_8h_a1b06255088be0619cf099d600ef17ee2ab7baa998fb2f70d59da417ac5aca67ff}{UPDATE\+\_\+\+CONFIG\+\_\+\+BRIGHTNESS}}
+, \mbox{\hyperlink{globals_8h_a1b06255088be0619cf099d600ef17ee2a73120ccce2d1fc73da99abb7ecfa538f}{UPDATE\+\_\+\+CONFIG\+\_\+\+BACKGROUNDCOLOR}}
+, \mbox{\hyperlink{globals_8h_a1b06255088be0619cf099d600ef17ee2a781bff40673d0bba42ddf8d411fd1580}{UPDATE\+\_\+\+CONFIG\+\_\+\+ASPECT}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum for screen update commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint32\+\_\+t \mbox{\hyperlink{globals_8h_af26f75fe269e2354b07be07d548f1439}{LOOP\+\_\+\+TICKS}}
+\begin{DoxyCompactList}\small\item\em Loop period in ticks for RTOS task. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a4dd8b32b4ad9a7422198238b8ca72424}\label{globals_8h_a4dd8b32b4ad9a7422198238b8ca72424} 
+const unsigned long {\bfseries min\+\_\+bright\+\_\+timer}
+\begin{DoxyCompactList}\small\item\em Minimum time before dimming the screen (in milliseconds) \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a8c3703c5abd33375161673bb6ea9a467}\label{globals_8h_a8c3703c5abd33375161673bb6ea9a467} 
+const unsigned long {\bfseries turn\+\_\+off\+\_\+timer}
+\begin{DoxyCompactList}\small\item\em Timer for turning off the display (in milliseconds) \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{globals_8h_a53dfd3081ecb5cbde9c66ee0ac81a653}{DIR\+\_\+\+PIN}}
+\begin{DoxyCompactList}\small\item\em Direction pin for rotary encoder. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a1990422736e314cfb1270ba7927f533f}\label{globals_8h_a1990422736e314cfb1270ba7927f533f} 
+const int {\bfseries STEP\+\_\+\+PIN}
+\begin{DoxyCompactList}\small\item\em Step pin for rotary encoder. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_af7aeafada2fc5a4b2b50c8a0bbacb915}\label{globals_8h_af7aeafada2fc5a4b2b50c8a0bbacb915} 
+int {\bfseries DT}
+\begin{DoxyCompactList}\small\item\em Data pin for rotary encoder. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_aa17761af794bd8e8349cc093af8ff7c8}\label{globals_8h_aa17761af794bd8e8349cc093af8ff7c8} 
+int {\bfseries CLK}
+\begin{DoxyCompactList}\small\item\em Clock pin for rotary encoder. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{globals_8h_ae9eba260d34d82f17daba520dfe95bb1}{last\+Clk}}
+\begin{DoxyCompactList}\small\item\em Last clock state. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a508ee9f30b22e38f0a1cfb7093bd1e8b}\label{globals_8h_a508ee9f30b22e38f0a1cfb7093bd1e8b} 
+int {\bfseries new\+Clk}
+\begin{DoxyCompactList}\small\item\em Current clock state. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a04748eed6e3d5fdfcf9dfc35350fc30f}\label{globals_8h_a04748eed6e3d5fdfcf9dfc35350fc30f} 
+int {\bfseries dt\+Value}
+\begin{DoxyCompactList}\small\item\em Data pin value for rotary encoder. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a617a47c70795bcff659815ad0efd2266}\label{globals_8h_a617a47c70795bcff659815ad0efd2266} 
+int {\bfseries counter}
+\begin{DoxyCompactList}\small\item\em Encoder counter to track position. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a63177970cacb40efba67ce501ea89210}\label{globals_8h_a63177970cacb40efba67ce501ea89210} 
+int {\bfseries angle}
+\begin{DoxyCompactList}\small\item\em Current angle of the encoder. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a12311bb365ac4b3a48bef1d72f432c4f}\label{globals_8h_a12311bb365ac4b3a48bef1d72f432c4f} 
+int {\bfseries a\+State}
+\begin{DoxyCompactList}\small\item\em Current state of the encoder. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a56beea51f1faca422c14d3e0322bd80a}\label{globals_8h_a56beea51f1faca422c14d3e0322bd80a} 
+int {\bfseries a\+Last\+State}
+\begin{DoxyCompactList}\small\item\em Last state of the encoder. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_ac037f68bf86d3712a034faa2d3ac428a}\label{globals_8h_ac037f68bf86d3712a034faa2d3ac428a} 
+long {\bfseries position}
+\begin{DoxyCompactList}\small\item\em Rotary encoder position. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a50b340f5c1c66f547409f1c569df6c24}\label{globals_8h_a50b340f5c1c66f547409f1c569df6c24} 
+int {\bfseries last\+Angle}
+\begin{DoxyCompactList}\small\item\em Last measured angle. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{globals_8h_a2ef9a98c01d810b5c65529f7a96db72c}{centerX}}
+\begin{DoxyCompactList}\small\item\em X coordinate for center of display. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a02c5292ed607e9932ef7083772bd1df8}\label{globals_8h_a02c5292ed607e9932ef7083772bd1df8} 
+int {\bfseries centerY}
+\begin{DoxyCompactList}\small\item\em Y coordinate for center of display. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a395279899207ce7f17adf9fdb8ee97ee}\label{globals_8h_a395279899207ce7f17adf9fdb8ee97ee} 
+int {\bfseries radius}
+\begin{DoxyCompactList}\small\item\em Radius of UI elements. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{globals_8h_aa9ab47cb95fe28c44bed59b685c3aaa1}{min\+Brightness}}
+\begin{DoxyCompactList}\small\item\em Minimum brightness level. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_ae7b37fab7892f3c0b1bd94c7895e2ecc}\label{globals_8h_ae7b37fab7892f3c0b1bd94c7895e2ecc} 
+const int {\bfseries max\+Brightness}
+\begin{DoxyCompactList}\small\item\em Maximum brightness level. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_af99e493d54e3dd51e11ace615bfe1928}\label{globals_8h_af99e493d54e3dd51e11ace615bfe1928} 
+const int {\bfseries num\+Brightness\+Levels}
+\begin{DoxyCompactList}\small\item\em Total number of brightness levels. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a3c6418394574dcdd1b88580cb85be4e6}\label{globals_8h_a3c6418394574dcdd1b88580cb85be4e6} 
+int {\bfseries brightness\+Level}
+\begin{DoxyCompactList}\small\item\em Current brightness level. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2}{Menu\+State}} \mbox{\hyperlink{globals_8h_a769032f0823a4b3622685d9450817cea}{current\+Menu}}
+\begin{DoxyCompactList}\small\item\em Current menu state. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_ac8456eecf8d905cb9371997fc87baa89}\label{globals_8h_ac8456eecf8d905cb9371997fc87baa89} 
+\mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2}{Menu\+State}} {\bfseries previous\+Menu}
+\begin{DoxyCompactList}\small\item\em Previous menu state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{globals_8h_a5f8e88cec6297972de98d6751a7d69be}{menu\+Index}}
+\begin{DoxyCompactList}\small\item\em Index for current menu item. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_ad575c5d8ace760e6bd6afb13c641e44d}\label{globals_8h_ad575c5d8ace760e6bd6afb13c641e44d} 
+const int {\bfseries menu\+Items}
+\begin{DoxyCompactList}\small\item\em Total number of main menu items. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_aa5a68731066a05c489e7789346212233}\label{globals_8h_aa5a68731066a05c489e7789346212233} 
+String {\bfseries menu} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Main menu labels. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_aeb144c569687c0771ed094e4a15bf04e}\label{globals_8h_aeb144c569687c0771ed094e4a15bf04e} 
+const int {\bfseries submenu\+Items}
+\begin{DoxyCompactList}\small\item\em Total number of submenu items. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_af7f6b9e37b99856ba9c4df355aba1830}\label{globals_8h_af7f6b9e37b99856ba9c4df355aba1830} 
+String {\bfseries submenu} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Submenu labels. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a9617fb90d3b9c9ed3f0c31e0b113bba4}\label{globals_8h_a9617fb90d3b9c9ed3f0c31e0b113bba4} 
+const int {\bfseries colormenu\+Items}
+\begin{DoxyCompactList}\small\item\em Number of items in color menu. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_afb42b84f93ca053af75b6abce73dc6e4}\label{globals_8h_afb42b84f93ca053af75b6abce73dc6e4} 
+String {\bfseries colormenu} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Color menu labels. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a2a9a2ecc5f323b818079d58b1eb9b117}\label{globals_8h_a2a9a2ecc5f323b818079d58b1eb9b117} 
+const int {\bfseries ethernetmenu\+Items}
+\item 
+\Hypertarget{globals_8h_ae685590c6b69b27ec85a621c03049b17}\label{globals_8h_ae685590c6b69b27ec85a621c03049b17} 
+String {\bfseries ethernetmenu} \mbox{[}$\,$\mbox{]}
+\item 
+\Hypertarget{globals_8h_ac513e58a320160320f8672b2aeb67e26}\label{globals_8h_ac513e58a320160320f8672b2aeb67e26} 
+const int {\bfseries steppermenu\+Items}
+\item 
+\Hypertarget{globals_8h_a534ca9d0cc3dd1ea7d310f953b1b636b}\label{globals_8h_a534ca9d0cc3dd1ea7d310f953b1b636b} 
+String {\bfseries steppermenu} \mbox{[}$\,$\mbox{]}
+\item 
+\Hypertarget{globals_8h_a4091a9d5cb2dd159a2759ed9e35d796e}\label{globals_8h_a4091a9d5cb2dd159a2759ed9e35d796e} 
+const int {\bfseries manualmenu\+Items}
+\item 
+\Hypertarget{globals_8h_a21c98738f682ec9caead5a75377e7881}\label{globals_8h_a21c98738f682ec9caead5a75377e7881} 
+String {\bfseries manualmenu} \mbox{[}$\,$\mbox{]}
+\item 
+\Hypertarget{globals_8h_a7ebc25b8e6ae6865e14b726b957fb333}\label{globals_8h_a7ebc25b8e6ae6865e14b726b957fb333} 
+const int {\bfseries automenu\+Items}
+\item 
+\Hypertarget{globals_8h_ab890c41f8d1d9f68bff009d426b4b707}\label{globals_8h_ab890c41f8d1d9f68bff009d426b4b707} 
+String {\bfseries automenu} \mbox{[}$\,$\mbox{]}
+\item 
+\Hypertarget{globals_8h_aea3f7775fecafb66a619eb2dcb0357bd}\label{globals_8h_aea3f7775fecafb66a619eb2dcb0357bd} 
+byte {\bfseries mac} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Ethernet Configuration. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a863c214d56d28a55467c000641e1be91}\label{globals_8h_a863c214d56d28a55467c000641e1be91} 
+IPAddress {\bfseries ip}
+\item 
+\Hypertarget{globals_8h_a33a52e67e2e129a0315384b2b7d9cbea}\label{globals_8h_a33a52e67e2e129a0315384b2b7d9cbea} 
+Ethernet\+Server {\bfseries server}
+\item 
+\Hypertarget{globals_8h_ac99349fee6fc0832259833527fdec461}\label{globals_8h_ac99349fee6fc0832259833527fdec461} 
+char {\bfseries ipchar} \mbox{[}16\mbox{]}
+\item 
+\Hypertarget{globals_8h_a71e024be73982e6cf853b572a3585588}\label{globals_8h_a71e024be73982e6cf853b572a3585588} 
+char {\bfseries subnetchar} \mbox{[}16\mbox{]}
+\item 
+\Hypertarget{globals_8h_af7980d9d5a78b8d14d93f960fb5effcb}\label{globals_8h_af7980d9d5a78b8d14d93f960fb5effcb} 
+IPAddress {\bfseries subnet}
+\item 
+\Hypertarget{globals_8h_a7ef67108d4869292f780e48e823e8cdd}\label{globals_8h_a7ef67108d4869292f780e48e823e8cdd} 
+char {\bfseries ipadress}
+\item 
+\Hypertarget{globals_8h_a0e2b5b43d3aef89f14f3357b5e3c0445}\label{globals_8h_a0e2b5b43d3aef89f14f3357b5e3c0445} 
+char {\bfseries subnetadress}
+\item 
+\Hypertarget{globals_8h_ad90ce024a6bee0bfdaf4bedbe216a3a6}\label{globals_8h_ad90ce024a6bee0bfdaf4bedbe216a3a6} 
+String {\bfseries ipip}
+\item 
+\Hypertarget{globals_8h_a895021459fe2434febc3b2f62ed62092}\label{globals_8h_a895021459fe2434febc3b2f62ed62092} 
+String {\bfseries subnetsubnet}
+\item 
+\Hypertarget{globals_8h_a349898585eb60ca77175c8a60094808c}\label{globals_8h_a349898585eb60ca77175c8a60094808c} 
+String {\bfseries ethernet\+Info} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em Ethernet settings\+: IP, Port, Subnet, Status. \end{DoxyCompactList}\item 
+const unsigned short \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{globals_8h_aed9b7a4019d30995bd4d557002c5ba5e}{images\+\_\+main}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Main menu icons. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_aada6cde9d87c0a7b7c50cd786c571c07}\label{globals_8h_aada6cde9d87c0a7b7c50cd786c571c07} 
+const unsigned short \texorpdfstring{$\ast$}{*} {\bfseries images\+\_\+settings} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Settings menu icons. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a663d9f46f7825dc47d24a2686c7fcdc1}\label{globals_8h_a663d9f46f7825dc47d24a2686c7fcdc1} 
+const unsigned short \texorpdfstring{$\ast$}{*} {\bfseries images\+\_\+stepper} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Stepper motor menu icons. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{globals_8h_aa9e9b2e282a3494c7ce3d60256a4ea8d}{screen\+On}}
+\begin{DoxyCompactList}\small\item\em Flag indicating if the screen is currently on. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_ab62d60c5ad54ec166026d386ec9a9b3a}\label{globals_8h_ab62d60c5ad54ec166026d386ec9a9b3a} 
+bool {\bfseries engineering\+Mode}
+\begin{DoxyCompactList}\small\item\em Flag for enabling engineering/debug mode. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a077c86ea52123eb3794884dfc053d890}\label{globals_8h_a077c86ea52123eb3794884dfc053d890} 
+volatile int {\bfseries encoder\+State}
+\begin{DoxyCompactList}\small\item\em Encoder state for handling inputs. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_ad926fc3916a64d6a3980aaa5360c1165}\label{globals_8h_ad926fc3916a64d6a3980aaa5360c1165} 
+Rtc\+Date\+Time {\bfseries last\+Displayed\+Time}
+\begin{DoxyCompactList}\small\item\em Time last displayed on the screen. \end{DoxyCompactList}\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{globals_8h_aaf623fe161cdf19ca07d4c1e29b0bd5f}{screen\+Update\+Queue}}
+\begin{DoxyCompactList}\small\item\em Queue for handling screen update commands. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a119bbace9abbf6d8daffc41eaaa1defb}\label{globals_8h_a119bbace9abbf6d8daffc41eaaa1defb} 
+x\+Semaphore\+Handle {\bfseries gatekeeper}
+\begin{DoxyCompactList}\small\item\em Semaphore for managing screen updates. \end{DoxyCompactList}\item 
+const uint16\+\_\+t \mbox{\hyperlink{globals_8h_ae401b875b7bfb059b75b56726ed3d2c8}{backgroundpossible\+Colors}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Possible background colors. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a25479c6b6ba2cf5f78957eb2084fff57}\label{globals_8h_a25479c6b6ba2cf5f78957eb2084fff57} 
+const uint16\+\_\+t {\bfseries selectbarpossible\+Colors} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Possible selection bar colors. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a9716fbf0ab5c1368148f2bf0140a611a}\label{globals_8h_a9716fbf0ab5c1368148f2bf0140a611a} 
+const uint16\+\_\+t {\bfseries borderpossible\+Colors} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Possible border colors. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a70f6ceca6e907056c43faa62888509a1}\label{globals_8h_a70f6ceca6e907056c43faa62888509a1} 
+const uint16\+\_\+t {\bfseries textpossible\+Colors} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Possible text colors. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{globals_8h_a90ba5032211a02dd3b3577d1002f0fe4}{backgroundcolors}}
+\begin{DoxyCompactList}\small\item\em Number of background colors. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a6e73a84066164b6d9f9b4163e32e26e8}\label{globals_8h_a6e73a84066164b6d9f9b4163e32e26e8} 
+const int {\bfseries selectbarcolors}
+\begin{DoxyCompactList}\small\item\em Number of selection bar colors. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a3da248ec491040450983dd1a8a5478fd}\label{globals_8h_a3da248ec491040450983dd1a8a5478fd} 
+const int {\bfseries textcolors}
+\begin{DoxyCompactList}\small\item\em Number of text colors. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_aed64c1493a8b74f14aeb20eb7ea5d6fa}\label{globals_8h_aed64c1493a8b74f14aeb20eb7ea5d6fa} 
+const int {\bfseries bordercolors}
+\begin{DoxyCompactList}\small\item\em Number of border colors. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_aa38062d980ec71277947969761bb606d}\label{globals_8h_aa38062d980ec71277947969761bb606d} 
+const int {\bfseries selectnumcolors} \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2}{Menu\+State}} \mbox{\hyperlink{globals_8h_a431bcfedd78dea3c96d64d119f978805}{colormenu\+Array}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Color menu states. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a4b7cc1cadcc5662ef2a9846eee81e525}\label{globals_8h_a4b7cc1cadcc5662ef2a9846eee81e525} 
+String {\bfseries background} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Background color labels. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_ac4879508a2e86a69828bd1cf95622753}\label{globals_8h_ac4879508a2e86a69828bd1cf95622753} 
+String {\bfseries selectionbar} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Selection bar color labels. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_aeafa6f178b5b47e84fd21c37fc12b364}\label{globals_8h_aeafa6f178b5b47e84fd21c37fc12b364} 
+String {\bfseries border} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Border color labels. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a245e72ea325d44b40240e654a44470cc}\label{globals_8h_a245e72ea325d44b40240e654a44470cc} 
+String {\bfseries text} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Text color labels. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{globals_8h_a1ccf7c5f8094a76b58c9ede32381734d}{selected\+Background\+Color}}
+\begin{DoxyCompactList}\small\item\em Selected background color index. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a32e21127f5e32593af845236e1dc5a53}\label{globals_8h_a32e21127f5e32593af845236e1dc5a53} 
+int {\bfseries selected\+Text\+Color}
+\begin{DoxyCompactList}\small\item\em Selected text color index. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a8b66a55359ddeea3e6976e9c60c6bbab}\label{globals_8h_a8b66a55359ddeea3e6976e9c60c6bbab} 
+int {\bfseries selected\+Bar\+Color}
+\begin{DoxyCompactList}\small\item\em Selected selection bar color index. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a0820104f144feafedcf789edaff972f2}\label{globals_8h_a0820104f144feafedcf789edaff972f2} 
+int {\bfseries selected\+Border\+Color}
+\begin{DoxyCompactList}\small\item\em Selected border color index. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_ab31fba1d7a121e252a8319258a725c85}\label{globals_8h_ab31fba1d7a121e252a8319258a725c85} 
+int \texorpdfstring{$\ast$}{*} {\bfseries selection} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Array for selected colors. \end{DoxyCompactList}\item 
+const GFXfont \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{globals_8h_ae67982d9cd69b4c1b5f4b49f2e9de7f0}{possible\+Font12}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Array of possible fonts (12-\/point size) \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a6888b0770eb27403db501d65681a46ec}\label{globals_8h_a6888b0770eb27403db501d65681a46ec} 
+const GFXfont \texorpdfstring{$\ast$}{*} {\bfseries possible\+Font9} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Array of possible fonts (9-\/point size) \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a2d8219c8d3eb0ebeb69046e2a6677bb4}\label{globals_8h_a2d8219c8d3eb0ebeb69046e2a6677bb4} 
+const int {\bfseries num\+Fonts}
+\begin{DoxyCompactList}\small\item\em Number of font options. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a1eda6ed1cbdda88b8a989daccc7c0774}\label{globals_8h_a1eda6ed1cbdda88b8a989daccc7c0774} 
+String {\bfseries font\+Type} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Font type labels. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a1ae81caf9234659f5f96a0c9cabe0928}\label{globals_8h_a1ae81caf9234659f5f96a0c9cabe0928} 
+const GFXfont \texorpdfstring{$\ast$}{*} {\bfseries text\+Type12}
+\begin{DoxyCompactList}\small\item\em Selected 12-\/point font. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a0d6da904e8eebd5078909273e10c3c34}\label{globals_8h_a0d6da904e8eebd5078909273e10c3c34} 
+const GFXfont \texorpdfstring{$\ast$}{*} {\bfseries text\+Type9}
+\begin{DoxyCompactList}\small\item\em Selected 9-\/point font. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a594872eacde3b074fb17f8c91454f389}\label{globals_8h_a594872eacde3b074fb17f8c91454f389} 
+Bf\+Button {\bfseries btn}
+\item 
+\Hypertarget{globals_8h_a2c21c568a03e1d5261b2dbb537028827}\label{globals_8h_a2c21c568a03e1d5261b2dbb537028827} 
+Three\+Wire {\bfseries my\+Wire}
+\item 
+\Hypertarget{globals_8h_a5a17b0eb9339e9db962d585d7d85a05f}\label{globals_8h_a5a17b0eb9339e9db962d585d7d85a05f} 
+Rtc\+DS1302$<$ Three\+Wire $>$ {\bfseries Rtc}
+\item 
+\Hypertarget{globals_8h_a948081ee1c9af00211789165861f24bd}\label{globals_8h_a948081ee1c9af00211789165861f24bd} 
+Accel\+Stepper {\bfseries motor}
+\item 
+\Hypertarget{globals_8h_ac5d2dc3534f30f704fd7529ad0f89ff1}\label{globals_8h_ac5d2dc3534f30f704fd7529ad0f89ff1} 
+TFT\+\_\+e\+SPI {\bfseries tft}
+\begin{DoxyCompactList}\small\item\em Hardware Initialization. \end{DoxyCompactList}\item 
+\Hypertarget{globals_8h_a2f3d284443221aec38814f91535f7598}\label{globals_8h_a2f3d284443221aec38814f91535f7598} 
+Tick\+Type\+\_\+t {\bfseries previous\+Tick}
+\item 
+\Hypertarget{globals_8h_a6a74309aa9d0f370be566d3dfa97cafa}\label{globals_8h_a6a74309aa9d0f370be566d3dfa97cafa} 
+Tick\+Type\+\_\+t {\bfseries previous\+Time}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Global variable and constant definitions for the project. 
+
+This header file contains the global definitions for UI colors, menu states, rotary encoder configurations, display settings, and other system-\/wide constants and variables. It also declares external variables and enums that are used across different modules of the program, ensuring centralized configuration and ease of modification.
+
+The file includes\+:
+\begin{DoxyItemize}
+\item Custom color definitions for user interface (UI) elements.
+\item Pin assignments for hardware components (brightness control, rotary encoder).
+\item Timing constants and menu states (main menu, settings, motor control).
+\item Rotary encoder state tracking and UI geometry settings.
+\item Brightness control and menu structure.
+\item Ethernet configuration parameters and TCP server settings.
+\item Screen control and synchronization using Free\+RTOS tasks and queues.
+\item Enum definitions for menus and screen updates.
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{Author}
+Juan Alberto Serrano Redondo. 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{globals_8h_aa3041ae4242c0dd57a126d17505443b2}\index{globals.h@{globals.h}!MenuState@{MenuState}}
+\index{MenuState@{MenuState}!globals.h@{globals.h}}
+\doxysubsubsection{\texorpdfstring{MenuState}{MenuState}}
+{\footnotesize\ttfamily \label{globals_8h_aa3041ae4242c0dd57a126d17505443b2} 
+enum \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2}{Menu\+State}}}
+
+
+
+Defines various states of the menu interface. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MAIN\_MENU@{MAIN\_MENU}!globals.h@{globals.h}}\index{globals.h@{globals.h}!MAIN\_MENU@{MAIN\_MENU}}}\Hypertarget{globals_8h_aa3041ae4242c0dd57a126d17505443b2ac22743f1fc74de09544ecc9bab74a17b}\label{globals_8h_aa3041ae4242c0dd57a126d17505443b2} 
+MAIN\+\_\+\+MENU&Main menu. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SETTINGS@{SETTINGS}!globals.h@{globals.h}}\index{globals.h@{globals.h}!SETTINGS@{SETTINGS}}}\Hypertarget{globals_8h_aa3041ae4242c0dd57a126d17505443b2ac678338caea29d77d56be2ea56325610}\label{globals_8h_aa3041ae4242c0dd57a126d17505443b2} 
+SETTINGS&Settings menu. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BRIGHTNESS@{BRIGHTNESS}!globals.h@{globals.h}}\index{globals.h@{globals.h}!BRIGHTNESS@{BRIGHTNESS}}}\Hypertarget{globals_8h_aa3041ae4242c0dd57a126d17505443b2a46b1a1705dc1e975e82422901b8ecdf2}\label{globals_8h_aa3041ae4242c0dd57a126d17505443b2} 
+BRIGHTNESS&Brightness control menu. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COLOR@{COLOR}!globals.h@{globals.h}}\index{globals.h@{globals.h}!COLOR@{COLOR}}}\Hypertarget{globals_8h_aa3041ae4242c0dd57a126d17505443b2a7a5ecb5193db2d5f258ae1abd33714b9}\label{globals_8h_aa3041ae4242c0dd57a126d17505443b2} 
+COLOR&Color configuration menu. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEXT\_TYPE@{TEXT\_TYPE}!globals.h@{globals.h}}\index{globals.h@{globals.h}!TEXT\_TYPE@{TEXT\_TYPE}}}\Hypertarget{globals_8h_aa3041ae4242c0dd57a126d17505443b2a3210301d23296d5cf181153c8b435a79}\label{globals_8h_aa3041ae4242c0dd57a126d17505443b2} 
+TEXT\+\_\+\+TYPE&Text font selection. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BACKGROUND@{BACKGROUND}!globals.h@{globals.h}}\index{globals.h@{globals.h}!BACKGROUND@{BACKGROUND}}}\Hypertarget{globals_8h_aa3041ae4242c0dd57a126d17505443b2aa44b734476c2f3d073ee7aca08660a0e}\label{globals_8h_aa3041ae4242c0dd57a126d17505443b2} 
+BACKGROUND&Background color selection. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SELECTION\_BAR@{SELECTION\_BAR}!globals.h@{globals.h}}\index{globals.h@{globals.h}!SELECTION\_BAR@{SELECTION\_BAR}}}\Hypertarget{globals_8h_aa3041ae4242c0dd57a126d17505443b2af9a60b6f3549778932afee28db904f30}\label{globals_8h_aa3041ae4242c0dd57a126d17505443b2} 
+SELECTION\+\_\+\+BAR&Selection bar color. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SELECTION\_BORDER@{SELECTION\_BORDER}!globals.h@{globals.h}}\index{globals.h@{globals.h}!SELECTION\_BORDER@{SELECTION\_BORDER}}}\Hypertarget{globals_8h_aa3041ae4242c0dd57a126d17505443b2aaac8b72a410fb17e620a6884d1ad6227}\label{globals_8h_aa3041ae4242c0dd57a126d17505443b2} 
+SELECTION\+\_\+\+BORDER&Selection border color. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEXT@{TEXT}!globals.h@{globals.h}}\index{globals.h@{globals.h}!TEXT@{TEXT}}}\Hypertarget{globals_8h_aa3041ae4242c0dd57a126d17505443b2a9a4a47c1606e295076055a9cc4373197}\label{globals_8h_aa3041ae4242c0dd57a126d17505443b2} 
+TEXT&Text color configuration. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SERVIDOR\_TCP@{SERVIDOR\_TCP}!globals.h@{globals.h}}\index{globals.h@{globals.h}!SERVIDOR\_TCP@{SERVIDOR\_TCP}}}\Hypertarget{globals_8h_aa3041ae4242c0dd57a126d17505443b2a65d59f75bc58f75380983837537920e2}\label{globals_8h_aa3041ae4242c0dd57a126d17505443b2} 
+SERVIDOR\+\_\+\+TCP&TCP server configuration. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STEPPER\_MOTOR@{STEPPER\_MOTOR}!globals.h@{globals.h}}\index{globals.h@{globals.h}!STEPPER\_MOTOR@{STEPPER\_MOTOR}}}\Hypertarget{globals_8h_aa3041ae4242c0dd57a126d17505443b2a8fc89282c6047847059874e30568fd3f}\label{globals_8h_aa3041ae4242c0dd57a126d17505443b2} 
+STEPPER\+\_\+\+MOTOR&Stepper motor control. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MANUAL@{MANUAL}!globals.h@{globals.h}}\index{globals.h@{globals.h}!MANUAL@{MANUAL}}}\Hypertarget{globals_8h_aa3041ae4242c0dd57a126d17505443b2a506e8dd29460ea318b68d035f679b01b}\label{globals_8h_aa3041ae4242c0dd57a126d17505443b2} 
+MANUAL&Manual stepper control. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AUTO@{AUTO}!globals.h@{globals.h}}\index{globals.h@{globals.h}!AUTO@{AUTO}}}\Hypertarget{globals_8h_aa3041ae4242c0dd57a126d17505443b2aeef9468d1b98bca652a04bf5063fd9d6}\label{globals_8h_aa3041ae4242c0dd57a126d17505443b2} 
+AUTO&Automatic stepper control. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INITIAL\_SCREEN@{INITIAL\_SCREEN}!globals.h@{globals.h}}\index{globals.h@{globals.h}!INITIAL\_SCREEN@{INITIAL\_SCREEN}}}\Hypertarget{globals_8h_aa3041ae4242c0dd57a126d17505443b2a15d3a258bbbfa24e1f6f0180f90644ee}\label{globals_8h_aa3041ae4242c0dd57a126d17505443b2} 
+INITIAL\+\_\+\+SCREEN&Initial splash screen. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{globals_8h_a1b06255088be0619cf099d600ef17ee2}\index{globals.h@{globals.h}!ScreenUpdateCommand@{ScreenUpdateCommand}}
+\index{ScreenUpdateCommand@{ScreenUpdateCommand}!globals.h@{globals.h}}
+\doxysubsubsection{\texorpdfstring{ScreenUpdateCommand}{ScreenUpdateCommand}}
+{\footnotesize\ttfamily \label{globals_8h_a1b06255088be0619cf099d600ef17ee2} 
+enum \mbox{\hyperlink{globals_8h_a1b06255088be0619cf099d600ef17ee2}{Screen\+Update\+Command}}}
+
+
+
+Enum for screen update commands. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UPDATE\_MAIN\_MENU@{UPDATE\_MAIN\_MENU}!globals.h@{globals.h}}\index{globals.h@{globals.h}!UPDATE\_MAIN\_MENU@{UPDATE\_MAIN\_MENU}}}\Hypertarget{globals_8h_a1b06255088be0619cf099d600ef17ee2ac34814c1f26a778ac75bfc27ccc910fb}\label{globals_8h_a1b06255088be0619cf099d600ef17ee2} 
+UPDATE\+\_\+\+MAIN\+\_\+\+MENU&Command to update the main menu. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UPDATE\_CONFIG\_BRIGHTNESS@{UPDATE\_CONFIG\_BRIGHTNESS}!globals.h@{globals.h}}\index{globals.h@{globals.h}!UPDATE\_CONFIG\_BRIGHTNESS@{UPDATE\_CONFIG\_BRIGHTNESS}}}\Hypertarget{globals_8h_a1b06255088be0619cf099d600ef17ee2ab7baa998fb2f70d59da417ac5aca67ff}\label{globals_8h_a1b06255088be0619cf099d600ef17ee2} 
+UPDATE\+\_\+\+CONFIG\+\_\+\+BRIGHTNESS&Command to update brightness configuration. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UPDATE\_CONFIG\_BACKGROUNDCOLOR@{UPDATE\_CONFIG\_BACKGROUNDCOLOR}!globals.h@{globals.h}}\index{globals.h@{globals.h}!UPDATE\_CONFIG\_BACKGROUNDCOLOR@{UPDATE\_CONFIG\_BACKGROUNDCOLOR}}}\Hypertarget{globals_8h_a1b06255088be0619cf099d600ef17ee2a73120ccce2d1fc73da99abb7ecfa538f}\label{globals_8h_a1b06255088be0619cf099d600ef17ee2} 
+UPDATE\+\_\+\+CONFIG\+\_\+\+BACKGROUNDCOLOR&Command to update background color. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UPDATE\_CONFIG\_ASPECT@{UPDATE\_CONFIG\_ASPECT}!globals.h@{globals.h}}\index{globals.h@{globals.h}!UPDATE\_CONFIG\_ASPECT@{UPDATE\_CONFIG\_ASPECT}}}\Hypertarget{globals_8h_a1b06255088be0619cf099d600ef17ee2a781bff40673d0bba42ddf8d411fd1580}\label{globals_8h_a1b06255088be0619cf099d600ef17ee2} 
+UPDATE\+\_\+\+CONFIG\+\_\+\+ASPECT&Command to update UI aspects. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{globals_8h_a90ba5032211a02dd3b3577d1002f0fe4}\index{globals.h@{globals.h}!backgroundcolors@{backgroundcolors}}
+\index{backgroundcolors@{backgroundcolors}!globals.h@{globals.h}}
+\doxysubsubsection{\texorpdfstring{backgroundcolors}{backgroundcolors}}
+{\footnotesize\ttfamily \label{globals_8h_a90ba5032211a02dd3b3577d1002f0fe4} 
+const int backgroundcolors\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Number of background colors. 
+
+Number of background colors.
+
+Number of background colors \Hypertarget{globals_8h_ae401b875b7bfb059b75b56726ed3d2c8}\index{globals.h@{globals.h}!backgroundpossibleColors@{backgroundpossibleColors}}
+\index{backgroundpossibleColors@{backgroundpossibleColors}!globals.h@{globals.h}}
+\doxysubsubsection{\texorpdfstring{backgroundpossibleColors}{backgroundpossibleColors}}
+{\footnotesize\ttfamily \label{globals_8h_ae401b875b7bfb059b75b56726ed3d2c8} 
+const uint16\+\_\+t backgroundpossible\+Colors\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Possible background colors. 
+
+Possible background colors.
+
+Possible background colors \Hypertarget{globals_8h_a2ef9a98c01d810b5c65529f7a96db72c}\index{globals.h@{globals.h}!centerX@{centerX}}
+\index{centerX@{centerX}!globals.h@{globals.h}}
+\doxysubsubsection{\texorpdfstring{centerX}{centerX}}
+{\footnotesize\ttfamily \label{globals_8h_a2ef9a98c01d810b5c65529f7a96db72c} 
+int centerX\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+X coordinate for center of display. 
+
+X coordinate for center of display.
+
+X coordinate for center of display \Hypertarget{globals_8h_a431bcfedd78dea3c96d64d119f978805}\index{globals.h@{globals.h}!colormenuArray@{colormenuArray}}
+\index{colormenuArray@{colormenuArray}!globals.h@{globals.h}}
+\doxysubsubsection{\texorpdfstring{colormenuArray}{colormenuArray}}
+{\footnotesize\ttfamily \label{globals_8h_a431bcfedd78dea3c96d64d119f978805} 
+\mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2}{Menu\+State}} colormenu\+Array\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Color menu states. 
+
+Color menu states.
+
+Color menu states \Hypertarget{globals_8h_a769032f0823a4b3622685d9450817cea}\index{globals.h@{globals.h}!currentMenu@{currentMenu}}
+\index{currentMenu@{currentMenu}!globals.h@{globals.h}}
+\doxysubsubsection{\texorpdfstring{currentMenu}{currentMenu}}
+{\footnotesize\ttfamily \label{globals_8h_a769032f0823a4b3622685d9450817cea} 
+\mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2}{Menu\+State}} current\+Menu\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Current menu state. 
+
+Current menu state.
+
+Current menu state \Hypertarget{globals_8h_a53dfd3081ecb5cbde9c66ee0ac81a653}\index{globals.h@{globals.h}!DIR\_PIN@{DIR\_PIN}}
+\index{DIR\_PIN@{DIR\_PIN}!globals.h@{globals.h}}
+\doxysubsubsection{\texorpdfstring{DIR\_PIN}{DIR\_PIN}}
+{\footnotesize\ttfamily \label{globals_8h_a53dfd3081ecb5cbde9c66ee0ac81a653} 
+const int DIR\+\_\+\+PIN\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Direction pin for rotary encoder. 
+
+Direction pin for rotary encoder.
+
+Direction pin for rotary encoder \Hypertarget{globals_8h_aed9b7a4019d30995bd4d557002c5ba5e}\index{globals.h@{globals.h}!images\_main@{images\_main}}
+\index{images\_main@{images\_main}!globals.h@{globals.h}}
+\doxysubsubsection{\texorpdfstring{images\_main}{images\_main}}
+{\footnotesize\ttfamily \label{globals_8h_aed9b7a4019d30995bd4d557002c5ba5e} 
+const unsigned short\texorpdfstring{$\ast$}{*} images\+\_\+main\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Main menu icons. 
+
+Main menu icons.
+
+Main menu icons \Hypertarget{globals_8h_ae9eba260d34d82f17daba520dfe95bb1}\index{globals.h@{globals.h}!lastClk@{lastClk}}
+\index{lastClk@{lastClk}!globals.h@{globals.h}}
+\doxysubsubsection{\texorpdfstring{lastClk}{lastClk}}
+{\footnotesize\ttfamily \label{globals_8h_ae9eba260d34d82f17daba520dfe95bb1} 
+int last\+Clk\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Last clock state. 
+
+Last clock state.
+
+Last clock state \Hypertarget{globals_8h_af26f75fe269e2354b07be07d548f1439}\index{globals.h@{globals.h}!LOOP\_TICKS@{LOOP\_TICKS}}
+\index{LOOP\_TICKS@{LOOP\_TICKS}!globals.h@{globals.h}}
+\doxysubsubsection{\texorpdfstring{LOOP\_TICKS}{LOOP\_TICKS}}
+{\footnotesize\ttfamily \label{globals_8h_af26f75fe269e2354b07be07d548f1439} 
+const uint32\+\_\+t LOOP\+\_\+\+TICKS\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Loop period in ticks for RTOS task. 
+
+Loop period in ticks for RTOS task.
+
+Loop period in ticks for RTOS task \Hypertarget{globals_8h_a5f8e88cec6297972de98d6751a7d69be}\index{globals.h@{globals.h}!menuIndex@{menuIndex}}
+\index{menuIndex@{menuIndex}!globals.h@{globals.h}}
+\doxysubsubsection{\texorpdfstring{menuIndex}{menuIndex}}
+{\footnotesize\ttfamily \label{globals_8h_a5f8e88cec6297972de98d6751a7d69be} 
+int menu\+Index\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Index for current menu item. 
+
+Index for current menu item.
+
+Index for current menu item \Hypertarget{globals_8h_aa9ab47cb95fe28c44bed59b685c3aaa1}\index{globals.h@{globals.h}!minBrightness@{minBrightness}}
+\index{minBrightness@{minBrightness}!globals.h@{globals.h}}
+\doxysubsubsection{\texorpdfstring{minBrightness}{minBrightness}}
+{\footnotesize\ttfamily \label{globals_8h_aa9ab47cb95fe28c44bed59b685c3aaa1} 
+const int min\+Brightness\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Minimum brightness level. 
+
+Minimum brightness level.
+
+Minimum brightness level \Hypertarget{globals_8h_ae67982d9cd69b4c1b5f4b49f2e9de7f0}\index{globals.h@{globals.h}!possibleFont12@{possibleFont12}}
+\index{possibleFont12@{possibleFont12}!globals.h@{globals.h}}
+\doxysubsubsection{\texorpdfstring{possibleFont12}{possibleFont12}}
+{\footnotesize\ttfamily \label{globals_8h_ae67982d9cd69b4c1b5f4b49f2e9de7f0} 
+const GFXfont\texorpdfstring{$\ast$}{*} possible\+Font12\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Array of possible fonts (12-\/point size) 
+
+Array of possible fonts (12-\/point size) \Hypertarget{globals_8h_aa9e9b2e282a3494c7ce3d60256a4ea8d}\index{globals.h@{globals.h}!screenOn@{screenOn}}
+\index{screenOn@{screenOn}!globals.h@{globals.h}}
+\doxysubsubsection{\texorpdfstring{screenOn}{screenOn}}
+{\footnotesize\ttfamily \label{globals_8h_aa9e9b2e282a3494c7ce3d60256a4ea8d} 
+bool screen\+On\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Flag indicating if the screen is currently on. 
+
+Flag indicating if the screen is currently on.
+
+Flag indicating if the screen is currently on \Hypertarget{globals_8h_aaf623fe161cdf19ca07d4c1e29b0bd5f}\index{globals.h@{globals.h}!screenUpdateQueue@{screenUpdateQueue}}
+\index{screenUpdateQueue@{screenUpdateQueue}!globals.h@{globals.h}}
+\doxysubsubsection{\texorpdfstring{screenUpdateQueue}{screenUpdateQueue}}
+{\footnotesize\ttfamily \label{globals_8h_aaf623fe161cdf19ca07d4c1e29b0bd5f} 
+Queue\+Handle\+\_\+t screen\+Update\+Queue\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Queue for handling screen update commands. 
+
+Queue for handling screen update commands.
+
+Queue for handling screen update commands \Hypertarget{globals_8h_a1ccf7c5f8094a76b58c9ede32381734d}\index{globals.h@{globals.h}!selectedBackgroundColor@{selectedBackgroundColor}}
+\index{selectedBackgroundColor@{selectedBackgroundColor}!globals.h@{globals.h}}
+\doxysubsubsection{\texorpdfstring{selectedBackgroundColor}{selectedBackgroundColor}}
+{\footnotesize\ttfamily \label{globals_8h_a1ccf7c5f8094a76b58c9ede32381734d} 
+int selected\+Background\+Color\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Selected background color index. 
+
+Selected background color index.
+
+Selected background color index 

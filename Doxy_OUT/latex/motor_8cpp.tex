@@ -1,0 +1,43 @@
+\doxysection{motor/motor.cpp File Reference}
+\hypertarget{motor_8cpp}{}\label{motor_8cpp}\index{motor/motor.cpp@{motor/motor.cpp}}
+
+
+Implementation file for motor control functions.  
+
+
+{\ttfamily \#include "{}motor.\+h"{}}\newline
+{\ttfamily \#include $<$globals/globals.\+h$>$}\newline
+{\ttfamily \#include $<$libraries.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{motor_8cpp_a1dd4fd9f6e2c0773c937feb9f381bcd5}{move\+Motor}} (int steps)
+\begin{DoxyCompactList}\small\item\em Moves the stepper motor a specified number of steps. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation file for motor control functions. 
+
+\begin{DoxyAuthor}{Author}
+Juan Alberto Serrano Redondo 
+\end{DoxyAuthor}
+This file contains the implementation of functions used to control the stepper motor, including moving the motor a specified number of steps. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{motor_8cpp_a1dd4fd9f6e2c0773c937feb9f381bcd5}\index{motor.cpp@{motor.cpp}!moveMotor@{moveMotor}}
+\index{moveMotor@{moveMotor}!motor.cpp@{motor.cpp}}
+\doxysubsubsection{\texorpdfstring{moveMotor()}{moveMotor()}}
+{\footnotesize\ttfamily \label{motor_8cpp_a1dd4fd9f6e2c0773c937feb9f381bcd5} 
+void move\+Motor (\begin{DoxyParamCaption}\item[{int}]{steps}{}\end{DoxyParamCaption})}
+
+
+
+Moves the stepper motor a specified number of steps. 
+
+This function controls the stepper motor by setting the direction pin and generating step pulses to move the motor. It updates the motor\textquotesingle{}s position and refreshes the screen if the current menu is MANUAL or AUTO.
+
+
+\begin{DoxyParams}{Parameters}
+{\em steps} & The number of steps to move the motor. Positive values move the motor in one direction, and negative values move it in the opposite direction. \\
+\hline
+\end{DoxyParams}

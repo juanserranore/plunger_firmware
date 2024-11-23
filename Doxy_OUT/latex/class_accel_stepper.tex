@@ -1,0 +1,643 @@
+\doxysection{Accel\+Stepper Class Reference}
+\label{class_accel_stepper}\index{AccelStepper@{AccelStepper}}
+
+
+Support for stepper motors with acceleration etc.  
+
+
+
+
+{\ttfamily \#include $<$Accel\+Stepper.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \textbf{ Motor\+Interface\+Type} \{ \newline
+\textbf{ FUNCTION} = 0
+, \textbf{ DRIVER} = 1
+, \textbf{ FULL2\+WIRE} = 2
+, \textbf{ FULL3\+WIRE} = 3
+, \newline
+\textbf{ FULL4\+WIRE} = 4
+, \textbf{ HALF3\+WIRE} = 6
+, \textbf{ HALF4\+WIRE} = 8
+ \}
+\begin{DoxyCompactList}\small\item\em Symbolic names for number of pins. Use this in the pins argument the \doxyref{Accel\+Stepper}{p.}{class_accel_stepper} constructor to provide a symbolic name for the number of pins to use. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Accel\+Stepper} (uint8\+\_\+t interface=\textbf{ Accel\+Stepper\+::\+FULL4\+WIRE}, uint8\+\_\+t pin1=2, uint8\+\_\+t pin2=3, uint8\+\_\+t pin3=4, uint8\+\_\+t pin4=5, bool enable=true)
+\item 
+\textbf{ Accel\+Stepper} (void($\ast$forward)(), void($\ast$backward)())
+\item 
+void \textbf{ move\+To} (long absolute)
+\item 
+void \textbf{ move} (long relative)
+\item 
+boolean \textbf{ run} ()
+\item 
+boolean \textbf{ run\+Speed} ()
+\item 
+void \textbf{ set\+Max\+Speed} (float \textbf{ speed})
+\item 
+float \textbf{ max\+Speed} ()
+\item 
+void \textbf{ set\+Acceleration} (float \textbf{ acceleration})
+\item 
+float \textbf{ acceleration} ()
+\item 
+void \textbf{ set\+Speed} (float \textbf{ speed})
+\item 
+float \textbf{ speed} ()
+\item 
+long \textbf{ distance\+To\+Go} ()
+\item 
+long \textbf{ target\+Position} ()
+\item 
+long \textbf{ current\+Position} ()
+\item 
+void \textbf{ set\+Current\+Position} (long position)
+\item 
+void \textbf{ run\+To\+Position} ()
+\item 
+boolean \textbf{ run\+Speed\+To\+Position} ()
+\item 
+void \textbf{ run\+To\+New\+Position} (long position)
+\item 
+void \textbf{ stop} ()
+\item 
+virtual void \textbf{ disable\+Outputs} ()
+\item 
+virtual void \textbf{ enable\+Outputs} ()
+\item 
+void \textbf{ set\+Min\+Pulse\+Width} (unsigned int min\+Width)
+\item 
+void \textbf{ set\+Enable\+Pin} (uint8\+\_\+t enable\+Pin=0xff)
+\item 
+void \textbf{ set\+Pins\+Inverted} (bool direction\+Invert=false, bool step\+Invert=false, bool enable\+Invert=false)
+\item 
+void \textbf{ set\+Pins\+Inverted} (bool pin1\+Invert, bool pin2\+Invert, bool pin3\+Invert, bool pin4\+Invert, bool enable\+Invert)
+\item 
+bool \textbf{ is\+Running} ()
+\item 
+\label{class_accel_stepper_a89c4c8de0c983e7a59de6a959481aff1} 
+virtual {\bfseries $\sim$\+Accel\+Stepper} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to prevent warnings during delete. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \textbf{ Direction} \{ \textbf{ DIRECTION\+\_\+\+CCW} = 0
+, \textbf{ DIRECTION\+\_\+\+CW} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em Direction indicator Symbolic names for the direction the motor is turning. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual unsigned long \textbf{ compute\+New\+Speed} ()
+\item 
+virtual void \textbf{ set\+Output\+Pins} (uint8\+\_\+t mask)
+\item 
+virtual void \textbf{ step} (long step)
+\item 
+long \textbf{ step\+Forward} ()
+\item 
+long \textbf{ step\+Backward} ()
+\item 
+virtual void \textbf{ step0} (long \textbf{ step})
+\item 
+virtual void \textbf{ step1} (long \textbf{ step})
+\item 
+virtual void \textbf{ step2} (long \textbf{ step})
+\item 
+virtual void \textbf{ step3} (long \textbf{ step})
+\item 
+virtual void \textbf{ step4} (long \textbf{ step})
+\item 
+virtual void \textbf{ step6} (long \textbf{ step})
+\item 
+virtual void \textbf{ step8} (long \textbf{ step})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+boolean \textbf{ \+\_\+direction}
+\item 
+unsigned long \textbf{ \+\_\+step\+Interval}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Support for stepper motors with acceleration etc. 
+
+This defines a single 2 or 4 pin stepper motor, or stepper moter with fdriver chip, with optional acceleration, deceleration, absolute positioning commands etc. Multiple simultaneous steppers are supported, all moving at different speeds and accelerations.
+
+\begin{DoxyParagraph}{Operation}
+This module operates by computing a step time in microseconds. The step time is recomputed after each step and after speed and acceleration parameters are changed by the caller. The time of each step is recorded in microseconds. The \doxyref{run()}{p.}{class_accel_stepper_a608b2395b64ac15451d16d0371fe13ce} function steps the motor once if a new step is due. The \doxyref{run()}{p.}{class_accel_stepper_a608b2395b64ac15451d16d0371fe13ce} function must be called frequently until the motor is in the desired position, after which time \doxyref{run()}{p.}{class_accel_stepper_a608b2395b64ac15451d16d0371fe13ce} will do nothing.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Positioning}
+Positions are specified by a signed long integer. At construction time, the current position of the motor is consider to be 0. Positive positions are clockwise from the initial position; negative positions are anticlockwise. The current position can be altered for instance after initialization positioning.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Caveats}
+This is an open loop controller\+: If the motor stalls or is oversped, \doxyref{Accel\+Stepper}{p.}{class_accel_stepper} will not have a correct idea of where the motor really is (since there is no feedback of the motor\textquotesingle{}s real position. We only know where we {\itshape think} it is, relative to the initial starting point).
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Performance}
+The fastest motor speed that can be reliably supported is about 4000 steps per second at a clock frequency of 16 MHz on Arduino such as Uno etc. Faster processors can support faster stepping speeds. However, any speed less than that down to very slow speeds (much less than one per second) are also supported, provided the \doxyref{run()}{p.}{class_accel_stepper_a608b2395b64ac15451d16d0371fe13ce} function is called frequently enough to step the motor whenever required for the speed set. Calling \doxyref{set\+Acceleration()}{p.}{class_accel_stepper_adfb19e3cd2a028a1fe78131787604fd1} is expensive, since it requires a square root to be calculated.
+\end{DoxyParagraph}
+Gregor Christandl reports that with an Arduino Due and a simple test program, he measured 43163 steps per second using \doxyref{run\+Speed()}{p.}{class_accel_stepper_aa4a6bdf99f698284faaeb5542b0b7514}, and 16214 steps per second using \doxyref{run()}{p.}{class_accel_stepper_a608b2395b64ac15451d16d0371fe13ce}; 
+
+\doxysubsection{Member Enumeration Documentation}
+\index{AccelStepper@{AccelStepper}!Direction@{Direction}}
+\index{Direction@{Direction}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{Direction}
+{\footnotesize\ttfamily \label{class_accel_stepper_a7468f91a925c689c3ba250f8d074d228} 
+enum \textbf{ Accel\+Stepper\+::\+Direction}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Direction indicator Symbolic names for the direction the motor is turning. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DIRECTION\_CCW@{DIRECTION\_CCW}!AccelStepper@{AccelStepper}}\index{AccelStepper@{AccelStepper}!DIRECTION\_CCW@{DIRECTION\_CCW}}}\label{class_accel_stepper_a7468f91a925c689c3ba250f8d074d228} 
+DIRECTION\+\_\+\+CCW&Counter-\/\+Clockwise. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DIRECTION\_CW@{DIRECTION\_CW}!AccelStepper@{AccelStepper}}\index{AccelStepper@{AccelStepper}!DIRECTION\_CW@{DIRECTION\_CW}}}\label{class_accel_stepper_a7468f91a925c689c3ba250f8d074d228} 
+DIRECTION\+\_\+\+CW&Clockwise. \\
+\hline
+
+\end{DoxyEnumFields}
+\index{AccelStepper@{AccelStepper}!MotorInterfaceType@{MotorInterfaceType}}
+\index{MotorInterfaceType@{MotorInterfaceType}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{MotorInterfaceType}
+{\footnotesize\ttfamily \label{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5} 
+enum \textbf{ Accel\+Stepper\+::\+Motor\+Interface\+Type}}
+
+
+
+Symbolic names for number of pins. Use this in the pins argument the \doxyref{Accel\+Stepper}{p.}{class_accel_stepper} constructor to provide a symbolic name for the number of pins to use. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FUNCTION@{FUNCTION}!AccelStepper@{AccelStepper}}\index{AccelStepper@{AccelStepper}!FUNCTION@{FUNCTION}}}\label{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5} 
+FUNCTION&Use the functional interface, implementing your own driver functions (internal use only) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DRIVER@{DRIVER}!AccelStepper@{AccelStepper}}\index{AccelStepper@{AccelStepper}!DRIVER@{DRIVER}}}\label{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5} 
+DRIVER&Stepper Driver, 2 driver pins required. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FULL2WIRE@{FULL2WIRE}!AccelStepper@{AccelStepper}}\index{AccelStepper@{AccelStepper}!FULL2WIRE@{FULL2WIRE}}}\label{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5} 
+FULL2\+WIRE&2 wire stepper, 2 motor pins required \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FULL3WIRE@{FULL3WIRE}!AccelStepper@{AccelStepper}}\index{AccelStepper@{AccelStepper}!FULL3WIRE@{FULL3WIRE}}}\label{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5} 
+FULL3\+WIRE&3 wire stepper, such as HDD spindle, 3 motor pins required \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FULL4WIRE@{FULL4WIRE}!AccelStepper@{AccelStepper}}\index{AccelStepper@{AccelStepper}!FULL4WIRE@{FULL4WIRE}}}\label{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5} 
+FULL4\+WIRE&4 wire full stepper, 4 motor pins required \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HALF3WIRE@{HALF3WIRE}!AccelStepper@{AccelStepper}}\index{AccelStepper@{AccelStepper}!HALF3WIRE@{HALF3WIRE}}}\label{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5} 
+HALF3\+WIRE&3 wire half stepper, such as HDD spindle, 3 motor pins required \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HALF4WIRE@{HALF4WIRE}!AccelStepper@{AccelStepper}}\index{AccelStepper@{AccelStepper}!HALF4WIRE@{HALF4WIRE}}}\label{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5} 
+HALF4\+WIRE&4 wire half stepper, 4 motor pins required \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\index{AccelStepper@{AccelStepper}!AccelStepper@{AccelStepper}}
+\index{AccelStepper@{AccelStepper}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{AccelStepper()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_accel_stepper_a3bc75bd6571b98a6177838ca81ac39ab} 
+Accel\+Stepper\+::\+Accel\+Stepper (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{interface}{ = {\ttfamily \textbf{ Accel\+Stepper\+::\+FULL4\+WIRE}}, }\item[{uint8\+\_\+t}]{pin1}{ = {\ttfamily 2}, }\item[{uint8\+\_\+t}]{pin2}{ = {\ttfamily 3}, }\item[{uint8\+\_\+t}]{pin3}{ = {\ttfamily 4}, }\item[{uint8\+\_\+t}]{pin4}{ = {\ttfamily 5}, }\item[{bool}]{enable}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+Constructor. You can have multiple simultaneous steppers, all moving at different speeds and accelerations, provided you call their \doxyref{run()}{p.}{class_accel_stepper_a608b2395b64ac15451d16d0371fe13ce} functions at frequent enough intervals. Current Position is set to 0, target position is set to 0. Max\+Speed and Acceleration default to 1.\+0. The motor pins will be initialised to OUTPUT mode during the constructor by a call to \doxyref{enable\+Outputs()}{p.}{class_accel_stepper_aa279a50d30d0413f570c692cff071643}. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em interface} & Number of pins to interface to. Integer values are supported, but it is preferred to use the \doxyref{Motor\+Interface\+Type}{p.}{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5} symbolic names. \doxyref{Accel\+Stepper\+::\+DRIVER}{p.}{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5ac3523e4cf6763ba518d16fec3708ef23} (1) means a stepper driver (with Step and Direction pins). If an enable line is also needed, call \doxyref{set\+Enable\+Pin()}{p.}{class_accel_stepper_a56a81c5f00d02ca19646718e88e974c0} after construction. You may also invert the pins using \doxyref{set\+Pins\+Inverted()}{p.}{class_accel_stepper_ac62cae590c2f9c303519a3a1c4adc8ab}. Caution\+: DRIVER implements a blocking delay of min\+Pulse\+Width microseconds (default 1us) for each step. You can change this with \doxyref{set\+Min\+Pulse\+Width()}{p.}{class_accel_stepper_af4d3818e691dad5dc518308796ccf154}. \doxyref{Accel\+Stepper\+::\+FULL2\+WIRE}{p.}{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5a62a305b52f749ff8c89138273fbb012d} (2) means a 2 wire stepper (2 pins required). \doxyref{Accel\+Stepper\+::\+FULL3\+WIRE}{p.}{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5a0b8eea5cf0f8ce70b1959d2977ccc996} (3) means a 3 wire stepper, such as HDD spindle (3 pins required). \doxyref{Accel\+Stepper\+::\+FULL4\+WIRE}{p.}{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5adedd394a375190a3df8d4519c0d4dc2f} (4) means a 4 wire stepper (4 pins required). \doxyref{Accel\+Stepper\+::\+HALF3\+WIRE}{p.}{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5a00c2387a5af43d8e97639699ab7a5c7f} (6) means a 3 wire half stepper, such as HDD spindle (3 pins required) \doxyref{Accel\+Stepper\+::\+HALF4\+WIRE}{p.}{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5aecc0900c55b777d2e885581b8c434b07} (8) means a 4 wire half stepper (4 pins required) Defaults to \doxyref{Accel\+Stepper\+::\+FULL4\+WIRE}{p.}{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5adedd394a375190a3df8d4519c0d4dc2f} (4) pins. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin1} & Arduino digital pin number for motor pin 1. Defaults to pin 2. For a \doxyref{Accel\+Stepper\+::\+DRIVER}{p.}{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5ac3523e4cf6763ba518d16fec3708ef23} (interface==1), this is the Step input to the driver. Low to high transition means to step) \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin2} & Arduino digital pin number for motor pin 2. Defaults to pin 3. For a \doxyref{Accel\+Stepper\+::\+DRIVER}{p.}{class_accel_stepper_a73bdecf1273d98d8c5fbcb764cabeea5ac3523e4cf6763ba518d16fec3708ef23} (interface==1), this is the Direction input the driver. High means forward. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin3} & Arduino digital pin number for motor pin 3. Defaults to pin 4. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin4} & Arduino digital pin number for motor pin 4. Defaults to pin 5. \\
+\hline
+\mbox{\texttt{ in}}  & {\em enable} & If this is true (the default), \doxyref{enable\+Outputs()}{p.}{class_accel_stepper_aa279a50d30d0413f570c692cff071643} will be called to enable the output pins at construction time. \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!AccelStepper@{AccelStepper}}
+\index{AccelStepper@{AccelStepper}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{AccelStepper()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_accel_stepper_afa3061ce813303a8f2fa206ee8d012bd} 
+Accel\+Stepper\+::\+Accel\+Stepper (\begin{DoxyParamCaption}\item[{void($\ast$}]{forward~}{)(), }\item[{void($\ast$}]{backward~}{)()}\end{DoxyParamCaption})}
+
+Alternate Constructor which will call your own functions for forward and backward steps. You can have multiple simultaneous steppers, all moving at different speeds and accelerations, provided you call their \doxyref{run()}{p.}{class_accel_stepper_a608b2395b64ac15451d16d0371fe13ce} functions at frequent enough intervals. Current Position is set to 0, target position is set to 0. Max\+Speed and Acceleration default to 1.\+0. Any motor initialization should happen before hand, no pins are used or initialized. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em forward} & void-\/returning procedure that will make a forward step \\
+\hline
+\mbox{\texttt{ in}}  & {\em backward} & void-\/returning procedure that will make a backward step \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\index{AccelStepper@{AccelStepper}!acceleration@{acceleration}}
+\index{acceleration@{acceleration}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{acceleration()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a8b76f1ae6a49d2c2887b9fea30b8d84f} 
+float Accel\+Stepper\+::acceleration (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the acceleration/deceleration rate configured for this stepper that was previously set by \doxyref{set\+Acceleration()}{p.}{class_accel_stepper_adfb19e3cd2a028a1fe78131787604fd1}; \begin{DoxyReturn}{Returns}
+The currently configured acceleration/deceleration 
+\end{DoxyReturn}
+\index{AccelStepper@{AccelStepper}!computeNewSpeed@{computeNewSpeed}}
+\index{computeNewSpeed@{computeNewSpeed}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{computeNewSpeed()}
+{\footnotesize\ttfamily \label{class_accel_stepper_aab5944f43f869675958939c421bd9a01} 
+unsigned long Accel\+Stepper\+::compute\+New\+Speed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Forces the library to compute a new instantaneous speed and set that as the current speed. It is called by the library\+: \begin{DoxyItemize}
+\item after each step \item after change to max\+Speed through \doxyref{set\+Max\+Speed()}{p.}{class_accel_stepper_abee8d466229b87accba33d6ec929c18f} \item after change to acceleration through \doxyref{set\+Acceleration()}{p.}{class_accel_stepper_adfb19e3cd2a028a1fe78131787604fd1} \item after change to target position (relative or absolute) through \doxyref{move()}{p.}{class_accel_stepper_a68942c66e78fb7f7b5f0cdade6eb7f06} or \doxyref{move\+To()}{p.}{class_accel_stepper_ace236ede35f87c63d18da25810ec9736} \begin{DoxyReturn}{Returns}
+the new step interval 
+\end{DoxyReturn}
+\end{DoxyItemize}
+\index{AccelStepper@{AccelStepper}!currentPosition@{currentPosition}}
+\index{currentPosition@{currentPosition}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{currentPosition()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a5dce13ab2a1b02b8f443318886bf6fc5} 
+long Accel\+Stepper\+::current\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+The current motor position. \begin{DoxyReturn}{Returns}
+the current motor position in steps. Positive is clockwise from the 0 position. 
+\end{DoxyReturn}
+\index{AccelStepper@{AccelStepper}!disableOutputs@{disableOutputs}}
+\index{disableOutputs@{disableOutputs}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{disableOutputs()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a3591e29a236e2935afd7f64ff6c22006} 
+void Accel\+Stepper\+::disable\+Outputs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Disable motor pin outputs by setting them all LOW Depending on the design of your electronics this may turn off the power to the motor coils, saving power. This is useful to support Arduino low power modes\+: disable the outputs during sleep and then reenable with \doxyref{enable\+Outputs()}{p.}{class_accel_stepper_aa279a50d30d0413f570c692cff071643} before stepping again. If the enable Pin is defined, sets it to OUTPUT mode and clears the pin to disabled. \index{AccelStepper@{AccelStepper}!distanceToGo@{distanceToGo}}
+\index{distanceToGo@{distanceToGo}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{distanceToGo()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a748665c3962e66fbc0e9373eb14c69c1} 
+long Accel\+Stepper\+::distance\+To\+Go (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+The distance from the current position to the target position. \begin{DoxyReturn}{Returns}
+the distance from the current position to the target position in steps. Positive is clockwise from the current position. 
+\end{DoxyReturn}
+\index{AccelStepper@{AccelStepper}!enableOutputs@{enableOutputs}}
+\index{enableOutputs@{enableOutputs}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{enableOutputs()}
+{\footnotesize\ttfamily \label{class_accel_stepper_aa279a50d30d0413f570c692cff071643} 
+void Accel\+Stepper\+::enable\+Outputs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Enable motor pin outputs by setting the motor pins to OUTPUT mode. Called automatically by the constructor. If the enable Pin is defined, sets it to OUTPUT mode and sets the pin to enabled. \index{AccelStepper@{AccelStepper}!isRunning@{isRunning}}
+\index{isRunning@{isRunning}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{isRunning()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a3a60cc0b962f8ceb81ee1e6f36443ceb} 
+bool Accel\+Stepper\+::is\+Running (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Checks to see if the motor is currently running to a target \begin{DoxyReturn}{Returns}
+true if the speed is not zero or not at the target position 
+\end{DoxyReturn}
+\index{AccelStepper@{AccelStepper}!maxSpeed@{maxSpeed}}
+\index{maxSpeed@{maxSpeed}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{maxSpeed()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a6123a1dfb4495d8bd2646288eae60d7f} 
+float Accel\+Stepper\+::max\+Speed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns the maximum speed configured for this stepper that was previously set by \doxyref{set\+Max\+Speed()}{p.}{class_accel_stepper_abee8d466229b87accba33d6ec929c18f}; \begin{DoxyReturn}{Returns}
+The currently configured maximum speed 
+\end{DoxyReturn}
+\index{AccelStepper@{AccelStepper}!move@{move}}
+\index{move@{move}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{move()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a68942c66e78fb7f7b5f0cdade6eb7f06} 
+void Accel\+Stepper\+::move (\begin{DoxyParamCaption}\item[{long}]{relative}{}\end{DoxyParamCaption})}
+
+Set the target position relative to the current position. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em relative} & The desired position relative to the current position. Negative is anticlockwise from the current position. \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!moveTo@{moveTo}}
+\index{moveTo@{moveTo}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{moveTo()}
+{\footnotesize\ttfamily \label{class_accel_stepper_ace236ede35f87c63d18da25810ec9736} 
+void Accel\+Stepper\+::move\+To (\begin{DoxyParamCaption}\item[{long}]{absolute}{}\end{DoxyParamCaption})}
+
+Set the target position. The \doxyref{run()}{p.}{class_accel_stepper_a608b2395b64ac15451d16d0371fe13ce} function will try to move the motor (at most one step per call) from the current position to the target position set by the most recent call to this function. Caution\+: \doxyref{move\+To()}{p.}{class_accel_stepper_ace236ede35f87c63d18da25810ec9736} also recalculates the speed for the next step. If you are trying to use constant speed movements, you should call \doxyref{set\+Speed()}{p.}{class_accel_stepper_ae79c49ad69d5ccc9da0ee691fa4ca235} after calling \doxyref{move\+To()}{p.}{class_accel_stepper_ace236ede35f87c63d18da25810ec9736}. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em absolute} & The desired absolute position. Negative is anticlockwise from the 0 position. \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!run@{run}}
+\index{run@{run}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{run()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a608b2395b64ac15451d16d0371fe13ce} 
+boolean Accel\+Stepper\+::run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Poll the motor and step it if a step is due, implementing accelerations and decelerations to achieve the target position. You must call this as frequently as possible, but at least once per minimum step time interval, preferably in your main loop. Note that each call to \doxyref{run()}{p.}{class_accel_stepper_a608b2395b64ac15451d16d0371fe13ce} will make at most one step, and then only when a step is due, based on the current speed and the time since the last step. \begin{DoxyReturn}{Returns}
+true if the motor is still running to the target position. 
+\end{DoxyReturn}
+\index{AccelStepper@{AccelStepper}!runSpeed@{runSpeed}}
+\index{runSpeed@{runSpeed}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{runSpeed()}
+{\footnotesize\ttfamily \label{class_accel_stepper_aa4a6bdf99f698284faaeb5542b0b7514} 
+boolean Accel\+Stepper\+::run\+Speed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Poll the motor and step it if a step is due, implementing a constant speed as set by the most recent call to \doxyref{set\+Speed()}{p.}{class_accel_stepper_ae79c49ad69d5ccc9da0ee691fa4ca235}. You must call this as frequently as possible, but at least once per step interval, \begin{DoxyReturn}{Returns}
+true if the motor was stepped. 
+\end{DoxyReturn}
+\index{AccelStepper@{AccelStepper}!runSpeedToPosition@{runSpeedToPosition}}
+\index{runSpeedToPosition@{runSpeedToPosition}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{runSpeedToPosition()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a9270d20336e76ac1fd5bcd5b9c34f301} 
+boolean Accel\+Stepper\+::run\+Speed\+To\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Executes \doxyref{run\+Speed()}{p.}{class_accel_stepper_aa4a6bdf99f698284faaeb5542b0b7514} unless the target\+Position is reached. This function needs to be called often just like \doxyref{run\+Speed()}{p.}{class_accel_stepper_aa4a6bdf99f698284faaeb5542b0b7514} or \doxyref{run()}{p.}{class_accel_stepper_a608b2395b64ac15451d16d0371fe13ce}. Will step the motor if a step is required at the currently selected speed unless the target position has been reached. Does not implement accelerations. \begin{DoxyReturn}{Returns}
+true if it stepped 
+\end{DoxyReturn}
+\index{AccelStepper@{AccelStepper}!runToNewPosition@{runToNewPosition}}
+\index{runToNewPosition@{runToNewPosition}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{runToNewPosition()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a176c5d2e4c2f21e9e92b12e39a6f0e67} 
+void Accel\+Stepper\+::run\+To\+New\+Position (\begin{DoxyParamCaption}\item[{long}]{position}{}\end{DoxyParamCaption})}
+
+Moves the motor (with acceleration/deceleration) to the new target position and blocks until it is at position. Dont use this in event loops, since it blocks. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em position} & The new target position. \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!runToPosition@{runToPosition}}
+\index{runToPosition@{runToPosition}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{runToPosition()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a344f58fef8cc34ac5aa75ba4b665d21c} 
+void Accel\+Stepper\+::run\+To\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Moves the motor (with acceleration/deceleration) to the target position and blocks until it is at position. Dont use this in event loops, since it blocks. \index{AccelStepper@{AccelStepper}!setAcceleration@{setAcceleration}}
+\index{setAcceleration@{setAcceleration}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{setAcceleration()}
+{\footnotesize\ttfamily \label{class_accel_stepper_adfb19e3cd2a028a1fe78131787604fd1} 
+void Accel\+Stepper\+::set\+Acceleration (\begin{DoxyParamCaption}\item[{float}]{acceleration}{}\end{DoxyParamCaption})}
+
+Sets the acceleration/deceleration rate. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em acceleration} & The desired acceleration in steps per second per second. Must be $>$ 0.\+0. This is an expensive call since it requires a square root to be calculated. Dont call more ofthen than needed \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!setCurrentPosition@{setCurrentPosition}}
+\index{setCurrentPosition@{setCurrentPosition}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{setCurrentPosition()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a9d917f014317fb9d3b5dc14e66f6c689} 
+void Accel\+Stepper\+::set\+Current\+Position (\begin{DoxyParamCaption}\item[{long}]{position}{}\end{DoxyParamCaption})}
+
+Resets the current position of the motor, so that wherever the motor happens to be right now is considered to be the new 0 position. Useful for setting a zero position on a stepper after an initial hardware positioning move. Has the side effect of setting the current motor speed to 0. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em position} & The position in steps of wherever the motor happens to be right now. \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!setEnablePin@{setEnablePin}}
+\index{setEnablePin@{setEnablePin}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{setEnablePin()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a56a81c5f00d02ca19646718e88e974c0} 
+void Accel\+Stepper\+::set\+Enable\+Pin (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{enable\+Pin}{ = {\ttfamily 0xff}}\end{DoxyParamCaption})}
+
+Sets the enable pin number for stepper drivers. 0x\+FF indicates unused (default). Otherwise, if a pin is set, the pin will be turned on when \doxyref{enable\+Outputs()}{p.}{class_accel_stepper_aa279a50d30d0413f570c692cff071643} is called and switched off when \doxyref{disable\+Outputs()}{p.}{class_accel_stepper_a3591e29a236e2935afd7f64ff6c22006} is called. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em enable\+Pin} & Arduino digital pin number for motor enable \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxyref{set\+Pins\+Inverted}{p.}{class_accel_stepper_ac62cae590c2f9c303519a3a1c4adc8ab} 
+\end{DoxySeeAlso}
+\index{AccelStepper@{AccelStepper}!setMaxSpeed@{setMaxSpeed}}
+\index{setMaxSpeed@{setMaxSpeed}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{setMaxSpeed()}
+{\footnotesize\ttfamily \label{class_accel_stepper_abee8d466229b87accba33d6ec929c18f} 
+void Accel\+Stepper\+::set\+Max\+Speed (\begin{DoxyParamCaption}\item[{float}]{speed}{}\end{DoxyParamCaption})}
+
+Sets the maximum permitted speed. The \doxyref{run()}{p.}{class_accel_stepper_a608b2395b64ac15451d16d0371fe13ce} function will accelerate up to the speed set by this function. Caution\+: the maximum speed achievable depends on your processor and clock speed. The default max\+Speed is 1.\+0 steps per second. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em speed} & The desired maximum speed in steps per second. Must be $>$ 0. Caution\+: Speeds that exceed the maximum speed supported by the processor may Result in non-\/linear accelerations and decelerations. \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!setMinPulseWidth@{setMinPulseWidth}}
+\index{setMinPulseWidth@{setMinPulseWidth}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{setMinPulseWidth()}
+{\footnotesize\ttfamily \label{class_accel_stepper_af4d3818e691dad5dc518308796ccf154} 
+void Accel\+Stepper\+::set\+Min\+Pulse\+Width (\begin{DoxyParamCaption}\item[{unsigned int}]{min\+Width}{}\end{DoxyParamCaption})}
+
+Sets the minimum pulse width allowed by the stepper driver. The minimum practical pulse width is approximately 20 microseconds. Times less than 20 microseconds will usually result in 20 microseconds or so. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em min\+Width} & The minimum pulse width in microseconds. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!setOutputPins@{setOutputPins}}
+\index{setOutputPins@{setOutputPins}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{setOutputPins()}
+{\footnotesize\ttfamily \label{class_accel_stepper_af3c2516b6ce7c1ecbc2004107bb2a9ce} 
+void Accel\+Stepper\+::set\+Output\+Pins (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{mask}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Low level function to set the motor output pins bit 0 of the mask corresponds to \+\_\+pin[0] bit 1 of the mask corresponds to \+\_\+pin[1] You can override this to impment, for example serial chip output insted of using the output pins directly \index{AccelStepper@{AccelStepper}!setPinsInverted@{setPinsInverted}}
+\index{setPinsInverted@{setPinsInverted}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{setPinsInverted()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_accel_stepper_ac62cae590c2f9c303519a3a1c4adc8ab} 
+void Accel\+Stepper\+::set\+Pins\+Inverted (\begin{DoxyParamCaption}\item[{bool}]{direction\+Invert}{ = {\ttfamily false}, }\item[{bool}]{step\+Invert}{ = {\ttfamily false}, }\item[{bool}]{enable\+Invert}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+Sets the inversion for stepper driver pins 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em direction\+Invert} & True for inverted direction pin, false for non-\/inverted \\
+\hline
+\mbox{\texttt{ in}}  & {\em step\+Invert} & True for inverted step pin, false for non-\/inverted \\
+\hline
+\mbox{\texttt{ in}}  & {\em enable\+Invert} & True for inverted enable pin, false (default) for non-\/inverted \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!setPinsInverted@{setPinsInverted}}
+\index{setPinsInverted@{setPinsInverted}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{setPinsInverted()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_accel_stepper_a38298ac2dd852fb22259f6c4bbe08c94} 
+void Accel\+Stepper\+::set\+Pins\+Inverted (\begin{DoxyParamCaption}\item[{bool}]{pin1\+Invert}{, }\item[{bool}]{pin2\+Invert}{, }\item[{bool}]{pin3\+Invert}{, }\item[{bool}]{pin4\+Invert}{, }\item[{bool}]{enable\+Invert}{}\end{DoxyParamCaption})}
+
+Sets the inversion for 2, 3 and 4 wire stepper pins 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pin1\+Invert} & True for inverted pin1, false for non-\/inverted \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin2\+Invert} & True for inverted pin2, false for non-\/inverted \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin3\+Invert} & True for inverted pin3, false for non-\/inverted \\
+\hline
+\mbox{\texttt{ in}}  & {\em pin4\+Invert} & True for inverted pin4, false for non-\/inverted \\
+\hline
+\mbox{\texttt{ in}}  & {\em enable\+Invert} & True for inverted enable pin, false (default) for non-\/inverted \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!setSpeed@{setSpeed}}
+\index{setSpeed@{setSpeed}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{setSpeed()}
+{\footnotesize\ttfamily \label{class_accel_stepper_ae79c49ad69d5ccc9da0ee691fa4ca235} 
+void Accel\+Stepper\+::set\+Speed (\begin{DoxyParamCaption}\item[{float}]{speed}{}\end{DoxyParamCaption})}
+
+Sets the desired constant speed for use with \doxyref{run\+Speed()}{p.}{class_accel_stepper_aa4a6bdf99f698284faaeb5542b0b7514}. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em speed} & The desired constant speed in steps per second. Positive is clockwise. Speeds of more than 1000 steps per second are unreliable. Very slow speeds may be set (eg 0.\+00027777 for once per hour, approximately. Speed accuracy depends on the Arduino crystal. Jitter depends on how frequently you call the \doxyref{run\+Speed()}{p.}{class_accel_stepper_aa4a6bdf99f698284faaeb5542b0b7514} function. The speed will be limited by the current value of \doxyref{set\+Max\+Speed()}{p.}{class_accel_stepper_abee8d466229b87accba33d6ec929c18f} \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!speed@{speed}}
+\index{speed@{speed}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{speed()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a4f0989d0ae264e7eadfe1fa720769fb6} 
+float Accel\+Stepper\+::speed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+The most recently set speed. \begin{DoxyReturn}{Returns}
+the most recent speed in steps per second 
+\end{DoxyReturn}
+\index{AccelStepper@{AccelStepper}!step@{step}}
+\index{step@{step}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{step()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a8a419121702399d8ac66df4cc47481f4} 
+void Accel\+Stepper\+::step (\begin{DoxyParamCaption}\item[{long}]{step}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Called to execute a step. Only called when a new step is required. Subclasses may override to implement new stepping interfaces. The default calls \doxyref{step1()}{p.}{class_accel_stepper_a63ef416bc039da539294e84a41e7d7dc}, \doxyref{step2()}{p.}{class_accel_stepper_a674e48a6bf99e7ad1f013c1e4414565a}, \doxyref{step4()}{p.}{class_accel_stepper_a8910bd9218a54dfb7e2372a6d0bcca0c} or \doxyref{step8()}{p.}{class_accel_stepper_aa909c6c3fcd3ea4b3ee1aa8b4d0f7e87} depending on the number of pins defined for the stepper. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em step} & The current step phase number (0 to 7) \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!step0@{step0}}
+\index{step0@{step0}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{step0()}
+{\footnotesize\ttfamily \label{class_accel_stepper_aa2913db789e6fa05756579ff82fe6e7e} 
+void Accel\+Stepper\+::step0 (\begin{DoxyParamCaption}\item[{long}]{step}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Called to execute a step using stepper functions (pins = 0) Only called when a new step is required. Calls \+\_\+forward() or \+\_\+backward() to perform the step 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em step} & The current step phase number (0 to 7) \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!step1@{step1}}
+\index{step1@{step1}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{step1()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a63ef416bc039da539294e84a41e7d7dc} 
+void Accel\+Stepper\+::step1 (\begin{DoxyParamCaption}\item[{long}]{step}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Called to execute a step on a stepper driver (ie where pins == 1). Only called when a new step is required. Subclasses may override to implement new stepping interfaces. The default sets or clears the outputs of Step pin1 to step, and sets the output of \+\_\+pin2 to the desired direction. The Step pin (\+\_\+pin1) is pulsed for 1 microsecond which is the minimum STEP pulse width for the 3967 driver. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em step} & The current step phase number (0 to 7) \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!step2@{step2}}
+\index{step2@{step2}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{step2()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a674e48a6bf99e7ad1f013c1e4414565a} 
+void Accel\+Stepper\+::step2 (\begin{DoxyParamCaption}\item[{long}]{step}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Called to execute a step on a 2 pin motor. Only called when a new step is required. Subclasses may override to implement new stepping interfaces. The default sets or clears the outputs of pin1 and pin2 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em step} & The current step phase number (0 to 7) \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!step3@{step3}}
+\index{step3@{step3}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{step3()}
+{\footnotesize\ttfamily \label{class_accel_stepper_ad73c61aade2e10243dfb02aefa7ab8fd} 
+void Accel\+Stepper\+::step3 (\begin{DoxyParamCaption}\item[{long}]{step}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Called to execute a step on a 3 pin motor, such as HDD spindle. Only called when a new step is required. Subclasses may override to implement new stepping interfaces. The default sets or clears the outputs of pin1, pin2, pin3 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em step} & The current step phase number (0 to 7) \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!step4@{step4}}
+\index{step4@{step4}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{step4()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a8910bd9218a54dfb7e2372a6d0bcca0c} 
+void Accel\+Stepper\+::step4 (\begin{DoxyParamCaption}\item[{long}]{step}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Called to execute a step on a 4 pin motor. Only called when a new step is required. Subclasses may override to implement new stepping interfaces. The default sets or clears the outputs of pin1, pin2, pin3, pin4. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em step} & The current step phase number (0 to 7) \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!step6@{step6}}
+\index{step6@{step6}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{step6()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a4b0faf1ebc0c584ab606c0c0f66986b0} 
+void Accel\+Stepper\+::step6 (\begin{DoxyParamCaption}\item[{long}]{step}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Called to execute a step on a 3 pin motor, such as HDD spindle. Only called when a new step is required. Subclasses may override to implement new stepping interfaces. The default sets or clears the outputs of pin1, pin2, pin3 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em step} & The current step phase number (0 to 7) \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!step8@{step8}}
+\index{step8@{step8}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{step8()}
+{\footnotesize\ttfamily \label{class_accel_stepper_aa909c6c3fcd3ea4b3ee1aa8b4d0f7e87} 
+void Accel\+Stepper\+::step8 (\begin{DoxyParamCaption}\item[{long}]{step}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Called to execute a step on a 4 pin half-\/stepper motor. Only called when a new step is required. Subclasses may override to implement new stepping interfaces. The default sets or clears the outputs of pin1, pin2, pin3, pin4. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em step} & The current step phase number (0 to 7) \\
+\hline
+\end{DoxyParams}
+\index{AccelStepper@{AccelStepper}!stepBackward@{stepBackward}}
+\index{stepBackward@{stepBackward}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{stepBackward()}
+{\footnotesize\ttfamily \label{class_accel_stepper_af8abc9ede47286fa33b518e0bf297c6a} 
+long Accel\+Stepper\+::step\+Backward (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Called to execute a counter-\/clockwise(-\/) step. Only called when a new step is required. This decrements the \+\_\+current\+Pos and calls \doxyref{step()}{p.}{class_accel_stepper_a8a419121702399d8ac66df4cc47481f4} \begin{DoxyReturn}{Returns}
+the updated current position 
+\end{DoxyReturn}
+\index{AccelStepper@{AccelStepper}!stepForward@{stepForward}}
+\index{stepForward@{stepForward}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{stepForward()}
+{\footnotesize\ttfamily \label{class_accel_stepper_af4908b53e1821f0a6d2dab509257b3e6} 
+long Accel\+Stepper\+::step\+Forward (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Called to execute a clockwise(+) step. Only called when a new step is required. This increments the \+\_\+current\+Pos and calls \doxyref{step()}{p.}{class_accel_stepper_a8a419121702399d8ac66df4cc47481f4} \begin{DoxyReturn}{Returns}
+the updated current position 
+\end{DoxyReturn}
+\index{AccelStepper@{AccelStepper}!stop@{stop}}
+\index{stop@{stop}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{stop()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a638817b85aed9d5cd15c76a76c00aced} 
+void Accel\+Stepper\+::stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Sets a new target position that causes the stepper to stop as quickly as possible, using the current speed and acceleration parameters. \index{AccelStepper@{AccelStepper}!targetPosition@{targetPosition}}
+\index{targetPosition@{targetPosition}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{targetPosition()}
+{\footnotesize\ttfamily \label{class_accel_stepper_a96685e0945b7cf75d5959da679cd911e} 
+long Accel\+Stepper\+::target\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+The most recently set target position. \begin{DoxyReturn}{Returns}
+the target position in steps. Positive is clockwise from the 0 position. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\index{AccelStepper@{AccelStepper}!\_direction@{\_direction}}
+\index{\_direction@{\_direction}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{\_direction}
+{\footnotesize\ttfamily \label{class_accel_stepper_a35162cdf8ed9a98f98984c177d5ade58} 
+boolean Accel\+Stepper\+::\+\_\+direction\hspace{0.3cm}{\ttfamily [protected]}}
+
+Current direction motor is spinning in Protected because some peoples subclasses need it to be so \index{AccelStepper@{AccelStepper}!\_stepInterval@{\_stepInterval}}
+\index{\_stepInterval@{\_stepInterval}!AccelStepper@{AccelStepper}}
+\doxysubsubsection{\_stepInterval}
+{\footnotesize\ttfamily \label{class_accel_stepper_a744fa74c2e181e75509a34b17c02e984} 
+unsigned long Accel\+Stepper\+::\+\_\+step\+Interval\hspace{0.3cm}{\ttfamily [protected]}}
+
+The current interval between steps in microseconds. 0 means the motor is currently stopped with \+\_\+speed == 0 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Accel\+Stepper-\/1.\+64.\+0/src/Accel\+Stepper.\+h\item 
+lib/\+Accel\+Stepper-\/1.\+64.\+0/src/Accel\+Stepper.\+cpp\end{DoxyCompactItemize}

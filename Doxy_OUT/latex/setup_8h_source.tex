@@ -1,0 +1,79 @@
+\doxysection{setup.\+h}
+\hypertarget{setup_8h_source}{}\label{setup_8h_source}\index{setup/setup.h@{setup/setup.h}}
+\mbox{\hyperlink{setup_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ SETUP\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ SETUP\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{globals_8h}{globals/globals.h}}>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{libraries_8h}{libraries.h}}>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_g_u_i_8h}{GUI/GUI.h}}>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{project_tasks_8h}{project\_tasks/projectTasks.h}}>}}
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{setup_8h_a4fc01d736fe50cf5b977f755b675f11d}{setup}}()\{}
+\DoxyCodeLine{00019\ \ \ \ \ SPI.begin();\ }
+\DoxyCodeLine{00020\ \ \ \ \ Ethernet.init(26);\ }
+\DoxyCodeLine{00021\ \ \ \ \ Ethernet.begin(\mbox{\hyperlink{globals_8cpp_aea3f7775fecafb66a619eb2dcb0357bd}{mac}},\ ip);\ }
+\DoxyCodeLine{00029\ \ \ \ \ Serial.begin(115200);\ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{globals_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}{tft}}.init();\ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{globals_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}{tft}}.setTextWrap(\textcolor{keyword}{false});\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{globals_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}{tft}}.setTextSize(1);\ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{globals_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}{tft}}.setRotation(1);\ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{globals_8cpp_aaf623fe161cdf19ca07d4c1e29b0bd5f}{screenUpdateQueue}}\ =\ xQueueCreate(10,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{globals_8h_a1b06255088be0619cf099d600ef17ee2}{ScreenUpdateCommand}}));\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{_g_u_i_8cpp_a4b400f1f91381fc146bbc345743ded4f}{setBrightness}}(\mbox{\hyperlink{globals_8cpp_a3c6418394574dcdd1b88580cb85be4e6}{brightnessLevel}});\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{globals_8cpp_ac5d2dc3534f30f704fd7529ad0f89ff1}{tft}}.setSwapBytes(\textcolor{keyword}{true});\ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{globals_8cpp_a119bbace9abbf6d8daffc41eaaa1defb}{gatekeeper}}\ =\ xSemaphoreCreateMutex();\ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{globals_8cpp_a56beea51f1faca422c14d3e0322bd80a}{aLastState}}\ =\ digitalRead(\mbox{\hyperlink{globals_8cpp_aa17761af794bd8e8349cc093af8ff7c8}{CLK}});\ }
+\DoxyCodeLine{00045\ \ \ \ \ motor.setMaxSpeed(2000.0);\ }
+\DoxyCodeLine{00046\ \ \ \ \ motor.setAcceleration(1000.0);\ }
+\DoxyCodeLine{00053\ \ \ \ \ pinMode(\mbox{\hyperlink{globals_8cpp_aa17761af794bd8e8349cc093af8ff7c8}{CLK}},\ INPUT\_PULLUP);\ }
+\DoxyCodeLine{00054\ \ \ \ \ pinMode(\mbox{\hyperlink{globals_8cpp_af7aeafada2fc5a4b2b50c8a0bbacb915}{DT}},\ INPUT\_PULLUP);\ }
+\DoxyCodeLine{00055\ \ \ \ \ pinMode(\mbox{\hyperlink{globals_8cpp_a53dfd3081ecb5cbde9c66ee0ac81a653}{DIR\_PIN}},\ OUTPUT);\ }
+\DoxyCodeLine{00056\ \ \ \ \ pinMode(\mbox{\hyperlink{globals_8cpp_a1990422736e314cfb1270ba7927f533f}{STEP\_PIN}},\ OUTPUT);\ }
+\DoxyCodeLine{00064\ \ \ \ \ Rtc.Begin();\ }
+\DoxyCodeLine{00066\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}compiled:\ "{}});}
+\DoxyCodeLine{00067\ \ \ \ \ Serial.print(\_\_DATE\_\_);\ }
+\DoxyCodeLine{00068\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00069\ \ \ \ \ Serial.println(\_\_TIME\_\_);\ }
+\DoxyCodeLine{00071\ \ \ \ \ RtcDateTime\ compiled\ =\ RtcDateTime(\_\_DATE\_\_,\ \_\_TIME\_\_);\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Rtc.IsDateTimeValid())\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}RTC\ lost\ confidence\ in\ the\ DateTime!\ Setting\ compilation\ date\ and\ time."{}});}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ Rtc.SetDateTime(compiled);\ }
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{if}\ (Rtc.GetIsWriteProtected())\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}RTC\ was\ write\ protected,\ enabling\ writing\ now"{}});}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ Rtc.SetIsWriteProtected(\textcolor{keyword}{false});\ }
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Rtc.GetIsRunning())\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}RTC\ was\ not\ actively\ running,\ starting\ now"{}});}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ Rtc.SetIsRunning(\textcolor{keyword}{true});\ }
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ RtcDateTime\ now\ =\ Rtc.GetDateTime();\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{if}\ (now\ <\ compiled)\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}RTC\ is\ older\ than\ compile\ time!\ Updating\ DateTime."{}});}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ Rtc.SetDateTime(compiled);\ }
+\DoxyCodeLine{00105\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (now\ >\ compiled)\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}RTC\ is\ newer\ than\ compile\ time.\ (this\ is\ expected)"{}});}
+\DoxyCodeLine{00107\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (now\ ==\ compiled)\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}RTC\ is\ the\ same\ as\ compile\ time!\ (not\ expected\ but\ all\ is\ fine)"{}});}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00116\ \ \ \ \ xTaskCreatePinnedToCore(\mbox{\hyperlink{project_tasks_8cpp_ad27b1f3cd48fd0d4c4e001ce936655ed}{taskShowTime}},\ \textcolor{stringliteral}{"{}ShowTime"{}},\ 16384,\ NULL,\ 1,\ NULL,\ 1);\ }
+\DoxyCodeLine{00117\ \ \ \ \ xTaskCreatePinnedToCore(\mbox{\hyperlink{project_tasks_8cpp_a842d434c1a5974229f29449eccc0c6b9}{taskStartScreen}},\ \textcolor{stringliteral}{"{}TaskScreenStart"{}},\ 16384,\ NULL,\ 5,\ NULL,\ 0);\ }
+\DoxyCodeLine{00118\ \ \ \ \ xTaskCreatePinnedToCore(\mbox{\hyperlink{project_tasks_8cpp_a1c18bb47e34f815f3704982968624db3}{taskEncoder}},\ \textcolor{stringliteral}{"{}TaskEncoder"{}},\ 16384,\ NULL,\ 3,\ NULL,\ 0);\ }
+\DoxyCodeLine{00119\ \ \ \ \ xTaskCreatePinnedToCore(\mbox{\hyperlink{project_tasks_8cpp_a04c00ef3a0228a3a585bd5234272306d}{taskScreenTimeout}},\ \textcolor{stringliteral}{"{}ScreenTimeout"{}},\ 16384,\ NULL,\ 10,\ NULL,\ 1);\ }
+\DoxyCodeLine{00120\ \ \ \ \ xTaskCreatePinnedToCore(\mbox{\hyperlink{project_tasks_8cpp_a247838970da8dc68d145ceaca3eadeca}{taskButtonPress}},\ \textcolor{stringliteral}{"{}ButtonPress"{}},\ 16384,\ NULL,\ 3,\ NULL,\ 0);\ }
+\DoxyCodeLine{00121\ \ \ \ \ xTaskCreatePinnedToCore(\mbox{\hyperlink{project_tasks_8cpp_a56ef46894910bd6b5719ab787a9d3e04}{taskEthernet}},\ \textcolor{stringliteral}{"{}TaskEthernet"{}},\ 16384,\ NULL,\ 7,\ NULL,\ 1);\ }
+\DoxyCodeLine{00122\ \ \ \ \ xTaskCreatePinnedToCore(\mbox{\hyperlink{project_tasks_8cpp_a95b4196d7cc3c3c908c70ec40498fd76}{taskUpdateScreen}},\ \textcolor{stringliteral}{"{}UpdateScreen"{}},\ 16384,\ NULL,\ 2,\ NULL,\ 0);\ }
+\DoxyCodeLine{00123\ \ \ \ \ xTaskCreate(\mbox{\hyperlink{project_tasks_8cpp_afce3c225e8e1c47b44f594ef20806ed9}{rotarymotorTask}},\ \textcolor{stringliteral}{"{}Rotary\ motor\ Task"{}},\ 2048,\ NULL,\ 4,\ NULL);\ }
+\DoxyCodeLine{00124\ \ \ \ \ xTaskCreate(\mbox{\hyperlink{project_tasks_8cpp_a65a62f2829f1c3ae1f8562b0648ccaa4}{motorTask}},\ \textcolor{stringliteral}{"{}Motor\ Task"{}},\ 2048,\ NULL,\ 6,\ NULL);\ }
+\DoxyCodeLine{00125\ \ \ \ \ vTaskStartScheduler();\ }
+\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{globals_8h_a1b06255088be0619cf099d600ef17ee2}{ScreenUpdateCommand}}\ initialCommand\ =\ \mbox{\hyperlink{globals_8h_a1b06255088be0619cf099d600ef17ee2ac34814c1f26a778ac75bfc27ccc910fb}{UPDATE\_MAIN\_MENU}};}
+\DoxyCodeLine{00128\ \ \ \ \ xQueueSend(\mbox{\hyperlink{globals_8cpp_aaf623fe161cdf19ca07d4c1e29b0bd5f}{screenUpdateQueue}},\ \&initialCommand,\ portMAX\_DELAY);}
+\DoxyCodeLine{00129\ \}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ COMBINED\_SETUP\_H}}
+
+\end{DoxyCode}

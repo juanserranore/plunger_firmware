@@ -1,0 +1,197 @@
+\doxysection{project\+\_\+tasks/project\+Tasks.h File Reference}
+\hypertarget{project_tasks_8h}{}\label{project_tasks_8h}\index{project\_tasks/projectTasks.h@{project\_tasks/projectTasks.h}}
+
+
+Header file for system task management.  
+
+
+{\ttfamily \#include $<$libraries.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{project_tasks_8h_a95b4196d7cc3c3c908c70ec40498fd76}{task\+Update\+Screen}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Task to update the screen based on the current menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{project_tasks_8h_a842d434c1a5974229f29449eccc0c6b9}{task\+Start\+Screen}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Task to initialize and display the startup screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{project_tasks_8h_ad27b1f3cd48fd0d4c4e001ce936655ed}{task\+Show\+Time}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Task to display the current time on the screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{project_tasks_8h_a04c00ef3a0228a3a585bd5234272306d}{task\+Screen\+Timeout}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Task to manage screen timeout and automatic brightness adjustment. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{project_tasks_8h_afce3c225e8e1c47b44f594ef20806ed9}{rotarymotor\+Task}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Task for managing the rotary encoder. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{project_tasks_8h_a65a62f2829f1c3ae1f8562b0648ccaa4}{motor\+Task}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Task for controlling the motor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{project_tasks_8h_a56ef46894910bd6b5719ab787a9d3e04}{task\+Ethernet}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Task for managing Ethernet communication. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{project_tasks_8h_a1c18bb47e34f815f3704982968624db3}{task\+Encoder}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Task for handling encoder-\/related tasks. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{project_tasks_8h_a247838970da8dc68d145ceaca3eadeca}{task\+Button\+Press}} (void \texorpdfstring{$\ast$}{*}pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em Task for handling button press events. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for system task management. 
+
+This header file contains function declarations for managing system tasks, user interface on the screen, Ethernet communication, stepper motor control, and rotary encoder handling.
+
+\begin{DoxyNote}{Note}
+Ensure necessary libraries and definitions are included in the corresponding .cpp file. 
+
+Adjust constants and configurations according to hardware requirements. 
+\end{DoxyNote}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{project_tasks_8h_a65a62f2829f1c3ae1f8562b0648ccaa4}\index{projectTasks.h@{projectTasks.h}!motorTask@{motorTask}}
+\index{motorTask@{motorTask}!projectTasks.h@{projectTasks.h}}
+\doxysubsubsection{\texorpdfstring{motorTask()}{motorTask()}}
+{\footnotesize\ttfamily \label{project_tasks_8h_a65a62f2829f1c3ae1f8562b0648ccaa4} 
+void motor\+Task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})}
+
+
+
+Task for controlling the motor. 
+
+This task adjusts the motor speed based on the rotary encoder\textquotesingle{}s state. It operates only when the menu is set to AUTO.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Pointer to task parameters (not used). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{project_tasks_8h_afce3c225e8e1c47b44f594ef20806ed9}\index{projectTasks.h@{projectTasks.h}!rotarymotorTask@{rotarymotorTask}}
+\index{rotarymotorTask@{rotarymotorTask}!projectTasks.h@{projectTasks.h}}
+\doxysubsubsection{\texorpdfstring{rotarymotorTask()}{rotarymotorTask()}}
+{\footnotesize\ttfamily \label{project_tasks_8h_afce3c225e8e1c47b44f594ef20806ed9} 
+void rotarymotor\+Task (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})}
+
+
+
+Task for managing the rotary encoder. 
+
+This task reads the state of the rotary encoder and updates the position and display accordingly. It only operates when the menu is set to AUTO.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Pointer to task parameters (not used). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{project_tasks_8h_a247838970da8dc68d145ceaca3eadeca}\index{projectTasks.h@{projectTasks.h}!taskButtonPress@{taskButtonPress}}
+\index{taskButtonPress@{taskButtonPress}!projectTasks.h@{projectTasks.h}}
+\doxysubsubsection{\texorpdfstring{taskButtonPress()}{taskButtonPress()}}
+{\footnotesize\ttfamily \label{project_tasks_8h_a247838970da8dc68d145ceaca3eadeca} 
+void task\+Button\+Press (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})}
+
+
+
+Task for handling button press events. 
+
+This task processes button presses, including single, double, and long presses, and executes the corresponding handlers.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Pointer to task parameters (not used). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{project_tasks_8h_a1c18bb47e34f815f3704982968624db3}\index{projectTasks.h@{projectTasks.h}!taskEncoder@{taskEncoder}}
+\index{taskEncoder@{taskEncoder}!projectTasks.h@{projectTasks.h}}
+\doxysubsubsection{\texorpdfstring{taskEncoder()}{taskEncoder()}}
+{\footnotesize\ttfamily \label{project_tasks_8h_a1c18bb47e34f815f3704982968624db3} 
+void task\+Encoder (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})}
+
+
+
+Task for handling encoder-\/related tasks. 
+
+This task processes the rotary encoder input to navigate menus and adjust settings. It updates the display based on the current menu and encoder position.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Pointer to task parameters (not used). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{project_tasks_8h_a56ef46894910bd6b5719ab787a9d3e04}\index{projectTasks.h@{projectTasks.h}!taskEthernet@{taskEthernet}}
+\index{taskEthernet@{taskEthernet}!projectTasks.h@{projectTasks.h}}
+\doxysubsubsection{\texorpdfstring{taskEthernet()}{taskEthernet()}}
+{\footnotesize\ttfamily \label{project_tasks_8h_a56ef46894910bd6b5719ab787a9d3e04} 
+void task\+Ethernet (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})}
+
+
+
+Task for managing Ethernet communication. 
+
+This task handles Ethernet client connections and commands. It provides a menu for controlling the motor and updates the Ethernet status.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Pointer to task parameters (not used). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{project_tasks_8h_a04c00ef3a0228a3a585bd5234272306d}\index{projectTasks.h@{projectTasks.h}!taskScreenTimeout@{taskScreenTimeout}}
+\index{taskScreenTimeout@{taskScreenTimeout}!projectTasks.h@{projectTasks.h}}
+\doxysubsubsection{\texorpdfstring{taskScreenTimeout()}{taskScreenTimeout()}}
+{\footnotesize\ttfamily \label{project_tasks_8h_a04c00ef3a0228a3a585bd5234272306d} 
+void task\+Screen\+Timeout (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})}
+
+
+
+Task to manage screen timeout and automatic brightness adjustment. 
+
+Handles screen timeout and controls brightness and automatic shutdown.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Pointer to task parameters (not used). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{project_tasks_8h_ad27b1f3cd48fd0d4c4e001ce936655ed}\index{projectTasks.h@{projectTasks.h}!taskShowTime@{taskShowTime}}
+\index{taskShowTime@{taskShowTime}!projectTasks.h@{projectTasks.h}}
+\doxysubsubsection{\texorpdfstring{taskShowTime()}{taskShowTime()}}
+{\footnotesize\ttfamily \label{project_tasks_8h_ad27b1f3cd48fd0d4c4e001ce936655ed} 
+void task\+Show\+Time (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})}
+
+
+
+Task to display the current time on the screen. 
+
+This task shows the current time on the screen if the current menu is not the initial screen.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Pointer to task parameters (not used). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{project_tasks_8h_a842d434c1a5974229f29449eccc0c6b9}\index{projectTasks.h@{projectTasks.h}!taskStartScreen@{taskStartScreen}}
+\index{taskStartScreen@{taskStartScreen}!projectTasks.h@{projectTasks.h}}
+\doxysubsubsection{\texorpdfstring{taskStartScreen()}{taskStartScreen()}}
+{\footnotesize\ttfamily \label{project_tasks_8h_a842d434c1a5974229f29449eccc0c6b9} 
+void task\+Start\+Screen (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})}
+
+
+
+Task to initialize and display the startup screen. 
+
+Configures and shows the initial screen, then switches to the main menu.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Pointer to task parameters (not used). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{project_tasks_8h_a95b4196d7cc3c3c908c70ec40498fd76}\index{projectTasks.h@{projectTasks.h}!taskUpdateScreen@{taskUpdateScreen}}
+\index{taskUpdateScreen@{taskUpdateScreen}!projectTasks.h@{projectTasks.h}}
+\doxysubsubsection{\texorpdfstring{taskUpdateScreen()}{taskUpdateScreen()}}
+{\footnotesize\ttfamily \label{project_tasks_8h_a95b4196d7cc3c3c908c70ec40498fd76} 
+void task\+Update\+Screen (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Parameters}{}\end{DoxyParamCaption})}
+
+
+
+Task to update the screen based on the current menu. 
+
+Updates the screen according to the current menu and commands received in the queue.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pv\+Parameters} & Pointer to task parameters (not used). \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['screenon_0',['screenOn',['../globals_8cpp.html#aa9e9b2e282a3494c7ce3d60256a4ea8d',1,'screenOn:&#160;globals.cpp'],['../globals_8h.html#aa9e9b2e282a3494c7ce3d60256a4ea8d',1,'screenOn:&#160;globals.cpp']]],
+  ['screenupdatecommand_1',['ScreenUpdateCommand',['../globals_8h.html#a1b06255088be0619cf099d600ef17ee2',1,'globals.h']]],
+  ['screenupdatequeue_2',['screenUpdateQueue',['../globals_8cpp.html#aaf623fe161cdf19ca07d4c1e29b0bd5f',1,'screenUpdateQueue:&#160;globals.cpp'],['../globals_8h.html#aaf623fe161cdf19ca07d4c1e29b0bd5f',1,'screenUpdateQueue:&#160;globals.cpp']]],
+  ['selectbarcolors_3',['selectbarcolors',['../globals_8cpp.html#a6e73a84066164b6d9f9b4163e32e26e8',1,'selectbarcolors:&#160;globals.cpp'],['../globals_8h.html#a6e73a84066164b6d9f9b4163e32e26e8',1,'selectbarcolors:&#160;globals.cpp']]],
+  ['selectbarpossiblecolors_4',['selectbarpossibleColors',['../globals_8cpp.html#a25479c6b6ba2cf5f78957eb2084fff57',1,'selectbarpossibleColors:&#160;globals.cpp'],['../globals_8h.html#a25479c6b6ba2cf5f78957eb2084fff57',1,'selectbarpossibleColors:&#160;globals.cpp']]],
+  ['selectedbackgroundcolor_5',['selectedBackgroundColor',['../globals_8cpp.html#a1ccf7c5f8094a76b58c9ede32381734d',1,'selectedBackgroundColor:&#160;globals.cpp'],['../globals_8h.html#a1ccf7c5f8094a76b58c9ede32381734d',1,'selectedBackgroundColor:&#160;globals.cpp']]],
+  ['selectedbarcolor_6',['selectedBarColor',['../globals_8cpp.html#a8b66a55359ddeea3e6976e9c60c6bbab',1,'selectedBarColor:&#160;globals.cpp'],['../globals_8h.html#a8b66a55359ddeea3e6976e9c60c6bbab',1,'selectedBarColor:&#160;globals.cpp']]],
+  ['selectedbordercolor_7',['selectedBorderColor',['../globals_8cpp.html#a0820104f144feafedcf789edaff972f2',1,'selectedBorderColor:&#160;globals.cpp'],['../globals_8h.html#a0820104f144feafedcf789edaff972f2',1,'selectedBorderColor:&#160;globals.cpp']]],
+  ['selectedtextcolor_8',['selectedTextColor',['../globals_8cpp.html#a32e21127f5e32593af845236e1dc5a53',1,'selectedTextColor:&#160;globals.cpp'],['../globals_8h.html#a32e21127f5e32593af845236e1dc5a53',1,'selectedTextColor:&#160;globals.cpp']]],
+  ['selection_9',['selection',['../globals_8cpp.html#ab31fba1d7a121e252a8319258a725c85',1,'selection:&#160;globals.cpp'],['../globals_8h.html#ab31fba1d7a121e252a8319258a725c85',1,'selection:&#160;globals.cpp']]],
+  ['selection_5fbar_10',['SELECTION_BAR',['../globals_8h.html#aa3041ae4242c0dd57a126d17505443b2af9a60b6f3549778932afee28db904f30',1,'globals.h']]],
+  ['selection_5fborder_11',['SELECTION_BORDER',['../globals_8h.html#aa3041ae4242c0dd57a126d17505443b2aaac8b72a410fb17e620a6884d1ad6227',1,'globals.h']]],
+  ['selectionbar_12',['selectionbar',['../globals_8cpp.html#aa36dfd195eb1d6dfa143ece14956b263',1,'selectionbar:&#160;globals.cpp'],['../globals_8h.html#ac4879508a2e86a69828bd1cf95622753',1,'selectionbar:&#160;globals.cpp']]],
+  ['servidor_5ftcp_13',['SERVIDOR_TCP',['../globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a65d59f75bc58f75380983837537920e2',1,'globals.h']]],
+  ['setbrightness_14',['setBrightness',['../_g_u_i_8cpp.html#a4b400f1f91381fc146bbc345743ded4f',1,'setBrightness(int level):&#160;GUI.cpp'],['../_g_u_i_8h.html#a4b400f1f91381fc146bbc345743ded4f',1,'setBrightness(int level):&#160;GUI.cpp']]],
+  ['settings_15',['SETTINGS',['../globals_8h.html#aa3041ae4242c0dd57a126d17505443b2ac678338caea29d77d56be2ea56325610',1,'globals.h']]],
+  ['setup_16',['setup',['../setup_8h.html#a4fc01d736fe50cf5b977f755b675f11d',1,'setup.h']]],
+  ['setup_2eh_17',['setup.h',['../setup_8h.html',1,'']]],
+  ['singlepresshandler_18',['singlePressHandler',['../button_8cpp.html#a0d9c04fe4434f768c15608b82479f830',1,'singlePressHandler(BfButton *btn, BfButton::press_pattern_t pattern):&#160;button.cpp'],['../button_8h.html#a0d9c04fe4434f768c15608b82479f830',1,'singlePressHandler(BfButton *btn, BfButton::press_pattern_t pattern):&#160;button.cpp']]],
+  ['sky_5fblue_19',['SKY_BLUE',['../globals_8h.html#a0fec447e4a91ea353278a081496bba14',1,'globals.h']]],
+  ['step_5fpin_20',['STEP_PIN',['../globals_8cpp.html#a1990422736e314cfb1270ba7927f533f',1,'STEP_PIN:&#160;globals.cpp'],['../globals_8h.html#a1990422736e314cfb1270ba7927f533f',1,'STEP_PIN:&#160;globals.cpp']]],
+  ['stepper_5fmotor_21',['STEPPER_MOTOR',['../globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a8fc89282c6047847059874e30568fd3f',1,'globals.h']]],
+  ['submenu_22',['submenu',['../globals_8cpp.html#a20f0069e783e96b951776933f68c119c',1,'submenu:&#160;globals.cpp'],['../globals_8h.html#af7f6b9e37b99856ba9c4df355aba1830',1,'submenu:&#160;globals.cpp']]],
+  ['submenuitems_23',['submenuItems',['../globals_8cpp.html#aeb144c569687c0771ed094e4a15bf04e',1,'submenuItems:&#160;globals.cpp'],['../globals_8h.html#aeb144c569687c0771ed094e4a15bf04e',1,'submenuItems:&#160;globals.cpp']]]
+];

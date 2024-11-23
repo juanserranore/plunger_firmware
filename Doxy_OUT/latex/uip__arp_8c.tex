@@ -1,0 +1,45 @@
+\doxysection{lib/\+Ethernet\+ENC-\/2.0.5/src/utility/uip\+\_\+arp.c File Reference}
+\label{uip__arp_8c}\index{lib/EthernetENC-\/2.0.5/src/utility/uip\_arp.c@{lib/EthernetENC-\/2.0.5/src/utility/uip\_arp.c}}
+{\ttfamily \#include "{}uip\+\_\+arp.\+h"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ arp\+\_\+hdr}
+\item 
+struct \textbf{ ethip\+\_\+hdr}
+\item 
+struct \textbf{ arp\+\_\+entry}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries ARP\+\_\+\+REQUEST}~1
+\item 
+\#define {\bfseries ARP\+\_\+\+REPLY}~2
+\item 
+\#define {\bfseries ARP\+\_\+\+HWTYPE\+\_\+\+ETH}~1
+\item 
+\#define {\bfseries BUF}~((struct \textbf{ arp\+\_\+hdr} $\ast$)\&\textbf{ uip\+\_\+buf}[0])
+\item 
+\#define {\bfseries IPBUF}~((struct \textbf{ ethip\+\_\+hdr} $\ast$)\&\textbf{ uip\+\_\+buf}[0])
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ uip\+\_\+arp\+\_\+init} (void)
+\item 
+void \textbf{ uip\+\_\+arp\+\_\+timer} (void)
+\item 
+void \textbf{ uip\+\_\+arp\+\_\+ipin} (void)
+\item 
+void \textbf{ uip\+\_\+arp\+\_\+arpin} (void)
+\item 
+void \textbf{ uip\+\_\+arp\+\_\+out} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the ARP Address Resolution Protocol. \begin{DoxyAuthor}{Author}
+Adam Dunkels {\texttt{ adam@dunkels.\+com}} 
+\end{DoxyAuthor}

@@ -1,0 +1,94 @@
+\doxysection{Rtc\+Utility.\+h}
+\label{_rtc_utility_8h_source}\index{lib/Rtc-\/master/src/RtcUtility.h@{lib/Rtc-\/master/src/RtcUtility.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00002\ \textcolor{comment}{RTC\ library}}
+\DoxyCodeLine{00003\ \textcolor{comment}{}}
+\DoxyCodeLine{00004\ \textcolor{comment}{Written\ by\ Michael\ C.\ Miller.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{}}
+\DoxyCodeLine{00006\ \textcolor{comment}{I\ invest\ time\ and\ resources\ providing\ this\ open\ source\ code,}}
+\DoxyCodeLine{00007\ \textcolor{comment}{please\ support\ me\ by\ dontating\ (see\ https://github.com/Makuna/Rtc)}}
+\DoxyCodeLine{00008\ \textcolor{comment}{}}
+\DoxyCodeLine{00009\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00010\ \textcolor{comment}{This\ file\ is\ part\ of\ the\ Makuna/Rtc\ library.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Rtc\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00013\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as}}
+\DoxyCodeLine{00014\ \textcolor{comment}{published\ by\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of}}
+\DoxyCodeLine{00015\ \textcolor{comment}{the\ License,\ or\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{Rtc\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00018\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00019\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00020\ \textcolor{comment}{GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public}}
+\DoxyCodeLine{00023\ \textcolor{comment}{License\ along\ with\ Rtc.\ \ If\ not,\ see}}
+\DoxyCodeLine{00024\ \textcolor{comment}{<http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ ESP32\ complains\ if\ not\ included}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#if\ defined(ARDUINO\_ARCH\_ESP32)}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <inttypes.h>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#if\ !defined(countof)}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ countof(a)\ (sizeof(a)\ /\ sizeof(a[0]))}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ Arduino\ has\ no\ standard\ for\ attributing\ methods\ used\ for\ ISRs}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ even\ though\ some\ platforms\ require\ it,\ so\ to\ simplify\ the\ problem}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ for\ end\ users,\ this\ provides\ a\ standard\ ISR\_ATTR}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#if\ !defined(ISR\_ATTR)}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#if\ defined(ARDUINO\_ARCH\_ESP8266)\ }}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ ISR\_ATTR\ ICACHE\_RAM\_ATTR}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#elif\ defined(ARDUINO\_ARCH\_ESP32)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ ISR\_ATTR\ ICACHE\_RAM\_ATTR}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ ISR\_ATTR}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !defined(ISR\_ATTR)}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ some\ platforms\ do\ not\ come\ with\ STL\ or\ properly\ defined\ one,\ specifically\ functional}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ if\ you\ see...}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ undefined\ reference\ to\ \`{}std::\_\_throw\_bad\_function\_call()'}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ ...then\ you\ can\ either\ add\ the\ platform\ symbol\ to\ the\ list\ so\ RTC\_NO\_STL\ gets\ defined\ or}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ go\ to\ boards.txt\ and\ enable\ c++\ by\ adding\ (teensy31.build.flags.libs=-\/lstdc++)\ and\ set\ to\ "{}smallest\ code"{}\ option\ in\ Arduino}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#if\ defined(ARDUINO\_ARCH\_AVR)\ ||\ defined(ARDUINO\_ARCH\_MEGAAVR)\ ||\ defined(STM32L432xx)\ ||\ defined(STM32L476xx)\ ||\ defined(ARDUINO\_ARCH\_SAM)}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ RTC\_NO\_STL\ 1}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ While\ WIRE\ has\ return\ codes,\ there\ is\ no\ standard\ definition\ of\ what\ they\ are}}
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ within\ any\ headers;\ they\ are\ only\ documented\ on\ the\ website\ here}}
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ https://www.arduino.cc/reference/en/language/functions/communication/wire/endtransmission/}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ So\ we\ define\ our\ own\ "{}standard"{}\ for\ this\ RTC\ library\ that\ match\ those}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//}}
+\DoxyCodeLine{00068\ \textcolor{keyword}{enum}\ Rtc\_Wire\_Error}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ Rtc\_Wire\_Error\_None\ =\ 0,}
+\DoxyCodeLine{00071\ \ \ \ \ Rtc\_Wire\_Error\_TxBufferOverflow,}
+\DoxyCodeLine{00072\ \ \ \ \ Rtc\_Wire\_Error\_NoAddressableDevice,}
+\DoxyCodeLine{00073\ \ \ \ \ Rtc\_Wire\_Error\_UnsupportedRequest,}
+\DoxyCodeLine{00074\ \ \ \ \ Rtc\_Wire\_Error\_Unspecific,}
+\DoxyCodeLine{00075\ \ \ \ \ Rtc\_Wire\_Error\_CommunicationTimeout}
+\DoxyCodeLine{00076\ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{//\ for\ some\ reason,\ the\ DUE\ board\ support\ does\ not\ define\ this,\ even\ though\ other\ non\ AVR\ archs\ do}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#ifndef\ \_BV}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ \_BV(b)\ (1UL\ <<\ (b))}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{extern}\ uint8\_t\ BcdToUint8(uint8\_t\ val);}
+\DoxyCodeLine{00084\ \textcolor{keyword}{extern}\ uint8\_t\ Uint8ToBcd(uint8\_t\ val);}
+\DoxyCodeLine{00085\ \textcolor{keyword}{extern}\ uint8\_t\ BcdToBin24Hour(uint8\_t\ bcdHour);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+
+\end{DoxyCode}

@@ -1,0 +1,74 @@
+\doxysection{Setup106\+\_\+\+RP2040\+\_\+\+ILI9481\+\_\+16bit\+\_\+parallel.\+h}
+\label{_setup106___r_p2040___i_l_i9481__16bit__parallel_8h_source}\index{lib/TFT\_eSPI-\/master/User\_Setups/Setup106\_RP2040\_ILI9481\_16bit\_parallel.h@{lib/TFT\_eSPI-\/master/User\_Setups/Setup106\_RP2040\_ILI9481\_16bit\_parallel.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ setup\ is\ for\ the\ RP2040\ processor\ when\ used\ with\ 8-\/bit\ parallel\ displays}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ See\ SetupX\_Template.h\ for\ all\ options\ available}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ USER\_SETUP\_ID\ 106}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Interface}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\#define\ TFT\_PARALLEL\_8\_BIT}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ TFT\_PARALLEL\_16\_BIT}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ The\ parallel\ interface\ write\ cycle\ period\ is\ derived\ from\ a\ division\ of\ the\ CPU\ clock}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ speed\ so\ scales\ with\ the\ processor\ clock.\ This\ means\ that\ the\ divider\ ratio\ may\ need}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ to\ be\ increased\ when\ overclocking.\ I\ may\ also\ need\ to\ be\ adjusted\ dependant\ on\ the}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ display\ controller\ type\ (ILI94341,\ HX8357C\ etc.).\ If\ RP2040\_PIO\_CLK\_DIV\ is\ not\ defined}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ the\ library\ will\ set\ default\ values\ which\ may\ not\ suit\ your\ display.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ The\ display\ controller\ data\ sheet\ will\ specify\ the\ minimum\ write\ cycle\ period.\ The}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ controllers\ often\ work\ reliably\ for\ shorter\ periods,\ however\ if\ the\ period\ is\ too\ short}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ the\ display\ may\ not\ initialise\ or\ graphics\ will\ become\ corrupted.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ PIO\ write\ cycle\ frequency\ =\ (CPU\ clock/(4\ *\ RP2040\_PIO\_CLK\_DIV))}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\#define\ RP2040\_PIO\_CLK\_DIV\ 1\ //\ 32ns\ write\ cycle\ at\ 125MHz\ CPU\ clock}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\#define\ RP2040\_PIO\_CLK\_DIV\ 2\ //\ 64ns\ write\ cycle\ at\ 125MHz\ CPU\ clock}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\#define\ RP2040\_PIO\_CLK\_DIV\ 3\ //\ 96ns\ write\ cycle\ at\ 125MHz\ CPU\ clock}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\#define\ RP2040\_PIO\_CLK\_DIV\ 4\ //\ 96ns\ write\ cycle\ at\ 125MHz\ CPU\ clock}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ Display\ driver\ type}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ ILI9481\_DRIVER}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\#define\ HX8357B\_DRIVER}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\#define\ HX8357C\_DRIVER}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ RP2040\ pins\ used}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ These\ pins\ can\ be\ moved\ and\ are\ controlled\ directly\ by\ the\ library\ software}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ TFT\_RST\ \ \ 18\ \ }\textcolor{comment}{//\ Reset\ pin}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ TFT\_CS\ \ \ \ 19\ \ }\textcolor{comment}{//\ Do\ not\ define\ if\ chip\ select\ control\ pin\ permanently\ connected\ to\ 0V}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\#define\ TFT\_RD\ \ \ -\/1\ \ \ //\ Do\ not\ define,\ read\ pin\ must\ be\ permanently\ connected\ to\ 3V3}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ Note:\ All\ the\ following\ pins\ are\ PIO\ hardware\ configured\ and\ driven}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\ \ \#define\ TFT\_WR\ \ \ 16\ \ \ \ }\textcolor{comment}{//\ Write\ strobe\ pin}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\ \ \#define\ TFT\_DC\ \ \ 17\ \ \ \ }\textcolor{comment}{//\ Data\ Command\ control\ pin}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{comment}{//\ PIO\ requires\ these\ to\ be\ sequentially\ increasing}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D0\ \ \ \ 0}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D1\ \ \ \ 1}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D2\ \ \ \ 2}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D3\ \ \ \ 3}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D4\ \ \ \ 4}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D5\ \ \ \ 5}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D6\ \ \ \ 6}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D7\ \ \ \ 7}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D8\ \ \ \ 8}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D9\ \ \ \ 9}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D10\ \ 10}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D11\ \ 11}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D12\ \ 12}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D13\ \ 13}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D14\ \ 14}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\ \ \#define\ TFT\_D15\ \ 15}}
+\DoxyCodeLine{00062\ \textcolor{comment}{//*/}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ Fonts\ to\ be\ available}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ LOAD\_GLCD\ \ \ }\textcolor{comment}{//\ Font\ 1.\ Original\ Adafruit\ 8\ pixel\ font\ needs\ \string~1820\ bytes\ in\ FLASH}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ LOAD\_FONT2\ \ }\textcolor{comment}{//\ Font\ 2.\ Small\ 16\ pixel\ high\ font,\ needs\ \string~3534\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ LOAD\_FONT4\ \ }\textcolor{comment}{//\ Font\ 4.\ Medium\ 26\ pixel\ high\ font,\ needs\ \string~5848\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ LOAD\_FONT6\ \ }\textcolor{comment}{//\ Font\ 6.\ Large\ 48\ pixel\ font,\ needs\ \string~2666\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.apm}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ LOAD\_FONT7\ \ }\textcolor{comment}{//\ Font\ 7.\ 7\ segment\ 48\ pixel\ font,\ needs\ \string~2438\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:.}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ LOAD\_FONT8\ \ }\textcolor{comment}{//\ Font\ 8.\ Large\ 75\ pixel\ font\ needs\ \string~3256\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ LOAD\_GFXFF\ \ }\textcolor{comment}{//\ FreeFonts.\ Include\ access\ to\ the\ 48\ Adafruit\_GFX\ free\ fonts\ FF1\ to\ FF48\ and\ custom\ fonts}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ SMOOTH\_FONT}}
+\DoxyCodeLine{00076\ }
+
+\end{DoxyCode}

@@ -1,0 +1,900 @@
+\doxysection{The u\+IP TCP/\+IP stack}
+\label{group__uip}\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection*{Topics}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ u\+IP configuration functions}
+\item 
+\textbf{ u\+IP initialization functions}
+\item 
+\textbf{ u\+IP device driver functions}
+\item 
+\textbf{ u\+IP application functions}
+\item 
+\textbf{ u\+IP conversion functions}
+\item 
+\textbf{ Variables used in u\+IP device drivers}
+\item 
+\textbf{ u\+IP Address Resolution Protocol}
+\item 
+\textbf{ Architecture specific u\+IP functions}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \textbf{ uip.\+c}
+\item 
+file \textbf{ uip.\+h}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ uip\+\_\+conn}
+\item 
+struct \textbf{ uip\+\_\+udp\+\_\+conn}
+\item 
+struct \textbf{ uip\+\_\+stats}
+\item 
+struct \textbf{ uip\+\_\+tcpip\+\_\+hdr}
+\item 
+struct \textbf{ uip\+\_\+icmpip\+\_\+hdr}
+\item 
+struct \textbf{ uip\+\_\+udpip\+\_\+hdr}
+\item 
+struct \textbf{ uip\+\_\+eth\+\_\+addr}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\label{group__uip_ga88e60aa2cf23e1c65d630701db08c743} 
+\#define {\bfseries TCP\+\_\+\+FIN}~0x01
+\item 
+\label{group__uip_ga6020613f5062417d9811cfa837215c83} 
+\#define {\bfseries TCP\+\_\+\+SYN}~0x02
+\item 
+\label{group__uip_ga5ca559def464ef20d8b1f7d32f2f160d} 
+\#define {\bfseries TCP\+\_\+\+RST}~0x04
+\item 
+\label{group__uip_ga1320fd0006a2f70138bc2d0018dda829} 
+\#define {\bfseries TCP\+\_\+\+PSH}~0x08
+\item 
+\label{group__uip_ga44b3b1ab31a403ba28ec135adfcbefef} 
+\#define {\bfseries TCP\+\_\+\+ACK}~0x10
+\item 
+\label{group__uip_gac84f499cba8a02fc0e306c10b2acabf0} 
+\#define {\bfseries TCP\+\_\+\+URG}~0x20
+\item 
+\label{group__uip_ga1425d4a0c2760adb653a04c0fb137a8d} 
+\#define {\bfseries TCP\+\_\+\+CTL}~0x3f
+\item 
+\label{group__uip_ga1215163245304bad20d6c5608ad75ab7} 
+\#define {\bfseries TCP\+\_\+\+OPT\+\_\+\+END}~0   /$\ast$ End of TCP options list $\ast$/
+\item 
+\label{group__uip_ga9f1822e1d231235edacad691f3cb7bbb} 
+\#define {\bfseries TCP\+\_\+\+OPT\+\_\+\+NOOP}~1   /$\ast$ "{}No-\/operation"{} TCP option $\ast$/
+\item 
+\label{group__uip_ga691688604655ea8943d15f14c60027d8} 
+\#define {\bfseries TCP\+\_\+\+OPT\+\_\+\+MSS}~2   /$\ast$ Maximum segment size TCP option $\ast$/
+\item 
+\label{group__uip_ga12f3bf821224b8e7b48a57ed3cea15cf} 
+\#define {\bfseries TCP\+\_\+\+OPT\+\_\+\+MSS\+\_\+\+LEN}~4   /$\ast$ Length of TCP MSS option. $\ast$/
+\item 
+\label{group__uip_ga5c5b1834e497f53ad0ef947bbe9777fa} 
+\#define {\bfseries ICMP\+\_\+\+ECHO\+\_\+\+REPLY}~0
+\item 
+\label{group__uip_gad58231410d58e34b455328b888a9e73c} 
+\#define {\bfseries ICMP\+\_\+\+ECHO}~8
+\item 
+\label{group__uip_ga207d17b633cd095120a74bc1f2257b17} 
+\#define {\bfseries ICMP6\+\_\+\+ECHO\+\_\+\+REPLY}~129
+\item 
+\label{group__uip_ga4cc3e223b63f27b546d62e9a258dba5a} 
+\#define {\bfseries ICMP6\+\_\+\+ECHO}~128
+\item 
+\label{group__uip_ga1cea57e3ea526f210b1068e6dcf7b4f4} 
+\#define {\bfseries ICMP6\+\_\+\+NEIGHBOR\+\_\+\+SOLICITATION}~135
+\item 
+\label{group__uip_ga62c03e0a308cc23929a80fe8d8f9dc1e} 
+\#define {\bfseries ICMP6\+\_\+\+NEIGHBOR\+\_\+\+ADVERTISEMENT}~136
+\item 
+\label{group__uip_ga1d3211dbbdfb22d6a47b60dddcf945e8} 
+\#define {\bfseries ICMP6\+\_\+\+FLAG\+\_\+S}~(1 $<$$<$ 6)
+\item 
+\label{group__uip_ga42288d5c3cf4b10becefec657f441e54} 
+\#define {\bfseries ICMP6\+\_\+\+OPTION\+\_\+\+SOURCE\+\_\+\+LINK\+\_\+\+ADDRESS}~1
+\item 
+\label{group__uip_ga8387881de3a8bfd3c0d57b9d04ac9b7e} 
+\#define {\bfseries ICMP6\+\_\+\+OPTION\+\_\+\+TARGET\+\_\+\+LINK\+\_\+\+ADDRESS}~2
+\item 
+\label{group__uip_ga24f52ac52d6e714cb04a5aa01be3bdd0} 
+\#define {\bfseries BUF}~((struct \textbf{ uip\+\_\+tcpip\+\_\+hdr} $\ast$)\&\textbf{ uip\+\_\+buf}[\textbf{ UIP\+\_\+\+LLH\+\_\+\+LEN}])
+\item 
+\label{group__uip_ga96544dedc1cdc71ad2ad54bf1d5e5433} 
+\#define {\bfseries FBUF}~((struct \textbf{ uip\+\_\+tcpip\+\_\+hdr} $\ast$)\&uip\+\_\+reassbuf[0])
+\item 
+\label{group__uip_ga4309376690872fa4beb4f025f5cc199b} 
+\#define {\bfseries ICMPBUF}~((struct \textbf{ uip\+\_\+icmpip\+\_\+hdr} $\ast$)\&\textbf{ uip\+\_\+buf}[\textbf{ UIP\+\_\+\+LLH\+\_\+\+LEN}])
+\item 
+\label{group__uip_gab9435261753469accec0c9bf8a5a2686} 
+\#define {\bfseries UDPBUF}~((struct \textbf{ uip\+\_\+udpip\+\_\+hdr} $\ast$)\&\textbf{ uip\+\_\+buf}[\textbf{ UIP\+\_\+\+LLH\+\_\+\+LEN}])
+\item 
+\label{group__uip_ga9c0814ed491fa452ec97910c0728d410} 
+\#define {\bfseries UIP\+\_\+\+STAT}(s)
+\item 
+\label{group__uip_ga013c3a06a8b58589a77f4a3442f89c2a} 
+\#define {\bfseries UIP\+\_\+\+LOG}(m)
+\item 
+\#define \textbf{ UIP\+\_\+\+ACKDATA}
+\item 
+\#define \textbf{ UIP\+\_\+\+NEWDATA}
+\item 
+\#define \textbf{ UIP\+\_\+\+REXMIT}
+\item 
+\#define \textbf{ UIP\+\_\+\+POLL}
+\item 
+\#define \textbf{ UIP\+\_\+\+CLOSE}
+\item 
+\#define \textbf{ UIP\+\_\+\+ABORT}
+\item 
+\#define \textbf{ UIP\+\_\+\+CONNECTED}
+\item 
+\#define \textbf{ UIP\+\_\+\+TIMEDOUT}
+\item 
+\#define \textbf{ UIP\+\_\+\+DATA}
+\item 
+\#define \textbf{ UIP\+\_\+\+TIMER}
+\item 
+\#define \textbf{ UIP\+\_\+\+POLL\+\_\+\+REQUEST}
+\item 
+\#define \textbf{ UIP\+\_\+\+UDP\+\_\+\+SEND\+\_\+\+CONN}
+\item 
+\label{group__uip_gaf0ccbc3bb2a3ba1ebc255c7b3fcedd24} 
+\#define {\bfseries UIP\+\_\+\+UDP\+\_\+\+TIMER}~5
+\item 
+\label{group__uip_ga28eda870cff3d8e3cf2949e6f57a502b} 
+\#define {\bfseries UIP\+\_\+\+CLOSED}~0
+\item 
+\label{group__uip_gaa5e3c856b86725125d19fccc34cd9eb5} 
+\#define {\bfseries UIP\+\_\+\+SYN\+\_\+\+RCVD}~1
+\item 
+\label{group__uip_ga8af482dec973db57d8b3bd3f69461488} 
+\#define {\bfseries UIP\+\_\+\+SYN\+\_\+\+SENT}~2
+\item 
+\label{group__uip_gaae59b70658f28ee6e998eaaab05e423f} 
+\#define {\bfseries UIP\+\_\+\+ESTABLISHED}~3
+\item 
+\label{group__uip_gaa533c394b1fa0030205534befa31c525} 
+\#define {\bfseries UIP\+\_\+\+FIN\+\_\+\+WAIT\+\_\+1}~4
+\item 
+\label{group__uip_ga160128ab5d2ea3cc497b91ee4eb4ef99} 
+\#define {\bfseries UIP\+\_\+\+FIN\+\_\+\+WAIT\+\_\+2}~5
+\item 
+\label{group__uip_ga64d9affc680a445d708234e70450477b} 
+\#define {\bfseries UIP\+\_\+\+CLOSING}~6
+\item 
+\label{group__uip_gafff0ed43201bf1e2020de1a0d6cac070} 
+\#define {\bfseries UIP\+\_\+\+TIME\+\_\+\+WAIT}~7
+\item 
+\label{group__uip_gad135fb0cfdfb2c212f0f51865a3640e4} 
+\#define {\bfseries UIP\+\_\+\+LAST\+\_\+\+ACK}~8
+\item 
+\label{group__uip_ga13dfcb4a5f920e108253ade527a66cc2} 
+\#define {\bfseries UIP\+\_\+\+TS\+\_\+\+MASK}~15
+\item 
+\label{group__uip_gade29ec025e6754afd8cc24c954a8dec8} 
+\#define {\bfseries UIP\+\_\+\+STOPPED}~16
+\item 
+\#define \textbf{ UIP\+\_\+\+APPDATA\+\_\+\+SIZE}
+\item 
+\label{group__uip_ga359951eecd80541c2101f628a9da9146} 
+\#define {\bfseries UIP\+\_\+\+PROTO\+\_\+\+ICMP}~1
+\item 
+\label{group__uip_ga517c770991459cc62dc009c0d3875c6a} 
+\#define {\bfseries UIP\+\_\+\+PROTO\+\_\+\+TCP}~6
+\item 
+\label{group__uip_gaf72d7b9a737707dcfb2c41fec2b6792e} 
+\#define {\bfseries UIP\+\_\+\+PROTO\+\_\+\+UDP}~17
+\item 
+\label{group__uip_gaad0321f4c570f9983c6de81ece3ddc20} 
+\#define {\bfseries UIP\+\_\+\+PROTO\+\_\+\+ICMP6}~58
+\item 
+\label{group__uip_ga6bc12c6c7b56f73ce5d57abfdcdc6eb5} 
+\#define {\bfseries UIP\+\_\+\+IPH\+\_\+\+LEN}~20    /$\ast$ Size of IP header $\ast$/
+\item 
+\label{group__uip_gab948296aea6b6b3aa1f156799c4d479c} 
+\#define {\bfseries UIP\+\_\+\+UDPH\+\_\+\+LEN}~8    /$\ast$ Size of UDP header $\ast$/
+\item 
+\label{group__uip_ga17d111686f98e4c09db73a770ac3f1a4} 
+\#define {\bfseries UIP\+\_\+\+TCPH\+\_\+\+LEN}~20    /$\ast$ Size of TCP header $\ast$/
+\item 
+\#define \textbf{ UIP\+\_\+\+IPUDPH\+\_\+\+LEN}
+\item 
+\#define \textbf{ UIP\+\_\+\+IPTCPH\+\_\+\+LEN}
+\item 
+\label{group__uip_gaee37386b2ab828787c05227eb109def7} 
+\#define {\bfseries UIP\+\_\+\+TCPIP\+\_\+\+HLEN}~UIP\+\_\+\+IPTCPH\+\_\+\+LEN
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef u16\+\_\+t \textbf{ uip\+\_\+ip4addr\+\_\+t}[2]
+\item 
+\label{group__uip_ga9ebb4dac683163840eab9c6c41ad61f7} 
+typedef u16\+\_\+t {\bfseries uip\+\_\+ip6addr\+\_\+t}[8]
+\item 
+\label{group__uip_ga1ef35301f43a5bbb9f89f07b5a36b9a0} 
+typedef \textbf{ uip\+\_\+ip4addr\+\_\+t} {\bfseries uip\+\_\+ipaddr\+\_\+t}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ uip\+\_\+setipid} (u16\+\_\+t id)
+\item 
+void \textbf{ uip\+\_\+add32} (u8\+\_\+t $\ast$op32, u16\+\_\+t op16)
+\item 
+void \textbf{ uip\+\_\+init} (void)
+\item 
+struct \textbf{ uip\+\_\+conn} $\ast$ \textbf{ uip\+\_\+connect} (uip\+\_\+ipaddr\+\_\+t $\ast$ripaddr, u16\+\_\+t rport)
+\item 
+struct \textbf{ uip\+\_\+udp\+\_\+conn} $\ast$ \textbf{ uip\+\_\+udp\+\_\+new} (uip\+\_\+ipaddr\+\_\+t $\ast$ripaddr, u16\+\_\+t rport)
+\item 
+void \textbf{ uip\+\_\+unlisten} (u16\+\_\+t port)
+\item 
+void \textbf{ uip\+\_\+listen} (u16\+\_\+t port)
+\item 
+\label{group__uip_ga266263ac78a1361a2b1d15741d3b0675} 
+void {\bfseries uip\+\_\+process} (u8\+\_\+t flag)
+\item 
+u16\+\_\+t \textbf{ htons} (u16\+\_\+t val)
+\item 
+void \textbf{ uip\+\_\+send} (const void $\ast$data, int len)
+\item 
+u16\+\_\+t \textbf{ uip\+\_\+chksum} (u16\+\_\+t $\ast$buf, u16\+\_\+t len)
+\item 
+u16\+\_\+t \textbf{ uip\+\_\+ipchksum} (void)
+\item 
+u16\+\_\+t \textbf{ uip\+\_\+tcpchksum} (void)
+\item 
+u16\+\_\+t \textbf{ uip\+\_\+udpchksum} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\label{group__uip_ga7d3673f52f5846b6961d23b150decd54} 
+uip\+\_\+ipaddr\+\_\+t {\bfseries uip\+\_\+hostaddr}
+\item 
+\label{group__uip_ga20df5c82f2a15a508c19e505b5d9de2b} 
+uip\+\_\+ipaddr\+\_\+t {\bfseries uip\+\_\+draddr}
+\item 
+\label{group__uip_ga3237be0d9ec457de0177689ee23c0d5c} 
+uip\+\_\+ipaddr\+\_\+t {\bfseries uip\+\_\+netmask}
+\item 
+\label{group__uip_ga499bb98a0b4ae9a98553ede81317606d} 
+struct \textbf{ uip\+\_\+eth\+\_\+addr} {\bfseries uip\+\_\+ethaddr} = \{\{0,0,0,0,0,0\}\}
+\item 
+u8\+\_\+t \textbf{ uip\+\_\+buf} [\textbf{ UIP\+\_\+\+BUFSIZE}+2]
+\item 
+void $\ast$ \textbf{ uip\+\_\+appdata}
+\item 
+\label{group__uip_gaa05a3dde2048480fa3ab2a5961898d18} 
+void $\ast$ {\bfseries uip\+\_\+sappdata}
+\item 
+u16\+\_\+t \textbf{ uip\+\_\+len}
+\item 
+\label{group__uip_ga5b5615dc240daed20949c0fded2b4679} 
+u16\+\_\+t {\bfseries uip\+\_\+slen}
+\item 
+\label{group__uip_gab4ef6b00924990e7a293f66715b6d1d1} 
+u8\+\_\+t {\bfseries uip\+\_\+flags}
+\item 
+struct uip\+\_\+conn $\ast$ \textbf{ uip\+\_\+conn}
+\item 
+\label{group__uip_gaf703683056d2bfa5c81fa157dcb20fe2} 
+struct \textbf{ uip\+\_\+conn} {\bfseries uip\+\_\+conns} [\textbf{ UIP\+\_\+\+CONNS}]
+\item 
+\label{group__uip_ga236d5c7872f59c8fe7b701c7252b976e} 
+u16\+\_\+t {\bfseries uip\+\_\+listenports} [\textbf{ UIP\+\_\+\+LISTENPORTS}]
+\item 
+struct uip\+\_\+udp\+\_\+conn $\ast$ \textbf{ uip\+\_\+udp\+\_\+conn}
+\item 
+\label{group__uip_gaeb533744817cf6695d75293369c2248b} 
+struct \textbf{ uip\+\_\+udp\+\_\+conn} {\bfseries uip\+\_\+udp\+\_\+conns} [\textbf{ UIP\+\_\+\+UDP\+\_\+\+CONNS}]
+\item 
+u8\+\_\+t \textbf{ uip\+\_\+acc32} [4]
+\item 
+void $\ast$ \textbf{ uip\+\_\+appdata}
+\item 
+struct uip\+\_\+conn $\ast$ \textbf{ uip\+\_\+conn}
+\item 
+\label{group__uip_gaf703683056d2bfa5c81fa157dcb20fe2} 
+struct \textbf{ uip\+\_\+conn} {\bfseries uip\+\_\+conns} [\textbf{ UIP\+\_\+\+CONNS}]
+\item 
+struct uip\+\_\+udp\+\_\+conn $\ast$ \textbf{ uip\+\_\+udp\+\_\+conn}
+\item 
+\label{group__uip_gaeb533744817cf6695d75293369c2248b} 
+struct \textbf{ uip\+\_\+udp\+\_\+conn} {\bfseries uip\+\_\+udp\+\_\+conns} [\textbf{ UIP\+\_\+\+UDP\+\_\+\+CONNS}]
+\item 
+struct \textbf{ uip\+\_\+stats} \textbf{ uip\+\_\+stat}
+\item 
+\label{group__uip_gab4ef6b00924990e7a293f66715b6d1d1} 
+u8\+\_\+t {\bfseries uip\+\_\+flags}
+\item 
+\label{group__uip_ga7d3673f52f5846b6961d23b150decd54} 
+uip\+\_\+ipaddr\+\_\+t {\bfseries uip\+\_\+hostaddr}
+\item 
+\label{group__uip_ga3237be0d9ec457de0177689ee23c0d5c} 
+uip\+\_\+ipaddr\+\_\+t {\bfseries uip\+\_\+netmask}
+\item 
+\label{group__uip_ga20df5c82f2a15a508c19e505b5d9de2b} 
+uip\+\_\+ipaddr\+\_\+t {\bfseries uip\+\_\+draddr}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+u\+IP is an implementation of the TCP/\+IP protocol stack intended for small 8-\/bit and 16-\/bit microcontrollers.
+
+u\+IP provides the necessary protocols for Internet communication, with a very small code footprint and RAM requirements -\/ the u\+IP code size is on the order of a few kilobytes and RAM usage is on the order of a few hundred bytes.
+
+\{@
+
+\doxysubsection{Macro Definition Documentation}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!UIP\_ABORT@{UIP\_ABORT}}
+\index{UIP\_ABORT@{UIP\_ABORT}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{UIP\_ABORT}
+{\footnotesize\ttfamily \label{group__uip_gaa4c4310e54f18541b09e1e251fe7b22d} 
+\#define UIP\+\_\+\+ABORT}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 32\ \ \ \ \textcolor{comment}{/*\ The\ remote\ host\ has\ aborted\ the}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection,\ thus\ the\ connection\ has}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ gone\ away.\ Or\ the\ application\ signals}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ that\ it\ wants\ to\ abort\ the}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection.\ */}}
+
+\end{DoxyCode}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!UIP\_ACKDATA@{UIP\_ACKDATA}}
+\index{UIP\_ACKDATA@{UIP\_ACKDATA}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{UIP\_ACKDATA}
+{\footnotesize\ttfamily \label{group__uip_ga6bfa488f87f68a6f7f4a3efb9e45eaf8} 
+\#define UIP\+\_\+\+ACKDATA}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1\ \ \ \ \ \textcolor{comment}{/*\ Signifies\ that\ the\ outstanding\ data\ was}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ acked\ and\ the\ application\ should\ send}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\ new\ data\ instead\ of\ retransmitting}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ the\ last\ data.\ */}}
+
+\end{DoxyCode}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!UIP\_APPDATA\_SIZE@{UIP\_APPDATA\_SIZE}}
+\index{UIP\_APPDATA\_SIZE@{UIP\_APPDATA\_SIZE}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{UIP\_APPDATA\_SIZE}
+{\footnotesize\ttfamily \label{group__uip_gae0825474feee11b4e038bfe71757875f} 
+\#define UIP\+\_\+\+APPDATA\+\_\+\+SIZE}
+
+The buffer size available for user data in the \doxyref{uip\+\_\+buf}{p.}{group__uip_gab81e78f890dbbee50c533a9734b74fd9} buffer.
+
+This macro holds the available size for user data in the \doxyref{uip\+\_\+buf}{p.}{group__uip_gab81e78f890dbbee50c533a9734b74fd9} buffer. The macro is intended to be used for checking bounds of available user data.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{snprintf(uip\_appdata,\ UIP\_APPDATA\_SIZE,\ \textcolor{stringliteral}{"{}\%u\(\backslash\)n"{}},\ i);}
+
+\end{DoxyCode}
+ \index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!UIP\_CLOSE@{UIP\_CLOSE}}
+\index{UIP\_CLOSE@{UIP\_CLOSE}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{UIP\_CLOSE}
+{\footnotesize\ttfamily \label{group__uip_ga57e6dc1d58a36d0ed53a3dd29ccc5798} 
+\#define UIP\+\_\+\+CLOSE}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 16\ \ \ \ \textcolor{comment}{/*\ The\ remote\ host\ has\ closed\ the}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection,\ thus\ the\ connection\ has}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ gone\ away.\ Or\ the\ application\ signals}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ that\ it\ wants\ to\ close\ the}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection.\ */}}
+
+\end{DoxyCode}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!UIP\_CONNECTED@{UIP\_CONNECTED}}
+\index{UIP\_CONNECTED@{UIP\_CONNECTED}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{UIP\_CONNECTED}
+{\footnotesize\ttfamily \label{group__uip_gaf84316f469ce0726985c0702db49a989} 
+\#define UIP\+\_\+\+CONNECTED}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 64\ \ \ \ \textcolor{comment}{/*\ We\ have\ got\ a\ connection\ from\ a\ remote}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ host\ and\ have\ set\ up\ a\ new\ connection}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ for\ it,\ or\ an\ active\ connection\ has}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ been\ successfully\ established.\ */}}
+
+\end{DoxyCode}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!UIP\_DATA@{UIP\_DATA}}
+\index{UIP\_DATA@{UIP\_DATA}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{UIP\_DATA}
+{\footnotesize\ttfamily \label{group__uip_gaabc40c09f49d15acb1b1a7f02bb3a807} 
+\#define UIP\+\_\+\+DATA}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1\ \ \ \ \ \textcolor{comment}{/*\ Tells\ uIP\ that\ there\ is\ incoming}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data\ in\ the\ uip\_buf\ buffer.\ The}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ length\ of\ the\ data\ is\ stored\ in\ the}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ global\ variable\ uip\_len.\ */}}
+
+\end{DoxyCode}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!UIP\_IPTCPH\_LEN@{UIP\_IPTCPH\_LEN}}
+\index{UIP\_IPTCPH\_LEN@{UIP\_IPTCPH\_LEN}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{UIP\_IPTCPH\_LEN}
+{\footnotesize\ttfamily \label{group__uip_ga15f2617f7dc1713f9d10282125c6027b} 
+\#define UIP\+\_\+\+IPTCPH\+\_\+\+LEN}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (UIP\_TCPH\_LEN\ +\ UIP\_IPH\_LEN)\ \ \ \ \textcolor{comment}{/*\ Size\ of\ IP\ +}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TCP}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ header\ */}}
+
+\end{DoxyCode}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!UIP\_IPUDPH\_LEN@{UIP\_IPUDPH\_LEN}}
+\index{UIP\_IPUDPH\_LEN@{UIP\_IPUDPH\_LEN}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{UIP\_IPUDPH\_LEN}
+{\footnotesize\ttfamily \label{group__uip_ga6f2b90c597ec23f39ec716ccec11233c} 
+\#define UIP\+\_\+\+IPUDPH\+\_\+\+LEN}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (UIP\_UDPH\_LEN\ +\ UIP\_IPH\_LEN)\ \ \ \ \textcolor{comment}{/*\ Size\ of\ IP\ +}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UDP}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ header\ */}}
+
+\end{DoxyCode}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!UIP\_NEWDATA@{UIP\_NEWDATA}}
+\index{UIP\_NEWDATA@{UIP\_NEWDATA}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{UIP\_NEWDATA}
+{\footnotesize\ttfamily \label{group__uip_ga39ce739bd352d7e348e37395ce903e43} 
+\#define UIP\+\_\+\+NEWDATA}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2\ \ \ \ \ \textcolor{comment}{/*\ Flags\ the\ fact\ that\ the\ peer\ has\ sent}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ us\ new\ data.\ */}}
+
+\end{DoxyCode}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!UIP\_POLL@{UIP\_POLL}}
+\index{UIP\_POLL@{UIP\_POLL}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{UIP\_POLL}
+{\footnotesize\ttfamily \label{group__uip_gaf0ed78fd2be24d849cdd5af75e3b2674} 
+\#define UIP\+\_\+\+POLL}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 8\ \ \ \ \ \textcolor{comment}{/*\ Used\ for\ polling\ the\ application,\ to}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\ if\ the\ application\ has\ data\ that}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it\ wants\ to\ send.\ */}}
+
+\end{DoxyCode}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!UIP\_POLL\_REQUEST@{UIP\_POLL\_REQUEST}}
+\index{UIP\_POLL\_REQUEST@{UIP\_POLL\_REQUEST}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{UIP\_POLL\_REQUEST}
+{\footnotesize\ttfamily \label{group__uip_gad605357e29affb0d3104294c90f09905} 
+\#define UIP\+\_\+\+POLL\+\_\+\+REQUEST}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 3\ \ \ \ \ \textcolor{comment}{/*\ Tells\ uIP\ that\ a\ connection\ should}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ be\ polled.\ */}}
+
+\end{DoxyCode}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!UIP\_REXMIT@{UIP\_REXMIT}}
+\index{UIP\_REXMIT@{UIP\_REXMIT}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{UIP\_REXMIT}
+{\footnotesize\ttfamily \label{group__uip_gaf848ce44c810492e7a35c2d23a429f45} 
+\#define UIP\+\_\+\+REXMIT}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4\ \ \ \ \ \textcolor{comment}{/*\ Tells\ the\ application\ to\ retransmit\ the}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data\ that\ was\ last\ sent.\ */}}
+
+\end{DoxyCode}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!UIP\_TIMEDOUT@{UIP\_TIMEDOUT}}
+\index{UIP\_TIMEDOUT@{UIP\_TIMEDOUT}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{UIP\_TIMEDOUT}
+{\footnotesize\ttfamily \label{group__uip_ga2d3ba4b14d6d2f6576f9b547800b7945} 
+\#define UIP\+\_\+\+TIMEDOUT}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 128\ \ \ \textcolor{comment}{/*\ The\ connection\ has\ been\ aborted\ due\ to}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ too\ many\ retransmissions.\ */}}
+
+\end{DoxyCode}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!UIP\_TIMER@{UIP\_TIMER}}
+\index{UIP\_TIMER@{UIP\_TIMER}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{UIP\_TIMER}
+{\footnotesize\ttfamily \label{group__uip_ga041aea91aa6ef84dcc6cac3c51db9b2f} 
+\#define UIP\+\_\+\+TIMER}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2\ \ \ \ \ \textcolor{comment}{/*\ Tells\ uIP\ that\ the\ periodic\ timer}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ has\ fired.\ */}}
+
+\end{DoxyCode}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!UIP\_UDP\_SEND\_CONN@{UIP\_UDP\_SEND\_CONN}}
+\index{UIP\_UDP\_SEND\_CONN@{UIP\_UDP\_SEND\_CONN}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{UIP\_UDP\_SEND\_CONN}
+{\footnotesize\ttfamily \label{group__uip_ga5c97ae587595b5444be80f5ecc1d3382} 
+\#define UIP\+\_\+\+UDP\+\_\+\+SEND\+\_\+\+CONN}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4\ \ \ \ \ \textcolor{comment}{/*\ Tells\ uIP\ that\ a\ UDP\ datagram}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ should\ be\ constructed\ in\ the}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_buf\ buffer.\ */}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Typedef Documentation}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_ip4addr\_t@{uip\_ip4addr\_t}}
+\index{uip\_ip4addr\_t@{uip\_ip4addr\_t}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_ip4addr\_t}
+{\footnotesize\ttfamily \label{group__uip_ga20ceef9d0868d391c2f33041b02cb1f1} 
+typedef u16\+\_\+t uip\+\_\+ip4addr\+\_\+t[2]}
+
+Repressentation of an IP address. 
+
+\doxysubsection{Function Documentation}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!htons@{htons}}
+\index{htons@{htons}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{htons()}
+{\footnotesize\ttfamily \label{group__uip_gaa22b04cac8cf283ca12f028578bebc06} 
+u16\+\_\+t htons (\begin{DoxyParamCaption}\item[{u16\+\_\+t}]{val}{}\end{DoxyParamCaption})}
+
+Convert 16-\/bit quantity from host byte order to network byte order.
+
+This function is primarily used for converting variables from host byte order to network byte order. For converting constants to network byte order, use the \doxyref{HTONS()}{p.}{group__uipconvfunc_ga69a7a4951ff21b302267532c21ee78fc} macro instead. \index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_add32@{uip\_add32}}
+\index{uip\_add32@{uip\_add32}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_add32()}
+{\footnotesize\ttfamily \label{group__uip_ga6832e4d2d046536b6472f7ac92340f68} 
+void uip\+\_\+add32 (\begin{DoxyParamCaption}\item[{u8\+\_\+t $\ast$}]{op32}{, }\item[{u16\+\_\+t}]{op16}{}\end{DoxyParamCaption})}
+
+Carry out a 32-\/bit addition.
+
+Because not all architectures for which u\+IP is intended has native 32-\/bit arithmetic, u\+IP uses an external C function for doing the required 32-\/bit additions in the TCP protocol processing. This function should add the two arguments and place the result in the global variable uip\+\_\+acc32.
+
+\begin{DoxyNote}{Note}
+The 32-\/bit integer pointed to by the op32 parameter and the result in the uip\+\_\+acc32 variable are in network byte order (big endian).
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em op32} & A pointer to a 4-\/byte array representing a 32-\/bit integer in network byte order (big endian).\\
+\hline
+{\em op16} & A 16-\/bit integer in host byte order. \\
+\hline
+\end{DoxyParams}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_chksum@{uip\_chksum}}
+\index{uip\_chksum@{uip\_chksum}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_chksum()}
+{\footnotesize\ttfamily \label{group__uip_gab6683dd83fe1c8de9a24086d4b69e907} 
+u16\+\_\+t uip\+\_\+chksum (\begin{DoxyParamCaption}\item[{u16\+\_\+t $\ast$}]{buf}{, }\item[{u16\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+Calculate the Internet checksum over a buffer.
+
+The Internet checksum is the one\textquotesingle{}s complement of the one\textquotesingle{}s complement sum of all 16-\/bit words in the buffer.
+
+See RFC1071.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & A pointer to the buffer over which the checksum is to be computed.\\
+\hline
+{\em len} & The length of the buffer over which the checksum is to be computed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Internet checksum of the buffer. 
+\end{DoxyReturn}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_connect@{uip\_connect}}
+\index{uip\_connect@{uip\_connect}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_connect()}
+{\footnotesize\ttfamily \label{group__uip_ga101633b3a248d72d9c91916553c2c40c} 
+struct \textbf{ uip\+\_\+conn} $\ast$ uip\+\_\+connect (\begin{DoxyParamCaption}\item[{uip\+\_\+ipaddr\+\_\+t $\ast$}]{ripaddr}{, }\item[{u16\+\_\+t}]{port}{}\end{DoxyParamCaption})}
+
+Connect to a remote host using TCP.
+
+This function is used to start a new connection to the specified port on the specied host. It allocates a new connection identifier, sets the connection to the SYN\+\_\+\+SENT state and sets the retransmission timer to 0. This will cause a TCP SYN segment to be sent out the next time this connection is periodically processed, which usually is done within 0.\+5 seconds after the call to \doxyref{uip\+\_\+connect()}{p.}{group__uipappfunc_ga9b7916a3458722c16a749cf08ea41afe}.
+
+\begin{DoxyNote}{Note}
+This function is avaliable only if support for active open has been configured by defining UIP\+\_\+\+ACTIVE\+\_\+\+OPEN to 1 in \doxyref{uipopt.\+h}{p.}{uipopt_8h}.
+
+Since this function requires the port number to be in network byte order, a conversion using \doxyref{HTONS()}{p.}{group__uipconvfunc_ga69a7a4951ff21b302267532c21ee78fc} or \doxyref{htons()}{p.}{group__uipconvfunc_gaa22b04cac8cf283ca12f028578bebc06} is necessary.
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uip\_ipaddr\_t\ ipaddr;}
+\DoxyCodeLine{}
+\DoxyCodeLine{uip\_ipaddr(\&ipaddr,\ 192,168,1,2);}
+\DoxyCodeLine{uip\_connect(\&ipaddr,\ HTONS(80));}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em ripaddr} & The IP address of the remote hot.\\
+\hline
+{\em port} & A 16-\/bit port number in network byte order.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the u\+IP connection identifier for the new connection, or NULL if no connection could be allocated. 
+\end{DoxyReturn}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_init@{uip\_init}}
+\index{uip\_init@{uip\_init}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_init()}
+{\footnotesize\ttfamily \label{group__uip_gac48ed5f0d27721ef62a3ed02a5ad8d2e} 
+void uip\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+u\+IP initialization function.
+
+This function should be called at boot up to initilize the u\+IP TCP/\+IP stack. \index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_ipchksum@{uip\_ipchksum}}
+\index{uip\_ipchksum@{uip\_ipchksum}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_ipchksum()}
+{\footnotesize\ttfamily \label{group__uip_ga2addf34c7d457c1a7899a7e2171ef1e9} 
+u16\+\_\+t uip\+\_\+ipchksum (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Calculate the IP header checksum of the packet header in uip\+\_\+buf.
+
+The IP header checksum is the Internet checksum of the 20 bytes of the IP header.
+
+\begin{DoxyReturn}{Returns}
+The IP header checksum of the IP header in the uip\+\_\+buf buffer. 
+\end{DoxyReturn}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_listen@{uip\_listen}}
+\index{uip\_listen@{uip\_listen}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_listen()}
+{\footnotesize\ttfamily \label{group__uip_gadd1ab3704ecd4900eec61a6897d32dc8} 
+void uip\+\_\+listen (\begin{DoxyParamCaption}\item[{u16\+\_\+t}]{port}{}\end{DoxyParamCaption})}
+
+Start listening to the specified port.
+
+\begin{DoxyNote}{Note}
+Since this function expects the port number in network byte order, a conversion using \doxyref{HTONS()}{p.}{group__uipconvfunc_ga69a7a4951ff21b302267532c21ee78fc} or \doxyref{htons()}{p.}{group__uipconvfunc_gaa22b04cac8cf283ca12f028578bebc06} is necessary.
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uip\_listen(HTONS(80));}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & A 16-\/bit port number in network byte order. \\
+\hline
+\end{DoxyParams}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_send@{uip\_send}}
+\index{uip\_send@{uip\_send}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_send()}
+{\footnotesize\ttfamily \label{group__uip_ga04b053a623aac7cd4195157d470661b3} 
+void uip\+\_\+send (\begin{DoxyParamCaption}\item[{const void $\ast$}]{data}{, }\item[{int}]{len}{}\end{DoxyParamCaption})}
+
+Send data on the current connection.
+
+This function is used to send out a single segment of TCP data. Only applications that have been invoked by u\+IP for event processing can send data.
+
+The amount of data that actually is sent out after a call to this funcion is determined by the maximum amount of data TCP allows. u\+IP will automatically crop the data so that only the appropriate amount of data is sent. The function \doxyref{uip\+\_\+mss()}{p.}{group__uipappfunc_gab5fecbc62edd128012cea0f47b57ab9f} can be used to query u\+IP for the amount of data that actually will be sent.
+
+\begin{DoxyNote}{Note}
+This function does not guarantee that the sent data will arrive at the destination. If the data is lost in the network, the application will be invoked with the \doxyref{uip\+\_\+rexmit()}{p.}{group__uipappfunc_gaa8933ad15a2e2947dae4a5cff50e6007} event being set. The application will then have to resend the data using this function.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A pointer to the data which is to be sent.\\
+\hline
+{\em len} & The maximum amount of data bytes to be sent. \\
+\hline
+\end{DoxyParams}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_setipid@{uip\_setipid}}
+\index{uip\_setipid@{uip\_setipid}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_setipid()}
+{\footnotesize\ttfamily \label{group__uip_ga22f140b02c354dfebcc7ad481c3bcd68} 
+void uip\+\_\+setipid (\begin{DoxyParamCaption}\item[{u16\+\_\+t}]{id}{}\end{DoxyParamCaption})}
+
+u\+IP initialization function.
+
+This function may be used at boot time to set the initial ip\+\_\+id. \index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_tcpchksum@{uip\_tcpchksum}}
+\index{uip\_tcpchksum@{uip\_tcpchksum}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_tcpchksum()}
+{\footnotesize\ttfamily \label{group__uip_ga85b65e38aa74eba18979156f97a94a87} 
+u16\+\_\+t uip\+\_\+tcpchksum (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Calculate the TCP checksum of the packet in uip\+\_\+buf and uip\+\_\+appdata.
+
+The TCP checksum is the Internet checksum of data contents of the TCP segment, and a pseudo-\/header as defined in RFC793.
+
+\begin{DoxyReturn}{Returns}
+The TCP checksum of the TCP segment in uip\+\_\+buf and pointed to by uip\+\_\+appdata. 
+\end{DoxyReturn}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_udp\_new@{uip\_udp\_new}}
+\index{uip\_udp\_new@{uip\_udp\_new}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_udp\_new()}
+{\footnotesize\ttfamily \label{group__uip_gabfcdb849da9646fa01fa14d86cf2a88c} 
+struct \textbf{ uip\+\_\+udp\+\_\+conn} $\ast$ uip\+\_\+udp\+\_\+new (\begin{DoxyParamCaption}\item[{uip\+\_\+ipaddr\+\_\+t $\ast$}]{ripaddr}{, }\item[{u16\+\_\+t}]{rport}{}\end{DoxyParamCaption})}
+
+Set up a new UDP connection.
+
+This function sets up a new UDP connection. The function will automatically allocate an unused local port for the new connection. However, another port can be chosen by using the \doxyref{uip\+\_\+udp\+\_\+bind()}{p.}{group__uipappfunc_gaa20812098a4663c8a9fc4ce8e95391b6} call, after the \doxyref{uip\+\_\+udp\+\_\+new()}{p.}{group__uipappfunc_gabfcdb849da9646fa01fa14d86cf2a88c} function has been called.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uip\_ipaddr\_t\ addr;}
+\DoxyCodeLine{\textcolor{keyword}{struct\ }uip\_udp\_conn\ *c;}
+\DoxyCodeLine{}
+\DoxyCodeLine{uip\_ipaddr(\&addr,\ 192,168,2,1);}
+\DoxyCodeLine{c\ =\ uip\_udp\_new(\&addr,\ HTONS(12345));}
+\DoxyCodeLine{\textcolor{keywordflow}{if}(c\ !=\ NULL)\ \{}
+\DoxyCodeLine{\ \ uip\_udp\_bind(c,\ HTONS(12344));}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\begin{DoxyParams}{Parameters}
+{\em ripaddr} & The IP address of the remote host.\\
+\hline
+{\em rport} & The remote port number in network byte order.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \doxyref{uip\+\_\+udp\+\_\+conn}{p.}{structuip__udp__conn} structure for the new connection or NULL if no connection could be allocated. 
+\end{DoxyReturn}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_udpchksum@{uip\_udpchksum}}
+\index{uip\_udpchksum@{uip\_udpchksum}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_udpchksum()}
+{\footnotesize\ttfamily \label{group__uip_ga7023a34ba9e9d03b5fbedbcb32924453} 
+u16\+\_\+t uip\+\_\+udpchksum (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Calculate the UDP checksum of the packet in uip\+\_\+buf and uip\+\_\+appdata.
+
+The UDP checksum is the Internet checksum of data contents of the UDP segment, and a pseudo-\/header as defined in RFC768.
+
+\begin{DoxyReturn}{Returns}
+The UDP checksum of the UDP segment in uip\+\_\+buf and pointed to by uip\+\_\+appdata. 
+\end{DoxyReturn}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_unlisten@{uip\_unlisten}}
+\index{uip\_unlisten@{uip\_unlisten}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_unlisten()}
+{\footnotesize\ttfamily \label{group__uip_gaaa585784b0914cac1d37f07f85457008} 
+void uip\+\_\+unlisten (\begin{DoxyParamCaption}\item[{u16\+\_\+t}]{port}{}\end{DoxyParamCaption})}
+
+Stop listening to the specified port.
+
+\begin{DoxyNote}{Note}
+Since this function expects the port number in network byte order, a conversion using \doxyref{HTONS()}{p.}{group__uipconvfunc_ga69a7a4951ff21b302267532c21ee78fc} or \doxyref{htons()}{p.}{group__uipconvfunc_gaa22b04cac8cf283ca12f028578bebc06} is necessary.
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uip\_unlisten(HTONS(80));}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & A 16-\/bit port number in network byte order. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Variable Documentation}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_acc32@{uip\_acc32}}
+\index{uip\_acc32@{uip\_acc32}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_acc32}
+{\footnotesize\ttfamily \label{group__uip_ga2a0cf5d86c58fab216414ce59bf1fea1} 
+u8\+\_\+t uip\+\_\+acc32[4]}
+
+4-\/byte array used for the 32-\/bit sequence number calculations. \index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_appdata@{uip\_appdata}}
+\index{uip\_appdata@{uip\_appdata}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_appdata\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{group__uip_ga561b8eda32e059d4e7397f776268cc63} 
+void$\ast$ uip\+\_\+appdata}
+
+Pointer to the application data in the packet buffer.
+
+This pointer points to the application data when the application is called. If the application wishes to send data, the application may use this space to write the data into before calling \doxyref{uip\+\_\+send()}{p.}{group__uipappfunc_ga04b053a623aac7cd4195157d470661b3}. \index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_appdata@{uip\_appdata}}
+\index{uip\_appdata@{uip\_appdata}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_appdata\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{group__uip_ga561b8eda32e059d4e7397f776268cc63} 
+void$\ast$ uip\+\_\+appdata\hspace{0.3cm}{\ttfamily [extern]}}
+
+Pointer to the application data in the packet buffer.
+
+This pointer points to the application data when the application is called. If the application wishes to send data, the application may use this space to write the data into before calling \doxyref{uip\+\_\+send()}{p.}{group__uipappfunc_ga04b053a623aac7cd4195157d470661b3}. \index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_buf@{uip\_buf}}
+\index{uip\_buf@{uip\_buf}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_buf}
+{\footnotesize\ttfamily \label{group__uip_gab81e78f890dbbee50c533a9734b74fd9} 
+u8\+\_\+t uip\+\_\+buf[\textbf{ UIP\+\_\+\+BUFSIZE}+2]}
+
+The u\+IP packet buffer.
+
+The uip\+\_\+buf array is used to hold incoming and outgoing packets. The device driver should place incoming data into this buffer. When sending data, the device driver should read the link level headers and the TCP/\+IP headers from this buffer. The size of the link level headers is configured by the UIP\+\_\+\+LLH\+\_\+\+LEN define.
+
+\begin{DoxyNote}{Note}
+The application data need not be placed in this buffer, so the device driver must read it from the place pointed to by the uip\+\_\+appdata pointer as illustrated by the following example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}}
+\DoxyCodeLine{devicedriver\_send(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ hwsend(\&uip\_buf[0],\ UIP\_LLH\_LEN);}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{if}(uip\_len\ <=\ UIP\_LLH\_LEN\ +\ UIP\_TCPIP\_HLEN)\ \{}
+\DoxyCodeLine{\ \ \ \ \ hwsend(\&uip\_buf[UIP\_LLH\_LEN],\ uip\_len\ -\/\ UIP\_LLH\_LEN);}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ hwsend(\&uip\_buf[UIP\_LLH\_LEN],\ UIP\_TCPIP\_HLEN);}
+\DoxyCodeLine{\ \ \ \ \ hwsend(uip\_appdata,\ uip\_len\ -\/\ UIP\_TCPIP\_HLEN\ -\/\ UIP\_LLH\_LEN);}
+\DoxyCodeLine{\ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+\index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_conn@{uip\_conn}}
+\index{uip\_conn@{uip\_conn}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_conn\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{group__uip_ga788ffac72342f6172343d7f8099cbe1a} 
+struct uip\+\_\+conn$\ast$ uip\+\_\+conn}
+
+Pointer to the current TCP connection.
+
+The \doxyref{uip\+\_\+conn}{p.}{structuip__conn} pointer can be used to access the current TCP connection. \index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_conn@{uip\_conn}}
+\index{uip\_conn@{uip\_conn}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_conn\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{group__uip_ga788ffac72342f6172343d7f8099cbe1a} 
+struct uip\+\_\+conn$\ast$ uip\+\_\+conn\hspace{0.3cm}{\ttfamily [extern]}}
+
+Pointer to the current TCP connection.
+
+The \doxyref{uip\+\_\+conn}{p.}{structuip__conn} pointer can be used to access the current TCP connection. \index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_len@{uip\_len}}
+\index{uip\_len@{uip\_len}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_len}
+{\footnotesize\ttfamily \label{group__uip_ga12a33f0c09711167bdf3dd7d7cf8c5a1} 
+u16\+\_\+t uip\+\_\+len}
+
+The length of the packet in the uip\+\_\+buf buffer.
+
+The global variable uip\+\_\+len holds the length of the packet in the uip\+\_\+buf buffer.
+
+When the network device driver calls the u\+IP input function, uip\+\_\+len should be set to the length of the packet in the uip\+\_\+buf buffer.
+
+When sending packets, the device driver should use the contents of the uip\+\_\+len variable to determine the length of the outgoing packet. \index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_stat@{uip\_stat}}
+\index{uip\_stat@{uip\_stat}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_stat}
+{\footnotesize\ttfamily \label{group__uip_ga9ee50a40597e67fce96541ab56c3b712} 
+struct \textbf{ uip\+\_\+stats} uip\+\_\+stat\hspace{0.3cm}{\ttfamily [extern]}}
+
+The u\+IP TCP/\+IP statistics.
+
+This is the variable in which the u\+IP TCP/\+IP statistics are gathered. \index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_udp\_conn@{uip\_udp\_conn}}
+\index{uip\_udp\_conn@{uip\_udp\_conn}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_udp\_conn\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{group__uip_ga210f227119fc972e6222c9cb452e15a9} 
+struct uip\+\_\+udp\+\_\+conn$\ast$ uip\+\_\+udp\+\_\+conn}
+
+The current UDP connection. \index{The uIP TCP/IP stack@{The uIP TCP/IP stack}!uip\_udp\_conn@{uip\_udp\_conn}}
+\index{uip\_udp\_conn@{uip\_udp\_conn}!The uIP TCP/IP stack@{The uIP TCP/IP stack}}
+\doxysubsubsection{uip\_udp\_conn\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{group__uip_ga210f227119fc972e6222c9cb452e15a9} 
+struct uip\+\_\+udp\+\_\+conn$\ast$ uip\+\_\+udp\+\_\+conn\hspace{0.3cm}{\ttfamily [extern]}}
+
+The current UDP connection. \input{group__uipconffunc}
+\input{group__uipinit}
+\input{group__uipdevfunc}
+\input{group__uipappfunc}
+\input{group__uipconvfunc}
+\input{group__uipdrivervars}
+\input{group__uiparp}
+\input{group__uiparch}

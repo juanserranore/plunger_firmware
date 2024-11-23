@@ -1,0 +1,206 @@
+\doxysection{uip\+\_\+stats Struct Reference}
+\label{structuip__stats}\index{uip\_stats@{uip\_stats}}
+
+
+{\ttfamily \#include $<$uip.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>uip\_stats\_t \textbf{ drop}\\
+\>uip\_stats\_t \textbf{ recv}\\
+\>uip\_stats\_t \textbf{ sent}\\
+\>uip\_stats\_t \textbf{ vhlerr}\\
+\>uip\_stats\_t \textbf{ hblenerr}\\
+\>uip\_stats\_t \textbf{ lblenerr}\\
+\>uip\_stats\_t \textbf{ fragerr}\\
+\>uip\_stats\_t \textbf{ chkerr}\\
+\>uip\_stats\_t \textbf{ protoerr}\\
+\} \textbf{ ip}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>uip\_stats\_t \textbf{ drop}\\
+\>uip\_stats\_t \textbf{ recv}\\
+\>uip\_stats\_t \textbf{ sent}\\
+\>uip\_stats\_t \textbf{ typeerr}\\
+\} \textbf{ icmp}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>uip\_stats\_t \textbf{ drop}\\
+\>uip\_stats\_t \textbf{ recv}\\
+\>uip\_stats\_t \textbf{ sent}\\
+\>uip\_stats\_t \textbf{ chkerr}\\
+\>uip\_stats\_t \textbf{ ackerr}\\
+\>uip\_stats\_t \textbf{ rst}\\
+\>uip\_stats\_t \textbf{ rexmit}\\
+\>uip\_stats\_t \textbf{ syndrop}\\
+\>uip\_stats\_t \textbf{ synrst}\\
+\} \textbf{ tcp}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>uip\_stats\_t \textbf{ drop}\\
+\>uip\_stats\_t \textbf{ recv}\\
+\>uip\_stats\_t \textbf{ sent}\\
+\>uip\_stats\_t \textbf{ chkerr}\\
+\} \textbf{ udp}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The structure holding the TCP/\+IP statistics that are gathered if UIP\+\_\+\+STATISTICS is set to 1. 
+
+\doxysubsection{Member Data Documentation}
+\index{uip\_stats@{uip\_stats}!ackerr@{ackerr}}
+\index{ackerr@{ackerr}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{ackerr}
+{\footnotesize\ttfamily \label{structuip__stats_a7a58d95f7f7827789ff52500e3d16c34} 
+uip\+\_\+stats\+\_\+t uip\+\_\+stats\+::ackerr}
+
+Number of TCP segments with a bad ACK number. \index{uip\_stats@{uip\_stats}!chkerr@{chkerr}}
+\index{chkerr@{chkerr}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{chkerr}
+{\footnotesize\ttfamily \label{structuip__stats_a7675e6b9adbddbd545d3aac8ca092fbb} 
+uip\+\_\+stats\+\_\+t uip\+\_\+stats\+::chkerr}
+
+Number of packets dropped due to IP checksum errors.
+
+Number of TCP segments with a bad checksum.
+
+Number of UDP segments with a bad checksum. \index{uip\_stats@{uip\_stats}!drop@{drop}}
+\index{drop@{drop}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{drop}
+{\footnotesize\ttfamily \label{structuip__stats_a5d8996950cdf3d8130cc3ad340eb9dff} 
+uip\+\_\+stats\+\_\+t uip\+\_\+stats\+::drop}
+
+Number of dropped packets at the IP layer.
+
+Number of dropped ICMP packets.
+
+Number of dropped TCP segments.
+
+Number of dropped UDP segments. \index{uip\_stats@{uip\_stats}!fragerr@{fragerr}}
+\index{fragerr@{fragerr}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{fragerr}
+{\footnotesize\ttfamily \label{structuip__stats_a8082509468b2ac80ed7746aa1a5bc4f7} 
+uip\+\_\+stats\+\_\+t uip\+\_\+stats\+::fragerr}
+
+Number of packets dropped since they were IP fragments. \index{uip\_stats@{uip\_stats}!hblenerr@{hblenerr}}
+\index{hblenerr@{hblenerr}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{hblenerr}
+{\footnotesize\ttfamily \label{structuip__stats_a0c816f34c0187f2154c91a18d3ad87c8} 
+uip\+\_\+stats\+\_\+t uip\+\_\+stats\+::hblenerr}
+
+Number of packets dropped due to wrong IP length, high byte. \index{uip\_stats@{uip\_stats}!icmp@{icmp}}
+\index{icmp@{icmp}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{[struct]}
+{\footnotesize\ttfamily \label{structuip__stats_a0011284ca3a3c6545c8fd9b03534955d} 
+struct  \{ ... \}  uip\+\_\+stats\+::icmp}
+
+ICMP statistics. \index{uip\_stats@{uip\_stats}!ip@{ip}}
+\index{ip@{ip}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{[struct]}
+{\footnotesize\ttfamily \label{structuip__stats_a1fa3197ffa8cb78778da63f6ed96a4d7} 
+struct  \{ ... \}  uip\+\_\+stats\+::ip}
+
+IP statistics. \index{uip\_stats@{uip\_stats}!lblenerr@{lblenerr}}
+\index{lblenerr@{lblenerr}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{lblenerr}
+{\footnotesize\ttfamily \label{structuip__stats_a6157452bdc9921f44b2e22e4b5969258} 
+uip\+\_\+stats\+\_\+t uip\+\_\+stats\+::lblenerr}
+
+Number of packets dropped due to wrong IP length, low byte. \index{uip\_stats@{uip\_stats}!protoerr@{protoerr}}
+\index{protoerr@{protoerr}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{protoerr}
+{\footnotesize\ttfamily \label{structuip__stats_ab4622e2599ff3a592db09219b2641682} 
+uip\+\_\+stats\+\_\+t uip\+\_\+stats\+::protoerr}
+
+Number of packets dropped since they were neither ICMP, UDP nor TCP. \index{uip\_stats@{uip\_stats}!recv@{recv}}
+\index{recv@{recv}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{recv}
+{\footnotesize\ttfamily \label{structuip__stats_a7f7bb2145afba5df00c6e10ddefa8ae1} 
+uip\+\_\+stats\+\_\+t uip\+\_\+stats\+::recv}
+
+Number of received packets at the IP layer.
+
+Number of received ICMP packets.
+
+Number of recived TCP segments.
+
+Number of recived UDP segments. \index{uip\_stats@{uip\_stats}!rexmit@{rexmit}}
+\index{rexmit@{rexmit}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{rexmit}
+{\footnotesize\ttfamily \label{structuip__stats_a3ad48284f7a91f78bb24096aad89056e} 
+uip\+\_\+stats\+\_\+t uip\+\_\+stats\+::rexmit}
+
+Number of retransmitted TCP segments. \index{uip\_stats@{uip\_stats}!rst@{rst}}
+\index{rst@{rst}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{rst}
+{\footnotesize\ttfamily \label{structuip__stats_ab6e9a75167bdddd561373bc5b6ef501c} 
+uip\+\_\+stats\+\_\+t uip\+\_\+stats\+::rst}
+
+Number of recevied TCP RST (reset) segments. \index{uip\_stats@{uip\_stats}!sent@{sent}}
+\index{sent@{sent}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{sent}
+{\footnotesize\ttfamily \label{structuip__stats_adc69abadd5aa07c7d74f9292db2cd93c} 
+uip\+\_\+stats\+\_\+t uip\+\_\+stats\+::sent}
+
+Number of sent packets at the IP layer.
+
+Number of sent ICMP packets.
+
+Number of sent TCP segments.
+
+Number of sent UDP segments. \index{uip\_stats@{uip\_stats}!syndrop@{syndrop}}
+\index{syndrop@{syndrop}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{syndrop}
+{\footnotesize\ttfamily \label{structuip__stats_a494ea6767a8a8fab7abe96b799d6c3b3} 
+uip\+\_\+stats\+\_\+t uip\+\_\+stats\+::syndrop}
+
+Number of dropped SYNs due to too few connections was avaliable. \index{uip\_stats@{uip\_stats}!synrst@{synrst}}
+\index{synrst@{synrst}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{synrst}
+{\footnotesize\ttfamily \label{structuip__stats_ae9205a565ea3c911a785fc4e87c91a58} 
+uip\+\_\+stats\+\_\+t uip\+\_\+stats\+::synrst}
+
+Number of SYNs for closed ports, triggering a RST. \index{uip\_stats@{uip\_stats}!tcp@{tcp}}
+\index{tcp@{tcp}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{[struct]}
+{\footnotesize\ttfamily \label{structuip__stats_ae7df8f6c0ec8216e727dc2ee825d9f0d} 
+struct  \{ ... \}  uip\+\_\+stats\+::tcp}
+
+TCP statistics. \index{uip\_stats@{uip\_stats}!typeerr@{typeerr}}
+\index{typeerr@{typeerr}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{typeerr}
+{\footnotesize\ttfamily \label{structuip__stats_a8da121d6e50992ec55778f9b2141552d} 
+uip\+\_\+stats\+\_\+t uip\+\_\+stats\+::typeerr}
+
+Number of ICMP packets with a wrong type. \index{uip\_stats@{uip\_stats}!udp@{udp}}
+\index{udp@{udp}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{[struct]}
+{\footnotesize\ttfamily \label{structuip__stats_a1aace09faac1b60601d68858744f6680} 
+struct  \{ ... \}  uip\+\_\+stats\+::udp}
+
+UDP statistics. \index{uip\_stats@{uip\_stats}!vhlerr@{vhlerr}}
+\index{vhlerr@{vhlerr}!uip\_stats@{uip\_stats}}
+\doxysubsubsection{vhlerr}
+{\footnotesize\ttfamily \label{structuip__stats_ab93e351c3abba0c700b26b7b07e9527d} 
+uip\+\_\+stats\+\_\+t uip\+\_\+stats\+::vhlerr}
+
+Number of packets dropped due to wrong IP version or header length. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Ethernet\+ENC-\/2.\+0.\+5/src/utility/\textbf{ uip.\+h}\end{DoxyCompactItemize}

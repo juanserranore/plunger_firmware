@@ -1,0 +1,247 @@
+\doxysubsection{u\+IP device driver functions}
+\label{group__uipdevfunc}\index{uIP device driver functions@{uIP device driver functions}}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ uip\+\_\+input}()
+\item 
+\#define \textbf{ uip\+\_\+periodic}(conn)
+\item 
+\#define \textbf{ uip\+\_\+conn\+\_\+active}(conn)
+\item 
+\#define \textbf{ uip\+\_\+periodic\+\_\+conn}(conn)
+\item 
+\#define \textbf{ uip\+\_\+poll\+\_\+conn}(conn)
+\item 
+\#define \textbf{ uip\+\_\+udp\+\_\+periodic}(conn)
+\item 
+\#define \textbf{ uip\+\_\+udp\+\_\+periodic\+\_\+conn}(conn)
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+u8\+\_\+t \textbf{ uip\+\_\+buf} [\textbf{ UIP\+\_\+\+BUFSIZE}+2]
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+These functions are used by a network device driver for interacting with u\+IP. 
+
+\doxysubsubsection{Macro Definition Documentation}
+\index{uIP device driver functions@{uIP device driver functions}!uip\_conn\_active@{uip\_conn\_active}}
+\index{uip\_conn\_active@{uip\_conn\_active}!uIP device driver functions@{uIP device driver functions}}
+\doxysubsubsubsection{uip\_conn\_active}
+{\footnotesize\ttfamily \label{group__uipdevfunc_gafd5ebb56a1bd1da9878aa886a2075e80} 
+\#define uip\+\_\+conn\+\_\+active(\begin{DoxyParamCaption}\item[{}]{conn}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(uip\_conns[conn].tcpstateflags\ !=\ UIP\_CLOSED)}
+
+\end{DoxyCode}
+\index{uIP device driver functions@{uIP device driver functions}!uip\_input@{uip\_input}}
+\index{uip\_input@{uip\_input}!uIP device driver functions@{uIP device driver functions}}
+\doxysubsubsubsection{uip\_input}
+{\footnotesize\ttfamily \label{group__uipdevfunc_gaa4360412ee9350fba725f98a137169fe} 
+\#define uip\+\_\+input(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Process an incoming packet.
+
+This function should be called when the device driver has received a packet from the network. The packet from the device driver must be present in the uip\+\_\+buf buffer, and the length of the packet should be placed in the uip\+\_\+len variable.
+
+When the function returns, there may be an outbound packet placed in the uip\+\_\+buf packet buffer. If so, the uip\+\_\+len variable is set to the length of the packet. If no packet is to be sent out, the uip\+\_\+len variable is set to 0.
+
+The usual way of calling the function is presented by the source code below. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uip\_len\ =\ devicedriver\_poll();}
+\DoxyCodeLine{\textcolor{keywordflow}{if}(uip\_len\ >\ 0)\ \{}
+\DoxyCodeLine{\ \ uip\_input();}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}(uip\_len\ >\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ devicedriver\_send();}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxyNote}{Note}
+If you are writing a u\+IP device driver that needs ARP (Address Resolution Protocol), e.\+g., when running u\+IP over Ethernet, you will need to call the u\+IP ARP code before calling this function\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ BUF\ ((struct\ uip\_eth\_hdr\ *)\&uip\_buf[0])}}
+\DoxyCodeLine{uip\_len\ =\ ethernet\_devicedrver\_poll();}
+\DoxyCodeLine{\textcolor{keywordflow}{if}(uip\_len\ >\ 0)\ \{}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}(BUF-\/>type\ ==\ HTONS(UIP\_ETHTYPE\_IP))\ \{}
+\DoxyCodeLine{\ \ \ \ uip\_arp\_ipin();}
+\DoxyCodeLine{\ \ \ \ uip\_input();}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}(uip\_len\ >\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ uip\_arp\_out();}
+\DoxyCodeLine{\ \ ethernet\_devicedriver\_send();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(BUF-\/>type\ ==\ HTONS(UIP\_ETHTYPE\_ARP))\ \{}
+\DoxyCodeLine{\ \ \ \ uip\_arp\_arpin();}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}(uip\_len\ >\ 0)\ \{}
+\DoxyCodeLine{\ \ ethernet\_devicedriver\_send();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}
+ 
+\end{DoxyNote}
+\index{uIP device driver functions@{uIP device driver functions}!uip\_periodic@{uip\_periodic}}
+\index{uip\_periodic@{uip\_periodic}!uIP device driver functions@{uIP device driver functions}}
+\doxysubsubsubsection{uip\_periodic}
+{\footnotesize\ttfamily \label{group__uipdevfunc_ga1024f8a5fa65e82bf848b2e6590d9628} 
+\#define uip\+\_\+periodic(\begin{DoxyParamCaption}\item[{}]{conn}{}\end{DoxyParamCaption})}
+
+Periodic processing for a connection identified by its number.
+
+This function does the necessary periodic processing (timers, polling) for a u\+IP TCP conneciton, and should be called when the periodic u\+IP timer goes off. It should be called for every connection, regardless of whether they are open of closed.
+
+When the function returns, it may have an outbound packet waiting for service in the u\+IP packet buffer, and if so the uip\+\_\+len variable is set to a value larger than zero. The device driver should be called to send out the packet.
+
+The ususal way of calling the function is through a for() loop like this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ UIP\_CONNS;\ ++i)\ \{}
+\DoxyCodeLine{\ \ uip\_periodic(i);}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}(uip\_len\ >\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ devicedriver\_send();}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxyNote}{Note}
+If you are writing a u\+IP device driver that needs ARP (Address Resolution Protocol), e.\+g., when running u\+IP over Ethernet, you will need to call the \doxyref{uip\+\_\+arp\+\_\+out()}{p.}{group__uiparp_ga54b27e45df15e10a0eb1a3e3a91417d2} function before calling the device driver\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ UIP\_CONNS;\ ++i)\ \{}
+\DoxyCodeLine{\ \ uip\_periodic(i);}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}(uip\_len\ >\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ uip\_arp\_out();}
+\DoxyCodeLine{\ \ \ \ ethernet\_devicedriver\_send();}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & The number of the connection which is to be periodically polled. \\
+\hline
+\end{DoxyParams}
+\index{uIP device driver functions@{uIP device driver functions}!uip\_periodic\_conn@{uip\_periodic\_conn}}
+\index{uip\_periodic\_conn@{uip\_periodic\_conn}!uIP device driver functions@{uIP device driver functions}}
+\doxysubsubsubsection{uip\_periodic\_conn}
+{\footnotesize\ttfamily \label{group__uipdevfunc_gabaf0bb2b6a4424b4eb69e45e457c2583} 
+\#define uip\+\_\+periodic\+\_\+conn(\begin{DoxyParamCaption}\item[{}]{conn}{}\end{DoxyParamCaption})}
+
+Perform periodic processing for a connection identified by a pointer to its structure.
+
+Same as \doxyref{uip\+\_\+periodic()}{p.}{group__uipdevfunc_ga1024f8a5fa65e82bf848b2e6590d9628} but takes a pointer to the actual \doxyref{uip\+\_\+conn}{p.}{structuip__conn} struct instead of an integer as its argument. This function can be used to force periodic processing of a specific connection.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & A pointer to the \doxyref{uip\+\_\+conn}{p.}{structuip__conn} struct for the connection to be processed. \\
+\hline
+\end{DoxyParams}
+\index{uIP device driver functions@{uIP device driver functions}!uip\_poll\_conn@{uip\_poll\_conn}}
+\index{uip\_poll\_conn@{uip\_poll\_conn}!uIP device driver functions@{uIP device driver functions}}
+\doxysubsubsubsection{uip\_poll\_conn}
+{\footnotesize\ttfamily \label{group__uipdevfunc_gaf20aaf4292cb0d2a1b10bc0a568b51fa} 
+\#define uip\+\_\+poll\+\_\+conn(\begin{DoxyParamCaption}\item[{}]{conn}{}\end{DoxyParamCaption})}
+
+Reuqest that a particular connection should be polled.
+
+Similar to \doxyref{uip\+\_\+periodic\+\_\+conn()}{p.}{group__uipdevfunc_gabaf0bb2b6a4424b4eb69e45e457c2583} but does not perform any timer processing. The application is polled for new data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & A pointer to the \doxyref{uip\+\_\+conn}{p.}{structuip__conn} struct for the connection to be processed. \\
+\hline
+\end{DoxyParams}
+\index{uIP device driver functions@{uIP device driver functions}!uip\_udp\_periodic@{uip\_udp\_periodic}}
+\index{uip\_udp\_periodic@{uip\_udp\_periodic}!uIP device driver functions@{uIP device driver functions}}
+\doxysubsubsubsection{uip\_udp\_periodic}
+{\footnotesize\ttfamily \label{group__uipdevfunc_ga2c64c8c36bc84f9336f6a2184ea51883} 
+\#define uip\+\_\+udp\+\_\+periodic(\begin{DoxyParamCaption}\item[{}]{conn}{}\end{DoxyParamCaption})}
+
+Periodic processing for a UDP connection identified by its number.
+
+This function is essentially the same as \doxyref{uip\+\_\+periodic()}{p.}{group__uipdevfunc_ga1024f8a5fa65e82bf848b2e6590d9628}, but for UDP connections. It is called in a similar fashion as the \doxyref{uip\+\_\+periodic()}{p.}{group__uipdevfunc_ga1024f8a5fa65e82bf848b2e6590d9628} function\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ UIP\_UDP\_CONNS;\ i++)\ \{}
+\DoxyCodeLine{\ \ uip\_udp\_periodic(i);}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}(uip\_len\ >\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ devicedriver\_send();}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxyNote}{Note}
+As for the \doxyref{uip\+\_\+periodic()}{p.}{group__uipdevfunc_ga1024f8a5fa65e82bf848b2e6590d9628} function, special care has to be taken when using u\+IP together with ARP and Ethernet\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ UIP\_UDP\_CONNS;\ i++)\ \{}
+\DoxyCodeLine{\ \ uip\_udp\_periodic(i);}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}(uip\_len\ >\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ uip\_arp\_out();}
+\DoxyCodeLine{\ \ \ \ ethernet\_devicedriver\_send();}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & The number of the UDP connection to be processed. \\
+\hline
+\end{DoxyParams}
+\index{uIP device driver functions@{uIP device driver functions}!uip\_udp\_periodic\_conn@{uip\_udp\_periodic\_conn}}
+\index{uip\_udp\_periodic\_conn@{uip\_udp\_periodic\_conn}!uIP device driver functions@{uIP device driver functions}}
+\doxysubsubsubsection{uip\_udp\_periodic\_conn}
+{\footnotesize\ttfamily \label{group__uipdevfunc_gaf5c2ad5acf3cc23b8262e9ba6a15136b} 
+\#define uip\+\_\+udp\+\_\+periodic\+\_\+conn(\begin{DoxyParamCaption}\item[{}]{conn}{}\end{DoxyParamCaption})}
+
+Periodic processing for a UDP connection identified by a pointer to its structure.
+
+Same as \doxyref{uip\+\_\+udp\+\_\+periodic()}{p.}{group__uipdevfunc_ga2c64c8c36bc84f9336f6a2184ea51883} but takes a pointer to the actual \doxyref{uip\+\_\+conn}{p.}{structuip__conn} struct instead of an integer as its argument. This function can be used to force periodic processing of a specific connection.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & A pointer to the \doxyref{uip\+\_\+udp\+\_\+conn}{p.}{structuip__udp__conn} struct for the connection to be processed. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsubsection{Variable Documentation}
+\index{uIP device driver functions@{uIP device driver functions}!uip\_buf@{uip\_buf}}
+\index{uip\_buf@{uip\_buf}!uIP device driver functions@{uIP device driver functions}}
+\doxysubsubsubsection{uip\_buf}
+{\footnotesize\ttfamily \label{group__uipdevfunc_gab81e78f890dbbee50c533a9734b74fd9} 
+u8\+\_\+t uip\+\_\+buf[\textbf{ UIP\+\_\+\+BUFSIZE}+2]\hspace{0.3cm}{\ttfamily [extern]}}
+
+The u\+IP packet buffer.
+
+The uip\+\_\+buf array is used to hold incoming and outgoing packets. The device driver should place incoming data into this buffer. When sending data, the device driver should read the link level headers and the TCP/\+IP headers from this buffer. The size of the link level headers is configured by the UIP\+\_\+\+LLH\+\_\+\+LEN define.
+
+\begin{DoxyNote}{Note}
+The application data need not be placed in this buffer, so the device driver must read it from the place pointed to by the uip\+\_\+appdata pointer as illustrated by the following example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}}
+\DoxyCodeLine{devicedriver\_send(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ hwsend(\&uip\_buf[0],\ UIP\_LLH\_LEN);}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{if}(uip\_len\ <=\ UIP\_LLH\_LEN\ +\ UIP\_TCPIP\_HLEN)\ \{}
+\DoxyCodeLine{\ \ \ \ \ hwsend(\&uip\_buf[UIP\_LLH\_LEN],\ uip\_len\ -\/\ UIP\_LLH\_LEN);}
+\DoxyCodeLine{\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ hwsend(\&uip\_buf[UIP\_LLH\_LEN],\ UIP\_TCPIP\_HLEN);}
+\DoxyCodeLine{\ \ \ \ \ hwsend(uip\_appdata,\ uip\_len\ -\/\ UIP\_TCPIP\_HLEN\ -\/\ UIP\_LLH\_LEN);}
+\DoxyCodeLine{\ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\end{DoxyNote}

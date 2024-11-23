@@ -1,0 +1,261 @@
+\doxysection{lib/\+Ethernet\+ENC-\/2.0.5/src/utility/uip.h File Reference}
+\label{uip_8h}\index{lib/EthernetENC-\/2.0.5/src/utility/uip.h@{lib/EthernetENC-\/2.0.5/src/utility/uip.h}}
+{\ttfamily \#include "{}uipopt.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ uip\+\_\+conn}
+\item 
+struct \textbf{ uip\+\_\+udp\+\_\+conn}
+\item 
+struct \textbf{ uip\+\_\+stats}
+\item 
+struct \textbf{ uip\+\_\+tcpip\+\_\+hdr}
+\item 
+struct \textbf{ uip\+\_\+icmpip\+\_\+hdr}
+\item 
+struct \textbf{ uip\+\_\+udpip\+\_\+hdr}
+\item 
+struct \textbf{ uip\+\_\+eth\+\_\+addr}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ uip\+\_\+sethostaddr}(addr)
+\item 
+\#define \textbf{ uip\+\_\+gethostaddr}(addr)
+\item 
+\#define \textbf{ uip\+\_\+setdraddr}(addr)
+\item 
+\#define \textbf{ uip\+\_\+setnetmask}(addr)
+\item 
+\#define \textbf{ uip\+\_\+getdraddr}(addr)
+\item 
+\#define \textbf{ uip\+\_\+getnetmask}(addr)
+\item 
+\#define \textbf{ uip\+\_\+input}()
+\item 
+\#define \textbf{ uip\+\_\+periodic}(conn)
+\item 
+\#define \textbf{ uip\+\_\+conn\+\_\+active}(conn)
+\item 
+\#define \textbf{ uip\+\_\+periodic\+\_\+conn}(conn)
+\item 
+\#define \textbf{ uip\+\_\+poll\+\_\+conn}(conn)
+\item 
+\#define \textbf{ uip\+\_\+udp\+\_\+periodic}(conn)
+\item 
+\#define \textbf{ uip\+\_\+udp\+\_\+periodic\+\_\+conn}(conn)
+\item 
+\#define \textbf{ uip\+\_\+outstanding}(conn)
+\item 
+\#define \textbf{ uip\+\_\+datalen}()
+\item 
+\#define \textbf{ uip\+\_\+urgdatalen}()
+\item 
+\#define \textbf{ uip\+\_\+close}()
+\item 
+\#define \textbf{ uip\+\_\+abort}()
+\item 
+\#define \textbf{ uip\+\_\+stop}()
+\item 
+\#define \textbf{ uip\+\_\+stopped}(conn)
+\item 
+\#define \textbf{ uip\+\_\+restart}()
+\item 
+\#define \textbf{ uip\+\_\+udpconnection}()
+\item 
+\#define \textbf{ uip\+\_\+newdata}()
+\item 
+\#define \textbf{ uip\+\_\+acked}()
+\item 
+\#define \textbf{ uip\+\_\+connected}()
+\item 
+\#define \textbf{ uip\+\_\+closed}()
+\item 
+\#define \textbf{ uip\+\_\+aborted}()
+\item 
+\#define \textbf{ uip\+\_\+timedout}()
+\item 
+\#define \textbf{ uip\+\_\+rexmit}()
+\item 
+\#define \textbf{ uip\+\_\+poll}()
+\item 
+\#define \textbf{ uip\+\_\+initialmss}()
+\item 
+\#define \textbf{ uip\+\_\+mss}()
+\item 
+\#define \textbf{ uip\+\_\+udp\+\_\+remove}(conn)
+\item 
+\#define \textbf{ uip\+\_\+udp\+\_\+bind}(conn,  port)
+\item 
+\#define \textbf{ uip\+\_\+udp\+\_\+send}(len)
+\item 
+\#define \textbf{ uip\+\_\+ipaddr}(addr,  addr0,  addr1,  addr2,  addr3)
+\item 
+\#define \textbf{ uip\+\_\+ip6addr}(addr,  addr0,  addr1,  addr2,  addr3,  addr4,  addr5,  addr6,  addr7)
+\item 
+\#define \textbf{ uip\+\_\+ipaddr\+\_\+copy}(dest,  src)
+\item 
+\#define \textbf{ uip\+\_\+ipaddr\+\_\+cmp}(addr1,  addr2)
+\item 
+\#define \textbf{ uip\+\_\+ipaddr\+\_\+maskcmp}(addr1,  addr2,  mask)
+\item 
+\#define \textbf{ uip\+\_\+ipaddr\+\_\+mask}(dest,  src,  mask)
+\item 
+\#define \textbf{ uip\+\_\+ipaddr1}(addr)
+\item 
+\#define \textbf{ uip\+\_\+ipaddr2}(addr)
+\item 
+\#define \textbf{ uip\+\_\+ipaddr3}(addr)
+\item 
+\#define \textbf{ uip\+\_\+ipaddr4}(addr)
+\item 
+\#define \textbf{ HTONS}(n)
+\item 
+\#define {\bfseries ntohs}~\textbf{ htons}
+\item 
+\#define \textbf{ UIP\+\_\+\+ACKDATA}
+\item 
+\#define \textbf{ UIP\+\_\+\+NEWDATA}
+\item 
+\#define \textbf{ UIP\+\_\+\+REXMIT}
+\item 
+\#define \textbf{ UIP\+\_\+\+POLL}
+\item 
+\#define \textbf{ UIP\+\_\+\+CLOSE}
+\item 
+\#define \textbf{ UIP\+\_\+\+ABORT}
+\item 
+\#define \textbf{ UIP\+\_\+\+CONNECTED}
+\item 
+\#define \textbf{ UIP\+\_\+\+TIMEDOUT}
+\item 
+\#define \textbf{ UIP\+\_\+\+DATA}
+\item 
+\#define \textbf{ UIP\+\_\+\+TIMER}
+\item 
+\#define \textbf{ UIP\+\_\+\+POLL\+\_\+\+REQUEST}
+\item 
+\#define \textbf{ UIP\+\_\+\+UDP\+\_\+\+SEND\+\_\+\+CONN}
+\item 
+\#define {\bfseries UIP\+\_\+\+UDP\+\_\+\+TIMER}~5
+\item 
+\#define {\bfseries UIP\+\_\+\+CLOSED}~0
+\item 
+\#define {\bfseries UIP\+\_\+\+SYN\+\_\+\+RCVD}~1
+\item 
+\#define {\bfseries UIP\+\_\+\+SYN\+\_\+\+SENT}~2
+\item 
+\#define {\bfseries UIP\+\_\+\+ESTABLISHED}~3
+\item 
+\#define {\bfseries UIP\+\_\+\+FIN\+\_\+\+WAIT\+\_\+1}~4
+\item 
+\#define {\bfseries UIP\+\_\+\+FIN\+\_\+\+WAIT\+\_\+2}~5
+\item 
+\#define {\bfseries UIP\+\_\+\+CLOSING}~6
+\item 
+\#define {\bfseries UIP\+\_\+\+TIME\+\_\+\+WAIT}~7
+\item 
+\#define {\bfseries UIP\+\_\+\+LAST\+\_\+\+ACK}~8
+\item 
+\#define {\bfseries UIP\+\_\+\+TS\+\_\+\+MASK}~15
+\item 
+\#define {\bfseries UIP\+\_\+\+STOPPED}~16
+\item 
+\#define \textbf{ UIP\+\_\+\+APPDATA\+\_\+\+SIZE}
+\item 
+\#define {\bfseries UIP\+\_\+\+PROTO\+\_\+\+ICMP}~1
+\item 
+\#define {\bfseries UIP\+\_\+\+PROTO\+\_\+\+TCP}~6
+\item 
+\#define {\bfseries UIP\+\_\+\+PROTO\+\_\+\+UDP}~17
+\item 
+\#define {\bfseries UIP\+\_\+\+PROTO\+\_\+\+ICMP6}~58
+\item 
+\#define {\bfseries UIP\+\_\+\+IPH\+\_\+\+LEN}~20    /$\ast$ Size of IP header $\ast$/
+\item 
+\#define {\bfseries UIP\+\_\+\+UDPH\+\_\+\+LEN}~8    /$\ast$ Size of UDP header $\ast$/
+\item 
+\#define {\bfseries UIP\+\_\+\+TCPH\+\_\+\+LEN}~20    /$\ast$ Size of TCP header $\ast$/
+\item 
+\#define \textbf{ UIP\+\_\+\+IPUDPH\+\_\+\+LEN}
+\item 
+\#define \textbf{ UIP\+\_\+\+IPTCPH\+\_\+\+LEN}
+\item 
+\#define {\bfseries UIP\+\_\+\+TCPIP\+\_\+\+HLEN}~UIP\+\_\+\+IPTCPH\+\_\+\+LEN
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef u16\+\_\+t \textbf{ uip\+\_\+ip4addr\+\_\+t}[2]
+\item 
+typedef u16\+\_\+t {\bfseries uip\+\_\+ip6addr\+\_\+t}[8]
+\item 
+typedef \textbf{ uip\+\_\+ip4addr\+\_\+t} {\bfseries uip\+\_\+ipaddr\+\_\+t}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ uip\+\_\+init} (void)
+\item 
+void \textbf{ uip\+\_\+setipid} (u16\+\_\+t id)
+\item 
+void \textbf{ uip\+\_\+listen} (u16\+\_\+t port)
+\item 
+void \textbf{ uip\+\_\+unlisten} (u16\+\_\+t port)
+\item 
+struct \textbf{ uip\+\_\+conn} $\ast$ \textbf{ uip\+\_\+connect} (uip\+\_\+ipaddr\+\_\+t $\ast$ripaddr, u16\+\_\+t port)
+\item 
+void \textbf{ uip\+\_\+send} (const void $\ast$data, int len)
+\item 
+struct \textbf{ uip\+\_\+udp\+\_\+conn} $\ast$ \textbf{ uip\+\_\+udp\+\_\+new} (uip\+\_\+ipaddr\+\_\+t $\ast$ripaddr, u16\+\_\+t rport)
+\item 
+u16\+\_\+t \textbf{ htons} (u16\+\_\+t val)
+\item 
+void {\bfseries uip\+\_\+process} (u8\+\_\+t flag)
+\item 
+u16\+\_\+t \textbf{ uip\+\_\+chksum} (u16\+\_\+t $\ast$buf, u16\+\_\+t len)
+\item 
+u16\+\_\+t \textbf{ uip\+\_\+ipchksum} (void)
+\item 
+u16\+\_\+t \textbf{ uip\+\_\+tcpchksum} (void)
+\item 
+u16\+\_\+t \textbf{ uip\+\_\+udpchksum} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+u8\+\_\+t \textbf{ uip\+\_\+buf} [\textbf{ UIP\+\_\+\+BUFSIZE}+2]
+\item 
+void $\ast$ \textbf{ uip\+\_\+appdata}
+\item 
+u16\+\_\+t \textbf{ uip\+\_\+len}
+\item 
+struct uip\+\_\+conn $\ast$ \textbf{ uip\+\_\+conn}
+\item 
+struct \textbf{ uip\+\_\+conn} {\bfseries uip\+\_\+conns} [\textbf{ UIP\+\_\+\+CONNS}]
+\item 
+u8\+\_\+t \textbf{ uip\+\_\+acc32} [4]
+\item 
+struct uip\+\_\+udp\+\_\+conn $\ast$ \textbf{ uip\+\_\+udp\+\_\+conn}
+\item 
+struct \textbf{ uip\+\_\+udp\+\_\+conn} {\bfseries uip\+\_\+udp\+\_\+conns} [\textbf{ UIP\+\_\+\+UDP\+\_\+\+CONNS}]
+\item 
+struct \textbf{ uip\+\_\+stats} \textbf{ uip\+\_\+stat}
+\item 
+u8\+\_\+t {\bfseries uip\+\_\+flags}
+\item 
+uip\+\_\+ipaddr\+\_\+t {\bfseries uip\+\_\+hostaddr}
+\item 
+uip\+\_\+ipaddr\+\_\+t {\bfseries uip\+\_\+netmask}
+\item 
+uip\+\_\+ipaddr\+\_\+t {\bfseries uip\+\_\+draddr}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the u\+IP TCP/\+IP stack. \begin{DoxyAuthor}{Author}
+Adam Dunkels {\texttt{ adam@dunkels.\+com}}
+\end{DoxyAuthor}
+The u\+IP TCP/\+IP stack header file contains definitions for a number of C macros that are used by u\+IP programs as well as internal u\+IP structures, TCP/\+IP header structures and function declarations. 

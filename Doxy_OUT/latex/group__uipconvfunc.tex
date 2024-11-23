@@ -1,0 +1,308 @@
+\doxysubsection{u\+IP conversion functions}
+\label{group__uipconvfunc}\index{uIP conversion functions@{uIP conversion functions}}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ uip\+\_\+ipaddr}(addr,  addr0,  addr1,  addr2,  addr3)
+\item 
+\#define \textbf{ uip\+\_\+ip6addr}(addr,  addr0,  addr1,  addr2,  addr3,  addr4,  addr5,  addr6,  addr7)
+\item 
+\#define \textbf{ uip\+\_\+ipaddr\+\_\+copy}(dest,  src)
+\item 
+\#define \textbf{ uip\+\_\+ipaddr\+\_\+cmp}(addr1,  addr2)
+\item 
+\#define \textbf{ uip\+\_\+ipaddr\+\_\+maskcmp}(addr1,  addr2,  mask)
+\item 
+\#define \textbf{ uip\+\_\+ipaddr\+\_\+mask}(dest,  src,  mask)
+\item 
+\#define \textbf{ uip\+\_\+ipaddr1}(addr)
+\item 
+\#define \textbf{ uip\+\_\+ipaddr2}(addr)
+\item 
+\#define \textbf{ uip\+\_\+ipaddr3}(addr)
+\item 
+\#define \textbf{ uip\+\_\+ipaddr4}(addr)
+\item 
+\#define \textbf{ HTONS}(n)
+\item 
+\label{group__uipconvfunc_ga118e9d76568ab81ad97f138d4ea1ddd2} 
+\#define {\bfseries ntohs}~\textbf{ htons}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+u16\+\_\+t \textbf{ htons} (u16\+\_\+t val)
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+These functions can be used for converting between different data formats used by u\+IP. 
+
+\doxysubsubsection{Macro Definition Documentation}
+\index{uIP conversion functions@{uIP conversion functions}!HTONS@{HTONS}}
+\index{HTONS@{HTONS}!uIP conversion functions@{uIP conversion functions}}
+\doxysubsubsubsection{HTONS}
+{\footnotesize\ttfamily \label{group__uipconvfunc_ga69a7a4951ff21b302267532c21ee78fc} 
+\#define HTONS(\begin{DoxyParamCaption}\item[{}]{n}{}\end{DoxyParamCaption})}
+
+Convert 16-\/bit quantity from host byte order to network byte order.
+
+This macro is primarily used for converting constants from host byte order to network byte order. For converting variables to network byte order, use the \doxyref{htons()}{p.}{group__uipconvfunc_gaa22b04cac8cf283ca12f028578bebc06} function instead. \index{uIP conversion functions@{uIP conversion functions}!uip\_ip6addr@{uip\_ip6addr}}
+\index{uip\_ip6addr@{uip\_ip6addr}!uIP conversion functions@{uIP conversion functions}}
+\doxysubsubsubsection{uip\_ip6addr}
+{\footnotesize\ttfamily \label{group__uipconvfunc_ga53fbda0e8c31d4882294c8dc3cb5f487} 
+\#define uip\+\_\+ip6addr(\begin{DoxyParamCaption}\item[{}]{addr}{, }\item[{}]{addr0}{, }\item[{}]{addr1}{, }\item[{}]{addr2}{, }\item[{}]{addr3}{, }\item[{}]{addr4}{, }\item[{}]{addr5}{, }\item[{}]{addr6}{, }\item[{}]{addr7}{}\end{DoxyParamCaption})}
+
+Construct an IPv6 address from eight 16-\/bit words.
+
+This function constructs an IPv6 address. \index{uIP conversion functions@{uIP conversion functions}!uip\_ipaddr@{uip\_ipaddr}}
+\index{uip\_ipaddr@{uip\_ipaddr}!uIP conversion functions@{uIP conversion functions}}
+\doxysubsubsubsection{uip\_ipaddr}
+{\footnotesize\ttfamily \label{group__uipconvfunc_ga87f0b54ade0d159fba495089128a4932} 
+\#define uip\+\_\+ipaddr(\begin{DoxyParamCaption}\item[{}]{addr}{, }\item[{}]{addr0}{, }\item[{}]{addr1}{, }\item[{}]{addr2}{, }\item[{}]{addr3}{}\end{DoxyParamCaption})}
+
+Construct an IP address from four bytes.
+
+This function constructs an IP address of the type that u\+IP handles internally from four bytes. The function is handy for specifying IP addresses to use with e.\+g. the \doxyref{uip\+\_\+connect()}{p.}{group__uipappfunc_ga9b7916a3458722c16a749cf08ea41afe} function.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uip\_ipaddr\_t\ ipaddr;}
+\DoxyCodeLine{\textcolor{keyword}{struct\ }uip\_conn\ *c;}
+\DoxyCodeLine{}
+\DoxyCodeLine{uip\_ipaddr(\&ipaddr,\ 192,168,1,2);}
+\DoxyCodeLine{c\ =\ uip\_connect(\&ipaddr,\ HTONS(80));}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & A pointer to a uip\+\_\+ipaddr\+\_\+t variable that will be filled in with the IP address.\\
+\hline
+{\em addr0} & The first octet of the IP address. \\
+\hline
+{\em addr1} & The second octet of the IP address. \\
+\hline
+{\em addr2} & The third octet of the IP address. \\
+\hline
+{\em addr3} & The forth octet of the IP address. \\
+\hline
+\end{DoxyParams}
+\index{uIP conversion functions@{uIP conversion functions}!uip\_ipaddr1@{uip\_ipaddr1}}
+\index{uip\_ipaddr1@{uip\_ipaddr1}!uIP conversion functions@{uIP conversion functions}}
+\doxysubsubsubsection{uip\_ipaddr1}
+{\footnotesize\ttfamily \label{group__uipconvfunc_ga22fa0681cd463191d7a01fe85d86996f} 
+\#define uip\+\_\+ipaddr1(\begin{DoxyParamCaption}\item[{}]{addr}{}\end{DoxyParamCaption})}
+
+Pick the first octet of an IP address.
+
+Picks out the first octet of an IP address.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uip\_ipaddr\_t\ ipaddr;}
+\DoxyCodeLine{u8\_t\ octet;}
+\DoxyCodeLine{}
+\DoxyCodeLine{uip\_ipaddr(\&ipaddr,\ 1,2,3,4);}
+\DoxyCodeLine{octet\ =\ uip\_ipaddr1(\&ipaddr);}
+
+\end{DoxyCode}
+
+
+In the example above, the variable "{}octet"{} will contain the value 1. \index{uIP conversion functions@{uIP conversion functions}!uip\_ipaddr2@{uip\_ipaddr2}}
+\index{uip\_ipaddr2@{uip\_ipaddr2}!uIP conversion functions@{uIP conversion functions}}
+\doxysubsubsubsection{uip\_ipaddr2}
+{\footnotesize\ttfamily \label{group__uipconvfunc_gaffcd2fbe181e2aaefbf970551c302af5} 
+\#define uip\+\_\+ipaddr2(\begin{DoxyParamCaption}\item[{}]{addr}{}\end{DoxyParamCaption})}
+
+Pick the second octet of an IP address.
+
+Picks out the second octet of an IP address.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uip\_ipaddr\_t\ ipaddr;}
+\DoxyCodeLine{u8\_t\ octet;}
+\DoxyCodeLine{}
+\DoxyCodeLine{uip\_ipaddr(\&ipaddr,\ 1,2,3,4);}
+\DoxyCodeLine{octet\ =\ uip\_ipaddr2(\&ipaddr);}
+
+\end{DoxyCode}
+
+
+In the example above, the variable "{}octet"{} will contain the value 2. \index{uIP conversion functions@{uIP conversion functions}!uip\_ipaddr3@{uip\_ipaddr3}}
+\index{uip\_ipaddr3@{uip\_ipaddr3}!uIP conversion functions@{uIP conversion functions}}
+\doxysubsubsubsection{uip\_ipaddr3}
+{\footnotesize\ttfamily \label{group__uipconvfunc_gae23534479ead15af8ff08ace26a47fb5} 
+\#define uip\+\_\+ipaddr3(\begin{DoxyParamCaption}\item[{}]{addr}{}\end{DoxyParamCaption})}
+
+Pick the third octet of an IP address.
+
+Picks out the third octet of an IP address.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uip\_ipaddr\_t\ ipaddr;}
+\DoxyCodeLine{u8\_t\ octet;}
+\DoxyCodeLine{}
+\DoxyCodeLine{uip\_ipaddr(\&ipaddr,\ 1,2,3,4);}
+\DoxyCodeLine{octet\ =\ uip\_ipaddr3(\&ipaddr);}
+
+\end{DoxyCode}
+
+
+In the example above, the variable "{}octet"{} will contain the value 3. \index{uIP conversion functions@{uIP conversion functions}!uip\_ipaddr4@{uip\_ipaddr4}}
+\index{uip\_ipaddr4@{uip\_ipaddr4}!uIP conversion functions@{uIP conversion functions}}
+\doxysubsubsubsection{uip\_ipaddr4}
+{\footnotesize\ttfamily \label{group__uipconvfunc_ga165b603ec150e26efec7be199c9c2901} 
+\#define uip\+\_\+ipaddr4(\begin{DoxyParamCaption}\item[{}]{addr}{}\end{DoxyParamCaption})}
+
+Pick the fourth octet of an IP address.
+
+Picks out the fourth octet of an IP address.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uip\_ipaddr\_t\ ipaddr;}
+\DoxyCodeLine{u8\_t\ octet;}
+\DoxyCodeLine{}
+\DoxyCodeLine{uip\_ipaddr(\&ipaddr,\ 1,2,3,4);}
+\DoxyCodeLine{octet\ =\ uip\_ipaddr4(\&ipaddr);}
+
+\end{DoxyCode}
+
+
+In the example above, the variable "{}octet"{} will contain the value 4. \index{uIP conversion functions@{uIP conversion functions}!uip\_ipaddr\_cmp@{uip\_ipaddr\_cmp}}
+\index{uip\_ipaddr\_cmp@{uip\_ipaddr\_cmp}!uIP conversion functions@{uIP conversion functions}}
+\doxysubsubsubsection{uip\_ipaddr\_cmp}
+{\footnotesize\ttfamily \label{group__uipconvfunc_ga210e629f7252e4bc8458cbdf260b3318} 
+\#define uip\+\_\+ipaddr\+\_\+cmp(\begin{DoxyParamCaption}\item[{}]{addr1}{, }\item[{}]{addr2}{}\end{DoxyParamCaption})}
+
+Compare two IP addresses
+
+Compares two IP addresses.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uip\_ipaddr\_t\ ipaddr1,\ ipaddr2;}
+\DoxyCodeLine{}
+\DoxyCodeLine{uip\_ipaddr(\&ipaddr1,\ 192,16,1,2);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}(uip\_ipaddr\_cmp(\&ipaddr2,\ \&ipaddr1))\ \{}
+\DoxyCodeLine{\ \ \ printf(\textcolor{stringliteral}{"{}They\ are\ the\ same"{}});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr1} & The first IP address. \\
+\hline
+{\em addr2} & The second IP address. \\
+\hline
+\end{DoxyParams}
+\index{uIP conversion functions@{uIP conversion functions}!uip\_ipaddr\_copy@{uip\_ipaddr\_copy}}
+\index{uip\_ipaddr\_copy@{uip\_ipaddr\_copy}!uIP conversion functions@{uIP conversion functions}}
+\doxysubsubsubsection{uip\_ipaddr\_copy}
+{\footnotesize\ttfamily \label{group__uipconvfunc_ga769512993b7b27271909d6daa4748b60} 
+\#define uip\+\_\+ipaddr\+\_\+copy(\begin{DoxyParamCaption}\item[{}]{dest}{, }\item[{}]{src}{}\end{DoxyParamCaption})}
+
+Copy an IP address to another IP address.
+
+Copies an IP address from one place to another.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uip\_ipaddr\_t\ ipaddr1,\ ipaddr2;}
+\DoxyCodeLine{}
+\DoxyCodeLine{uip\_ipaddr(\&ipaddr1,\ 192,16,1,2);}
+\DoxyCodeLine{uip\_ipaddr\_copy(\&ipaddr2,\ \&ipaddr1);}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & The destination for the copy. \\
+\hline
+{\em src} & The source from where to copy. \\
+\hline
+\end{DoxyParams}
+\index{uIP conversion functions@{uIP conversion functions}!uip\_ipaddr\_mask@{uip\_ipaddr\_mask}}
+\index{uip\_ipaddr\_mask@{uip\_ipaddr\_mask}!uIP conversion functions@{uIP conversion functions}}
+\doxysubsubsubsection{uip\_ipaddr\_mask}
+{\footnotesize\ttfamily \label{group__uipconvfunc_ga969d7fff37a979737da045e0d538a9bd} 
+\#define uip\+\_\+ipaddr\+\_\+mask(\begin{DoxyParamCaption}\item[{}]{dest}{, }\item[{}]{src}{, }\item[{}]{mask}{}\end{DoxyParamCaption})}
+
+Mask out the network part of an IP address.
+
+Masks out the network part of an IP address, given the address and the netmask.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uip\_ipaddr\_t\ ipaddr1,\ ipaddr2,\ netmask;}
+\DoxyCodeLine{}
+\DoxyCodeLine{uip\_ipaddr(\&ipaddr1,\ 192,16,1,2);}
+\DoxyCodeLine{uip\_ipaddr(\&netmask,\ 255,255,255,0);}
+\DoxyCodeLine{uip\_ipaddr\_mask(\&ipaddr2,\ \&ipaddr1,\ \&netmask);}
+
+\end{DoxyCode}
+
+
+In the example above, the variable "{}ipaddr2"{} will contain the IP address 192.\+168.\+1.\+0.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & Where the result is to be placed. \\
+\hline
+{\em src} & The IP address. \\
+\hline
+{\em mask} & The netmask. \\
+\hline
+\end{DoxyParams}
+\index{uIP conversion functions@{uIP conversion functions}!uip\_ipaddr\_maskcmp@{uip\_ipaddr\_maskcmp}}
+\index{uip\_ipaddr\_maskcmp@{uip\_ipaddr\_maskcmp}!uIP conversion functions@{uIP conversion functions}}
+\doxysubsubsubsection{uip\_ipaddr\_maskcmp}
+{\footnotesize\ttfamily \label{group__uipconvfunc_ga6b16e0bac41821c1fbe0c267071642f0} 
+\#define uip\+\_\+ipaddr\+\_\+maskcmp(\begin{DoxyParamCaption}\item[{}]{addr1}{, }\item[{}]{addr2}{, }\item[{}]{mask}{}\end{DoxyParamCaption})}
+
+Compare two IP addresses with netmasks
+
+Compares two IP addresses with netmasks. The masks are used to mask out the bits that are to be compared.
+
+Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uip\_ipaddr\_t\ ipaddr1,\ ipaddr2,\ mask;}
+\DoxyCodeLine{}
+\DoxyCodeLine{uip\_ipaddr(\&mask,\ 255,255,255,0);}
+\DoxyCodeLine{uip\_ipaddr(\&ipaddr1,\ 192,16,1,2);}
+\DoxyCodeLine{uip\_ipaddr(\&ipaddr2,\ 192,16,1,3);}
+\DoxyCodeLine{\textcolor{keywordflow}{if}(uip\_ipaddr\_maskcmp(\&ipaddr1,\ \&ipaddr2,\ \&mask))\ \{}
+\DoxyCodeLine{\ \ \ printf(\textcolor{stringliteral}{"{}They\ are\ the\ same"{}});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr1} & The first IP address. \\
+\hline
+{\em addr2} & The second IP address. \\
+\hline
+{\em mask} & The netmask. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsubsection{Function Documentation}
+\index{uIP conversion functions@{uIP conversion functions}!htons@{htons}}
+\index{htons@{htons}!uIP conversion functions@{uIP conversion functions}}
+\doxysubsubsubsection{htons()}
+{\footnotesize\ttfamily \label{group__uipconvfunc_gaa22b04cac8cf283ca12f028578bebc06} 
+u16\+\_\+t htons (\begin{DoxyParamCaption}\item[{u16\+\_\+t}]{val}{}\end{DoxyParamCaption})}
+
+Convert 16-\/bit quantity from host byte order to network byte order.
+
+This function is primarily used for converting variables from host byte order to network byte order. For converting constants to network byte order, use the \doxyref{HTONS()}{p.}{group__uipconvfunc_ga69a7a4951ff21b302267532c21ee78fc} macro instead. 

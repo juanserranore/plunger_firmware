@@ -1,0 +1,290 @@
+\doxysection{Rtc\+DS1307.\+h}
+\label{_rtc_d_s1307_8h_source}\index{lib/Rtc-\/master/src/RtcDS1307.h@{lib/Rtc-\/master/src/RtcDS1307.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00002\ \textcolor{comment}{RTC\ library}}
+\DoxyCodeLine{00003\ \textcolor{comment}{}}
+\DoxyCodeLine{00004\ \textcolor{comment}{Written\ by\ Michael\ C.\ Miller.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{}}
+\DoxyCodeLine{00006\ \textcolor{comment}{I\ invest\ time\ and\ resources\ providing\ this\ open\ source\ code,}}
+\DoxyCodeLine{00007\ \textcolor{comment}{please\ support\ me\ by\ dontating\ (see\ https://github.com/Makuna/Rtc)}}
+\DoxyCodeLine{00008\ \textcolor{comment}{}}
+\DoxyCodeLine{00009\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00010\ \textcolor{comment}{This\ file\ is\ part\ of\ the\ Makuna/Rtc\ library.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Rtc\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00013\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as}}
+\DoxyCodeLine{00014\ \textcolor{comment}{published\ by\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of}}
+\DoxyCodeLine{00015\ \textcolor{comment}{the\ License,\ or\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{Rtc\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00018\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00019\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00020\ \textcolor{comment}{GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public}}
+\DoxyCodeLine{00023\ \textcolor{comment}{License\ along\ with\ Rtc.\ \ If\ not,\ see}}
+\DoxyCodeLine{00024\ \textcolor{comment}{<http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}RtcUtility.h"{}}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}RtcDateTime.h"{}}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//I2C\ Slave\ Address\ \ }}
+\DoxyCodeLine{00034\ \textcolor{keyword}{const}\ uint8\_t\ DS1307\_ADDRESS\ =\ 0x68;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{//DS1307\ Register\ Addresses}}
+\DoxyCodeLine{00037\ \textcolor{keyword}{const}\ uint8\_t\ DS1307\_REG\_TIMEDATE\ \ \ =\ 0x00;}
+\DoxyCodeLine{00038\ \textcolor{keyword}{const}\ uint8\_t\ DS1307\_REG\_STATUS\ \ \ \ \ =\ 0x00;}
+\DoxyCodeLine{00039\ \textcolor{keyword}{const}\ uint8\_t\ DS1307\_REG\_CONTROL\ \ \ \ =\ 0x07;}
+\DoxyCodeLine{00040\ \textcolor{keyword}{const}\ uint8\_t\ DS1307\_REG\_RAMSTART\ \ \ =\ 0x08;}
+\DoxyCodeLine{00041\ \textcolor{keyword}{const}\ uint8\_t\ DS1307\_REG\_RAMEND\ \ \ \ \ =\ 0x3f;}
+\DoxyCodeLine{00042\ \textcolor{keyword}{const}\ uint8\_t\ DS1307\_REG\_RAMSIZE\ =\ DS1307\_REG\_RAMEND\ -\/\ DS1307\_REG\_RAMSTART;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{//DS1307\ Register\ Data\ Size\ if\ not\ just\ 1}}
+\DoxyCodeLine{00045\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ DS1307\_REG\_TIMEDATE\_SIZE\ =\ 7;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ DS1307\ Control\ Register\ Bits}}
+\DoxyCodeLine{00048\ \textcolor{keyword}{const}\ uint8\_t\ DS1307\_RS0\ \ \ =\ 0;}
+\DoxyCodeLine{00049\ \textcolor{keyword}{const}\ uint8\_t\ DS1307\_RS1\ \ \ =\ 1;}
+\DoxyCodeLine{00050\ \textcolor{keyword}{const}\ uint8\_t\ DS1307\_SQWE\ \ =\ 4;}
+\DoxyCodeLine{00051\ \textcolor{keyword}{const}\ uint8\_t\ DS1307\_OUT\ \ \ =\ 7;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ DS1307\ Status\ Register\ Bits}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{const}\ uint8\_t\ DS1307\_CH\ \ \ \ \ \ \ =\ 7;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{enum}\ DS1307SquareWaveOut}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ DS1307SquareWaveOut\_1Hz\ \ =\ \ 0b00010000,}
+\DoxyCodeLine{00059\ \ \ \ \ DS1307SquareWaveOut\_4kHz\ =\ \ 0b00010001,}
+\DoxyCodeLine{00060\ \ \ \ \ DS1307SquareWaveOut\_8kHz\ =\ \ 0b00010010,}
+\DoxyCodeLine{00061\ \ \ \ \ DS1307SquareWaveOut\_32kHz\ =\ 0b00010011,}
+\DoxyCodeLine{00062\ \ \ \ \ DS1307SquareWaveOut\_High\ =\ \ 0b10000000,}
+\DoxyCodeLine{00063\ \ \ \ \ DS1307SquareWaveOut\_Low\ =\ \ \ 0b00000000,}
+\DoxyCodeLine{00064\ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T\_WIRE\_METHOD>\ \textcolor{keyword}{class\ }RtcDS1307}
+\DoxyCodeLine{00067\ \{}
+\DoxyCodeLine{00068\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00069\ \ \ \ \ RtcDS1307(T\_WIRE\_METHOD\&\ wire)\ :}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \_wire(wire),}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \_lastError(Rtc\_Wire\_Error\_None)}
+\DoxyCodeLine{00072\ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ Begin()}
+\DoxyCodeLine{00076\ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \_wire.begin();}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ Begin(\textcolor{keywordtype}{int}\ sda,\ \textcolor{keywordtype}{int}\ scl)}
+\DoxyCodeLine{00081\ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \_wire.begin(sda,\ scl);}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ uint8\_t\ LastError()}
+\DoxyCodeLine{00086\ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_lastError;}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsDateTimeValid()}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ GetIsRunning();}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{bool}\ GetIsRunning()}
+\DoxyCodeLine{00096\ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ uint8\_t\ sreg\ =\ getReg(DS1307\_REG\_STATUS);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (!(sreg\ \&\ \_BV(DS1307\_CH))\ \&\&\ (\_lastError\ ==\ Rtc\_Wire\_Error\_None));}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ SetIsRunning(\textcolor{keywordtype}{bool}\ isRunning)}
+\DoxyCodeLine{00102\ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ uint8\_t\ sreg\ =\ getReg(DS1307\_REG\_STATUS);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isRunning)}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ sreg\ \&=\ \string~\_BV(DS1307\_CH);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ sreg\ |=\ \_BV(DS1307\_CH);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ setReg(DS1307\_REG\_STATUS,\ sreg);}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{void}\ SetDateTime(\textcolor{keyword}{const}\ RtcDateTime\&\ dt)}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ retain\ running\ state}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ uint8\_t\ sreg\ =\ getReg(DS1307\_REG\_STATUS)\ \&\ \_BV(DS1307\_CH);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ set\ the\ date\ time}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \_wire.beginTransmission(DS1307\_ADDRESS);}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \_wire.write(DS1307\_REG\_TIMEDATE);}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \_wire.write(Uint8ToBcd(dt.Second())\ |\ sreg);}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \_wire.write(Uint8ToBcd(dt.Minute()));}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \_wire.write(Uint8ToBcd(dt.Hour()));\ \textcolor{comment}{//\ 24\ hour\ mode\ only}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ RTC\ Hardware\ Day\ of\ Week\ is\ 1-\/7,\ 1\ =\ Monday}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ convert\ our\ Day\ of\ Week\ to\ Rtc\ Day\ of\ Week}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ uint8\_t\ rtcDow\ =\ RtcDateTime::ConvertDowToRtc(dt.DayOfWeek());}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \_wire.write(Uint8ToBcd(rtcDow));\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \_wire.write(Uint8ToBcd(dt.Day()));}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \_wire.write(Uint8ToBcd(dt.Month()));}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \_wire.write(Uint8ToBcd(dt.Year()\ -\/\ 2000));}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \_lastError\ =\ \_wire.endTransmission();}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ RtcDateTime\ GetDateTime()}
+\DoxyCodeLine{00143\ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \_wire.beginTransmission(DS1307\_ADDRESS);}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \_wire.write(DS1307\_REG\_TIMEDATE);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \_lastError\ =\ \_wire.endTransmission();}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_lastError\ !=\ Rtc\_Wire\_Error\_None)}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ RtcDateTime(0);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ bytesRead\ =\ \_wire.requestFrom(DS1307\_ADDRESS,\ DS1307\_REG\_TIMEDATE\_SIZE);}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (DS1307\_REG\_TIMEDATE\_SIZE\ !=\ bytesRead)}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \_lastError\ =\ Rtc\_Wire\_Error\_Unspecific;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ RtcDateTime(0);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ uint8\_t\ second\ =\ BcdToUint8(\_wire.read()\ \&\ 0x7F);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ uint8\_t\ minute\ =\ BcdToUint8(\_wire.read());}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ uint8\_t\ hour\ =\ BcdToBin24Hour(\_wire.read());}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \_wire.read();\ \ \textcolor{comment}{//\ throwing\ away\ day\ of\ week\ as\ we\ calculate\ it}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ uint8\_t\ dayOfMonth\ =\ BcdToUint8(\_wire.read());}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ uint8\_t\ month\ =\ BcdToUint8(\_wire.read());}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ uint16\_t\ year\ =\ BcdToUint8(\_wire.read())\ +\ 2000;}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RtcDateTime(year,\ month,\ dayOfMonth,\ hour,\ minute,\ second);}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{void}\ SetMemory(uint8\_t\ memoryAddress,\ uint8\_t\ value)}
+\DoxyCodeLine{00173\ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ uint8\_t\ address\ =\ memoryAddress\ +\ DS1307\_REG\_RAMSTART;}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (address\ <=\ DS1307\_REG\_RAMEND)}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ setReg(address,\ value);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ uint8\_t\ GetMemory(uint8\_t\ memoryAddress)}
+\DoxyCodeLine{00182\ \ \ \ \ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ uint8\_t\ value\ =\ 0;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ uint8\_t\ address\ =\ memoryAddress\ +\ DS1307\_REG\_RAMSTART;}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (address\ <=\ DS1307\_REG\_RAMEND)}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ value\ =\ getReg(address);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00190\ \ \ \ \ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ uint8\_t\ SetMemory(uint8\_t\ memoryAddress,\ \textcolor{keyword}{const}\ uint8\_t*\ pValue,\ uint8\_t\ countBytes)}
+\DoxyCodeLine{00193\ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ uint8\_t\ address\ =\ memoryAddress\ +\ DS1307\_REG\_RAMSTART;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ uint8\_t\ countWritten\ =\ 0;}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (address\ <=\ DS1307\_REG\_RAMEND)}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \_wire.beginTransmission(DS1307\_ADDRESS);}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \_wire.write(address);}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (countBytes\ >\ 0\ \&\&\ address\ <=\ DS1307\_REG\_RAMEND)}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_wire.write(*pValue++);}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ address++;}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ countBytes-\/-\/;}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ countWritten++;}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \_lastError\ =\ \_wire.endTransmission();}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ countWritten;}
+\DoxyCodeLine{00212\ \ \ \ \ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ GetMemory(uint8\_t\ memoryAddress,\ uint8\_t*\ pValue,\ \textcolor{keywordtype}{size\_t}\ countBytes)}
+\DoxyCodeLine{00215\ \ \ \ \ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ uint8\_t\ address\ =\ memoryAddress\ +\ DS1307\_REG\_RAMSTART;}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ countRead\ =\ 0;}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (address\ <=\ DS1307\_REG\_RAMEND)}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (countBytes\ >\ DS1307\_REG\_RAMSIZE)}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ countBytes\ =\ DS1307\_REG\_RAMSIZE;}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \_wire.beginTransmission(DS1307\_ADDRESS);}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \_wire.write(address);}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \_lastError\ =\ \_wire.endTransmission();}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_lastError\ !=\ Rtc\_Wire\_Error\_None)}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ countRead\ =\ \_wire.requestFrom(DS1307\_ADDRESS,\ countBytes);}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ countBytes\ =\ countRead;}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (countBytes-\/-\/\ >\ 0)}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pValue++\ =\ \_wire.read();}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ countRead;}
+\DoxyCodeLine{00243\ \ \ \ \ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordtype}{void}\ SetSquareWavePin(DS1307SquareWaveOut\ pinMode)}
+\DoxyCodeLine{00246\ \ \ \ \ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ setReg(DS1307\_REG\_CONTROL,\ pinMode);}
+\DoxyCodeLine{00248\ \ \ \ \ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00251\ \ \ \ \ T\_WIRE\_METHOD\&\ \_wire;}
+\DoxyCodeLine{00252\ \ \ \ \ uint8\_t\ \_lastError;}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ uint8\_t\ getReg(uint8\_t\ regAddress)}
+\DoxyCodeLine{00255\ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \_wire.beginTransmission(DS1307\_ADDRESS);}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \_wire.write(regAddress);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \_lastError\ =\ \_wire.endTransmission();}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_lastError\ !=\ Rtc\_Wire\_Error\_None)}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ control\ register}}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ bytesRead\ =\ \_wire.requestFrom(DS1307\_ADDRESS,\ (\textcolor{keywordtype}{size\_t})1);}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (1\ !=\ bytesRead)}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \_lastError\ =\ Rtc\_Wire\_Error\_Unspecific;}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ uint8\_t\ regValue\ =\ \_wire.read();}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ regValue;}
+\DoxyCodeLine{00274\ \ \ \ \ \}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keywordtype}{void}\ setReg(uint8\_t\ regAddress,\ uint8\_t\ regValue)}
+\DoxyCodeLine{00277\ \ \ \ \ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \_wire.beginTransmission(DS1307\_ADDRESS);}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \_wire.write(regAddress);}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \_wire.write(regValue);}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \_lastError\ =\ \_wire.endTransmission();}
+\DoxyCodeLine{00282\ \ \ \ \ \}}
+\DoxyCodeLine{00283\ \};}
+\DoxyCodeLine{00284\ }
+
+\end{DoxyCode}

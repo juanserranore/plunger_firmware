@@ -1,0 +1,43 @@
+\doxysection{Setup70\+\_\+\+ESP32\+\_\+\+S2\+\_\+\+ILI9341.\+h}
+\label{_setup70___e_s_p32___s2___i_l_i9341_8h_source}\index{lib/TFT\_eSPI-\/master/User\_Setups/Setup70\_ESP32\_S2\_ILI9341.h@{lib/TFT\_eSPI-\/master/User\_Setups/Setup70\_ESP32\_S2\_ILI9341.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Setup\ for\ the\ ESP32\ S2\ with\ ILI9341\ display}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Note\ SPI\ DMA\ with\ ESP32\ S2\ is\ not\ currently\ supported}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ USER\_SETUP\_ID\ 70}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ See\ SetupX\_Template.h\ for\ all\ options\ available}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ ILI9341\_DRIVER}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Typical\ board\ default\ pins}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ TFT\_CS\ \ \ 10\ }\textcolor{comment}{//\ \ \ \ \ 10\ or\ 34}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ TFT\_MOSI\ 11\ }\textcolor{comment}{//\ \ \ \ \ 11\ or\ 35}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ TFT\_SCLK\ 12\ }\textcolor{comment}{//\ \ \ \ \ 12\ or\ 36}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ TFT\_MISO\ 13\ }\textcolor{comment}{//\ \ \ \ \ 13\ or\ 37}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ TFT\_DC\ \ \ 14}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ TFT\_RST\ \ 15}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\#define\ TOUCH\_CS\ 16\ //\ Optional\ for\ touch\ screen}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ LOAD\_GLCD}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ LOAD\_FONT2}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ LOAD\_FONT4}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ LOAD\_FONT6}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ LOAD\_FONT7}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ LOAD\_FONT8}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ LOAD\_GFXFF}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ SMOOTH\_FONT}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ FSPI\ port\ will\ be\ used\ unless\ the\ following\ is\ defined}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ USE\_HSPI\_PORT}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//\#define\ SPI\_FREQUENCY\ \ 27000000}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ SPI\_FREQUENCY\ \ 40000000\ \ \ }\textcolor{comment}{//\ Maximum\ for\ ILI9341}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ SPI\_READ\_FREQUENCY\ \ 6000000\ }\textcolor{comment}{//\ 6\ MHz\ is\ the\ maximum\ SPI\ read\ speed\ for\ the\ ST7789V}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ SPI\_TOUCH\_FREQUENCY\ 2500000}}
+
+\end{DoxyCode}

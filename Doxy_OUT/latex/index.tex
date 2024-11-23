@@ -1,0 +1,67 @@
+\chapter{Plunger firmware}
+\hypertarget{index}{}\label{index}\index{Plunger firmware@{Plunger firmware}}
+Main file containing the setup and main loop functions.
+
+Main file containing the setup and main loop functions.  \hypertarget{index_intro_sec}{}\doxysection{\texorpdfstring{Introduction}{Introduction}}\label{index_intro_sec}
+This project handles user interface interactions using a rotary encoder and buttons, allowing for navigation through menus, adjustment of settings, and controlling a display. It implements a multitasking approach using Free\+RTOS to manage various tasks concurrently.\hypertarget{index_dependencies}{}\doxysection{\texorpdfstring{dependencies}{dependencies}}\label{index_dependencies}
+Dependencies\+: The libraries needed for this to compile are\+:
+\begin{DoxyItemize}
+\item Arduino.\+h
+\item Free\+RTOS
+\item Bf\+Button
+\item TFT\+\_\+e\+SPI
+\item Ethernet\+ENC
+\item SPI
+\item Three\+Wire
+\item Rtc\+DS1302
+\item Accel\+Stepper
+\end{DoxyItemize}\hypertarget{index_author}{}\doxysection{\texorpdfstring{Author}{Author}}\label{index_author}
+Written by Grana\+SAT Students\+:
+
+\begin{DoxyAuthor}{Author}
+Juan Alberto Serrano Redondo \href{mailto:juan@ugr.es}{\texttt{ juan@ugr.\+es}} 
+
+Prof. Andrés Roldán Aranda \href{mailto:amroldan@ugr.es}{\texttt{ amroldan@ugr.\+es}}
+\end{DoxyAuthor}
+\hypertarget{index_license}{}\doxysection{\texorpdfstring{License}{License}}\label{index_license}
+BSD license, all text here must be included in any redistribution.\hypertarget{index_Flow}{}\doxysection{\texorpdfstring{Flow chart of the project}{Flow chart of the project}}\label{index_Flow}
+ 
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{flow_chart.png}
+\end{DoxyInlineImage}
+   
+
+ 
+\begin{DoxyInlineImage}
+\includegraphics[height=\baselineskip,keepaspectratio=true]{tareas.png}
+\end{DoxyInlineImage}
+   \hypertarget{index_HISTORY}{}\doxysection{\texorpdfstring{HISTORY}{HISTORY}}\label{index_HISTORY}
+V00 (07/2024)\+:
+\begin{DoxyItemize}
+\item Implemented rotary encoder input handling.
+\item Integrated button press detection (single, double, long presses).
+\item Configured display updates based on menu navigation.
+\item Developed tasks using Free\+RTOS for efficient multitasking. V00.\+1 (08/2024)\+:
+\item Added Ethernet communication features for remote monitoring.
+\item Implemented real-\/time clock (RTC) functionality for accurate time management.
+\item Enhanced display functionality to show system status and settings.
+\item Improved input handling to support simultaneous button and encoder interactions.
+\item Introduced settings menu for configuring system parameters.
+\item Added logging functionality for troubleshooting and performance analysis.
+\item Optimized task scheduling to reduce CPU load and improve responsiveness.
+\item Refined user interface design for better user experience on the TFT display.
+\end{DoxyItemize}
+
+V01 (10/2024)\+:
+\begin{DoxyItemize}
+\item Implemented data visualization features for displaying sensor readings.
+\item Developed communication protocols for data transmission over Ethernet.
+\item Conducted extensive testing and debugging to ensure system reliability.
+\item Refined rotary encoder response for smoother menu navigation.
+\item Implemented power management features to reduce energy consumption.
+\item Expanded documentation and comments for better maintainability.
+\end{DoxyItemize}
+
+This file includes the global configurations and necessary libraries for the project. The setup function initializes all configurations, including RTOS (Real-\/\+Time Operating System) tasks, which manage the entire functionality of the system.
+
+The main loop ({\ttfamily void \doxylink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()}}) is intentionally left empty, as the RTOS tasks are responsible for the continuous execution of system tasks, following a multi-\/threading approach. The tasks are created and managed in the setup function. 

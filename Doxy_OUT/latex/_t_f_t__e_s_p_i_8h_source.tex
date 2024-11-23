@@ -1,0 +1,1017 @@
+\doxysection{TFT\+\_\+e\+SPI.\+h}
+\label{_t_f_t__e_s_p_i_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_eSPI.h@{lib/TFT\_eSPI-\/master/TFT\_eSPI.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/***************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ Arduino\ TFT\ graphics\ library\ targeted\ at\ ESP8266}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ and\ ESP32\ based\ boards.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ This\ is\ a\ stand-\/alone\ library\ that\ contains\ the}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ hardware\ driver,\ the\ graphics\ functions\ and\ the}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ proportional\ fonts.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ The\ built-\/in\ fonts\ 4,\ 6,\ 7\ and\ 8\ are\ Run\ Length}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ Encoded\ (RLE)\ to\ reduce\ the\ FLASH\ footprint.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Last\ review/edit\ by\ Bodmer:\ 04/02/22}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ ****************************************************/}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ Stop\ fonts\ etc.\ being\ loaded\ multiple\ times}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#ifndef\ \_TFT\_eSPIH\_}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ \_TFT\_eSPIH\_}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ TFT\_ESPI\_VERSION\ "{}2.5.43"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ Bit\ level\ feature\ flags}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ Bit\ 0\ set:\ viewport\ capability}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ TFT\_ESPI\_FEATURES\ 1}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00026\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Section\ 1:\ Load\ required\ header\ files}}
+\DoxyCodeLine{00027\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//Standard\ support}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <Print.h>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#if\ !defined\ (TFT\_PARALLEL\_8\_BIT)\ \&\&\ !defined\ (RP2040\_PIO\_INTERFACE)}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\ \ \#include\ <SPI.h>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00035\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00036\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Section\ 2:\ Load\ library\ and\ processor\ specific\ header\ files}}
+\DoxyCodeLine{00037\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ Include\ header\ file\ that\ defines\ the\ fonts\ loaded,\ the\ TFT\ drivers}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ available\ and\ the\ pins\ to\ be\ used,\ etc.\ etc.}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_TFT\_eSPI\_ESPIDF}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\ \ \#include\ "{}TFT\_config.h"{}}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ New\ ESP8266\ board\ package\ uses\ ARDUINO\_ARCH\_ESP8266}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ old\ package\ defined\ ESP8266}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#if\ defined\ (ESP8266)}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\ \ \#ifndef\ ARDUINO\_ARCH\_ESP8266}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\ \ \ \ \#define\ ARDUINO\_ARCH\_ESP8266}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ The\ following\ lines\ allow\ the\ user\ setup\ to\ be\ included\ in\ the\ sketch\ folder,\ see}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ "{}Sketch\_with\_tft\_setup"{}\ generic\ example.}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#if\ !defined\ \_\_has\_include}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\ \ \#if\ !defined(DISABLE\_ALL\_LIBRARY\_WARNINGS)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\ \ \ \ \#warning\ Compiler\ does\ not\ support\ \_\_has\_include,\ so\ sketches\ cannot\ define\ the\ setup}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\ \ \#if\ \_\_has\_include(<tft\_setup.h>)}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ Include\ the\ sketch\ setup\ file}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\ \ \ \ \#include\ <tft\_setup.h>}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ USER\_SETUP\_LOADED}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \textcolor{comment}{//\ Prevent\ loading\ further\ setups}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ USER\_SETUP\_LOADED}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#include\ <User\_Setup\_Select.h>}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{comment}{//\ Handle\ FLASH\ based\ storage\ e.g.\ PROGMEM}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#if\ defined(ARDUINO\_ARCH\_RP2040)}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\ \ \#undef\ pgm\_read\_byte}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\ \ \#define\ pgm\_read\_byte(addr)\ \ \ (*(const\ unsigned\ char\ *)(addr))}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\ \ \#undef\ pgm\_read\_word}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\ \ \#define\ pgm\_read\_word(addr)\ (\{\ \(\backslash\)}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\ \ \ \ typeof(addr)\ \_addr\ =\ (addr);\ \(\backslash\)}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\ \ \ \ *(const\ unsigned\ short\ *)(\_addr);\ \(\backslash\)}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\ \ \})}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\ \ \#undef\ pgm\_read\_dword}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\ \ \#define\ pgm\_read\_dword(addr)\ (\{\ \(\backslash\)}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\ \ \ \ typeof(addr)\ \_addr\ =\ (addr);\ \(\backslash\)}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\ \ \ \ *(const\ unsigned\ long\ *)(\_addr);\ \(\backslash\)}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\ \ \})}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#elif\ defined(\_\_AVR\_\_)}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\ \ \#include\ <avr/pgmspace.h>}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#elif\ defined(ARDUINO\_ARCH\_ESP8266)\ ||\ defined(ESP32)}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\ \ \#include\ <pgmspace.h>}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\ \ \#ifndef\ PROGMEM}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\ \ \ \ \#define\ PROGMEM}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{comment}{//\ Include\ the\ processor\ specific\ drivers}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#if\ defined(CONFIG\_IDF\_TARGET\_ESP32S3)}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\ \ \#include\ "{}Processors/TFT\_eSPI\_ESP32\_S3.h"{}}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#elif\ defined(CONFIG\_IDF\_TARGET\_ESP32C3)}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\ \ \#include\ "{}Processors/TFT\_eSPI\_ESP32\_C3.h"{}}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#elif\ defined\ (ESP32)}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\ \ \#include\ "{}Processors/TFT\_eSPI\_ESP32.h"{}}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#elif\ defined\ (ARDUINO\_ARCH\_ESP8266)}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\ \ \#include\ "{}Processors/TFT\_eSPI\_ESP8266.h"{}}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#elif\ defined\ (STM32)}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\ \ \#include\ "{}Processors/TFT\_eSPI\_STM32.h"{}}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#elif\ defined(ARDUINO\_ARCH\_RP2040)}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\ \ \#include\ "{}Processors/TFT\_eSPI\_RP2040.h"{}}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\ \ \#include\ "{}Processors/TFT\_eSPI\_Generic.h"{}}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\ \ \#define\ GENERIC\_PROCESSOR}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00114\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Section\ 3:\ Interface\ setup}}
+\DoxyCodeLine{00115\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#ifndef\ TAB\_COLOUR}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\ \ \#define\ TAB\_COLOUR\ 0}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{comment}{//\ If\ the\ SPI\ frequency\ is\ not\ defined,\ set\ a\ default}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#ifndef\ SPI\_FREQUENCY}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\ \ \#define\ SPI\_FREQUENCY\ \ 20000000}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{comment}{//\ If\ the\ SPI\ read\ frequency\ is\ not\ defined,\ set\ a\ default}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#ifndef\ SPI\_READ\_FREQUENCY}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\ \ \#define\ SPI\_READ\_FREQUENCY\ 10000000}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{comment}{//\ Some\ ST7789\ boards\ do\ not\ work\ with\ Mode\ 0}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#ifndef\ TFT\_SPI\_MODE}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\ \ \#if\ defined(ST7789\_DRIVER)\ ||\ defined(ST7789\_2\_DRIVER)}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_SPI\_MODE\ SPI\_MODE3}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_SPI\_MODE\ SPI\_MODE0}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{comment}{//\ If\ the\ XPT2046\ SPI\ frequency\ is\ not\ defined,\ set\ a\ default}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#ifndef\ SPI\_TOUCH\_FREQUENCY}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\ \ \#define\ SPI\_TOUCH\_FREQUENCY\ \ 2500000}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#ifndef\ SPI\_BUSY\_CHECK}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\ \ \#define\ SPI\_BUSY\_CHECK}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{comment}{//\ If\ half\ duplex\ SDA\ mode\ is\ defined\ then\ MISO\ pin\ should\ be\ -\/1}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#ifdef\ TFT\_SDA\_READ}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\ \ \#ifdef\ TFT\_MISO}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\ \ \ \ \#if\ TFT\_MISO\ !=\ -\/1}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\ \ \ \ \ \ \#undef\ TFT\_MISO}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ TFT\_MISO\ -\/1}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\ \ \ \ \ \ \#warning\ TFT\_MISO\ set\ to\ -\/1}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#endif\ \ }}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00160\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Section\ 4:\ Setup\ fonts}}
+\DoxyCodeLine{00161\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00162\ \textcolor{comment}{//\ Use\ GLCD\ font\ in\ error\ case\ where\ user\ requests\ a\ smooth\ font\ file}}
+\DoxyCodeLine{00163\ \textcolor{comment}{//\ that\ does\ not\ exist\ (this\ is\ a\ temporary\ fix\ to\ stop\ ESP32\ reboot)}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#ifdef\ SMOOTH\_FONT}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\ \ \#ifndef\ LOAD\_GLCD}}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\ \ \ \ \#define\ LOAD\_GLCD}}
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{comment}{//\ Only\ load\ the\ fonts\ defined\ in\ User\_Setup.h\ (to\ save\ space)}}
+\DoxyCodeLine{00171\ \textcolor{comment}{//\ Set\ flag\ so\ RLE\ rendering\ code\ is\ optionally\ compiled}}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#ifdef\ LOAD\_GLCD}}
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/glcdfont.c>}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#ifdef\ LOAD\_FONT2}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/Font16.h>}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#ifdef\ LOAD\_FONT4}}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/Font32rle.h>}}
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\ \ \#define\ LOAD\_RLE}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#ifdef\ LOAD\_FONT6}}
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/Font64rle.h>}}
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\ \ \#ifndef\ LOAD\_RLE}}
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\ \ \ \ \#define\ LOAD\_RLE}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#ifdef\ LOAD\_FONT7}}
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/Font7srle.h>}}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\ \ \#ifndef\ LOAD\_RLE}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\ \ \ \ \#define\ LOAD\_RLE}}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\#ifdef\ LOAD\_FONT8}}
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/Font72rle.h>}}
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\ \ \#ifndef\ LOAD\_RLE}}
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\ \ \ \ \#define\ LOAD\_RLE}}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\#elif\ defined\ LOAD\_FONT8N\ }\textcolor{comment}{//\ Optional\ narrower\ version}}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\ \ \#define\ LOAD\_FONT8}}
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/Font72x53rle.h>}}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\ \ \#ifndef\ LOAD\_RLE}}
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\ \ \ \ \#define\ LOAD\_RLE}}
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\#ifdef\ LOAD\_GFXFF}}
+\DoxyCodeLine{00213\ \ \ \textcolor{comment}{//\ We\ can\ include\ all\ the\ free\ fonts\ and\ they\ will\ only\ be\ built\ into}}
+\DoxyCodeLine{00214\ \ \ \textcolor{comment}{//\ the\ sketch\ if\ they\ are\ used}}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/gfxfont.h>}}
+\DoxyCodeLine{00216\ \ \ \textcolor{comment}{//\ Call\ up\ any\ user\ custom\ fonts}}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\ \ \#include\ <User\_Setups/User\_Custom\_Fonts.h>}}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \#ifdef\ LOAD\_GFXFF}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \textcolor{comment}{//\ Create\ a\ null\ default\ font\ in\ case\ some\ fonts\ not\ used\ (to\ prevent\ crash)}}
+\DoxyCodeLine{00221\ \textcolor{keyword}{const}\ \ uint8\_t\ widtbl\_null[1]\ =\ \{0\};}
+\DoxyCodeLine{00222\ PROGMEM\ \textcolor{keyword}{const}\ uint8\_t\ chr\_null[1]\ =\ \{0\};}
+\DoxyCodeLine{00223\ PROGMEM\ \textcolor{keyword}{const}\ uint8\_t*\ \textcolor{keyword}{const}\ chrtbl\_null[1]\ =\ \{chr\_null\};}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \textcolor{comment}{//\ This\ is\ a\ structure\ to\ conveniently\ hold\ information\ on\ the\ default\ fonts}}
+\DoxyCodeLine{00226\ \textcolor{comment}{//\ Stores\ pointer\ to\ font\ character\ image\ address\ table,\ width\ table\ and\ height}}
+\DoxyCodeLine{00227\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ *chartbl;}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ *widthtbl;}
+\DoxyCodeLine{00230\ \ \ \ \ uint8\_t\ height;}
+\DoxyCodeLine{00231\ \ \ \ \ uint8\_t\ baseline;}
+\DoxyCodeLine{00232\ \ \ \ \ \}\ fontinfo;}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \textcolor{comment}{//\ Now\ fill\ the\ structure}}
+\DoxyCodeLine{00235\ \textcolor{keyword}{const}\ PROGMEM\ fontinfo\ fontdata\ []\ =\ \{}
+\DoxyCodeLine{00236\ \textcolor{preprocessor}{\ \ \#ifdef\ LOAD\_GLCD}}
+\DoxyCodeLine{00237\ \ \ \ \{\ (\textcolor{keyword}{const}\ uint8\_t\ *)font,\ widtbl\_null,\ 0,\ 0\ \},}
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00239\ \ \ \ \{\ (\textcolor{keyword}{const}\ uint8\_t\ *)chrtbl\_null,\ widtbl\_null,\ 0,\ 0\ \},}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00241\ \ \ \ \textcolor{comment}{//\ GLCD\ font\ (Font\ 1)\ does\ not\ have\ all\ parameters}}
+\DoxyCodeLine{00242\ \ \ \ \{\ (\textcolor{keyword}{const}\ uint8\_t\ *)chrtbl\_null,\ widtbl\_null,\ 8,\ 7\ \},}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \textcolor{preprocessor}{\ \ \#ifdef\ LOAD\_FONT2}}
+\DoxyCodeLine{00245\ \ \ \ \{\ (\textcolor{keyword}{const}\ uint8\_t\ *)chrtbl\_f16,\ widtbl\_f16,\ chr\_hgt\_f16,\ baseline\_f16\},}
+\DoxyCodeLine{00246\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00247\ \ \ \ \{\ (\textcolor{keyword}{const}\ uint8\_t\ *)chrtbl\_null,\ widtbl\_null,\ 0,\ 0\ \},}
+\DoxyCodeLine{00248\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \textcolor{comment}{//\ Font\ 3\ current\ unused}}
+\DoxyCodeLine{00251\ \ \ \ \{\ (\textcolor{keyword}{const}\ uint8\_t\ *)chrtbl\_null,\ widtbl\_null,\ 0,\ 0\ \},}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\ \ \#ifdef\ LOAD\_FONT4}}
+\DoxyCodeLine{00254\ \ \ \ \{\ (\textcolor{keyword}{const}\ uint8\_t\ *)chrtbl\_f32,\ widtbl\_f32,\ chr\_hgt\_f32,\ baseline\_f32\},}
+\DoxyCodeLine{00255\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00256\ \ \ \ \{\ (\textcolor{keyword}{const}\ uint8\_t\ *)chrtbl\_null,\ widtbl\_null,\ 0,\ 0\ \},}
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \ \textcolor{comment}{//\ Font\ 5\ current\ unused}}
+\DoxyCodeLine{00260\ \ \ \ \{\ (\textcolor{keyword}{const}\ uint8\_t\ *)chrtbl\_null,\ widtbl\_null,\ 0,\ 0\ \},}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\ \ \#ifdef\ LOAD\_FONT6}}
+\DoxyCodeLine{00263\ \ \ \ \{\ (\textcolor{keyword}{const}\ uint8\_t\ *)chrtbl\_f64,\ widtbl\_f64,\ chr\_hgt\_f64,\ baseline\_f64\},}
+\DoxyCodeLine{00264\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00265\ \ \ \ \{\ (\textcolor{keyword}{const}\ uint8\_t\ *)chrtbl\_null,\ widtbl\_null,\ 0,\ 0\ \},}
+\DoxyCodeLine{00266\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\ \ \#ifdef\ LOAD\_FONT7}}
+\DoxyCodeLine{00269\ \ \ \ \{\ (\textcolor{keyword}{const}\ uint8\_t\ *)chrtbl\_f7s,\ widtbl\_f7s,\ chr\_hgt\_f7s,\ baseline\_f7s\},}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00271\ \ \ \ \{\ (\textcolor{keyword}{const}\ uint8\_t\ *)chrtbl\_null,\ widtbl\_null,\ 0,\ 0\ \},}
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\ \ \#ifdef\ LOAD\_FONT8}}
+\DoxyCodeLine{00275\ \ \ \ \{\ (\textcolor{keyword}{const}\ uint8\_t\ *)chrtbl\_f72,\ widtbl\_f72,\ chr\_hgt\_f72,\ baseline\_f72\}}
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00277\ \ \ \ \{\ (\textcolor{keyword}{const}\ uint8\_t\ *)chrtbl\_null,\ widtbl\_null,\ 0,\ 0\ \}}
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00279\ \};}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00282\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Section\ 5:\ Font\ datum\ enumeration}}
+\DoxyCodeLine{00283\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00284\ \textcolor{comment}{//These\ enumerate\ the\ text\ plotting\ alignment\ (reference\ datum\ point)}}
+\DoxyCodeLine{00285\ \textcolor{preprocessor}{\#define\ TL\_DATUM\ 0\ }\textcolor{comment}{//\ Top\ left\ (default)}}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#define\ TC\_DATUM\ 1\ }\textcolor{comment}{//\ Top\ centre}}
+\DoxyCodeLine{00287\ \textcolor{preprocessor}{\#define\ TR\_DATUM\ 2\ }\textcolor{comment}{//\ Top\ right}}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#define\ ML\_DATUM\ 3\ }\textcolor{comment}{//\ Middle\ left}}
+\DoxyCodeLine{00289\ \textcolor{preprocessor}{\#define\ CL\_DATUM\ 3\ }\textcolor{comment}{//\ Centre\ left,\ same\ as\ above}}
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\#define\ MC\_DATUM\ 4\ }\textcolor{comment}{//\ Middle\ centre}}
+\DoxyCodeLine{00291\ \textcolor{preprocessor}{\#define\ CC\_DATUM\ 4\ }\textcolor{comment}{//\ Centre\ centre,\ same\ as\ above}}
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#define\ MR\_DATUM\ 5\ }\textcolor{comment}{//\ Middle\ right}}
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\#define\ CR\_DATUM\ 5\ }\textcolor{comment}{//\ Centre\ right,\ same\ as\ above}}
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\#define\ BL\_DATUM\ 6\ }\textcolor{comment}{//\ Bottom\ left}}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\#define\ BC\_DATUM\ 7\ }\textcolor{comment}{//\ Bottom\ centre}}
+\DoxyCodeLine{00296\ \textcolor{preprocessor}{\#define\ BR\_DATUM\ 8\ }\textcolor{comment}{//\ Bottom\ right}}
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\#define\ L\_BASELINE\ \ 9\ }\textcolor{comment}{//\ Left\ character\ baseline\ (Line\ the\ 'A'\ character\ would\ sit\ on)}}
+\DoxyCodeLine{00298\ \textcolor{preprocessor}{\#define\ C\_BASELINE\ 10\ }\textcolor{comment}{//\ Centre\ character\ baseline}}
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\#define\ R\_BASELINE\ 11\ }\textcolor{comment}{//\ Right\ character\ baseline}}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00302\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Section\ 6:\ Colour\ enumeration}}
+\DoxyCodeLine{00303\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00304\ \textcolor{comment}{//\ Default\ color\ definitions}}
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\#define\ TFT\_BLACK\ \ \ \ \ \ \ 0x0000\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ \ \ 0,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00306\ \textcolor{preprocessor}{\#define\ TFT\_NAVY\ \ \ \ \ \ \ \ 0x000F\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ \ \ 0,\ 128\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00307\ \textcolor{preprocessor}{\#define\ TFT\_DARKGREEN\ \ \ 0x03E0\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ 128,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00308\ \textcolor{preprocessor}{\#define\ TFT\_DARKCYAN\ \ \ \ 0x03EF\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ 128,\ 128\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00309\ \textcolor{preprocessor}{\#define\ TFT\_MAROON\ \ \ \ \ \ 0x7800\ \ \ \ \ \ }\textcolor{comment}{/*\ 128,\ \ \ 0,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00310\ \textcolor{preprocessor}{\#define\ TFT\_PURPLE\ \ \ \ \ \ 0x780F\ \ \ \ \ \ }\textcolor{comment}{/*\ 128,\ \ \ 0,\ 128\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\#define\ TFT\_OLIVE\ \ \ \ \ \ \ 0x7BE0\ \ \ \ \ \ }\textcolor{comment}{/*\ 128,\ 128,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\#define\ TFT\_LIGHTGREY\ \ \ 0xD69A\ \ \ \ \ \ }\textcolor{comment}{/*\ 211,\ 211,\ 211\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\#define\ TFT\_DARKGREY\ \ \ \ 0x7BEF\ \ \ \ \ \ }\textcolor{comment}{/*\ 128,\ 128,\ 128\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\#define\ TFT\_BLUE\ \ \ \ \ \ \ \ 0x001F\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ \ \ 0,\ 255\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00315\ \textcolor{preprocessor}{\#define\ TFT\_GREEN\ \ \ \ \ \ \ 0x07E0\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ 255,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00316\ \textcolor{preprocessor}{\#define\ TFT\_CYAN\ \ \ \ \ \ \ \ 0x07FF\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ 255,\ 255\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\#define\ TFT\_RED\ \ \ \ \ \ \ \ \ 0xF800\ \ \ \ \ \ }\textcolor{comment}{/*\ 255,\ \ \ 0,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\#define\ TFT\_MAGENTA\ \ \ \ \ 0xF81F\ \ \ \ \ \ }\textcolor{comment}{/*\ 255,\ \ \ 0,\ 255\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\#define\ TFT\_YELLOW\ \ \ \ \ \ 0xFFE0\ \ \ \ \ \ }\textcolor{comment}{/*\ 255,\ 255,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\#define\ TFT\_WHITE\ \ \ \ \ \ \ 0xFFFF\ \ \ \ \ \ }\textcolor{comment}{/*\ 255,\ 255,\ 255\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{\#define\ TFT\_ORANGE\ \ \ \ \ \ 0xFDA0\ \ \ \ \ \ }\textcolor{comment}{/*\ 255,\ 180,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00322\ \textcolor{preprocessor}{\#define\ TFT\_GREENYELLOW\ 0xB7E0\ \ \ \ \ \ }\textcolor{comment}{/*\ 180,\ 255,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#define\ TFT\_PINK\ \ \ \ \ \ \ \ 0xFE19\ \ \ \ \ \ }\textcolor{comment}{/*\ 255,\ 192,\ 203\ */}\textcolor{preprocessor}{\ }\textcolor{comment}{//Lighter\ pink,\ was\ 0xFC9F}}
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\#define\ TFT\_BROWN\ \ \ \ \ \ \ 0x9A60\ \ \ \ \ \ }\textcolor{comment}{/*\ 150,\ \ 75,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\#define\ TFT\_GOLD\ \ \ \ \ \ \ \ 0xFEA0\ \ \ \ \ \ }\textcolor{comment}{/*\ 255,\ 215,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\#define\ TFT\_SILVER\ \ \ \ \ \ 0xC618\ \ \ \ \ \ }\textcolor{comment}{/*\ 192,\ 192,\ 192\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00327\ \textcolor{preprocessor}{\#define\ TFT\_SKYBLUE\ \ \ \ \ 0x867D\ \ \ \ \ \ }\textcolor{comment}{/*\ 135,\ 206,\ 235\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00328\ \textcolor{preprocessor}{\#define\ TFT\_VIOLET\ \ \ \ \ \ 0x915C\ \ \ \ \ \ }\textcolor{comment}{/*\ 180,\ \ 46,\ 226\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \textcolor{comment}{//\ Next\ is\ a\ special\ 16-\/bit\ colour\ value\ that\ encodes\ to\ 8\ bits}}
+\DoxyCodeLine{00331\ \textcolor{comment}{//\ and\ will\ then\ decode\ back\ to\ the\ same\ 16-\/bit\ value.}}
+\DoxyCodeLine{00332\ \textcolor{comment}{//\ Convenient\ for\ 8-\/bit\ and\ 16-\/bit\ transparent\ sprites.}}
+\DoxyCodeLine{00333\ \textcolor{preprocessor}{\#define\ TFT\_TRANSPARENT\ 0x0120\ }\textcolor{comment}{//\ This\ is\ actually\ a\ dark\ green}}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \textcolor{comment}{//\ Default\ palette\ for\ 4-\/bit\ colour\ sprites}}
+\DoxyCodeLine{00336\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint16\_t\ default\_4bit\_palette[]\ PROGMEM\ =\ \{}
+\DoxyCodeLine{00337\ \ \ TFT\_BLACK,\ \ \ \ \textcolor{comment}{//\ \ 0\ \ \string^}}
+\DoxyCodeLine{00338\ \ \ TFT\_BROWN,\ \ \ \ \textcolor{comment}{//\ \ 1\ \ |}}
+\DoxyCodeLine{00339\ \ \ TFT\_RED,\ \ \ \ \ \ \textcolor{comment}{//\ \ 2\ \ |}}
+\DoxyCodeLine{00340\ \ \ TFT\_ORANGE,\ \ \ \textcolor{comment}{//\ \ 3\ \ |}}
+\DoxyCodeLine{00341\ \ \ TFT\_YELLOW,\ \ \ \textcolor{comment}{//\ \ 4\ \ Colours\ 0-\/9\ follow\ the\ resistor\ colour\ code!}}
+\DoxyCodeLine{00342\ \ \ TFT\_GREEN,\ \ \ \ \textcolor{comment}{//\ \ 5\ \ |}}
+\DoxyCodeLine{00343\ \ \ TFT\_BLUE,\ \ \ \ \ \textcolor{comment}{//\ \ 6\ \ |}}
+\DoxyCodeLine{00344\ \ \ TFT\_PURPLE,\ \ \ \textcolor{comment}{//\ \ 7\ \ |}}
+\DoxyCodeLine{00345\ \ \ TFT\_DARKGREY,\ \textcolor{comment}{//\ \ 8\ \ |}}
+\DoxyCodeLine{00346\ \ \ TFT\_WHITE,\ \ \ \ \textcolor{comment}{//\ \ 9\ \ v}}
+\DoxyCodeLine{00347\ \ \ TFT\_CYAN,\ \ \ \ \ \textcolor{comment}{//\ 10\ \ Blue+green\ mix}}
+\DoxyCodeLine{00348\ \ \ TFT\_MAGENTA,\ \ \textcolor{comment}{//\ 11\ \ Blue+red\ mix}}
+\DoxyCodeLine{00349\ \ \ TFT\_MAROON,\ \ \ \textcolor{comment}{//\ 12\ \ Darker\ red\ colour}}
+\DoxyCodeLine{00350\ \ \ TFT\_DARKGREEN,\textcolor{comment}{//\ 13\ \ Darker\ green\ colour}}
+\DoxyCodeLine{00351\ \ \ TFT\_NAVY,\ \ \ \ \ \textcolor{comment}{//\ 14\ \ Darker\ blue\ colour}}
+\DoxyCodeLine{00352\ \ \ TFT\_PINK\ \ \ \ \ \ \textcolor{comment}{//\ 15}}
+\DoxyCodeLine{00353\ \};}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00356\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Section\ 7:\ Diagnostic\ support}}
+\DoxyCodeLine{00357\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00358\ \textcolor{comment}{//\ \#define\ TFT\_eSPI\_DEBUG\ \ \ \ \ //\ Switch\ on\ debug\ support\ serial\ messages\ \ (not\ used\ yet)}}
+\DoxyCodeLine{00359\ \textcolor{comment}{//\ \#define\ TFT\_eSPI\_FNx\_DEBUG\ //\ Switch\ on\ debug\ support\ for\ function\ "{}x"{}\ (not\ used\ yet)}}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \textcolor{comment}{//\ This\ structure\ allows\ sketches\ to\ retrieve\ the\ user\ setup\ parameters\ at\ runtime}}
+\DoxyCodeLine{00362\ \textcolor{comment}{//\ by\ calling\ getSetup(),\ zero\ impact\ on\ code\ size\ unless\ used,\ mainly\ for\ diagnostics}}
+\DoxyCodeLine{00363\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00364\ \{}
+\DoxyCodeLine{00365\ String\ \ version\ =\ TFT\_ESPI\_VERSION;}
+\DoxyCodeLine{00366\ String\ \ setup\_info;\ \ \textcolor{comment}{//\ Setup\ reference\ name\ available\ to\ use\ in\ a\ user\ setup}}
+\DoxyCodeLine{00367\ uint32\_t\ setup\_id;\ \ \ \textcolor{comment}{//\ ID\ available\ to\ use\ in\ a\ user\ setup}}
+\DoxyCodeLine{00368\ int32\_t\ esp;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Processor\ code}}
+\DoxyCodeLine{00369\ uint8\_t\ trans;\ \ \ \ \ \ \ \textcolor{comment}{//\ SPI\ transaction\ support}}
+\DoxyCodeLine{00370\ uint8\_t\ serial;\ \ \ \ \ \ \textcolor{comment}{//\ Serial\ (SPI)\ or\ parallel}}
+\DoxyCodeLine{00371\ \textcolor{preprocessor}{\#ifndef\ GENERIC\_PROCESSOR}}
+\DoxyCodeLine{00372\ uint8\_t\ \ port;\ \ \ \ \ \ \ \textcolor{comment}{//\ SPI\ port}}
+\DoxyCodeLine{00373\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00374\ uint8\_t\ overlap;\ \ \ \ \ \textcolor{comment}{//\ ESP8266\ overlap\ mode}}
+\DoxyCodeLine{00375\ uint8\_t\ interface;\ \ \ \textcolor{comment}{//\ Interface\ type}}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ uint16\_t\ tft\_driver;\ \textcolor{comment}{//\ Hexadecimal\ code}}
+\DoxyCodeLine{00378\ uint16\_t\ tft\_width;\ \ \textcolor{comment}{//\ Rotation\ 0\ width\ and\ height}}
+\DoxyCodeLine{00379\ uint16\_t\ tft\_height;}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ uint8\_t\ r0\_x\_offset;\ \textcolor{comment}{//\ Display\ offsets,\ not\ all\ used\ yet}}
+\DoxyCodeLine{00382\ uint8\_t\ r0\_y\_offset;}
+\DoxyCodeLine{00383\ uint8\_t\ r1\_x\_offset;}
+\DoxyCodeLine{00384\ uint8\_t\ r1\_y\_offset;}
+\DoxyCodeLine{00385\ uint8\_t\ r2\_x\_offset;}
+\DoxyCodeLine{00386\ uint8\_t\ r2\_y\_offset;}
+\DoxyCodeLine{00387\ uint8\_t\ r3\_x\_offset;}
+\DoxyCodeLine{00388\ uint8\_t\ r3\_y\_offset;}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ int8\_t\ pin\_tft\_mosi;\ \textcolor{comment}{//\ SPI\ pins}}
+\DoxyCodeLine{00391\ int8\_t\ pin\_tft\_miso;}
+\DoxyCodeLine{00392\ int8\_t\ pin\_tft\_clk;}
+\DoxyCodeLine{00393\ int8\_t\ pin\_tft\_cs;}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ int8\_t\ pin\_tft\_dc;\ \ \ \textcolor{comment}{//\ Control\ pins}}
+\DoxyCodeLine{00396\ int8\_t\ pin\_tft\_rd;}
+\DoxyCodeLine{00397\ int8\_t\ pin\_tft\_wr;}
+\DoxyCodeLine{00398\ int8\_t\ pin\_tft\_rst;}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ int8\_t\ pin\_tft\_d0;\ \ \ \textcolor{comment}{//\ Parallel\ port\ pins}}
+\DoxyCodeLine{00401\ int8\_t\ pin\_tft\_d1;}
+\DoxyCodeLine{00402\ int8\_t\ pin\_tft\_d2;}
+\DoxyCodeLine{00403\ int8\_t\ pin\_tft\_d3;}
+\DoxyCodeLine{00404\ int8\_t\ pin\_tft\_d4;}
+\DoxyCodeLine{00405\ int8\_t\ pin\_tft\_d5;}
+\DoxyCodeLine{00406\ int8\_t\ pin\_tft\_d6;}
+\DoxyCodeLine{00407\ int8\_t\ pin\_tft\_d7;}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ int8\_t\ pin\_tft\_led;}
+\DoxyCodeLine{00410\ int8\_t\ pin\_tft\_led\_on;}
+\DoxyCodeLine{00411\ }
+\DoxyCodeLine{00412\ int8\_t\ pin\_tch\_cs;\ \ \ \textcolor{comment}{//\ Touch\ chip\ select\ pin}}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00414\ int16\_t\ tft\_spi\_freq;\textcolor{comment}{//\ TFT\ write\ SPI\ frequency}}
+\DoxyCodeLine{00415\ int16\_t\ tft\_rd\_freq;\ \textcolor{comment}{//\ TFT\ read\ \ SPI\ frequency}}
+\DoxyCodeLine{00416\ int16\_t\ tch\_spi\_freq;\textcolor{comment}{//\ Touch\ controller\ read/write\ SPI\ frequency}}
+\DoxyCodeLine{00417\ \}\ setup\_t;}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00420\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Section\ 8:\ Class\ member\ and\ support\ functions}}
+\DoxyCodeLine{00421\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00423\ \textcolor{comment}{//\ Callback\ prototype\ for\ smooth\ font\ pixel\ colour\ read}}
+\DoxyCodeLine{00424\ \textcolor{keyword}{typedef}\ uint16\_t\ (*getColorCallback)(uint16\_t\ x,\ uint16\_t\ y);}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \textcolor{comment}{//\ Class\ functions\ and\ variables}}
+\DoxyCodeLine{00427\ \textcolor{keyword}{class\ }TFT\_eSPI\ :\ \textcolor{keyword}{public}\ Print\ \{\ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }TFT\_eSprite;\ \textcolor{comment}{//\ Sprite\ class\ has\ access\ to\ protected\ members}}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00429\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ public\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00430\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ TFT\_eSPI(int16\_t\ \_W\ =\ TFT\_WIDTH,\ int16\_t\ \_H\ =\ TFT\_HEIGHT);}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \ \ \textcolor{comment}{//\ init()\ and\ begin()\ are\ equivalent,\ begin()\ included\ for\ backwards\ compatibility}}
+\DoxyCodeLine{00435\ \ \ \textcolor{comment}{//\ Sketch\ defined\ tab\ colour\ option\ is\ for\ ST7735\ displays\ only}}
+\DoxyCodeLine{00436\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ init(uint8\_t\ tc\ =\ TAB\_COLOUR),\ begin(uint8\_t\ tc\ =\ TAB\_COLOUR);}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \ \ \textcolor{comment}{//\ These\ are\ virtual\ so\ the\ TFT\_eSprite\ class\ can\ override\ them\ with\ sprite\ specific\ functions}}
+\DoxyCodeLine{00439\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ drawPixel(int32\_t\ x,\ int32\_t\ y,\ uint32\_t\ color),}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ drawChar(int32\_t\ x,\ int32\_t\ y,\ uint16\_t\ c,\ uint32\_t\ color,\ uint32\_t\ bg,\ uint8\_t\ size),}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ drawLine(int32\_t\ xs,\ int32\_t\ ys,\ int32\_t\ xe,\ int32\_t\ ye,\ uint32\_t\ color),}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ drawFastVLine(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ h,\ uint32\_t\ color),}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ drawFastHLine(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ uint32\_t\ color),}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fillRect(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint32\_t\ color);}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00446\ \ \ \textcolor{keyword}{virtual}\ int16\_t\ \ drawChar(uint16\_t\ uniCode,\ int32\_t\ x,\ int32\_t\ y,\ uint8\_t\ font),}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ drawChar(uint16\_t\ uniCode,\ int32\_t\ x,\ int32\_t\ y),}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ height(\textcolor{keywordtype}{void}),}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ width(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ the\ colour\ of\ a\ pixel\ at\ x,y\ and\ return\ value\ in\ 565\ format}}
+\DoxyCodeLine{00452\ \ \ \textcolor{keyword}{virtual}\ uint16\_t\ readPixel(int32\_t\ x,\ int32\_t\ y);}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ setWindow(int32\_t\ xs,\ int32\_t\ ys,\ int32\_t\ xe,\ int32\_t\ ye);\ \ \ \textcolor{comment}{//\ Note:\ start\ +\ end\ coordinates}}
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Push\ (aka\ write\ pixel)\ colours\ to\ the\ set\ window}}
+\DoxyCodeLine{00457\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ pushColor(uint16\_t\ color);}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ These\ are\ non-\/inlined\ to\ enable\ override}}
+\DoxyCodeLine{00460\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ begin\_nin\_write();}
+\DoxyCodeLine{00461\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ end\_nin\_write();}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setRotation(uint8\_t\ r);\ \textcolor{comment}{//\ Set\ the\ display\ image\ orientation\ to\ 0,\ 1,\ 2\ or\ 3}}
+\DoxyCodeLine{00464\ \ \ uint8\_t\ \ getRotation(\textcolor{keywordtype}{void});\ \ \ \ \ \ \textcolor{comment}{//\ Read\ the\ current\ rotation}}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \textcolor{comment}{//\ Change\ the\ origin\ position\ from\ the\ default\ top\ left}}
+\DoxyCodeLine{00467\ \ \ \textcolor{comment}{//\ Note:\ setRotation,\ setViewport\ and\ resetViewport\ will\ revert\ origin\ to\ top\ left\ corner\ of\ screen/sprite}}
+\DoxyCodeLine{00468\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setOrigin(int32\_t\ x,\ int32\_t\ y);}
+\DoxyCodeLine{00469\ \ \ int32\_t\ \ getOriginX(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00470\ \ \ int32\_t\ \ getOriginY(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00471\ }
+\DoxyCodeLine{00472\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ invertDisplay(\textcolor{keywordtype}{bool}\ i);\ \ \textcolor{comment}{//\ Tell\ TFT\ to\ invert\ all\ displayed\ colours}}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ }
+\DoxyCodeLine{00475\ \ \ \textcolor{comment}{//\ The\ TFT\_eSprite\ class\ inherits\ the\ following\ functions\ (not\ all\ are\ useful\ to\ Sprite\ class}}
+\DoxyCodeLine{00476\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setAddrWindow(int32\_t\ xs,\ int32\_t\ ys,\ int32\_t\ w,\ int32\_t\ h);\ \textcolor{comment}{//\ Note:\ start\ coordinates\ +\ width\ and\ height}}
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00478\ \ \ \textcolor{comment}{//\ Viewport\ commands,\ see\ "{}Viewport\_Demo"{}\ sketch}}
+\DoxyCodeLine{00479\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setViewport(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ \textcolor{keywordtype}{bool}\ vpDatum\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00480\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ checkViewport(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h);}
+\DoxyCodeLine{00481\ \ \ int32\_t\ \ getViewportX(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00482\ \ \ int32\_t\ \ getViewportY(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00483\ \ \ int32\_t\ \ getViewportWidth(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00484\ \ \ int32\_t\ \ getViewportHeight(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00485\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ getViewportDatum(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00486\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ frameViewport(uint16\_t\ color,\ int32\_t\ w);}
+\DoxyCodeLine{00487\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ resetViewport(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00488\ }
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clip\ input\ window\ to\ viewport\ bounds,\ return\ false\ if\ whole\ area\ is\ out\ of\ bounds}}
+\DoxyCodeLine{00490\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ clipAddrWindow(int32\_t*\ x,\ int32\_t*\ y,\ int32\_t*\ w,\ int32\_t*\ h);}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clip\ input\ window\ area\ to\ viewport\ bounds,\ return\ false\ if\ whole\ area\ is\ out\ of\ bounds}}
+\DoxyCodeLine{00492\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ clipWindow(int32\_t*\ xs,\ int32\_t*\ ys,\ int32\_t*\ xe,\ int32\_t*\ ye);}
+\DoxyCodeLine{00493\ }
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Push\ (aka\ write\ pixel)\ colours\ to\ the\ TFT\ (use\ setAddrWindow()\ first)}}
+\DoxyCodeLine{00495\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushColor(uint16\_t\ color,\ uint32\_t\ len),\ \ \textcolor{comment}{//\ Deprecated,\ use\ pushBlock()}}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \ \ \ pushColors(uint16\_t\ \ *data,\ uint32\_t\ len,\ \textcolor{keywordtype}{bool}\ swap\ =\ \textcolor{keyword}{true}),\ \textcolor{comment}{//\ With\ byte\ swap\ option}}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ pushColors(uint8\_t\ \ *data,\ uint32\_t\ len);\ \textcolor{comment}{//\ Deprecated,\ use\ pushPixels()}}
+\DoxyCodeLine{00498\ }
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Write\ a\ solid\ block\ of\ a\ single\ colour}}
+\DoxyCodeLine{00500\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushBlock(uint16\_t\ color,\ uint32\_t\ len);}
+\DoxyCodeLine{00501\ }
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Write\ a\ set\ of\ pixels\ stored\ in\ memory,\ use\ setSwapBytes(true/false)\ function\ to\ correct\ endianess}}
+\DoxyCodeLine{00503\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushPixels(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\ data\_in,\ uint32\_t\ len);}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Support\ for\ half\ duplex\ (bi-\/directional\ SDA)\ SPI\ bus\ where\ MOSI\ must\ be\ switched\ to\ input}}
+\DoxyCodeLine{00506\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \#ifdef\ TFT\_SDA\_READ}}
+\DoxyCodeLine{00507\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \#if\ defined\ (TFT\_eSPI\_ENABLE\_8\_BIT\_READ)}}
+\DoxyCodeLine{00508\ \ \ uint8\_t\ \ tft\_Read\_8(\textcolor{keywordtype}{void});\ \ \ \ \ \textcolor{comment}{//\ Read\ 8-\/bit\ value\ from\ TFT\ command\ register}}
+\DoxyCodeLine{00509\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00510\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ begin\_SDA\_Read(\textcolor{keywordtype}{void});\ \textcolor{comment}{//\ Begin\ a\ read\ on\ a\ half\ duplex\ (bi-\/directional\ SDA)\ SPI\ bus\ -\/\ sets\ MOSI\ to\ input}}
+\DoxyCodeLine{00511\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ end\_SDA\_Read(\textcolor{keywordtype}{void});\ \ \ \textcolor{comment}{//\ Restore\ MOSI\ to\ output}}
+\DoxyCodeLine{00512\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ }
+\DoxyCodeLine{00515\ \ \ \textcolor{comment}{//\ Graphics\ drawing}}
+\DoxyCodeLine{00516\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ fillScreen(uint32\_t\ color),}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ drawRect(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint32\_t\ color),}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ drawRoundRect(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ int32\_t\ radius,\ uint32\_t\ color),}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ fillRoundRect(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ int32\_t\ radius,\ uint32\_t\ color);}
+\DoxyCodeLine{00520\ }
+\DoxyCodeLine{00521\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ fillRectVGradient(int16\_t\ x,\ int16\_t\ y,\ int16\_t\ w,\ int16\_t\ h,\ uint32\_t\ color1,\ uint32\_t\ color2);}
+\DoxyCodeLine{00522\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ fillRectHGradient(int16\_t\ x,\ int16\_t\ y,\ int16\_t\ w,\ int16\_t\ h,\ uint32\_t\ color1,\ uint32\_t\ color2);}
+\DoxyCodeLine{00523\ }
+\DoxyCodeLine{00524\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ drawCircle(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ r,\ uint32\_t\ color),}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ drawCircleHelper(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ r,\ uint8\_t\ cornername,\ uint32\_t\ color),}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ fillCircle(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ r,\ uint32\_t\ color),}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \ \ \ fillCircleHelper(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ r,\ uint8\_t\ cornername,\ int32\_t\ delta,\ uint32\_t\ color),}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \ \ \ drawEllipse(int16\_t\ x,\ int16\_t\ y,\ int32\_t\ rx,\ int32\_t\ ry,\ uint16\_t\ color),}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \ \ \ fillEllipse(int16\_t\ x,\ int16\_t\ y,\ int32\_t\ rx,\ int32\_t\ ry,\ uint16\_t\ color),}
+\DoxyCodeLine{00531\ }
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Corner\ 1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Corner\ 2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Corner\ 3}}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ drawTriangle(int32\_t\ x1,int32\_t\ y1,\ int32\_t\ x2,int32\_t\ y2,\ int32\_t\ x3,int32\_t\ y3,\ uint32\_t\ color),}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ fillTriangle(int32\_t\ x1,int32\_t\ y1,\ int32\_t\ x2,int32\_t\ y2,\ int32\_t\ x3,int32\_t\ y3,\ uint32\_t\ color);}
+\DoxyCodeLine{00535\ }
+\DoxyCodeLine{00536\ }
+\DoxyCodeLine{00537\ \ \ \textcolor{comment}{//\ Smooth\ (anti-\/aliased)\ graphics\ drawing}}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ a\ pixel\ blended\ with\ the\ background\ pixel\ colour\ (bg\_color)\ specified,\ \ return\ blended\ colour}}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ bg\_color\ is\ not\ specified,\ the\ background\ pixel\ colour\ will\ be\ read\ from\ TFT\ or\ sprite}}
+\DoxyCodeLine{00540\ \ \ uint16\_t\ drawPixel(int32\_t\ x,\ int32\_t\ y,\ uint32\_t\ color,\ uint8\_t\ alpha,\ uint32\_t\ bg\_color\ =\ 0x00FFFFFF);}
+\DoxyCodeLine{00541\ }
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ an\ anti-\/aliased\ (smooth)\ arc\ between\ start\ and\ end\ angles.\ Arc\ ends\ are\ anti-\/aliased.}}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ By\ default\ the\ arc\ is\ drawn\ with\ square\ ends\ unless\ the\ "{}roundEnds"{}\ parameter\ is\ included\ and\ set\ true}}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Angle\ =\ 0\ is\ at\ 6\ o'clock\ position,\ 90\ at\ 9\ o'clock\ etc.\ The\ angles\ must\ be\ in\ range\ 0-\/360\ or\ they\ will\ be\ clipped\ to\ these\ limits}}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ start\ angle\ may\ be\ larger\ than\ the\ end\ angle.\ Arcs\ are\ always\ drawn\ clockwise\ from\ the\ start\ angle.}}
+\DoxyCodeLine{00546\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ drawSmoothArc(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ r,\ int32\_t\ ir,\ uint32\_t\ startAngle,\ uint32\_t\ endAngle,\ uint32\_t\ fg\_color,\ uint32\_t\ bg\_color,\ \textcolor{keywordtype}{bool}\ roundEnds\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ As\ per\ "{}drawSmoothArc"{}\ except\ the\ ends\ of\ the\ arc\ are\ NOT\ anti-\/aliased,\ this\ facilitates\ dynamic\ arc\ length\ changes\ with}}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ arc\ segments\ and\ ensures\ clean\ segment\ joints.\ }}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ sides\ of\ the\ arc\ are\ anti-\/aliased\ by\ default.\ If\ smoothArc\ is\ false\ sides\ will\ NOT\ be\ anti-\/aliased}}
+\DoxyCodeLine{00551\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ drawArc(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ r,\ int32\_t\ ir,\ uint32\_t\ startAngle,\ uint32\_t\ endAngle,\ uint32\_t\ fg\_color,\ uint32\_t\ bg\_color,\ \textcolor{keywordtype}{bool}\ smoothArc\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00552\ }
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ an\ anti-\/aliased\ filled\ circle\ at\ x,\ y\ with\ radius\ r}}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note:\ The\ thickness\ of\ line\ is\ 3\ pixels\ to\ reduce\ the\ visible\ "{}braiding"{}\ effect\ of\ anti-\/aliasing\ narrow\ lines}}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ this\ means\ the\ inner\ anti-\/alias\ zone\ is\ always\ at\ r-\/1\ and\ the\ outer\ zone\ at\ r+1}}
+\DoxyCodeLine{00556\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ drawSmoothCircle(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ r,\ uint32\_t\ fg\_color,\ uint32\_t\ bg\_color);}
+\DoxyCodeLine{00557\ \ \ }
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ an\ anti-\/aliased\ filled\ circle\ at\ x,\ y\ with\ radius\ r}}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ bg\_color\ is\ not\ included\ the\ background\ pixel\ colour\ will\ be\ read\ from\ TFT\ or\ sprite}}
+\DoxyCodeLine{00560\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ fillSmoothCircle(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ r,\ uint32\_t\ color,\ uint32\_t\ bg\_color\ =\ 0x00FFFFFF);}
+\DoxyCodeLine{00561\ }
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ a\ rounded\ rectangle\ that\ has\ a\ line\ thickness\ of\ r-\/ir+1\ and\ bounding\ box\ defined\ by\ x,y\ and\ w,h}}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ outer\ corner\ radius\ is\ r,\ inner\ corner\ radius\ is\ ir}}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ inside\ and\ outside\ of\ the\ border\ are\ anti-\/aliased}}
+\DoxyCodeLine{00565\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ drawSmoothRoundRect(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ r,\ int32\_t\ ir,\ int32\_t\ w,\ int32\_t\ h,\ uint32\_t\ fg\_color,\ uint32\_t\ bg\_color\ =\ 0x00FFFFFF,\ uint8\_t\ quadrants\ =\ 0xF);}
+\DoxyCodeLine{00566\ }
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ a\ filled\ rounded\ rectangle\ ,\ corner\ radius\ r\ and\ bounding\ box\ defined\ by\ x,y\ and\ w,h}}
+\DoxyCodeLine{00568\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ fillSmoothRoundRect(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ int32\_t\ radius,\ uint32\_t\ color,\ uint32\_t\ bg\_color\ =\ 0x00FFFFFF);}
+\DoxyCodeLine{00569\ }
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ a\ small\ anti-\/aliased\ filled\ circle\ at\ ax,ay\ with\ radius\ r\ (uses\ drawWideLine)}}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ bg\_color\ is\ not\ included\ the\ background\ pixel\ colour\ will\ be\ read\ from\ TFT\ or\ sprite}}
+\DoxyCodeLine{00572\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ drawSpot(\textcolor{keywordtype}{float}\ ax,\ \textcolor{keywordtype}{float}\ ay,\ \textcolor{keywordtype}{float}\ r,\ uint32\_t\ fg\_color,\ uint32\_t\ bg\_color\ =\ 0x00FFFFFF);}
+\DoxyCodeLine{00573\ }
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ an\ anti-\/aliased\ wide\ line\ from\ ax,ay\ to\ bx,by\ width\ wd\ with\ radiused\ ends\ (radius\ is\ wd/2)}}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ bg\_color\ is\ not\ included\ the\ background\ pixel\ colour\ will\ be\ read\ from\ TFT\ or\ sprite}}
+\DoxyCodeLine{00576\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ drawWideLine(\textcolor{keywordtype}{float}\ ax,\ \textcolor{keywordtype}{float}\ ay,\ \textcolor{keywordtype}{float}\ bx,\ \textcolor{keywordtype}{float}\ by,\ \textcolor{keywordtype}{float}\ wd,\ uint32\_t\ fg\_color,\ uint32\_t\ bg\_color\ =\ 0x00FFFFFF);}
+\DoxyCodeLine{00577\ }
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ an\ anti-\/aliased\ wide\ line\ from\ ax,ay\ to\ bx,by\ with\ different\ width\ at\ each\ end\ aw,\ bw\ and\ with\ radiused\ ends}}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ bg\_color\ is\ not\ included\ the\ background\ pixel\ colour\ will\ be\ read\ from\ TFT\ or\ sprite}}
+\DoxyCodeLine{00580\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ drawWedgeLine(\textcolor{keywordtype}{float}\ ax,\ \textcolor{keywordtype}{float}\ ay,\ \textcolor{keywordtype}{float}\ bx,\ \textcolor{keywordtype}{float}\ by,\ \textcolor{keywordtype}{float}\ aw,\ \textcolor{keywordtype}{float}\ bw,\ uint32\_t\ fg\_color,\ uint32\_t\ bg\_color\ =\ 0x00FFFFFF);}
+\DoxyCodeLine{00581\ }
+\DoxyCodeLine{00582\ }
+\DoxyCodeLine{00583\ \ \ \textcolor{comment}{//\ Image\ rendering}}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Swap\ the\ byte\ order\ for\ pushImage()\ and\ pushPixels()\ -\/\ corrects\ endianness}}
+\DoxyCodeLine{00585\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setSwapBytes(\textcolor{keywordtype}{bool}\ swap);}
+\DoxyCodeLine{00586\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ getSwapBytes(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00587\ }
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ bitmap}}
+\DoxyCodeLine{00589\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ drawBitmap(\ int16\_t\ x,\ int16\_t\ y,\ \textcolor{keyword}{const}\ uint8\_t\ *bitmap,\ int16\_t\ w,\ int16\_t\ h,\ uint16\_t\ fgcolor),}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \ \ \ drawBitmap(\ int16\_t\ x,\ int16\_t\ y,\ \textcolor{keyword}{const}\ uint8\_t\ *bitmap,\ int16\_t\ w,\ int16\_t\ h,\ uint16\_t\ fgcolor,\ uint16\_t\ bgcolor),}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \ \ \ drawXBitmap(int16\_t\ x,\ int16\_t\ y,\ \textcolor{keyword}{const}\ uint8\_t\ *bitmap,\ int16\_t\ w,\ int16\_t\ h,\ uint16\_t\ fgcolor),}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \ \ \ drawXBitmap(int16\_t\ x,\ int16\_t\ y,\ \textcolor{keyword}{const}\ uint8\_t\ *bitmap,\ int16\_t\ w,\ int16\_t\ h,\ uint16\_t\ fgcolor,\ uint16\_t\ bgcolor),}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \ \ \ setBitmapColor(uint16\_t\ fgcolor,\ uint16\_t\ bgcolor);\ \textcolor{comment}{//\ Define\ the\ 2\ colours\ for\ 1bpp\ sprites}}
+\DoxyCodeLine{00594\ }
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ TFT\ pivot\ point\ (use\ when\ rendering\ rotated\ sprites)}}
+\DoxyCodeLine{00596\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setPivot(int16\_t\ x,\ int16\_t\ y);}
+\DoxyCodeLine{00597\ \ \ int16\_t\ \ getPivotX(\textcolor{keywordtype}{void}),\ \textcolor{comment}{//\ Get\ pivot\ x}}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \ \ \ getPivotY(\textcolor{keywordtype}{void});\ \textcolor{comment}{//\ Get\ pivot\ y}}
+\DoxyCodeLine{00599\ }
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ next\ functions\ can\ be\ used\ as\ a\ pair\ to\ copy\ screen\ blocks\ (or\ horizontal/vertical\ lines)\ to\ another\ location}}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ a\ block\ of\ pixels\ to\ a\ data\ buffer,\ buffer\ is\ 16-\/bit\ and\ the\ size\ must\ be\ at\ least\ w\ *\ h}}
+\DoxyCodeLine{00602\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ readRect(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint16\_t\ *data);}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Write\ a\ block\ of\ pixels\ to\ the\ screen\ which\ have\ been\ read\ by\ readRect()}}
+\DoxyCodeLine{00604\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushRect(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint16\_t\ *data);}
+\DoxyCodeLine{00605\ }
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ These\ are\ used\ to\ render\ images\ or\ sprites\ stored\ in\ RAM\ arrays\ (used\ by\ Sprite\ class\ for\ 16bpp\ Sprites)}}
+\DoxyCodeLine{00607\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushImage(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint16\_t\ *data);}
+\DoxyCodeLine{00608\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushImage(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint16\_t\ *data,\ uint16\_t\ transparent);}
+\DoxyCodeLine{00609\ }
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ These\ are\ used\ to\ render\ images\ stored\ in\ FLASH\ (PROGMEM)}}
+\DoxyCodeLine{00611\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushImage(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ \textcolor{keyword}{const}\ uint16\_t\ *data,\ uint16\_t\ transparent);}
+\DoxyCodeLine{00612\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushImage(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ \textcolor{keyword}{const}\ uint16\_t\ *data);}
+\DoxyCodeLine{00613\ }
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ These\ are\ used\ by\ Sprite\ class\ pushSprite()\ member\ function\ for\ 1,\ 4\ and\ 8\ bits\ per\ pixel\ (bpp)\ colours}}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ They\ are\ not\ intended\ to\ be\ used\ with\ user\ sketches\ (but\ could\ be)}}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ bpp8\ true\ for\ 8bpp\ sprites,\ false\ otherwise.\ The\ cmap\ pointer\ must\ be\ specified\ for\ 4bpp}}
+\DoxyCodeLine{00617\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushImage(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint8\_t\ \ *data,\ \textcolor{keywordtype}{bool}\ bpp8\ =\ \textcolor{keyword}{true},\ uint16\_t\ *cmap\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00618\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushImage(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint8\_t\ \ *data,\ uint8\_t\ \ transparent,\ \textcolor{keywordtype}{bool}\ bpp8\ =\ \textcolor{keyword}{true},\ uint16\_t\ *cmap\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ FLASH\ version}}
+\DoxyCodeLine{00620\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushImage(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ \textcolor{keyword}{const}\ uint8\_t\ *data,\ \textcolor{keywordtype}{bool}\ bpp8,\ \ uint16\_t\ *cmap\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00621\ }
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Render\ a\ 16-\/bit\ colour\ image\ with\ a\ 1bpp\ mask}}
+\DoxyCodeLine{00623\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushMaskedImage(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint16\_t\ *img,\ uint8\_t\ *mask);}
+\DoxyCodeLine{00624\ }
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ next\ function\ has\ been\ used\ successfully\ to\ dump\ the\ TFT\ screen\ to\ a\ PC\ for\ documentation\ purposes}}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ It\ reads\ a\ screen\ area\ and\ returns\ the\ 3\ RGB\ 8-\/bit\ colour\ values\ of\ each\ pixel\ in\ the\ buffer}}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ w\ and\ h\ to\ 1\ to\ read\ 1\ pixel's\ colour.\ The\ data\ buffer\ must\ be\ at\ least\ w\ *\ h\ *\ 3\ bytes}}
+\DoxyCodeLine{00628\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ readRectRGB(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint8\_t\ *data);}
+\DoxyCodeLine{00629\ }
+\DoxyCodeLine{00630\ }
+\DoxyCodeLine{00631\ \ \ \textcolor{comment}{//\ Text\ rendering\ -\/\ value\ returned\ is\ the\ pixel\ width\ of\ the\ rendered\ text}}
+\DoxyCodeLine{00632\ \ \ int16\_t\ \ drawNumber(\textcolor{keywordtype}{long}\ intNumber,\ int32\_t\ x,\ int32\_t\ y,\ uint8\_t\ font),\ \textcolor{comment}{//\ Draw\ integer\ using\ specified\ font\ number}}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \ drawNumber(\textcolor{keywordtype}{long}\ intNumber,\ int32\_t\ x,\ int32\_t\ y),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ integer\ using\ current\ font}}
+\DoxyCodeLine{00634\ }
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Decimal\ is\ the\ number\ of\ decimal\ places\ to\ render}}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ with\ setTextDatum()\ to\ position\ values\ on\ TFT,\ and\ setTextPadding()\ to\ blank\ old\ displayed\ values}}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \ \ \ drawFloat(\textcolor{keywordtype}{float}\ floatNumber,\ uint8\_t\ decimal,\ int32\_t\ x,\ int32\_t\ y,\ uint8\_t\ font),\ \textcolor{comment}{//\ Draw\ float\ using\ specified\ font\ number}}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ drawFloat(\textcolor{keywordtype}{float}\ floatNumber,\ uint8\_t\ decimal,\ int32\_t\ x,\ int32\_t\ y),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ float\ using\ current\ font}}
+\DoxyCodeLine{00639\ }
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ char\ arrays}}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ with\ setTextDatum()\ to\ position\ string\ on\ TFT,\ and\ setTextPadding()\ to\ blank\ old\ displayed\ strings}}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \ \ \ drawString(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\textcolor{keywordtype}{string},\ int32\_t\ x,\ int32\_t\ y,\ uint8\_t\ font),\ \ \textcolor{comment}{//\ Draw\ string\ using\ specified\ font\ number}}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \ \ \ drawString(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\textcolor{keywordtype}{string},\ int32\_t\ x,\ int32\_t\ y),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ string\ using\ current\ font}}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \ \ \ drawString(\textcolor{keyword}{const}\ String\&\ \textcolor{keywordtype}{string},\ int32\_t\ x,\ int32\_t\ y,\ uint8\_t\ font),\textcolor{comment}{//\ Draw\ string\ using\ specified\ font\ number}}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \ \ \ drawString(\textcolor{keyword}{const}\ String\&\ \textcolor{keywordtype}{string},\ int32\_t\ x,\ int32\_t\ y),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ string\ using\ current\ font}}
+\DoxyCodeLine{00646\ }
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \ \ \ drawCentreString(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\textcolor{keywordtype}{string},\ int32\_t\ x,\ int32\_t\ y,\ uint8\_t\ font),\ \ \textcolor{comment}{//\ Deprecated,\ use\ setTextDatum()\ and\ drawString()}}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \ \ \ drawRightString(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\textcolor{keywordtype}{string},\ int32\_t\ x,\ int32\_t\ y,\ uint8\_t\ font),\ \ \ \textcolor{comment}{//\ Deprecated,\ use\ setTextDatum()\ and\ drawString()}}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \ \ \ drawCentreString(\textcolor{keyword}{const}\ String\&\ \textcolor{keywordtype}{string},\ int32\_t\ x,\ int32\_t\ y,\ uint8\_t\ font),\textcolor{comment}{//\ Deprecated,\ use\ setTextDatum()\ and\ drawString()}}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \ \ \ drawRightString(\textcolor{keyword}{const}\ String\&\ \textcolor{keywordtype}{string},\ int32\_t\ x,\ int32\_t\ y,\ uint8\_t\ font);\ \textcolor{comment}{//\ Deprecated,\ use\ setTextDatum()\ and\ drawString()}}
+\DoxyCodeLine{00651\ }
+\DoxyCodeLine{00652\ }
+\DoxyCodeLine{00653\ \ \ \textcolor{comment}{//\ Text\ rendering\ and\ font\ handling\ support\ functions}}
+\DoxyCodeLine{00654\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setCursor(int16\_t\ x,\ int16\_t\ y),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ cursor\ for\ tft.print()}}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \ \ \ setCursor(int16\_t\ x,\ int16\_t\ y,\ uint8\_t\ font);\ \ \ \textcolor{comment}{//\ Set\ cursor\ and\ font\ number\ for\ tft.print()}}
+\DoxyCodeLine{00656\ }
+\DoxyCodeLine{00657\ \ \ int16\_t\ \ getCursorX(\textcolor{keywordtype}{void}),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ current\ cursor\ x\ position\ (moves\ with\ tft.print())}}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \ \ \ getCursorY(\textcolor{keywordtype}{void});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ current\ cursor\ y\ position}}
+\DoxyCodeLine{00659\ }
+\DoxyCodeLine{00660\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setTextColor(uint16\_t\ color),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ character\ (glyph)\ color\ only\ (background\ not\ over-\/written)}}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \ \ \ setTextColor(uint16\_t\ fgcolor,\ uint16\_t\ bgcolor,\ \textcolor{keywordtype}{bool}\ bgfill\ =\ \textcolor{keyword}{false}),\ \ \textcolor{comment}{//\ Set\ character\ (glyph)\ foreground\ and\ background\ colour,\ optional\ background\ fill\ for\ smooth\ fonts}}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \ \ \ setTextSize(uint8\_t\ size);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ character\ size\ multiplier\ (this\ increases\ pixel\ size)}}
+\DoxyCodeLine{00663\ }
+\DoxyCodeLine{00664\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setTextWrap(\textcolor{keywordtype}{bool}\ wrapX,\ \textcolor{keywordtype}{bool}\ wrapY\ =\ \textcolor{keyword}{false});\ \ \ \ \ \textcolor{comment}{//\ Turn\ on/off\ wrapping\ of\ text\ in\ TFT\ width\ and/or\ height}}
+\DoxyCodeLine{00665\ }
+\DoxyCodeLine{00666\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setTextDatum(uint8\_t\ datum);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ text\ datum\ position\ (default\ is\ top\ left),\ see\ Section\ 5\ above}}
+\DoxyCodeLine{00667\ \ \ uint8\_t\ \ getTextDatum(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00668\ }
+\DoxyCodeLine{00669\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setTextPadding(uint16\_t\ x\_width);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ text\ padding\ (background\ blanking/over-\/write)\ width\ in\ pixels}}
+\DoxyCodeLine{00670\ \ \ uint16\_t\ getTextPadding(\textcolor{keywordtype}{void});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ text\ padding}}
+\DoxyCodeLine{00671\ }
+\DoxyCodeLine{00672\ \textcolor{preprocessor}{\#ifdef\ LOAD\_GFXFF}}
+\DoxyCodeLine{00673\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setFreeFont(\textcolor{keyword}{const}\ GFXfont\ *f\ =\ NULL),\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Select\ the\ GFX\ Free\ Font}}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \ \ \ setTextFont(uint8\_t\ font);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ font\ number\ to\ use\ in\ future}}
+\DoxyCodeLine{00675\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00676\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setFreeFont(uint8\_t\ font),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Not\ used,\ historical\ fix\ to\ prevent\ an\ error}}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \ \ \ setTextFont(uint8\_t\ font);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ font\ number\ to\ use\ in\ future}}
+\DoxyCodeLine{00678\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00679\ }
+\DoxyCodeLine{00680\ \ \ int16\_t\ \ textWidth(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\textcolor{keywordtype}{string},\ uint8\_t\ font),\ \ \ \ \ \textcolor{comment}{//\ Returns\ pixel\ width\ of\ string\ in\ specified\ font}}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \ \ \ textWidth(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\textcolor{keywordtype}{string}),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Returns\ pixel\ width\ of\ string\ in\ current\ font}}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \ \ \ textWidth(\textcolor{keyword}{const}\ String\&\ \textcolor{keywordtype}{string},\ uint8\_t\ font),\ \ \ \textcolor{comment}{//\ As\ above\ for\ String\ types}}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \ \ \ textWidth(\textcolor{keyword}{const}\ String\&\ \textcolor{keywordtype}{string}),}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \ \ \ fontHeight(uint8\_t\ font),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Returns\ pixel\ height\ of\ specified\ font}}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \ \ \ fontHeight(\textcolor{keywordtype}{void});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Returns\ pixel\ height\ of\ current\ font}}
+\DoxyCodeLine{00686\ }
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Used\ by\ library\ and\ Smooth\ font\ class\ to\ extract\ Unicode\ point\ codes\ from\ a\ UTF8\ encoded\ string}}
+\DoxyCodeLine{00688\ \ \ uint16\_t\ decodeUTF8(uint8\_t\ *buf,\ uint16\_t\ *index,\ uint16\_t\ remaining),}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \ \ \ decodeUTF8(uint8\_t\ c);}
+\DoxyCodeLine{00690\ }
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Support\ function\ to\ UTF8\ decode\ and\ draw\ characters\ piped\ through\ print\ stream}}
+\DoxyCodeLine{00692\ \ \ \textcolor{keywordtype}{size\_t}\ \ \ write(uint8\_t);}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ size\_t\ \ \ write(const\ uint8\_t\ *buf,\ size\_t\ len);}}
+\DoxyCodeLine{00694\ }
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Used\ by\ Smooth\ font\ class\ to\ fetch\ a\ pixel\ colour\ for\ the\ anti-\/aliasing}}
+\DoxyCodeLine{00696\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setCallback(getColorCallback\ getCol);}
+\DoxyCodeLine{00697\ }
+\DoxyCodeLine{00698\ \ \ uint16\_t\ fontsLoaded(\textcolor{keywordtype}{void});\ \textcolor{comment}{//\ Each\ bit\ in\ returned\ value\ represents\ a\ font\ type\ that\ is\ loaded\ -\/\ used\ for\ debug/error\ handling\ only}}
+\DoxyCodeLine{00699\ }
+\DoxyCodeLine{00700\ }
+\DoxyCodeLine{00701\ \ \ \textcolor{comment}{//\ Low\ level\ read/write}}
+\DoxyCodeLine{00702\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ spiwrite(uint8\_t);\ \ \ \ \ \ \ \ \textcolor{comment}{//\ legacy\ support\ only}}
+\DoxyCodeLine{00703\ \textcolor{preprocessor}{\#ifdef\ RM68120\_DRIVER}}
+\DoxyCodeLine{00704\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ writecommand(uint16\_t\ c);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Send\ a\ 16-\/bit\ command,\ function\ resets\ DC/RS\ high\ ready\ for\ data}}
+\DoxyCodeLine{00705\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ writeRegister8(uint16\_t\ c,\ uint8\_t\ d);\ \ \ \ \textcolor{comment}{//\ Write\ 8-\/bit\ data\ data\ to\ 16-\/bit\ command\ register}}
+\DoxyCodeLine{00706\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ writeRegister16(uint16\_t\ c,\ uint16\_t\ d);\ \ \textcolor{comment}{//\ Write\ 16-\/bit\ data\ data\ to\ 16-\/bit\ command\ register}}
+\DoxyCodeLine{00707\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00708\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ writecommand(uint8\_t\ c);\ \ \textcolor{comment}{//\ Send\ an\ 8-\/bit\ command,\ function\ resets\ DC/RS\ high\ ready\ for\ data}}
+\DoxyCodeLine{00709\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00710\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ writedata(uint8\_t\ d);\ \ \ \ \ \textcolor{comment}{//\ Send\ data\ with\ DC/RS\ set\ high}}
+\DoxyCodeLine{00711\ }
+\DoxyCodeLine{00712\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ commandList(\textcolor{keyword}{const}\ uint8\_t\ *addr);\ \textcolor{comment}{//\ Send\ a\ initialisation\ sequence\ to\ TFT\ stored\ in\ FLASH}}
+\DoxyCodeLine{00713\ }
+\DoxyCodeLine{00714\ \ \ uint8\_t\ \ readcommand8(\ uint8\_t\ cmd\_function,\ uint8\_t\ index\ =\ 0);\ \textcolor{comment}{//\ read\ 8\ bits\ from\ TFT}}
+\DoxyCodeLine{00715\ \ \ uint16\_t\ readcommand16(uint8\_t\ cmd\_function,\ uint8\_t\ index\ =\ 0);\ \textcolor{comment}{//\ read\ 16\ bits\ from\ TFT}}
+\DoxyCodeLine{00716\ \ \ uint32\_t\ readcommand32(uint8\_t\ cmd\_function,\ uint8\_t\ index\ =\ 0);\ \textcolor{comment}{//\ read\ 32\ bits\ from\ TFT}}
+\DoxyCodeLine{00717\ }
+\DoxyCodeLine{00718\ }
+\DoxyCodeLine{00719\ \ \ \textcolor{comment}{//\ Colour\ conversion}}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ 8-\/bit\ red,\ green\ and\ blue\ to\ 16\ bits}}
+\DoxyCodeLine{00721\ \ \ uint16\_t\ color565(uint8\_t\ red,\ uint8\_t\ green,\ uint8\_t\ blue);}
+\DoxyCodeLine{00722\ }
+\DoxyCodeLine{00723\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ 8-\/bit\ colour\ to\ 16\ bits}}
+\DoxyCodeLine{00724\ \ \ uint16\_t\ color8to16(uint8\_t\ color332);}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ 16-\/bit\ colour\ to\ 8\ bits}}
+\DoxyCodeLine{00726\ \ \ uint8\_t\ \ color16to8(uint16\_t\ color565);}
+\DoxyCodeLine{00727\ }
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ 16-\/bit\ colour\ to/from\ 24-\/bit,\ R+G+B\ concatenated\ into\ LS\ 24\ bits}}
+\DoxyCodeLine{00729\ \ \ uint32\_t\ color16to24(uint16\_t\ color565);}
+\DoxyCodeLine{00730\ \ \ uint32\_t\ color24to16(uint32\_t\ color888);}
+\DoxyCodeLine{00731\ }
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Alpha\ blend\ 2\ colours,\ see\ generic\ "{}alphaBlend\_Test"{}\ example}}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ alpha\ =\ \ \ 0\ =\ 100\%\ background\ colour}}
+\DoxyCodeLine{00734\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ alpha\ =\ 255\ =\ 100\%\ foreground\ colour}}
+\DoxyCodeLine{00735\ \ \ uint16\_t\ alphaBlend(uint8\_t\ alpha,\ uint16\_t\ fgc,\ uint16\_t\ bgc);}
+\DoxyCodeLine{00736\ }
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 16-\/bit\ colour\ alphaBlend\ with\ alpha\ dither\ (dither\ reduces\ colour\ banding)}}
+\DoxyCodeLine{00738\ \ \ uint16\_t\ alphaBlend(uint8\_t\ alpha,\ uint16\_t\ fgc,\ uint16\_t\ bgc,\ uint8\_t\ dither);}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 24-\/bit\ colour\ alphaBlend\ with\ optional\ alpha\ dither}}
+\DoxyCodeLine{00740\ \ \ uint32\_t\ alphaBlend24(uint8\_t\ alpha,\ uint32\_t\ fgc,\ uint32\_t\ bgc,\ uint8\_t\ dither\ =\ 0);}
+\DoxyCodeLine{00741\ }
+\DoxyCodeLine{00742\ \ \ \textcolor{comment}{//\ Direct\ Memory\ Access\ (DMA)\ support\ functions}}
+\DoxyCodeLine{00743\ \ \ \textcolor{comment}{//\ These\ can\ be\ used\ for\ SPI\ writes\ when\ using\ the\ ESP32\ (original)\ or\ STM32\ processors.}}
+\DoxyCodeLine{00744\ \ \ \textcolor{comment}{//\ DMA\ also\ works\ on\ a\ RP2040\ processor\ with\ PIO\ based\ SPI\ and\ parallel\ (8\ and\ 16-\/bit)\ interfaces}}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bear\ in\ mind\ DMA\ will\ only\ be\ of\ benefit\ in\ particular\ circumstances\ and\ can\ be\ tricky}}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ to\ manage\ by\ noobs.\ The\ functions\ have\ however\ been\ designed\ to\ be\ noob\ friendly\ and}}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ avoid\ a\ few\ DMA\ behaviour\ "{}gotchas"{}.}}
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ At\ best\ you\ will\ get\ a\ 2x\ TFT\ rendering\ performance\ improvement\ when\ using\ DMA\ because}}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ library\ handles\ the\ SPI\ bus\ so\ efficiently\ during\ normal\ (non\ DMA)\ transfers.\ The\ best}}
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ performance\ improvement\ scenario\ is\ the\ DMA\ transfer\ time\ is\ exactly\ the\ same\ as\ the\ time\ it}}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ takes\ for\ the\ processor\ to\ prepare\ the\ next\ image\ buffer\ and\ initiate\ another\ DMA\ transfer.}}
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ DMA\ transfer\ to\ the\ TFT\ is\ done\ while\ the\ processor\ moves\ on\ to\ handle\ other\ tasks.\ Bear}}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ in\ mind\ and\ watch\ out\ for\ "{}gotchas"{}\ like\ the\ image\ buffer\ going\ out\ of\ scope\ as\ the}}
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ processor\ leaves\ a\ function\ or\ its\ content\ being\ changed\ while\ the\ DMA\ engine\ is\ reading\ it.}}
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00758\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ compiler\ MAY\ change\ the\ implied\ scope\ of\ a\ buffer\ which\ has\ been\ set\ aside\ by\ creating}}
+\DoxyCodeLine{00759\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ an\ array.\ For\ example\ a\ buffer\ defined\ before\ a\ "{}for-\/next"{}\ loop\ may\ get\ de-\/allocated\ when}}
+\DoxyCodeLine{00760\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ loop\ ends.\ To\ avoid\ this\ use,\ for\ example,\ malloc()\ and\ free()\ to\ take\ control\ of\ when}}
+\DoxyCodeLine{00761\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ buffer\ space\ is\ available\ and\ ensure\ it\ is\ not\ released\ until\ DMA\ is\ complete.}}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00763\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clearly\ you\ should\ not\ modify\ a\ buffer\ that\ is\ being\ DMA'ed\ to\ the\ TFT\ until\ the\ DMA\ is\ over.}}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ the\ dmaBusy()\ function\ to\ check\ this.\ \ Use\ tft.startWrite()\ before\ invoking\ DMA\ so\ the}}
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TFT\ chip\ select\ stays\ low.\ If\ you\ use\ tft.endWrite()\ before\ DMA\ is\ complete\ then\ the\ endWrite}}
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ function\ will\ wait\ for\ the\ DMA\ to\ complete,\ so\ this\ may\ defeat\ any\ DMA\ performance\ benefit.}}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00768\ }
+\DoxyCodeLine{00769\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ initDMA(\textcolor{keywordtype}{bool}\ ctrl\_cs\ =\ \textcolor{keyword}{false});\ \ \textcolor{comment}{//\ Initialise\ the\ DMA\ engine\ and\ attach\ to\ SPI\ bus\ -\/\ typically\ used\ in\ setup()}}
+\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Parameter\ "{}true"{}\ enables\ DMA\ engine\ control\ of\ TFT\ chip\ select\ (ESP32\ only)}}
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ ESP32\ only,\ TFT\ reads\ will\ not\ work\ if\ parameter\ is\ true}}
+\DoxyCodeLine{00772\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ deInitDMA(\textcolor{keywordtype}{void});\ \ \ \textcolor{comment}{//\ De-\/initialise\ the\ DMA\ engine\ and\ detach\ from\ SPI\ bus\ -\/\ typically\ not\ used}}
+\DoxyCodeLine{00773\ }
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Push\ an\ image\ to\ the\ TFT\ using\ DMA,\ buffer\ is\ optional\ and\ grabs\ (double\ buffers)\ a\ copy\ of\ the\ image}}
+\DoxyCodeLine{00775\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ the\ buffer\ if\ the\ image\ data\ will\ get\ over-\/written\ or\ destroyed\ while\ DMA\ is\ in\ progress}}
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ 1:\ If\ swapping\ colour\ bytes\ is\ defined,\ and\ the\ double\ buffer\ option\ is\ NOT\ used,\ then\ the\ bytes}}
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ in\ the\ original\ image\ buffer\ content\ will\ be\ byte\ swapped\ by\ the\ function\ before\ DMA\ is\ initiated.}}
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ 2:\ If\ part\ of\ the\ image\ will\ be\ off\ screen\ or\ outside\ of\ a\ set\ viewport,\ then\ the\ the\ original}}
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ image\ buffer\ content\ will\ be\ altered\ to\ a\ correctly\ clipped\ image\ before\ DMA\ is\ initiated.}}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ function\ will\ wait\ for\ the\ last\ DMA\ to\ complete\ if\ it\ is\ called\ while\ a\ previous\ DMA\ is\ still}}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ in\ progress,\ this\ simplifies\ the\ sketch\ and\ helps\ avoid\ "{}gotchas"{}.}}
+\DoxyCodeLine{00785\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushImageDMA(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint16\_t*\ data,\ uint16\_t*\ buffer\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00786\ }
+\DoxyCodeLine{00787\ \textcolor{preprocessor}{\#if\ defined\ (ESP32)\ }\textcolor{comment}{//\ ESP32\ only\ at\ the\ moment}}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ case\ where\ pointer\ is\ a\ const\ and\ the\ image\ data\ must\ not\ be\ modified\ (clipped\ or\ byte\ swapped)}}
+\DoxyCodeLine{00789\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushImageDMA(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint16\_t\ \textcolor{keyword}{const}*\ data);}
+\DoxyCodeLine{00790\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00791\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Push\ a\ block\ of\ pixels\ into\ a\ window\ set\ up\ using\ setAddrWindow()}}
+\DoxyCodeLine{00792\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushPixelsDMA(uint16\_t*\ image,\ uint32\_t\ len);}
+\DoxyCodeLine{00793\ }
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ the\ DMA\ is\ complete\ -\/\ use\ while(tft.dmaBusy);\ for\ a\ blocking\ wait}}
+\DoxyCodeLine{00795\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ dmaBusy(\textcolor{keywordtype}{void});\ \textcolor{comment}{//\ returns\ true\ if\ DMA\ is\ still\ in\ progress}}
+\DoxyCodeLine{00796\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ dmaWait(\textcolor{keywordtype}{void});\ \textcolor{comment}{//\ wait\ until\ DMA\ is\ complete}}
+\DoxyCodeLine{00797\ }
+\DoxyCodeLine{00798\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ DMA\_Enabled\ =\ \textcolor{keyword}{false};\ \ \ \textcolor{comment}{//\ Flag\ for\ DMA\ enabled\ state}}
+\DoxyCodeLine{00799\ \ \ uint8\_t\ \ spiBusyCheck\ =\ 0;\ \ \ \ \ \ \textcolor{comment}{//\ Number\ of\ ESP32\ transfer\ buffers\ to\ check}}
+\DoxyCodeLine{00800\ }
+\DoxyCodeLine{00801\ \ \ \textcolor{comment}{//\ Bare\ metal\ functions}}
+\DoxyCodeLine{00802\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ startWrite(\textcolor{keywordtype}{void});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Begin\ SPI\ transaction}}
+\DoxyCodeLine{00803\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ writeColor(uint16\_t\ color,\ uint32\_t\ len);\ \textcolor{comment}{//\ Deprecated,\ use\ pushBlock()}}
+\DoxyCodeLine{00804\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ endWrite(\textcolor{keywordtype}{void});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ End\ SPI\ transaction}}
+\DoxyCodeLine{00805\ }
+\DoxyCodeLine{00806\ \ \ \textcolor{comment}{//\ Set/get\ an\ arbitrary\ library\ configuration\ attribute\ or\ option}}
+\DoxyCodeLine{00807\ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ Use\ to\ switch\ ON/OFF\ capabilities\ such\ as\ UTF8\ decoding\ -\/\ each\ attribute\ has\ a\ unique\ ID}}
+\DoxyCodeLine{00808\ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ id\ =\ 0:\ reserved\ -\/\ may\ be\ used\ in\ future\ to\ reset\ all\ attributes\ to\ a\ default\ state}}
+\DoxyCodeLine{00809\ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ id\ =\ 1:\ Turn\ on\ (a=true)\ or\ off\ (a=false)\ GLCD\ cp437\ font\ character\ error\ correction}}
+\DoxyCodeLine{00810\ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ id\ =\ 2:\ Turn\ on\ (a=true)\ or\ off\ (a=false)\ UTF8\ decoding}}
+\DoxyCodeLine{00811\ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ id\ =\ 3:\ Enable\ or\ disable\ use\ of\ ESP32\ PSRAM\ (if\ available)}}
+\DoxyCodeLine{00812\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \#define\ CP437\_SWITCH\ 1}}
+\DoxyCodeLine{00813\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \#define\ UTF8\_SWITCH\ \ 2}}
+\DoxyCodeLine{00814\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \#define\ PSRAM\_ENABLE\ 3}}
+\DoxyCodeLine{00815\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setAttribute(uint8\_t\ \textcolor{keywordtype}{id}\ =\ 0,\ uint8\_t\ a\ =\ 0);\ \textcolor{comment}{//\ Set\ attribute\ value}}
+\DoxyCodeLine{00816\ \ \ uint8\_t\ \ getAttribute(uint8\_t\ \textcolor{keywordtype}{id}\ =\ 0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ attribute\ value}}
+\DoxyCodeLine{00817\ }
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Used\ for\ diagnostic\ sketch\ to\ see\ library\ setup\ adopted\ by\ compiler,\ see\ Section\ 7\ above}}
+\DoxyCodeLine{00819\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ getSetup(setup\_t\&\ tft\_settings);\ \textcolor{comment}{//\ Sketch\ provides\ the\ instance\ to\ populate}}
+\DoxyCodeLine{00820\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ verifySetupID(uint32\_t\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00821\ }
+\DoxyCodeLine{00822\ \ \ \textcolor{comment}{//\ Global\ variables}}
+\DoxyCodeLine{00823\ \textcolor{preprocessor}{\#if\ !defined\ (TFT\_PARALLEL\_8\_BIT)\ \&\&\ !defined\ (RP2040\_PIO\_INTERFACE)}}
+\DoxyCodeLine{00824\ \ \ \textcolor{keyword}{static}\ \ \ SPIClass\&\ getSPIinstance(\textcolor{keywordtype}{void});\ \textcolor{comment}{//\ Get\ SPI\ class\ handle}}
+\DoxyCodeLine{00825\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00826\ \ \ uint32\_t\ textcolor,\ textbgcolor;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Text\ foreground\ and\ background\ colours}}
+\DoxyCodeLine{00827\ }
+\DoxyCodeLine{00828\ \ \ uint32\_t\ bitmap\_fg,\ bitmap\_bg;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bitmap\ foreground\ (bit=1)\ and\ background\ (bit=0)\ colours}}
+\DoxyCodeLine{00829\ }
+\DoxyCodeLine{00830\ \ \ uint8\_t\ \ textfont,\ \ \textcolor{comment}{//\ Current\ selected\ font\ number}}
+\DoxyCodeLine{00831\ \ \ \ \ \ \ \ \ \ \ \ textsize,\ \ \textcolor{comment}{//\ Current\ font\ size\ multiplier}}
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ \ \ \ textdatum,\ \textcolor{comment}{//\ Text\ reference\ datum}}
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ \ \ \ rotation;\ \ \textcolor{comment}{//\ Display\ rotation\ (0-\/3)}}
+\DoxyCodeLine{00834\ }
+\DoxyCodeLine{00835\ \ \ uint8\_t\ \ decoderState\ =\ 0;\ \ \ \textcolor{comment}{//\ UTF8\ decoder\ state\ \ \ \ \ \ \ \ -\/\ not\ for\ user\ access}}
+\DoxyCodeLine{00836\ \ \ uint16\_t\ decoderBuffer;\ \ \ \ \ \ \textcolor{comment}{//\ Unicode\ code-\/point\ buffer\ -\/\ not\ for\ user\ access}}
+\DoxyCodeLine{00837\ }
+\DoxyCodeLine{00838\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ private\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00839\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00840\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Legacy\ begin\ and\ end\ prototypes\ -\/\ deprecated\ TODO:\ delete}}
+\DoxyCodeLine{00841\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ spi\_begin();}
+\DoxyCodeLine{00842\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ spi\_end();}
+\DoxyCodeLine{00843\ }
+\DoxyCodeLine{00844\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ spi\_begin\_read();}
+\DoxyCodeLine{00845\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ spi\_end\_read();}
+\DoxyCodeLine{00846\ }
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ New\ begin\ and\ end\ prototypes}}
+\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ begin/end\ a\ TFT\ write\ transaction}}
+\DoxyCodeLine{00849\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ SPI\ bus\ the\ transmit\ clock\ rate\ is\ set}}
+\DoxyCodeLine{00850\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ begin\_tft\_write()\ \_\_attribute\_\_((always\_inline));}
+\DoxyCodeLine{00851\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ end\_tft\_write()\ \ \ \_\_attribute\_\_((always\_inline));}
+\DoxyCodeLine{00852\ }
+\DoxyCodeLine{00853\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ begin/end\ a\ TFT\ read\ transaction}}
+\DoxyCodeLine{00854\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ SPI\ bus:\ begin\ lowers\ SPI\ clock\ rate,\ end\ reinstates\ transmit\ clock\ rate}}
+\DoxyCodeLine{00855\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ begin\_tft\_read()\ \ \_\_attribute\_\_((always\_inline));}
+\DoxyCodeLine{00856\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ end\_tft\_read()\ \ \ \ \_\_attribute\_\_((always\_inline));}
+\DoxyCodeLine{00857\ }
+\DoxyCodeLine{00858\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialise\ the\ data\ bus\ GPIO\ and\ hardware\ interfaces}}
+\DoxyCodeLine{00859\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ initBus(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00860\ }
+\DoxyCodeLine{00861\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Temporary\ \ library\ development\ function\ \ TODO:\ remove\ need\ for\ this}}
+\DoxyCodeLine{00862\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushSwapBytePixels(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ data\_in,\ uint32\_t\ len);}
+\DoxyCodeLine{00863\ }
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Same\ as\ setAddrWindow\ but\ exits\ with\ CGRAM\ in\ read\ mode}}
+\DoxyCodeLine{00865\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ readAddrWindow(int32\_t\ xs,\ int32\_t\ ys,\ int32\_t\ w,\ int32\_t\ h);}
+\DoxyCodeLine{00866\ }
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Byte\ read\ prototype}}
+\DoxyCodeLine{00868\ \ \ uint8\_t\ \ readByte(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00869\ }
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ GPIO\ parallel\ bus\ input/output\ direction\ control}}
+\DoxyCodeLine{00871\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ busDir(uint32\_t\ mask,\ uint8\_t\ mode);}
+\DoxyCodeLine{00872\ }
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Single\ GPIO\ input/output\ direction\ control}}
+\DoxyCodeLine{00874\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ gpioMode(uint8\_t\ gpio,\ uint8\_t\ mode);}
+\DoxyCodeLine{00875\ }
+\DoxyCodeLine{00876\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Smooth\ graphics\ helper}}
+\DoxyCodeLine{00877\ \ \ uint8\_t\ \ sqrt\_fraction(uint32\_t\ num);}
+\DoxyCodeLine{00878\ }
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Helper\ function:\ calculate\ distance\ of\ a\ point\ from\ a\ finite\ length\ line\ between\ two\ points}}
+\DoxyCodeLine{00880\ \ \ \textcolor{keywordtype}{float}\ \ \ \ wedgeLineDistance(\textcolor{keywordtype}{float}\ pax,\ \textcolor{keywordtype}{float}\ pay,\ \textcolor{keywordtype}{float}\ bax,\ \textcolor{keywordtype}{float}\ bay,\ \textcolor{keywordtype}{float}\ dr);}
+\DoxyCodeLine{00881\ }
+\DoxyCodeLine{00882\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Display\ variant\ settings}}
+\DoxyCodeLine{00883\ \ \ uint8\_t\ \ tabcolor,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ST7735\ screen\ protector\ "{}tab"{}\ colour\ (now\ invalid)}}
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \ \ \ \ \ colstart\ =\ 0,\ rowstart\ =\ 0;\ \textcolor{comment}{//\ Screen\ display\ area\ to\ CGRAM\ area\ coordinate\ offsets}}
+\DoxyCodeLine{00885\ }
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Port\ and\ pin\ masks\ for\ control\ signals\ (ESP826\ only)\ -\/\ TODO:\ remove\ need\ for\ this}}
+\DoxyCodeLine{00887\ \ \ \textcolor{keyword}{volatile}\ uint32\_t\ *dcport,\ *csport;}
+\DoxyCodeLine{00888\ \ \ uint32\_t\ cspinmask,\ dcpinmask,\ wrpinmask,\ sclkpinmask;}
+\DoxyCodeLine{00889\ }
+\DoxyCodeLine{00890\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \#if\ defined(ESP32\_PARALLEL)}}
+\DoxyCodeLine{00891\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bit\ masks\ for\ ESP32\ parallel\ bus\ interface}}
+\DoxyCodeLine{00892\ \ \ uint32\_t\ xclr\_mask,\ xdir\_mask;\ \textcolor{comment}{//\ Port\ set/clear\ and\ direction\ control\ masks}}
+\DoxyCodeLine{00893\ }
+\DoxyCodeLine{00894\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lookup\ table\ for\ ESP32\ parallel\ bus\ interface\ uses\ 1kbyte\ RAM,}}
+\DoxyCodeLine{00895\ \ \ uint32\_t\ xset\_mask[256];\ \textcolor{comment}{//\ Makes\ Sprite\ rendering\ test\ 33\%\ faster,\ for\ slower\ macro\ equivalent}}
+\DoxyCodeLine{00896\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ see\ commented\ out\ \#define\ set\_mask(C)\ within\ TFT\_eSPI\_ESP32.h}}
+\DoxyCodeLine{00897\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00898\ }
+\DoxyCodeLine{00899\ \ \ \textcolor{comment}{//uint32\_t\ lastColor\ =\ 0xFFFF;\ //\ Last\ colour\ -\/\ used\ to\ minimise\ bit\ shifting\ overhead}}
+\DoxyCodeLine{00900\ }
+\DoxyCodeLine{00901\ \ \ getColorCallback\ getColor\ =\ \textcolor{keyword}{nullptr};\ \textcolor{comment}{//\ Smooth\ font\ callback\ function\ pointer}}
+\DoxyCodeLine{00902\ }
+\DoxyCodeLine{00903\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ locked,\ inTransaction,\ lockTransaction;\ \textcolor{comment}{//\ SPI\ transaction\ and\ mutex\ lock\ flags}}
+\DoxyCodeLine{00904\ }
+\DoxyCodeLine{00905\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ protected\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00906\ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00907\ }
+\DoxyCodeLine{00908\ \ \ \textcolor{comment}{//int32\_t\ \ win\_xe,\ win\_ye;\ \ \ \ \ \ \ \ \ \ //\ Window\ end\ coords\ -\/\ not\ needed}}
+\DoxyCodeLine{00909\ }
+\DoxyCodeLine{00910\ \ \ int32\_t\ \ \_init\_width,\ \_init\_height;\ \textcolor{comment}{//\ Display\ w/h\ as\ input,\ used\ by\ setRotation()}}
+\DoxyCodeLine{00911\ \ \ int32\_t\ \ \_width,\ \_height;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Display\ w/h\ as\ modified\ by\ current\ rotation}}
+\DoxyCodeLine{00912\ \ \ int32\_t\ \ addr\_row,\ addr\_col;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Window\ position\ -\/\ used\ to\ minimise\ window\ commands}}
+\DoxyCodeLine{00913\ }
+\DoxyCodeLine{00914\ \ \ int16\_t\ \ \_xPivot;\ \ \ \textcolor{comment}{//\ TFT\ x\ pivot\ point\ coordinate\ for\ rotated\ Sprites}}
+\DoxyCodeLine{00915\ \ \ int16\_t\ \ \_yPivot;\ \ \ \textcolor{comment}{//\ TFT\ x\ pivot\ point\ coordinate\ for\ rotated\ Sprites}}
+\DoxyCodeLine{00916\ }
+\DoxyCodeLine{00917\ \ \ \textcolor{comment}{//\ Viewport\ variables}}
+\DoxyCodeLine{00918\ \ \ int32\_t\ \ \_vpX,\ \_vpY,\ \_vpW,\ \_vpH;\ \ \ \ \textcolor{comment}{//\ Note:\ x\ start,\ y\ start,\ x\ end\ +\ 1,\ y\ end\ +\ 1}}
+\DoxyCodeLine{00919\ \ \ int32\_t\ \ \_xDatum;}
+\DoxyCodeLine{00920\ \ \ int32\_t\ \ \_yDatum;}
+\DoxyCodeLine{00921\ \ \ int32\_t\ \ \_xWidth;}
+\DoxyCodeLine{00922\ \ \ int32\_t\ \ \_yHeight;}
+\DoxyCodeLine{00923\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \_vpDatum;}
+\DoxyCodeLine{00924\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \_vpOoB;}
+\DoxyCodeLine{00925\ }
+\DoxyCodeLine{00926\ \ \ int32\_t\ \ cursor\_x,\ cursor\_y,\ padX;\ \ \ \ \ \ \ \textcolor{comment}{//\ Text\ cursor\ x,y\ and\ padding\ setting}}
+\DoxyCodeLine{00927\ \ \ int32\_t\ \ bg\_cursor\_x;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Background\ fill\ cursor}}
+\DoxyCodeLine{00928\ \ \ int32\_t\ \ last\_cursor\_x;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Previous\ text\ cursor\ position\ when\ fill\ used}}
+\DoxyCodeLine{00929\ }
+\DoxyCodeLine{00930\ \ \ uint32\_t\ fontsloaded;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bit\ field\ of\ fonts\ loaded}}
+\DoxyCodeLine{00931\ }
+\DoxyCodeLine{00932\ \ \ uint8\_t\ \ glyph\_ab,\ \ \ \textcolor{comment}{//\ Smooth\ font\ glyph\ delta\ Y\ (height)\ above\ baseline}}
+\DoxyCodeLine{00933\ \ \ \ \ \ \ \ \ \ \ \ glyph\_bb;\ \ \ \textcolor{comment}{//\ Smooth\ font\ glyph\ delta\ Y\ (height)\ below\ baseline}}
+\DoxyCodeLine{00934\ }
+\DoxyCodeLine{00935\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ isDigits;\ \ \ \textcolor{comment}{//\ adjust\ bounding\ box\ for\ numbers\ to\ reduce\ visual\ jiggling}}
+\DoxyCodeLine{00936\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ textwrapX,\ textwrapY;\ \ \textcolor{comment}{//\ If\ set,\ 'wrap'\ text\ at\ right\ and\ optionally\ bottom\ edge\ of\ display}}
+\DoxyCodeLine{00937\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \_swapBytes;\ \textcolor{comment}{//\ Swap\ the\ byte\ order\ for\ TFT\ pushImage()}}
+\DoxyCodeLine{00938\ }
+\DoxyCodeLine{00939\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \_booted;\ \ \ \ \textcolor{comment}{//\ init()\ or\ begin()\ has\ already\ run\ once}}
+\DoxyCodeLine{00940\ }
+\DoxyCodeLine{00941\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ User\ sketch\ manages\ these\ via\ set/getAttribute()}}
+\DoxyCodeLine{00942\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \_cp437;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ set,\ use\ correct\ CP437\ charset\ (default\ is\ OFF)}}
+\DoxyCodeLine{00943\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \_utf8;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ set,\ use\ UTF-\/8\ decoder\ in\ print\ stream\ 'write()'\ function\ (default\ ON)}}
+\DoxyCodeLine{00944\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \_psram\_enable;\ \textcolor{comment}{//\ Enable\ PSRAM\ use\ for\ library\ functions\ (TBD)\ and\ Sprites}}
+\DoxyCodeLine{00945\ }
+\DoxyCodeLine{00946\ \ \ uint32\_t\ \_lastColor;\ \textcolor{comment}{//\ Buffered\ value\ of\ last\ colour\ used}}
+\DoxyCodeLine{00947\ }
+\DoxyCodeLine{00948\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \_fillbg;\ \ \ \ \textcolor{comment}{//\ Fill\ background\ flag\ (just\ for\ for\ smooth\ fonts\ at\ the\ moment)}}
+\DoxyCodeLine{00949\ }
+\DoxyCodeLine{00950\ \textcolor{preprocessor}{\#if\ defined\ (SSD1963\_DRIVER)}}
+\DoxyCodeLine{00951\ \ \ uint16\_t\ Cswap;\ \ \ \ \ \ \textcolor{comment}{//\ Swap\ buffer\ for\ SSD1963}}
+\DoxyCodeLine{00952\ \ \ uint8\_t\ r6,\ g6,\ b6;\ \ \textcolor{comment}{//\ RGB\ buffer\ for\ SSD1963}}
+\DoxyCodeLine{00953\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00954\ }
+\DoxyCodeLine{00955\ \textcolor{preprocessor}{\#ifdef\ LOAD\_GFXFF}}
+\DoxyCodeLine{00956\ \ \ GFXfont\ \ *gfxFont;}
+\DoxyCodeLine{00957\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00958\ }
+\DoxyCodeLine{00959\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00960\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Section\ 9:\ TFT\_eSPI\ class\ conditional\ extensions}}
+\DoxyCodeLine{00961\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00962\ \textcolor{comment}{//\ Load\ the\ Touch\ extension}}
+\DoxyCodeLine{00963\ \textcolor{preprocessor}{\#ifdef\ TOUCH\_CS}}
+\DoxyCodeLine{00964\ \textcolor{preprocessor}{\ \ \#if\ defined\ (TFT\_PARALLEL\_8\_BIT)\ ||\ defined\ (RP2040\_PIO\_INTERFACE)}}
+\DoxyCodeLine{00965\ \textcolor{preprocessor}{\ \ \ \ \#if\ !defined(DISABLE\_ALL\_LIBRARY\_WARNINGS)}}
+\DoxyCodeLine{00966\ \textcolor{preprocessor}{\ \ \ \ \ \ \#error\ >>>>-\/-\/-\/-\/-\/-\/>>\ Touch\ functions\ not\ supported\ in\ 8/16-\/bit\ parallel\ mode\ or\ with\ RP2040\ PIO.}}
+\DoxyCodeLine{00967\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00968\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00969\ \textcolor{preprocessor}{\ \ \ \ \#include\ "{}Extensions/Touch.h"{}}\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Loaded\ if\ TOUCH\_CS\ is\ defined\ by\ user}}
+\DoxyCodeLine{00970\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00971\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00972\ \textcolor{preprocessor}{\ \ \ \ \#if\ !defined(DISABLE\_ALL\_LIBRARY\_WARNINGS)}}
+\DoxyCodeLine{00973\ \textcolor{preprocessor}{\ \ \ \ \ \ \#warning\ >>>>-\/-\/-\/-\/-\/-\/>>\ TOUCH\_CS\ pin\ not\ defined,\ TFT\_eSPI\ touch\ functions\ will\ not\ be\ available!}}
+\DoxyCodeLine{00974\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00975\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00976\ }
+\DoxyCodeLine{00977\ \textcolor{comment}{//\ Load\ the\ Anti-\/aliased\ font\ extension}}
+\DoxyCodeLine{00978\ \textcolor{preprocessor}{\#ifdef\ SMOOTH\_FONT}}
+\DoxyCodeLine{00979\ \textcolor{preprocessor}{\ \ \#include\ "{}Extensions/Smooth\_font.h"{}}\ \ \textcolor{comment}{//\ Loaded\ if\ SMOOTH\_FONT\ is\ defined\ by\ user}}
+\DoxyCodeLine{00980\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00981\ }
+\DoxyCodeLine{00982\ \};\ \textcolor{comment}{//\ End\ of\ class\ TFT\_eSPI}}
+\DoxyCodeLine{00983\ }
+\DoxyCodeLine{00984\ \textcolor{comment}{//\ Swap\ any\ type}}
+\DoxyCodeLine{00985\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00986\ transpose(T\&\ a,\ T\&\ b)\ \{\ T\ t\ =\ a;\ a\ =\ b;\ b\ =\ t;\ \}}
+\DoxyCodeLine{00987\ }
+\DoxyCodeLine{00988\ \textcolor{comment}{//\ Fast\ alphaBlend}}
+\DoxyCodeLine{00989\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ A,\ \textcolor{keyword}{typename}\ F,\ \textcolor{keyword}{typename}\ B>\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint16\_t}
+\DoxyCodeLine{00990\ fastBlend(A\ alpha,\ F\ fgc,\ B\ bgc)}
+\DoxyCodeLine{00991\ \{}
+\DoxyCodeLine{00992\ \ \ \textcolor{comment}{//\ Split\ out\ and\ blend\ 5-\/bit\ red\ and\ blue\ channels}}
+\DoxyCodeLine{00993\ \ \ uint32\_t\ rxb\ =\ bgc\ \&\ 0xF81F;}
+\DoxyCodeLine{00994\ \ \ rxb\ +=\ ((fgc\ \&\ 0xF81F)\ -\/\ rxb)\ *\ (alpha\ >>\ 2)\ >>\ 6;}
+\DoxyCodeLine{00995\ \ \ \textcolor{comment}{//\ Split\ out\ and\ blend\ 6-\/bit\ green\ channel}}
+\DoxyCodeLine{00996\ \ \ uint32\_t\ xgx\ =\ bgc\ \&\ 0x07E0;}
+\DoxyCodeLine{00997\ \ \ xgx\ +=\ ((fgc\ \&\ 0x07E0)\ -\/\ xgx)\ *\ alpha\ >>\ 8;}
+\DoxyCodeLine{00998\ \ \ \textcolor{comment}{//\ Recombine\ channels}}
+\DoxyCodeLine{00999\ \ \ \textcolor{keywordflow}{return}\ (rxb\ \&\ 0xF81F)\ |\ (xgx\ \&\ 0x07E0);}
+\DoxyCodeLine{01000\ \}}
+\DoxyCodeLine{01001\ }
+\DoxyCodeLine{01002\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01003\ \textcolor{comment}{**\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Section\ 10:\ Additional\ extension\ classes}}
+\DoxyCodeLine{01004\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01005\ \textcolor{comment}{//\ Load\ the\ Button\ Class}}
+\DoxyCodeLine{01006\ \textcolor{preprocessor}{\#include\ "{}Extensions/Button.h"{}}}
+\DoxyCodeLine{01007\ }
+\DoxyCodeLine{01008\ \textcolor{comment}{//\ Load\ the\ Sprite\ Class}}
+\DoxyCodeLine{01009\ \textcolor{preprocessor}{\#include\ "{}Extensions/Sprite.h"{}}}
+\DoxyCodeLine{01010\ }
+\DoxyCodeLine{01011\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ends\ \#ifndef\ \_TFT\_eSPIH\_}}
+
+\end{DoxyCode}

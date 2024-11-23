@@ -1,0 +1,91 @@
+\doxysection{uip-\/conf.h}
+\label{uip-conf_8h_source}\index{lib/EthernetENC-\/2.0.5/src/utility/uip-\/conf.h@{lib/EthernetENC-\/2.0.5/src/utility/uip-\/conf.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2006,\ Swedish\ Institute\ of\ Computer\ Science.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ All\ rights\ reserved.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ Redistribution\ and\ use\ in\ source\ and\ binary\ forms,\ with\ or\ without}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ modification,\ are\ permitted\ provided\ that\ the\ following\ conditions}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ are\ met:}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ 1.\ Redistributions\ of\ source\ code\ must\ retain\ the\ above\ copyright}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ \ \ \ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ 2.\ Redistributions\ in\ binary\ form\ must\ reproduce\ the\ above\ copyright}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ \ \ \ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer\ in\ the}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ \ \ \ documentation\ and/or\ other\ materials\ provided\ with\ the\ distribution.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ 3.\ Neither\ the\ name\ of\ the\ Institute\ nor\ the\ names\ of\ its\ contributors}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ \ \ \ may\ be\ used\ to\ endorse\ or\ promote\ products\ derived\ from\ this\ software}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ \ \ \ without\ specific\ prior\ written\ permission.}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *\ THIS\ SOFTWARE\ IS\ PROVIDED\ BY\ THE\ INSTITUTE\ AND\ CONTRIBUTORS\ \`{}\`{}AS\ IS''\ AND}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *\ ANY\ EXPRESS\ OR\ IMPLIED\ WARRANTIES,\ INCLUDING,\ BUT\ NOT\ LIMITED\ TO,\ THE}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ *\ IMPLIED\ WARRANTIES\ OF\ MERCHANTABILITY\ AND\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ *\ ARE\ DISCLAIMED.\ \ IN\ NO\ EVENT\ SHALL\ THE\ INSTITUTE\ OR\ CONTRIBUTORS\ BE\ LIABLE}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *\ FOR\ ANY\ DIRECT,\ INDIRECT,\ INCIDENTAL,\ SPECIAL,\ EXEMPLARY,\ OR\ CONSEQUENTIAL}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ *\ DAMAGES\ (INCLUDING,\ BUT\ NOT\ LIMITED\ TO,\ PROCUREMENT\ OF\ SUBSTITUTE\ GOODS}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ *\ OR\ SERVICES;\ LOSS\ OF\ USE,\ DATA,\ OR\ PROFITS;\ OR\ BUSINESS\ INTERRUPTION)}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ *\ HOWEVER\ CAUSED\ AND\ ON\ ANY\ THEORY\ OF\ LIABILITY,\ WHETHER\ IN\ CONTRACT,\ STRICT}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ *\ LIABILITY,\ OR\ TORT\ (INCLUDING\ NEGLIGENCE\ OR\ OTHERWISE)\ ARISING\ IN\ ANY\ WAY}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ *\ OUT\ OF\ THE\ USE\ OF\ THIS\ SOFTWARE,\ EVEN\ IF\ ADVISED\ OF\ THE\ POSSIBILITY\ OF}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ *\ SUCH\ DAMAGE.}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ *\ This\ file\ is\ part\ of\ the\ uIP\ TCP/IP\ stack}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#ifndef\ \_\_UIP\_CONF\_H\_\_}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ \_\_UIP\_CONF\_H\_\_}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <inttypes.h>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ "{}uipethernet-\/conf.h"{}}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{typedef}\ uint8\_t\ u8\_t;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{typedef}\ uint16\_t\ u16\_t;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ uip\_stats\_t;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ UIP\_CONF\_MAX\_LISTENPORTS\ 4}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ UIP\_CONF\_BUFFER\_SIZE\ \ \ \ \ 98}}
+\DoxyCodeLine{00098\ \textcolor{comment}{//\#define\ UIP\_CONF\_BUFFER\_SIZE\ \ \ \ \ 118}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ UIP\_CONF\_TCP\_MSS\ 512}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ UIP\_CONF\_RECEIVE\_WINDOW\ 512}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#define\ UIP\_CONF\_BYTE\_ORDER\ \ \ \ \ \ \_\_BYTE\_ORDER\_\_}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#define\ UIP\_CONF\_LOGGING\ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#define\ UIP\_CONF\_UDP\_CHECKSUMS\ \ \ 1}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#define\ UIP\_CONF\_BROADCAST\ \ \ \ 1}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#define\ UIP\_CONF\_STATISTICS\ \ \ \ \ \ 0}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{comment}{//\ SLIP}}
+\DoxyCodeLine{00167\ \textcolor{comment}{//\#define\ UIP\_CONF\_LLH\_LEN\ 0}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{void}*\ uip\_tcp\_appstate\_t;}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \textcolor{keywordtype}{void}\ uipclient\_appcall(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#define\ UIP\_APPCALL\ uipclient\_appcall}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{void}*\ uip\_udp\_appstate\_t;}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{keywordtype}{void}\ uipudp\_appcall(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\#define\ UIP\_UDP\_APPCALL\ uipudp\_appcall}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#define\ CC\_REGISTER\_ARG\ register}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#define\ UIP\_ARCH\_CHKSUM\ 1}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_UIP\_CONF\_H\_\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

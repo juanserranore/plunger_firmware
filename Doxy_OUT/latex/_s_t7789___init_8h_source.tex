@@ -1,0 +1,242 @@
+\doxysection{ST7789\+\_\+\+Init.\+h}
+\label{_s_t7789___init_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/ST7789\_Init.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/ST7789\_Init.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ initialises\ the\ ST7789\ driver}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ This\ setup\ information\ uses\ simple\ 8-\/bit\ SPI\ writecommand()\ and\ writedata()\ functions}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ See\ ST7735\_Setup.h\ file\ for\ an\ alternative\ format}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ INIT\_SEQUENCE\_3}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ fillScreen(TFT\_RED);}
+\DoxyCodeLine{00011\ \ \ writecommand(ST7789\_SLPOUT);\ \ \ \textcolor{comment}{//\ Sleep\ out}}
+\DoxyCodeLine{00012\ \ \ delay(120);}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ writecommand(ST7789\_NORON);\ \ \ \ \textcolor{comment}{//\ Normal\ display\ mode\ on}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/display\ and\ color\ format\ setting-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00017\ \ \ writecommand(ST7789\_MADCTL);}
+\DoxyCodeLine{00018\ \ \ \textcolor{comment}{//writedata(0x00);}}
+\DoxyCodeLine{00019\ \ \ writedata(TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \textcolor{comment}{//\ JLX240\ display\ datasheet}}
+\DoxyCodeLine{00022\ \ \ writecommand(0xB6);}
+\DoxyCodeLine{00023\ \ \ writedata(0x0A);}
+\DoxyCodeLine{00024\ \ \ writedata(0x82);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ writecommand(ST7789\_RAMCTRL);}
+\DoxyCodeLine{00027\ \ \ writedata(0x00);}
+\DoxyCodeLine{00028\ \ \ writedata(0xE0);\ \textcolor{comment}{//\ 5\ to\ 6-\/bit\ conversion:\ r0\ =\ r5,\ b0\ =\ b5}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ writecommand(ST7789\_COLMOD);}
+\DoxyCodeLine{00031\ \ \ writedata(0x55);}
+\DoxyCodeLine{00032\ \ \ delay(10);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ST7789V\ Frame\ rate\ setting-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00035\ \ \ writecommand(ST7789\_PORCTRL);}
+\DoxyCodeLine{00036\ \ \ writedata(0x0c);}
+\DoxyCodeLine{00037\ \ \ writedata(0x0c);}
+\DoxyCodeLine{00038\ \ \ writedata(0x00);}
+\DoxyCodeLine{00039\ \ \ writedata(0x33);}
+\DoxyCodeLine{00040\ \ \ writedata(0x33);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ writecommand(ST7789\_GCTRL);\ \ \ \ \ \ \textcolor{comment}{//\ Voltages:\ VGH\ /\ VGL}}
+\DoxyCodeLine{00043\ \ \ writedata(0x35);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ST7789V\ Power\ setting-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00046\ \ \ writecommand(ST7789\_VCOMS);}
+\DoxyCodeLine{00047\ \ \ writedata(0x28);\ \ \ \ \ \ \textcolor{comment}{//\ JLX240\ display\ datasheet}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ writecommand(ST7789\_LCMCTRL);}
+\DoxyCodeLine{00050\ \ \ writedata(0x0C);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ writecommand(ST7789\_VDVVRHEN);}
+\DoxyCodeLine{00053\ \ \ writedata(0x01);}
+\DoxyCodeLine{00054\ \ \ writedata(0xFF);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ writecommand(ST7789\_VRHS);\ \ \ \ \ \ \ \textcolor{comment}{//\ voltage\ VRHS}}
+\DoxyCodeLine{00057\ \ \ writedata(0x10);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ writecommand(ST7789\_VDVSET);}
+\DoxyCodeLine{00060\ \ \ writedata(0x20);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ writecommand(ST7789\_FRCTR2);}
+\DoxyCodeLine{00063\ \ \ writedata(0x0f);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ writecommand(ST7789\_PWCTRL1);}
+\DoxyCodeLine{00066\ \ \ writedata(0xa4);}
+\DoxyCodeLine{00067\ \ \ writedata(0xa1);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ST7789V\ gamma\ setting-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00070\ \ \ writecommand(ST7789\_PVGAMCTRL);}
+\DoxyCodeLine{00071\ \ \ writedata(0xd0);}
+\DoxyCodeLine{00072\ \ \ writedata(0x00);}
+\DoxyCodeLine{00073\ \ \ writedata(0x02);}
+\DoxyCodeLine{00074\ \ \ writedata(0x07);}
+\DoxyCodeLine{00075\ \ \ writedata(0x0a);}
+\DoxyCodeLine{00076\ \ \ writedata(0x28);}
+\DoxyCodeLine{00077\ \ \ writedata(0x32);}
+\DoxyCodeLine{00078\ \ \ writedata(0x44);}
+\DoxyCodeLine{00079\ \ \ writedata(0x42);}
+\DoxyCodeLine{00080\ \ \ writedata(0x06);}
+\DoxyCodeLine{00081\ \ \ writedata(0x0e);}
+\DoxyCodeLine{00082\ \ \ writedata(0x12);}
+\DoxyCodeLine{00083\ \ \ writedata(0x14);}
+\DoxyCodeLine{00084\ \ \ writedata(0x17);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ writecommand(ST7789\_NVGAMCTRL);}
+\DoxyCodeLine{00087\ \ \ writedata(0xd0);}
+\DoxyCodeLine{00088\ \ \ writedata(0x00);}
+\DoxyCodeLine{00089\ \ \ writedata(0x02);}
+\DoxyCodeLine{00090\ \ \ writedata(0x07);}
+\DoxyCodeLine{00091\ \ \ writedata(0x0a);}
+\DoxyCodeLine{00092\ \ \ writedata(0x28);}
+\DoxyCodeLine{00093\ \ \ writedata(0x31);}
+\DoxyCodeLine{00094\ \ \ writedata(0x54);}
+\DoxyCodeLine{00095\ \ \ writedata(0x47);}
+\DoxyCodeLine{00096\ \ \ writedata(0x0e);}
+\DoxyCodeLine{00097\ \ \ writedata(0x1c);}
+\DoxyCodeLine{00098\ \ \ writedata(0x17);}
+\DoxyCodeLine{00099\ \ \ writedata(0x1b);}
+\DoxyCodeLine{00100\ \ \ writedata(0x1e);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ writecommand(ST7789\_INVON);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ writecommand(ST7789\_CASET);\ \ \ \ \textcolor{comment}{//\ Column\ address\ set}}
+\DoxyCodeLine{00105\ \ \ writedata(0x00);}
+\DoxyCodeLine{00106\ \ \ writedata(0x00);}
+\DoxyCodeLine{00107\ \ \ writedata(0x00);}
+\DoxyCodeLine{00108\ \ \ writedata(0xEF);\ \ \ \ \textcolor{comment}{//\ 239}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ writecommand(ST7789\_RASET);\ \ \ \ \textcolor{comment}{//\ Row\ address\ set}}
+\DoxyCodeLine{00111\ \ \ writedata(0x00);}
+\DoxyCodeLine{00112\ \ \ writedata(0x00);}
+\DoxyCodeLine{00113\ \ \ writedata(0x01);}
+\DoxyCodeLine{00114\ \ \ writedata(0x3F);\ \ \ \ \textcolor{comment}{//\ 319}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ end\_tft\_write();}
+\DoxyCodeLine{00119\ \ \ delay(120);}
+\DoxyCodeLine{00120\ \ \ begin\_tft\_write();}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ writecommand(ST7789\_DISPON);\ \ \ \ \textcolor{comment}{//Display\ on}}
+\DoxyCodeLine{00123\ \ \ delay(120);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#ifdef\ TFT\_BL}}
+\DoxyCodeLine{00126\ \ \ \textcolor{comment}{//\ Turn\ on\ the\ back-\/light\ LED}}
+\DoxyCodeLine{00127\ \ \ digitalWrite(TFT\_BL,\ HIGH);}
+\DoxyCodeLine{00128\ \ \ pinMode(TFT\_BL,\ OUTPUT);}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00130\ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00134\ \textcolor{comment}{//\ TTGO\ ESP32\ S3\ T-\/Display}}
+\DoxyCodeLine{00135\ \{}
+\DoxyCodeLine{00136\ \ \ writecommand(ST7789\_SLPOUT);\ \ \ \textcolor{comment}{//\ Sleep\ out}}
+\DoxyCodeLine{00137\ \ \ delay(120);}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ writecommand(ST7789\_NORON);\ \ \ \ \textcolor{comment}{//\ Normal\ display\ mode\ on}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/display\ and\ color\ format\ setting-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00142\ \ \ writecommand(ST7789\_MADCTL);}
+\DoxyCodeLine{00143\ \ \ writedata(TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \textcolor{comment}{//\ writecommand(ST7789\_RAMCTRL);}}
+\DoxyCodeLine{00146\ \ \textcolor{comment}{//\ writedata(0x00);}}
+\DoxyCodeLine{00147\ \ \textcolor{comment}{//\ writedata(0xE0);\ //\ 5\ to\ 6-\/bit\ conversion:\ r0\ =\ r5,\ b0\ =\ b5}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ writecommand(ST7789\_COLMOD);}
+\DoxyCodeLine{00150\ \ \ writedata(0x55);}
+\DoxyCodeLine{00151\ \ \ delay(10);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ST7789V\ Frame\ rate\ setting-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00154\ \ \ writecommand(ST7789\_PORCTRL);}
+\DoxyCodeLine{00155\ \ \ writedata(0x0b);}
+\DoxyCodeLine{00156\ \ \ writedata(0x0b);}
+\DoxyCodeLine{00157\ \ \ writedata(0x00);}
+\DoxyCodeLine{00158\ \ \ writedata(0x33);}
+\DoxyCodeLine{00159\ \ \ writedata(0x33);}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ writecommand(ST7789\_GCTRL);\ \ \ \ \ \ \textcolor{comment}{//\ Voltages:\ VGH\ /\ VGL}}
+\DoxyCodeLine{00162\ \ \ writedata(0x75);}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ST7789V\ Power\ setting-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00165\ \ \ writecommand(ST7789\_VCOMS);}
+\DoxyCodeLine{00166\ \ \ writedata(0x28);\ \ \ \ \ \ \textcolor{comment}{//\ JLX240\ display\ datasheet}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ writecommand(ST7789\_LCMCTRL);}
+\DoxyCodeLine{00169\ \ \ writedata(0x2C);}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ writecommand(ST7789\_VDVVRHEN);}
+\DoxyCodeLine{00172\ \ \ writedata(0x01);}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ writecommand(ST7789\_VRHS);\ \ \ \ \ \ \ \textcolor{comment}{//\ voltage\ VRHS}}
+\DoxyCodeLine{00175\ \ \ writedata(0x1F);}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ writecommand(ST7789\_FRCTR2);}
+\DoxyCodeLine{00178\ \ \ writedata(0x13);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ writecommand(ST7789\_PWCTRL1);}
+\DoxyCodeLine{00181\ \ \ writedata(0xa7);}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ writecommand(ST7789\_PWCTRL1);}
+\DoxyCodeLine{00184\ \ \ writedata(0xa4);}
+\DoxyCodeLine{00185\ \ \ writedata(0xa1);}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ writecommand(0xD6);}
+\DoxyCodeLine{00188\ \ \ writedata(0xa1);}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/ST7789V\ gamma\ setting-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00191\ \ \ writecommand(ST7789\_PVGAMCTRL);}
+\DoxyCodeLine{00192\ \ \ writedata(0xf0);}
+\DoxyCodeLine{00193\ \ \ writedata(0x05);}
+\DoxyCodeLine{00194\ \ \ writedata(0x0a);}
+\DoxyCodeLine{00195\ \ \ writedata(0x06);}
+\DoxyCodeLine{00196\ \ \ writedata(0x06);}
+\DoxyCodeLine{00197\ \ \ writedata(0x03);}
+\DoxyCodeLine{00198\ \ \ writedata(0x2b);}
+\DoxyCodeLine{00199\ \ \ writedata(0x32);}
+\DoxyCodeLine{00200\ \ \ writedata(0x43);}
+\DoxyCodeLine{00201\ \ \ writedata(0x36);}
+\DoxyCodeLine{00202\ \ \ writedata(0x11);}
+\DoxyCodeLine{00203\ \ \ writedata(0x10);}
+\DoxyCodeLine{00204\ \ \ writedata(0x2b);}
+\DoxyCodeLine{00205\ \ \ writedata(0x32);}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ writecommand(ST7789\_NVGAMCTRL);}
+\DoxyCodeLine{00208\ \ \ writedata(0xf0);}
+\DoxyCodeLine{00209\ \ \ writedata(0x08);}
+\DoxyCodeLine{00210\ \ \ writedata(0x0c);}
+\DoxyCodeLine{00211\ \ \ writedata(0x0b);}
+\DoxyCodeLine{00212\ \ \ writedata(0x09);}
+\DoxyCodeLine{00213\ \ \ writedata(0x24);}
+\DoxyCodeLine{00214\ \ \ writedata(0x2b);}
+\DoxyCodeLine{00215\ \ \ writedata(0x22);}
+\DoxyCodeLine{00216\ \ \ writedata(0x43);}
+\DoxyCodeLine{00217\ \ \ writedata(0x38);}
+\DoxyCodeLine{00218\ \ \ writedata(0x15);}
+\DoxyCodeLine{00219\ \ \ writedata(0x16);}
+\DoxyCodeLine{00220\ \ \ writedata(0x2f);}
+\DoxyCodeLine{00221\ \ \ writedata(0x37);}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ end\_tft\_write();}
+\DoxyCodeLine{00226\ \ \ delay(120);}
+\DoxyCodeLine{00227\ \ \ begin\_tft\_write();}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ writecommand(ST7789\_DISPON);\ \ \ \ \textcolor{comment}{//Display\ on}}
+\DoxyCodeLine{00230\ \ \ delay(120);}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\#ifdef\ TFT\_BL}}
+\DoxyCodeLine{00233\ \ \ \textcolor{comment}{//\ Turn\ on\ the\ back-\/light\ LED}}
+\DoxyCodeLine{00234\ \ \ digitalWrite(TFT\_BL,\ HIGH);}
+\DoxyCodeLine{00235\ \ \ pinMode(TFT\_BL,\ OUTPUT);}
+\DoxyCodeLine{00236\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00237\ \}}
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

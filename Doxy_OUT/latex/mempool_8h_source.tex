@@ -1,0 +1,60 @@
+\doxysection{mempool.\+h}
+\label{mempool_8h_source}\index{lib/EthernetENC-\/2.0.5/src/utility/mempool.h@{lib/EthernetENC-\/2.0.5/src/utility/mempool.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ mempool.h\ -\/\ sleek\ implementation\ of\ a\ memory\ pool}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ Copyright\ (c)\ 2013\ Norbert\ Truchsess\ <norbert.truchsess@t-\/online.de>}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ All\ rights\ reserved.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ This\ program\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ This\ program\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ along\ with\ this\ program.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ MEMPOOL\_H}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ MEMPOOL\_H}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <inttypes.h>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ POOLSTART\ 0}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ NOBLOCK\ 0}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}mempool\_conf.h"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{struct\ }memblock}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ memaddress\ begin;}
+\DoxyCodeLine{00033\ \ \ memaddress\ size;}
+\DoxyCodeLine{00034\ \ \ memhandle\ nextblock;}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }MemoryPool}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#ifdef\ MEMPOOLTEST\_H}}
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }MemoryPoolTest;}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{struct\ }memblock\ blocks[MEMPOOL\_NUM\_MEMBLOCKS+1];}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ init();}
+\DoxyCodeLine{00048\ \ \ \textcolor{keyword}{static}\ memhandle\ allocBlock(memaddress);}
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ freeBlock(memhandle);}
+\DoxyCodeLine{00050\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ resizeBlock(memhandle\ handle,\ memaddress\ position);}
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ resizeBlock(memhandle\ handle,\ memaddress\ position,\ memaddress\ size);}
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{static}\ memaddress\ blockSize(memhandle);}
+\DoxyCodeLine{00053\ \};}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

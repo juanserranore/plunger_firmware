@@ -1,0 +1,370 @@
+\doxysection{NTP\+\_\+\+Time.\+h}
+\label{_n_t_p___time_8h_source}\index{lib/TFT\_eSPI-\/master/examples/Smooth Graphics/Anti-\/aliased\_Clock/NTP\_Time.h@{lib/TFT\_eSPI-\/master/examples/Smooth Graphics/Anti-\/aliased\_Clock/NTP\_Time.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Libraries}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Time\ library:}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ https://github.com/PaulStoffregen/Time}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <TimeLib.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ Time\ zone\ correction\ library:}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ https://github.com/JChristensen/Timezone}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <Timezone.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Choose\ library\ to\ load}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#ifdef\ ARDUINO\_ARCH\_ESP8266}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ ESP8266}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <ESP8266WiFi.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#elif\ (defined(ARDUINO\_ARCH\_MBED)\ ||\ defined(ARDUINO\_ARCH\_RP2040))\ \&\&\ !defined(ARDUINO\_RASPBERRY\_PI\_PICO\_W)}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ RP2040\ Nano\ Connect}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <WiFiNINA.h>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ ESP32}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <WiFi.h>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <WiFiUdp.h>}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ A\ UDP\ instance\ to\ let\ us\ send\ and\ receive\ packets\ over\ UDP}}
+\DoxyCodeLine{00028\ WiFiUDP\ udp;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Settings}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ TIMEZONE\ UK\ }\textcolor{comment}{//\ See\ below\ for\ other\ "{}Zone\ references"{},\ UK,\ usMT\ etc.}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#ifdef\ ESP32\ }\textcolor{comment}{//\ Temporary\ fix,\ ESP8266\ fails\ to\ communicate\ with\ some\ servers...}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ Try\ to\ use\ pool\ URL\ instead\ so\ the\ server\ IP\ address\ is\ looked\ up\ from\ those\ available}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ (use\ a\ pool\ server\ in\ your\ own\ country\ to\ improve\ response\ time\ and\ reliability)}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//const\ char*\ ntpServerName\ =\ "{}time.nist.gov"{};}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//const\ char*\ ntpServerName\ =\ "{}pool.ntp.org"{};}}
+\DoxyCodeLine{00041\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ntpServerName\ =\ \textcolor{stringliteral}{"{}time.google.com"{}};}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ Try\ to\ use\ pool\ URL\ instead\ so\ the\ server\ IP\ address\ is\ looked\ up\ from\ those\ available}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ (use\ a\ pool\ server\ in\ your\ own\ country\ to\ improve\ response\ time\ and\ reliability)}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ const\ char*\ ntpServerName\ =\ "{}time.nist.gov"{};}}
+\DoxyCodeLine{00046\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ntpServerName\ =\ \textcolor{stringliteral}{"{}pool.ntp.org"{}};}
+\DoxyCodeLine{00047\ \textcolor{comment}{//const\ char*\ ntpServerName\ =\ "{}time.google.com"{};}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ Try\ not\ to\ use\ hard-\/coded\ IP\ addresses\ which\ might\ change,\ you\ can\ if\ you\ want\ though...}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//IPAddress\ timeServerIP(129,\ 6,\ 15,\ 30);\ \ \ //\ time-\/c.nist.gov\ NTP\ server}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//IPAddress\ timeServerIP(24,\ 56,\ 178,\ 140);\ //\ wwv.nist.gov\ NTP\ server}}
+\DoxyCodeLine{00053\ IPAddress\ timeServerIP;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ server\ pool}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ Example\ time\ zone\ and\ DST\ rules,\ see\ Timezone\ library\ documents\ to\ see\ how}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ to\ add\ more\ time\ zones\ https://github.com/JChristensen/Timezone}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ Zone\ reference\ "{}UK"{}\ United\ Kingdom\ (London,\ Belfast)}}
+\DoxyCodeLine{00059\ TimeChangeRule\ BST\ =\ \{\textcolor{stringliteral}{"{}BST"{}},\ Last,\ Sun,\ Mar,\ 1,\ 60\};\ \ \ \ \ \ \ \ \textcolor{comment}{//British\ Summer\ (Daylight\ saving)\ Time}}
+\DoxyCodeLine{00060\ TimeChangeRule\ GMT\ =\ \{\textcolor{stringliteral}{"{}GMT"{}},\ Last,\ Sun,\ Oct,\ 2,\ 0\};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Standard\ Time}}
+\DoxyCodeLine{00061\ Timezone\ UK(BST,\ GMT);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ Zone\ reference\ "{}euCET"{}\ Central\ European\ Time\ (Frankfurt,\ Paris)}}
+\DoxyCodeLine{00064\ TimeChangeRule\ CEST\ =\ \{\textcolor{stringliteral}{"{}CEST"{}},\ Last,\ Sun,\ Mar,\ 2,\ 120\};\ \ \ \ \ \textcolor{comment}{//Central\ European\ Summer\ Time}}
+\DoxyCodeLine{00065\ TimeChangeRule\ \ CET\ =\ \{\textcolor{stringliteral}{"{}CET\ "{}},\ Last,\ Sun,\ Oct,\ 3,\ 60\};\ \ \ \ \ \ \textcolor{comment}{//Central\ European\ Standard\ Time}}
+\DoxyCodeLine{00066\ Timezone\ euCET(CEST,\ CET);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ Zone\ reference\ "{}ausET"{}\ Australia\ Eastern\ Time\ Zone\ (Sydney,\ Melbourne)}}
+\DoxyCodeLine{00069\ TimeChangeRule\ aEDT\ =\ \{\textcolor{stringliteral}{"{}AEDT"{}},\ First,\ Sun,\ Oct,\ 2,\ 660\};\ \ \ \ \textcolor{comment}{//UTC\ +\ 11\ hours}}
+\DoxyCodeLine{00070\ TimeChangeRule\ aEST\ =\ \{\textcolor{stringliteral}{"{}AEST"{}},\ First,\ Sun,\ Apr,\ 3,\ 600\};\ \ \ \ \textcolor{comment}{//UTC\ +\ 10\ hours}}
+\DoxyCodeLine{00071\ Timezone\ ausET(aEDT,\ aEST);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ Zone\ reference\ "{}usET\ US\ Eastern\ Time\ Zone\ (New\ York,\ Detroit)}}
+\DoxyCodeLine{00074\ TimeChangeRule\ usEDT\ =\ \{\textcolor{stringliteral}{"{}EDT"{}},\ Second,\ Sun,\ Mar,\ 2,\ -\/240\};\ \ \textcolor{comment}{//Eastern\ Daylight\ Time\ =\ UTC\ -\/\ 4\ hours}}
+\DoxyCodeLine{00075\ TimeChangeRule\ usEST\ =\ \{\textcolor{stringliteral}{"{}EST"{}},\ First,\ Sun,\ Nov,\ 2,\ -\/300\};\ \ \ \textcolor{comment}{//Eastern\ Standard\ Time\ =\ UTC\ -\/\ 5\ hours}}
+\DoxyCodeLine{00076\ Timezone\ usET(usEDT,\ usEST);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{//\ Zone\ reference\ "{}usCT"{}\ US\ Central\ Time\ Zone\ (Chicago,\ Houston)}}
+\DoxyCodeLine{00079\ TimeChangeRule\ usCDT\ =\ \{\textcolor{stringliteral}{"{}CDT"{}},\ Second,\ dowSunday,\ Mar,\ 2,\ -\/300\};}
+\DoxyCodeLine{00080\ TimeChangeRule\ usCST\ =\ \{\textcolor{stringliteral}{"{}CST"{}},\ First,\ dowSunday,\ Nov,\ 2,\ -\/360\};}
+\DoxyCodeLine{00081\ Timezone\ usCT(usCDT,\ usCST);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{comment}{//\ Zone\ reference\ "{}usMT"{}\ US\ Mountain\ Time\ Zone\ (Denver,\ Salt\ Lake\ City)}}
+\DoxyCodeLine{00084\ TimeChangeRule\ usMDT\ =\ \{\textcolor{stringliteral}{"{}MDT"{}},\ Second,\ dowSunday,\ Mar,\ 2,\ -\/360\};}
+\DoxyCodeLine{00085\ TimeChangeRule\ usMST\ =\ \{\textcolor{stringliteral}{"{}MST"{}},\ First,\ dowSunday,\ Nov,\ 2,\ -\/420\};}
+\DoxyCodeLine{00086\ Timezone\ usMT(usMDT,\ usMST);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{comment}{//\ Zone\ reference\ "{}usAZ"{}\ Arizona\ is\ US\ Mountain\ Time\ Zone\ but\ does\ not\ use\ DST}}
+\DoxyCodeLine{00089\ Timezone\ usAZ(usMST,\ usMST);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ Zone\ reference\ "{}usPT"{}\ US\ Pacific\ Time\ Zone\ (Las\ Vegas,\ Los\ Angeles)}}
+\DoxyCodeLine{00092\ TimeChangeRule\ usPDT\ =\ \{\textcolor{stringliteral}{"{}PDT"{}},\ Second,\ dowSunday,\ Mar,\ 2,\ -\/420\};}
+\DoxyCodeLine{00093\ TimeChangeRule\ usPST\ =\ \{\textcolor{stringliteral}{"{}PST"{}},\ First,\ dowSunday,\ Nov,\ 2,\ -\/480\};}
+\DoxyCodeLine{00094\ Timezone\ usPT(usPDT,\ usPST);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Variables}}
+\DoxyCodeLine{00099\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00100\ TimeChangeRule\ *tz1\_Code;\ \ \ \textcolor{comment}{//\ Pointer\ to\ the\ time\ change\ rule,\ use\ to\ get\ the\ TZ\ abbrev,\ e.g.\ "{}GMT"{}}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ time\_t\ utc\ =\ 0;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keywordtype}{bool}\ timeValid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ localPort\ =\ 2390;\ \ \ \ \ \ \textcolor{comment}{//\ local\ port\ to\ listen\ for\ UDP\ packets}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ NTP\_PACKET\_SIZE\ =\ 48;\ \textcolor{comment}{//\ NTP\ time\ stamp\ is\ in\ the\ first\ 48\ bytes\ of\ the\ message}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{keywordtype}{byte}\ packetBuffer[\ NTP\_PACKET\_SIZE\ ];\ \textcolor{comment}{//buffer\ to\ hold\ incoming\ and\ outgoing\ packets}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ uint8\_t\ lastMinute\ =\ 0;}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ uint32\_t\ nextSendTime\ =\ 0;}
+\DoxyCodeLine{00115\ uint32\_t\ newRecvTime\ =\ 0;}
+\DoxyCodeLine{00116\ uint32\_t\ lastRecvTime\ =\ 0;}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ uint32\_t\ newTickTime\ =\ 0;}
+\DoxyCodeLine{00119\ uint32\_t\ lastTickTime\ =\ 0;}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{keywordtype}{bool}\ ntp\_start\ =\ 1;}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ uint32\_t\ no\_packet\_count\ =\ 0;}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00127\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Function\ prototype}}
+\DoxyCodeLine{00128\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keywordtype}{void}\ syncTime(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00131\ \textcolor{keywordtype}{void}\ displayTime(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00132\ \textcolor{keywordtype}{void}\ printTime(time\_t\ zone,\ \textcolor{keywordtype}{char}\ *tzCode);}
+\DoxyCodeLine{00133\ String\ timeString();}
+\DoxyCodeLine{00134\ \textcolor{keywordtype}{void}\ decodeNTP(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00135\ \textcolor{keywordtype}{void}\ sendNTPpacket(IPAddress\&\ address);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00138\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Update\ Time}}
+\DoxyCodeLine{00139\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00140\ \textcolor{keywordtype}{void}\ syncTime(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00141\ \{}
+\DoxyCodeLine{00142\ \ \ \textcolor{keywordflow}{if}\ (ntp\_start)\ \{\ \ \textcolor{comment}{//\ Run\ once}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//\ Call\ once\ for\ ESP32\ and\ ESP8266}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\ \ \ \ \#if\ !defined(ARDUINO\_ARCH\_MBED)}}
+\DoxyCodeLine{00146\ \ \ \ \ WiFi.begin(WIFI\_SSID,\ WIFI\_PASSWORD);}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{while}\ (WiFi.status()\ !=\ WL\_CONNECTED)\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}."{}});}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\ \ \ \ \ \ \#if\ defined(ARDUINO\_ARCH\_MBED)\ ||\ defined(ARDUINO\_ARCH\_RP2040)}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (WiFi.status()\ !=\ WL\_CONNECTED)\ WiFi.begin(WIFI\_SSID,\ WIFI\_PASSWORD);}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ delay(500);}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ Serial.println();}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ udp.begin(localPort);\ ntp\_start\ =\ 0;}
+\DoxyCodeLine{00159\ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \textcolor{comment}{//\ Don't\ send\ too\ often\ so\ we\ don't\ trigger\ Denial\ of\ Service}}
+\DoxyCodeLine{00162\ \ \ \textcolor{keywordflow}{if}\ (nextSendTime\ <\ millis())\ \{}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{comment}{//\ Wait\ 1\ hour\ for\ next\ sync}}
+\DoxyCodeLine{00165\ \ \ \ \ nextSendTime\ =\ millis()\ +\ 60\ *\ 60\ *\ 1000;}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{comment}{//\ Get\ a\ random\ server\ from\ the\ pool}}
+\DoxyCodeLine{00168\ \ \ \ \ WiFi.hostByName(ntpServerName,\ timeServerIP);}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ sendNTPpacket(timeServerIP);\ \textcolor{comment}{//\ send\ an\ NTP\ packet\ to\ a\ time\ server}}
+\DoxyCodeLine{00171\ \ \ \ \ decodeNTP();}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ no\_packet\_count\ >\ 0\ )\ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \textcolor{comment}{//\ Wait\ 1\ minute\ for\ next\ sync}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ nextSendTime\ =\ millis()\ +\ 60\ *\ 1000;}
+\DoxyCodeLine{00176\ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \textcolor{comment}{//\ Wait\ 1\ hour\ for\ next\ sync}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ nextSendTime\ =\ millis()\ +\ 60\ *\ 60\ *\ 1000;}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \}}
+\DoxyCodeLine{00182\ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00185\ \textcolor{comment}{//\ Send\ an\ NTP\ request\ to\ the\ time\ server\ at\ the\ given\ address}}
+\DoxyCodeLine{00186\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00187\ \textcolor{keywordtype}{void}\ sendNTPpacket(IPAddress\&\ address)}
+\DoxyCodeLine{00188\ \{}
+\DoxyCodeLine{00189\ \ \ \textcolor{comment}{//\ Serial.println("{}sending\ NTP\ packet..."{});}}
+\DoxyCodeLine{00190\ \ \ \textcolor{comment}{//\ set\ all\ bytes\ in\ the\ buffer\ to\ 0}}
+\DoxyCodeLine{00191\ \ \ memset(packetBuffer,\ 0,\ NTP\_PACKET\_SIZE);}
+\DoxyCodeLine{00192\ \ \ \textcolor{comment}{//\ Initialize\ values\ needed\ to\ form\ NTP\ request}}
+\DoxyCodeLine{00193\ \ \ \textcolor{comment}{//\ (see\ URL\ above\ for\ details\ on\ the\ packets)}}
+\DoxyCodeLine{00194\ \ \ packetBuffer[0]\ =\ 0b11100011;\ \ \ \textcolor{comment}{//\ LI,\ Version,\ Mode}}
+\DoxyCodeLine{00195\ \ \ packetBuffer[1]\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Stratum,\ or\ type\ of\ clock}}
+\DoxyCodeLine{00196\ \ \ packetBuffer[2]\ =\ 6;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Polling\ Interval}}
+\DoxyCodeLine{00197\ \ \ packetBuffer[3]\ =\ 0xEC;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Peer\ Clock\ Precision}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \textcolor{comment}{//\ 8\ bytes\ of\ zero\ for\ Root\ Delay\ \&\ Root\ Dispersion}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ packetBuffer[12]\ \ =\ 49;}
+\DoxyCodeLine{00202\ \ \ packetBuffer[13]\ \ =\ 0x4E;}
+\DoxyCodeLine{00203\ \ \ packetBuffer[14]\ \ =\ 49;}
+\DoxyCodeLine{00204\ \ \ packetBuffer[15]\ \ =\ 52;}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \textcolor{comment}{//\ all\ NTP\ fields\ have\ been\ given\ values,\ now}}
+\DoxyCodeLine{00207\ \ \ \textcolor{comment}{//\ you\ can\ send\ a\ packet\ requesting\ a\ timestamp:}}
+\DoxyCodeLine{00208\ \ \ udp.beginPacket(address,\ 123);\ \textcolor{comment}{//NTP\ requests\ are\ to\ port\ 123}}
+\DoxyCodeLine{00209\ \ \ udp.write(packetBuffer,\ NTP\_PACKET\_SIZE);}
+\DoxyCodeLine{00210\ \ \ udp.endPacket();}
+\DoxyCodeLine{00211\ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00214\ \textcolor{comment}{//\ Decode\ the\ NTP\ message\ and\ print\ status\ to\ serial\ port}}
+\DoxyCodeLine{00215\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00216\ \textcolor{keywordtype}{void}\ decodeNTP(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00217\ \{}
+\DoxyCodeLine{00218\ \ \ timeValid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00219\ \ \ uint32\_t\ waitTime\ =\ millis()\ +\ 500;}
+\DoxyCodeLine{00220\ \ \ \textcolor{keywordflow}{while}\ (millis()\ <\ waitTime\ \&\&\ !timeValid)}
+\DoxyCodeLine{00221\ \ \ \{}
+\DoxyCodeLine{00222\ \ \ \ \ yield();}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordflow}{if}\ (udp.parsePacket())}
+\DoxyCodeLine{00224\ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ newRecvTime\ =\ millis();}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \textcolor{comment}{//\ We've\ received\ a\ packet,\ read\ the\ data\ from\ it}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ udp.read(packetBuffer,\ NTP\_PACKET\_SIZE);\ \textcolor{comment}{//\ read\ the\ packet\ into\ the\ buffer}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}\(\backslash\)nNTP\ response\ time\ was\ :\ "{}});}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ Serial.print(500\ -\/\ (waitTime\ -\/\ newRecvTime));}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}\ ms"{}});}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Time\ since\ last\ sync\ is:\ "{}});}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ Serial.print((newRecvTime\ -\/\ lastRecvTime)\ /\ 1000.0);}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}\ s"{}});}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ lastRecvTime\ =\ newRecvTime;}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \textcolor{comment}{//\ The\ timestamp\ starts\ at\ byte\ 40\ of\ the\ received\ packet\ and\ is\ four\ bytes,}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \textcolor{comment}{//\ or\ two\ words,\ long.\ First,\ extract\ the\ two\ words:}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ highWord\ =\ word(packetBuffer[40],\ packetBuffer[41]);}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ lowWord\ =\ word(packetBuffer[42],\ packetBuffer[43]);}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \textcolor{comment}{//\ Combine\ the\ four\ bytes\ (two\ words)\ into\ a\ long\ integer}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \textcolor{comment}{//\ this\ is\ NTP\ time\ (seconds\ since\ Jan\ 1\ 1900):}}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ secsSince1900\ =\ highWord\ <<\ 16\ |\ lowWord;}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \textcolor{comment}{//\ Now\ convert\ NTP\ Unix\ time\ (Seconds\ since\ Jan\ 1\ 1900)\ into\ everyday\ time:}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \textcolor{comment}{//\ UTC\ time\ starts\ on\ Jan\ 1\ 1970.\ In\ seconds\ the\ difference\ is\ 2208988800:}}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ utc\ =\ secsSince1900\ -\/\ 2208988800UL;}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ setTime(utc);\ \ \ \ \ \ \textcolor{comment}{//\ Set\ system\ clock\ to\ utc\ time\ (not\ time\ zone\ compensated)}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ timeValid\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \textcolor{comment}{//\ Print\ the\ hour,\ minute\ and\ second:}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Received\ NTP\ UTC\ time\ :\ "{}});}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \ \ \ \ uint8\_t\ hh\ =\ hour(utc);}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ Serial.print(hh);\ \textcolor{comment}{//\ print\ the\ hour\ (86400\ equals\ secs\ per\ day)}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \ \ \ \ \ \ Serial.print(\textcolor{charliteral}{':'});}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ uint8\_t\ mm\ =\ minute(utc);}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mm\ <\ 10\ )\ Serial.print(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ Serial.print(mm);\ \textcolor{comment}{//\ print\ the\ minute\ (3600\ equals\ secs\ per\ minute)}}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ Serial.print(\textcolor{charliteral}{':'});}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ uint8\_t\ ss\ =\ second(utc);}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ ss\ <\ 10\ )\ Serial.print(\textcolor{charliteral}{'0'});}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ Serial.println(ss);\ \textcolor{comment}{//\ print\ the\ second}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \ \ time\_secs\ =\ hh\ *\ 3600\ +\ mm\ *\ 60\ +\ ss;\ \textcolor{comment}{//\ Update\ the\ clock\ time}}
+\DoxyCodeLine{00273\ \ \ \ \ \}}
+\DoxyCodeLine{00274\ \ \ \}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \textcolor{comment}{//\ Keep\ a\ count\ of\ missing\ or\ bad\ NTP\ replies}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \textcolor{keywordflow}{if}\ (\ timeValid\ )\ \{}
+\DoxyCodeLine{00279\ \ \ \ \ no\_packet\_count\ =\ 0;}
+\DoxyCodeLine{00280\ \ \ \}}
+\DoxyCodeLine{00281\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00282\ \ \ \{}
+\DoxyCodeLine{00283\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}\(\backslash\)nNo\ NTP\ reply,\ trying\ again\ in\ 1\ minute..."{}});}
+\DoxyCodeLine{00284\ \ \ \ \ no\_packet\_count++;}
+\DoxyCodeLine{00285\ \ \ \}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \textcolor{keywordflow}{if}\ (no\_packet\_count\ >=\ 10)\ \{}
+\DoxyCodeLine{00288\ \ \ \ \ no\_packet\_count\ =\ 0;\ \textcolor{comment}{//\ Reset\ to\ one\ hour\ to\ try\ later}}
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Flag\ the\ lack\ of\ sync\ on\ the\ display}}
+\DoxyCodeLine{00290\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}\(\backslash\)nNo\ NTP\ packet\ in\ last\ 10\ minutes"{}});}
+\DoxyCodeLine{00291\ \ \ \}}
+\DoxyCodeLine{00292\ \}}
+\DoxyCodeLine{00293\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00294\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Time\ string:\ 00:00:00}}
+\DoxyCodeLine{00295\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00296\ String\ timeString(uint32\_t\ t\_secs)}
+\DoxyCodeLine{00297\ \{}
+\DoxyCodeLine{00298\ \ \ String\ timeNow\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ uint8\_t\ h\ =\ t\_secs\ /\ 3600;}
+\DoxyCodeLine{00301\ \ \ \textcolor{keywordflow}{if}\ (\ h\ <\ 10)\ timeNow\ +=\ \textcolor{stringliteral}{"{}0"{}};}
+\DoxyCodeLine{00302\ \ \ timeNow\ +=\ h;}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ timeNow\ +=\ \textcolor{stringliteral}{"{}:"{}};}
+\DoxyCodeLine{00305\ \ \ uint8\_t\ m\ =\ (t\_secs\ -\/\ (\ h\ *\ 3600\ ))\ /\ 60;}
+\DoxyCodeLine{00306\ \ \ \textcolor{keywordflow}{if}\ (m\ <\ 10)\ timeNow\ +=\ \textcolor{stringliteral}{"{}0"{}};}
+\DoxyCodeLine{00307\ \ \ timeNow\ +=\ m;}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ timeNow\ +=\ \textcolor{stringliteral}{"{}:"{}};}
+\DoxyCodeLine{00310\ \ \ uint8\_t\ s\ =\ t\_secs\ -\/\ (\ h\ *\ 3600\ )\ -\/\ (\ m\ *\ 60\ );}
+\DoxyCodeLine{00311\ \ \ \textcolor{keywordflow}{if}\ (s\ <\ 10)\ timeNow\ +=\ \textcolor{stringliteral}{"{}0"{}};}
+\DoxyCodeLine{00312\ \ \ timeNow\ +=\ s;}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \textcolor{keywordflow}{return}\ timeNow;}
+\DoxyCodeLine{00315\ \}}
+\DoxyCodeLine{00316\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00317\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug\ use\ only}}
+\DoxyCodeLine{00318\ \textcolor{comment}{//====================================================================================}}
+\DoxyCodeLine{00319\ \textcolor{keywordtype}{void}\ printTime(time\_t\ t,\ \textcolor{keywordtype}{char}\ *tzCode)}
+\DoxyCodeLine{00320\ \{}
+\DoxyCodeLine{00321\ \ \ String\ dateString\ =\ dayStr(weekday(t));}
+\DoxyCodeLine{00322\ \ \ dateString\ +=\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00323\ \ \ dateString\ +=\ day(t);}
+\DoxyCodeLine{00324\ \ \ \textcolor{keywordflow}{if}\ (day(t)\ ==\ 1\ ||\ day(t)\ ==\ 21\ ||\ day(t)\ ==\ 31)\ dateString\ +=\ \textcolor{stringliteral}{"{}st"{}};}
+\DoxyCodeLine{00325\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (day(t)\ ==\ 2\ ||\ day(t)\ ==\ 22)\ dateString\ +=\ \textcolor{stringliteral}{"{}nd"{}};}
+\DoxyCodeLine{00326\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (day(t)\ ==\ 3\ ||\ day(t)\ ==\ 23)\ dateString\ +=\ \textcolor{stringliteral}{"{}rd"{}};}
+\DoxyCodeLine{00327\ \ \ \textcolor{keywordflow}{else}\ dateString\ +=\ \textcolor{stringliteral}{"{}th"{}};}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \ \ dateString\ +=\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00330\ \ \ dateString\ +=\ monthStr(month(t));}
+\DoxyCodeLine{00331\ \ \ dateString\ +=\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00332\ \ \ dateString\ +=\ year(t);}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \ \ \textcolor{comment}{//\ Print\ time\ to\ serial\ port}}
+\DoxyCodeLine{00335\ \ \ Serial.print(hour(t));}
+\DoxyCodeLine{00336\ \ \ Serial.print(\textcolor{stringliteral}{"{}:"{}});}
+\DoxyCodeLine{00337\ \ \ Serial.print(minute(t));}
+\DoxyCodeLine{00338\ \ \ Serial.print(\textcolor{stringliteral}{"{}:"{}});}
+\DoxyCodeLine{00339\ \ \ Serial.print(second(t));}
+\DoxyCodeLine{00340\ \ \ Serial.print(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00341\ \ \ \textcolor{comment}{//\ Print\ time\ t}}
+\DoxyCodeLine{00342\ \ \ Serial.print(tzCode);}
+\DoxyCodeLine{00343\ \ \ Serial.print(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \textcolor{comment}{//\ Print\ date}}
+\DoxyCodeLine{00346\ \ \ Serial.print(day(t));}
+\DoxyCodeLine{00347\ \ \ Serial.print(\textcolor{stringliteral}{"{}/"{}});}
+\DoxyCodeLine{00348\ \ \ Serial.print(month(t));}
+\DoxyCodeLine{00349\ \ \ Serial.print(\textcolor{stringliteral}{"{}/"{}});}
+\DoxyCodeLine{00350\ \ \ Serial.print(year(t));}
+\DoxyCodeLine{00351\ \ \ Serial.print(\textcolor{stringliteral}{"{}\ \ "{}});}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \ \ \textcolor{comment}{//\ Now\ test\ some\ other\ functions\ that\ might\ be\ useful\ one\ day!}}
+\DoxyCodeLine{00354\ \ \ Serial.print(dayStr(weekday(t)));}
+\DoxyCodeLine{00355\ \ \ Serial.print(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00356\ \ \ Serial.print(monthStr(month(t)));}
+\DoxyCodeLine{00357\ \ \ Serial.print(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00358\ \ \ Serial.print(dayShortStr(weekday(t)));}
+\DoxyCodeLine{00359\ \ \ Serial.print(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{00360\ \ \ Serial.print(monthShortStr(month(t)));}
+\DoxyCodeLine{00361\ \ \ Serial.println();}
+\DoxyCodeLine{00362\ \}}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ \textcolor{comment}{//====================================================================================}}
+
+\end{DoxyCode}

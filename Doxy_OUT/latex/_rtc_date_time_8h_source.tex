@@ -1,0 +1,826 @@
+\doxysection{Rtc\+Date\+Time.\+h}
+\label{_rtc_date_time_8h_source}\index{lib/Rtc-\/master/src/RtcDateTime.h@{lib/Rtc-\/master/src/RtcDateTime.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00002\ \textcolor{comment}{RTC\ library}}
+\DoxyCodeLine{00003\ \textcolor{comment}{}}
+\DoxyCodeLine{00004\ \textcolor{comment}{Written\ by\ Michael\ C.\ Miller.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{}}
+\DoxyCodeLine{00006\ \textcolor{comment}{I\ invest\ time\ and\ resources\ providing\ this\ open\ source\ code,}}
+\DoxyCodeLine{00007\ \textcolor{comment}{please\ support\ me\ by\ dontating\ (see\ https://github.com/Makuna/Rtc)}}
+\DoxyCodeLine{00008\ \textcolor{comment}{}}
+\DoxyCodeLine{00009\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00010\ \textcolor{comment}{This\ file\ is\ part\ of\ the\ Makuna/Rtc\ library.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Rtc\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00013\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as}}
+\DoxyCodeLine{00014\ \textcolor{comment}{published\ by\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of}}
+\DoxyCodeLine{00015\ \textcolor{comment}{the\ License,\ or\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{Rtc\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00018\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00019\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00020\ \textcolor{comment}{GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public}}
+\DoxyCodeLine{00023\ \textcolor{comment}{License\ along\ with\ Rtc.\ \ If\ not,\ see}}
+\DoxyCodeLine{00024\ \textcolor{comment}{<http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ ESP32\ complains\ if\ not\ included}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#if\ defined(ARDUINO\_ARCH\_ESP32)}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <inttypes.h>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}RtcTimeZone.h"{}}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ "{}RtcLocaleEnUs.h"{}}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}RtcLocaleEn.h"{}}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{enum}\ DayOfWeek}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ DayOfWeek\_Sunday\ =\ 0,}
+\DoxyCodeLine{00041\ \ \ \ \ DayOfWeek\_Monday,}
+\DoxyCodeLine{00042\ \ \ \ \ DayOfWeek\_Tuesday,}
+\DoxyCodeLine{00043\ \ \ \ \ DayOfWeek\_Wednesday,}
+\DoxyCodeLine{00044\ \ \ \ \ DayOfWeek\_Thursday,}
+\DoxyCodeLine{00045\ \ \ \ \ DayOfWeek\_Friday,}
+\DoxyCodeLine{00046\ \ \ \ \ DayOfWeek\_Saturday,}
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{const}\ uint16\_t\ c\_OriginYear\ =\ 2000;}
+\DoxyCodeLine{00050\ \textcolor{keyword}{const}\ uint32\_t\ c\_UnixEpoch32\ =\ 946684800;\ \textcolor{comment}{//\ Unix\ origin\ year\ is\ 1970}}
+\DoxyCodeLine{00051\ \textcolor{keyword}{const}\ uint32\_t\ c\_NtpEpoch32FromUnixEpoch32\ =\ 2208988800;\ \textcolor{comment}{//\ Ntp\ origin\ year\ is\ 1900}}
+\DoxyCodeLine{00052\ \textcolor{keyword}{const}\ uint32\_t\ c\_NtpEpoch32\ =\ c\_UnixEpoch32\ +\ c\_NtpEpoch32FromUnixEpoch32;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uint8\_t\ c\_daysInMonth[]\ PROGMEM;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{const}\ uint32\_t\ c\_MinuteAsSeconds\ =\ 60;}
+\DoxyCodeLine{00057\ \textcolor{keyword}{const}\ uint32\_t\ c\_HourAsSeconds\ =\ 60\ *\ c\_MinuteAsSeconds;}
+\DoxyCodeLine{00058\ \textcolor{keyword}{const}\ uint32\_t\ c\_DayAsSeconds\ =\ 24\ *\ c\_HourAsSeconds;}
+\DoxyCodeLine{00059\ \textcolor{keyword}{const}\ uint32\_t\ c\_WeekAsSeconds\ =\ 7\ *\ c\_DayAsSeconds;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ AM\ PM}}
+\DoxyCodeLine{00063\ \textcolor{keyword}{enum}\ RtcMeridiem}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ Rtc\_AM,}
+\DoxyCodeLine{00066\ \ \ \ \ Rtc\_PM}
+\DoxyCodeLine{00067\ \};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ handy\ conversion\ class\ between\ 24\ hour\ and\ 12\ hour\ values}}
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00071\ \textcolor{keyword}{class\ }RtcHourAmPm}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00074\ \ \ \ \ RtcHourAmPm()\ :}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \_hour(12),}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \_meridiem(Rtc\_AM)}
+\DoxyCodeLine{00077\ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ construct\ from\ a\ 24\ hour\ units\ with\ validation}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ if\ outside\ bounds,\ wrap\ into\ bounds}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00083\ \ \ \ \ RtcHourAmPm(uint8\_t\ hour24)}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hour24\ <\ 1\ ||\ hour24\ >\ 23)}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ midnight\ is\ 12am}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \_hour\ =\ 12;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \_meridiem\ =\ Rtc\_AM;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (hour24\ <\ 12)}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \_hour\ =\ hour24;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \_meridiem\ =\ Rtc\_AM;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (hour24\ >\ 12)}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \_hour\ =\ hour24\ -\/\ 12;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \_meridiem\ =\ Rtc\_PM;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ noon\ is\ 12pm}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \_hour\ =\ 12;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \_meridiem\ =\ Rtc\_PM;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//\ construct\ from\ 12\ hour\ units\ and\ meridiem\ with\ validation}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00111\ \ \ \ \ RtcHourAmPm(uint8\_t\ hour12,\ RtcMeridiem\ meridiem)}
+\DoxyCodeLine{00112\ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ outside\ bounds,\ wrap\ into\ bounds}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hour12\ <\ 1)}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ hour12\ =\ 12;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (hour12\ >\ 12)}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ hour12\ =\ 1;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ meridiem\ =\ (meridiem\ ==\ Rtc\_AM)\ ?\ Rtc\_PM\ :\ Rtc\_AM;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \_hour\ =\ hour12;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \_meridiem\ =\ meridiem;}
+\DoxyCodeLine{00126\ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{comment}{//\ covert\ to\ 24\ hour\ units}}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{operator}\ uint8\_t()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00131\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ uint8\_t\ result\ =\ \_hour;}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ 12)}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_meridiem\ ==\ Rtc\_AM)}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ 0;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_meridiem\ ==\ Rtc\_PM)}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ result\ +=\ 12;}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//\ properties}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00151\ \ \ \ \ uint8\_t\ Hour()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00152\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_hour;}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ RtcMeridiem\ Meridiem()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00157\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_meridiem;}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ uint8\_t\ Hour24()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00162\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00164\ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00167\ \ \ \ \ uint8\_t\ \_hour;}
+\DoxyCodeLine{00168\ \ \ \ \ RtcMeridiem\ \_meridiem;}
+\DoxyCodeLine{00169\ \};}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{keyword}{class\ }RtcDateTime}
+\DoxyCodeLine{00173\ \{}
+\DoxyCodeLine{00174\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{explicit}\ RtcDateTime(uint32\_t\ secondsFrom2000\ =\ 0)\ }
+\DoxyCodeLine{00176\ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \_initWithSecondsFrom2000<uint32\_t>(secondsFrom2000);}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ RtcDateTime(uint16\_t\ year,}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ uint8\_t\ month,}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ uint8\_t\ dayOfMonth,}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ uint8\_t\ hour,}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ uint8\_t\ minute,}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ uint8\_t\ second)\ :}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \_yearFrom2000((year\ >=\ c\_OriginYear)\ ?\ year\ -\/\ c\_OriginYear\ :\ year),}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \_month(month),}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \_dayOfMonth(dayOfMonth),}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \_hour(hour),}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \_minute(minute),}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \_second(second)}
+\DoxyCodeLine{00192\ \ \ \ \ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{comment}{//\ RtcDateTime\ compileDateTime(\_\_DATE\_\_,\ \_\_TIME\_\_);}}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{comment}{//\ sample\ input:\ date\ =\ "{}Dec\ 06\ 2009"{},\ time\ =\ "{}12:34:56"{}}}
+\DoxyCodeLine{00197\ \ \ \ \ RtcDateTime(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ date,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ time)\ :}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ RtcDateTime(0)}
+\DoxyCodeLine{00199\ \ \ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \_\_DATE\_\_\ is\ always\ in\ english}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ InitWithDateTimeFormatString<RtcLocaleEnUs>(F(\textcolor{stringliteral}{"{}MMM\ DD\ YYYY"{}}),\ date);}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ InitWithDateTimeFormatString<RtcLocaleEnUs>(F(\textcolor{stringliteral}{"{}hh:mm:ss"{}}),\ time);}
+\DoxyCodeLine{00203\ \ \ \ \ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsValid()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ uint16\_t\ Year()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00208\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ c\_OriginYear\ +\ \_yearFrom2000;}
+\DoxyCodeLine{00210\ \ \ \ \ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ uint8\_t\ Month()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00213\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_month;}
+\DoxyCodeLine{00215\ \ \ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ uint8\_t\ Day()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00218\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_dayOfMonth;}
+\DoxyCodeLine{00220\ \ \ \ \ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ uint8\_t\ Hour()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00223\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_hour;}
+\DoxyCodeLine{00225\ \ \ \ \ \}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ RtcHourAmPm\ HourAmPm()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00228\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RtcHourAmPm(\_hour);}
+\DoxyCodeLine{00230\ \ \ \ \ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ uint8\_t\ Minute()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00233\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_minute;}
+\DoxyCodeLine{00235\ \ \ \ \ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ uint8\_t\ Second()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00238\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_second;}
+\DoxyCodeLine{00240\ \ \ \ \ \}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{comment}{//\ 0\ =\ Sunday,\ 1\ =\ Monday,\ ...\ 6\ =\ Saturday}}
+\DoxyCodeLine{00243\ \ \ \ \ uint8\_t\ DayOfWeek()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{comment}{//\ 32-\/bit\ time;\ as\ seconds\ since\ 1/1/2000}}
+\DoxyCodeLine{00246\ \ \ \ \ uint32\_t\ TotalSeconds()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{comment}{//\ 64-\/bit\ time;\ as\ seconds\ since\ 1/1/2000}}
+\DoxyCodeLine{00249\ \ \ \ \ uint64\_t\ TotalSeconds64()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{comment}{//\ total\ days\ since\ 1/1/2000}}
+\DoxyCodeLine{00252\ \ \ \ \ uint16\_t\ TotalDays()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00253\ \ \ \ \ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{comment}{//\ return\ the\ next\ day\ that\ falls\ on\ the\ given\ day\ of\ week}}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{comment}{//\ if\ this\ day\ is\ that\ day\ of\ week,\ it\ will\ return\ this\ day}}
+\DoxyCodeLine{00256\ \ \ \ \ RtcDateTime\ NextDayOfWeek(uint8\_t\ dayOfWeek)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{00259\ \textcolor{comment}{\ \ \ \ causes\ ambiguous\ overload\ for\ 'operator+'}}
+\DoxyCodeLine{00260\ \textcolor{comment}{\ \ \ \ making\ explicit\ doesn't\ solve\ it}}
+\DoxyCodeLine{00261\ \textcolor{comment}{\ \ \ \ //\ add\ unsigned\ seconds}}
+\DoxyCodeLine{00262\ \textcolor{comment}{\ \ \ \ void\ operator\ +=\ (uint32\_t\ seconds)}}
+\DoxyCodeLine{00263\ \textcolor{comment}{\ \ \ \ \{}}
+\DoxyCodeLine{00264\ \textcolor{comment}{\ \ \ \ \ \ \ \ *this\ =\ *this\ +\ seconds;}}
+\DoxyCodeLine{00265\ \textcolor{comment}{\ \ \ \ \}}}
+\DoxyCodeLine{00266\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00267\ \textcolor{comment}{\ \ \ \ RtcDateTime\ operator\ +\ (uint32\_t\ seconds)\ const}}
+\DoxyCodeLine{00268\ \textcolor{comment}{\ \ \ \ \{}}
+\DoxyCodeLine{00269\ \textcolor{comment}{\ \ \ \ \ \ \ \ return\ RtcDateTime(TotalSeconds()\ +\ seconds);}}
+\DoxyCodeLine{00270\ \textcolor{comment}{\ \ \ \ \}}}
+\DoxyCodeLine{00271\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{comment}{//\ add\ signed\ seconds}}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordtype}{void}\ operator\ +=\ (int32\_t\ seconds)}
+\DoxyCodeLine{00275\ \ \ \ \ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ =\ *\textcolor{keyword}{this}\ +\ seconds;}
+\DoxyCodeLine{00277\ \ \ \ \ \}}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ RtcDateTime\ operator\ +\ (int32\_t\ seconds)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00280\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ uint32\_t\ totalSeconds\ =\ TotalSeconds();}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ never\ allowed\ to\ go\ before\ year\ 2000}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (seconds\ <\ 0\ \&\&\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(abs(seconds))\ >\ totalSeconds)}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ totalSeconds\ =\ 0;}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ totalSeconds\ +=\ seconds;}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RtcDateTime(totalSeconds);}
+\DoxyCodeLine{00292\ \ \ \ \ \}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{comment}{//\ remove\ seconds}}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keywordtype}{void}\ operator\ -\/=\ (uint32\_t\ seconds)}
+\DoxyCodeLine{00296\ \ \ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ =\ *\textcolor{keyword}{this}\ -\/\ seconds;}
+\DoxyCodeLine{00298\ \ \ \ \ \}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ RtcDateTime\ operator\ -\/\ (uint32\_t\ seconds)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00301\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RtcDateTime(TotalSeconds()\ -\/\ seconds);}
+\DoxyCodeLine{00303\ \ \ \ \ \}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator\ ==\ (\textcolor{keyword}{const}\ RtcDateTime\&\ right)}
+\DoxyCodeLine{00306\ \ \ \ \ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (this-\/>TotalSeconds()\ ==\ right.TotalSeconds());}
+\DoxyCodeLine{00308\ \ \ \ \ \}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator\ !=\ (\textcolor{keyword}{const}\ RtcDateTime\&\ right)}
+\DoxyCodeLine{00311\ \ \ \ \ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (this-\/>TotalSeconds()\ !=\ right.TotalSeconds());}
+\DoxyCodeLine{00313\ \ \ \ \ \}}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator\ <=\ (\textcolor{keyword}{const}\ RtcDateTime\&\ right)}
+\DoxyCodeLine{00316\ \ \ \ \ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (this-\/>TotalSeconds()\ <=\ right.TotalSeconds());}
+\DoxyCodeLine{00318\ \ \ \ \ \}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator\ >=\ (\textcolor{keyword}{const}\ RtcDateTime\&\ right)}
+\DoxyCodeLine{00321\ \ \ \ \ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (this-\/>TotalSeconds()\ >=\ right.TotalSeconds());}
+\DoxyCodeLine{00323\ \ \ \ \ \}}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator\ <\ (\textcolor{keyword}{const}\ RtcDateTime\&\ right)}
+\DoxyCodeLine{00326\ \ \ \ \ \{}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (this-\/>TotalSeconds()\ <\ right.TotalSeconds());}
+\DoxyCodeLine{00328\ \ \ \ \ \}}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator\ >\ (\textcolor{keyword}{const}\ RtcDateTime\&\ right)}
+\DoxyCodeLine{00331\ \ \ \ \ \{}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (this-\/>TotalSeconds()\ >\ right.TotalSeconds());}
+\DoxyCodeLine{00333\ \ \ \ \ \}}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{comment}{//\ Epoch32\ support}}
+\DoxyCodeLine{00336\ \ \ \ \ [[deprecated(\textcolor{stringliteral}{"{}Use\ Unix32Time()\ instead."{}})]]}
+\DoxyCodeLine{00337\ \ \ \ \ uint32\_t\ Epoch32Time()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00338\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TotalSeconds()\ +\ c\_UnixEpoch32;}
+\DoxyCodeLine{00340\ \ \ \ \ \}}
+\DoxyCodeLine{00341\ \ \ \ \ [[deprecated(\textcolor{stringliteral}{"{}Use\ InitWithUnix32Time()\ instead."{}})]]}
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keywordtype}{void}\ InitWithEpoch32Time(uint32\_t\ secondsSince1970)}
+\DoxyCodeLine{00343\ \ \ \ \ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \_initWithSecondsFrom2000<uint32\_t>(secondsSince1970\ -\/\ c\_UnixEpoch32);}
+\DoxyCodeLine{00345\ \ \ \ \ \}}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{comment}{//\ Epoch64\ support}}
+\DoxyCodeLine{00348\ \ \ \ \ [[deprecated(\textcolor{stringliteral}{"{}Use\ Unix64Time()\ instead."{}})]]}
+\DoxyCodeLine{00349\ \ \ \ \ uint64\_t\ Epoch64Time()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00350\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TotalSeconds64()\ +\ c\_UnixEpoch32;}
+\DoxyCodeLine{00352\ \ \ \ \ \}}
+\DoxyCodeLine{00353\ \ \ \ \ [[deprecated(\textcolor{stringliteral}{"{}Use\ InitWithUnix64Time()\ instead."{}})]]}
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keywordtype}{void}\ InitWithEpoch64Time(uint64\_t\ secondsSince1970)}
+\DoxyCodeLine{00355\ \ \ \ \ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \_initWithSecondsFrom2000<uint64\_t>(secondsSince1970\ -\/\ c\_UnixEpoch32);}
+\DoxyCodeLine{00357\ \ \ \ \ \}}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{comment}{//\ Unix32\ support}}
+\DoxyCodeLine{00360\ \ \ \ \ uint32\_t\ Unix32Time()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00361\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TotalSeconds()\ +\ c\_UnixEpoch32;}
+\DoxyCodeLine{00363\ \ \ \ \ \}}
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keywordtype}{void}\ InitWithUnix32Time(uint32\_t\ secondsSince1970)}
+\DoxyCodeLine{00365\ \ \ \ \ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \_initWithSecondsFrom2000<uint32\_t>(secondsSince1970\ -\/\ c\_UnixEpoch32);}
+\DoxyCodeLine{00367\ \ \ \ \ \}}
+\DoxyCodeLine{00368\ \ \ \ \ \textcolor{comment}{//\ Unix64\ support}}
+\DoxyCodeLine{00369\ \ \ \ \ uint64\_t\ Unix64Time()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00370\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TotalSeconds64()\ +\ c\_UnixEpoch32;}
+\DoxyCodeLine{00372\ \ \ \ \ \}}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keywordtype}{void}\ InitWithUnix64Time(uint64\_t\ secondsSince1970)}
+\DoxyCodeLine{00374\ \ \ \ \ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \_initWithSecondsFrom2000<uint64\_t>(secondsSince1970\ -\/\ c\_UnixEpoch32);}
+\DoxyCodeLine{00376\ \ \ \ \ \}}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \ \ \ \ \textcolor{comment}{//\ Ntp32\ support}}
+\DoxyCodeLine{00379\ \ \ \ \ uint32\_t\ Ntp32Time()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00380\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TotalSeconds()\ +\ c\_NtpEpoch32;}
+\DoxyCodeLine{00382\ \ \ \ \ \}}
+\DoxyCodeLine{00383\ \ \ \ \ \textcolor{keywordtype}{void}\ InitWithNtp32Time(uint32\_t\ secondsSince1900)}
+\DoxyCodeLine{00384\ \ \ \ \ \{}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \_initWithSecondsFrom2000<uint32\_t>(secondsSince1900\ -\/\ c\_NtpEpoch32);}
+\DoxyCodeLine{00386\ \ \ \ \ \}}
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{comment}{//\ Ntp64\ support}}
+\DoxyCodeLine{00388\ \ \ \ \ uint64\_t\ Ntp64Time()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00389\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TotalSeconds64()\ +\ c\_NtpEpoch32;}
+\DoxyCodeLine{00391\ \ \ \ \ \}}
+\DoxyCodeLine{00392\ \ \ \ \ \textcolor{keywordtype}{void}\ InitWithNtp64Time(uint64\_t\ secondsSince1900)}
+\DoxyCodeLine{00393\ \ \ \ \ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \_initWithSecondsFrom2000<uint64\_t>(secondsSince1900\ -\/\ c\_NtpEpoch32);}
+\DoxyCodeLine{00395\ \ \ \ \ \}}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ \ \ \ \ [[deprecated(\textcolor{stringliteral}{"{}Use\ InitWithDateTimeFormatString()"{}})]]}
+\DoxyCodeLine{00398\ \ \ \ \ \textcolor{keywordtype}{void}\ InitWithIso8601(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ date)}
+\DoxyCodeLine{00399\ \ \ \ \ \{}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ sample\ input:\ date\ =\ "{}Sat,\ 06\ Dec\ 2009\ 12:34:56\ GMT"{}}}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ InitWithDateTimeFormatString<RtcLocaleEnUs>(F(\textcolor{stringliteral}{"{}*,\ DD\ MMM\ YYYY\ hh:mm:ss\ zzz"{}}),\ date);}
+\DoxyCodeLine{00402\ \ \ \ \ \}}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00405\ \ \ \ \ \textcolor{comment}{//\ https://www.w3.org/TR/NOTE-\/datetime}}
+\DoxyCodeLine{00406\ \ \ \ \ \textcolor{comment}{//\ https://learn.microsoft.com/en-\/us/dotnet/standard/base-\/types/standard-\/date-\/and-\/time-\/format-\/strings}}
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{comment}{//\ https://en.wikipedia.org/wiki/List\_of\_time\_zone\_abbreviations\#:\string~:text=List\%20of\%20time\%20zone\%20abbreviations\%20\%20\%20,\%20\%20UTC\%2B08\%3A00\%20\%2051\%20more\%20rows\%20}}
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{comment}{//\ *\ -\/\ ignore\ until\ next\ char}}
+\DoxyCodeLine{00410\ \ \ \ \ \textcolor{comment}{//\ !\ =\ ignore\ until\ not\ next\ char}}
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00412\ \ \ \ \ \textcolor{comment}{//\ YY\ -\/\ two\ digit\ year,\ assumes\ 2000\ +}}
+\DoxyCodeLine{00413\ \ \ \ \ \textcolor{comment}{//\ YYYY\ -\/\ four\ digit\ year}}
+\DoxyCodeLine{00414\ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{comment}{//\ M\ -\/\ full\ month\ name,\ arbitrary\ length\ until\ next\ char}}
+\DoxyCodeLine{00416\ \ \ \ \ \textcolor{comment}{//\ MM\ -\/\ two\ digit\ month}}
+\DoxyCodeLine{00417\ \ \ \ \ \textcolor{comment}{//\ MMM\ -\/\ abreviated\ month\ name,\ 3\ chars}}
+\DoxyCodeLine{00418\ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00419\ \ \ \ \ \textcolor{comment}{//\ DD\ -\/\ two\ digit\ day\ of\ month}}
+\DoxyCodeLine{00420\ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00421\ \ \ \ \ \textcolor{comment}{//\ hh\ -\/\ hour}}
+\DoxyCodeLine{00422\ \ \ \ \ \textcolor{comment}{//\ mm\ -\/\ minute}}
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{comment}{//\ ss\ -\/\ seconds}}
+\DoxyCodeLine{00424\ \ \ \ \ \textcolor{comment}{//\ sssss\ -\/\ seconds\ with\ decimal\ (12.34)}}
+\DoxyCodeLine{00425\ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00426\ \ \ \ \ \textcolor{comment}{//\ z\ -\/\ +hh:mm\ or\ Z\ -\/\ }}
+\DoxyCodeLine{00427\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ using\ this\ will\ adjust\ the\ time\ to\ UTC\ from\ the\ time\ zone}}
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ using\ this\ will\ adjust\ the\ time\ to\ UTC\ from\ the\ time\ zone}}
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ present\ in\ the\ string,}}
+\DoxyCodeLine{00430\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ without\ it,\ it\ will\ ignore\ the\ timezone\ and\ return\ the\ local}}
+\DoxyCodeLine{00431\ \ \ \ \ \textcolor{comment}{//\ zzz\ -\/\ time\ zone\ abbreviation}}
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ using\ this\ will\ adjust\ the\ time\ to\ UTC\ from\ the\ time\ zone}}
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ present\ in\ the\ string,}}
+\DoxyCodeLine{00434\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ without\ it,\ it\ will\ ignore\ the\ timezone\ and\ return\ the\ local}}
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{comment}{//\ return\ -\/\ index\ last\ converted\ of\ datetime}}
+\DoxyCodeLine{00437\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T\_LOCALE\ =\ RtcLocaleEnUs>\ \textcolor{keywordtype}{size\_t}\ InitWithDateTimeFormatString(}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ format,\ }
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ datetime)}
+\DoxyCodeLine{00440\ \ \ \ \ \{}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ specifiers[]\ =\ \textcolor{stringliteral}{"{}*!YMDhmsz"{}};}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ scan\ =\ format;}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ convert\ =\ datetime;}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ int32\_t\ timezoneMinutes\ =\ 0;}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ while\ chars\ in\ format\ and\ datetime}}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (*scan\ !=\ \textcolor{charliteral}{'\(\backslash\)0'}\ \&\&\ *datetime\ !=\ \textcolor{charliteral}{'\(\backslash\)0'})}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ find\ next\ token}}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ iStart\ =\ strcspn(scan,\ specifiers);}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ scan\ +=\ iStart;}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ convert\ +=\ iStart;}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (*scan\ !=\ \textcolor{charliteral}{'\(\backslash\)0'})}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ find\ the\ end\ of\ the\ token}}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ iEnd\ =\ 1;}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (scan[iEnd]\ ==\ *scan)}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ iEnd++;}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count\ =\ iEnd;}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ countConverted\ =\ 0;}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ handy\ debug\ tracing\ }}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print(scan[iStart]);}}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print("{}>"{});}}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print(convert);}}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print("{}<\ "{});}}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print(count);}}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.println();}}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (scan[iStart])}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'*'}:}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ increment\ through\ convert\ until\ the\ matching\ char\ }}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ from\ scan\ after\ the\ *\ token}}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ skip\ =\ convert;}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (*skip\ !=\ \textcolor{charliteral}{'\(\backslash\)0'}\ \&\&\ *skip\ !=\ scan[iEnd])}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ skip++;}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ include\ skipping\ extra\ matching\ char}}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ countConverted\ =\ skip\ -\/\ convert\ +\ 1;}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count++;}
+\DoxyCodeLine{00488\ }
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ handy\ debug\ tracing\ }}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print("{}*>"{});}}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print(scan\ +\ count);}}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print("{}<-\/>"{});}}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print(convert\ +\ countConverted);}}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print("{}<\ "{});}}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print(count);}}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print("{}-\/"{});}}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print(countConverted);}}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.println();}}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00502\ }
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'!'}:}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ increment\ through\ convert\ until\ the\ matching\ char\ }}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ from\ scan\ after\ the\ *\ token\ is\ not\ present}}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ skip\ =\ convert;}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (*skip\ !=\ \textcolor{charliteral}{'\(\backslash\)0'}\ \&\&\ *skip\ ==\ scan[iEnd])}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ skip++;}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ countConverted\ =\ skip\ -\/\ convert;}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count++;}
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ handy\ debug\ tracing\ }}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print("{}!>"{});}}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print(scan\ +\ count);}}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print("{}<-\/>"{});}}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print(convert\ +\ countConverted);}}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print("{}<\ "{});}}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print(count);}}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print("{}-\/"{});}}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.print(countConverted);}}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.println();}}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'Y'}:}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ >=\ 4)}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ only\ care\ about\ last\ three\ digits}}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ offset\ =\ count\ -\/\ 3;}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scan\ +=\ offset;}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ convert\ +=\ offset;}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count\ =\ 3;}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ countConverted\ =\ CharsToNumber<uint8\_t>(convert,\ \&\_yearFrom2000,\ count);}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00541\ }
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'M'}:}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (*convert\ >=\ \textcolor{charliteral}{'0'}\ \&\&\ *convert\ <=\ \textcolor{charliteral}{'9'})}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ >\ 2)}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ convert\ -\/\ datetime;}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ countConverted\ =\ CharsToNumber<uint8\_t>(convert,\ \&\_month,\ count);}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ >\ 3)}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ convert\ -\/\ datetime;}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (count\ ==\ 1)}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ temp\ =\ convert;}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ increment\ temp\ until\ matching\ char\ after\ M}}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (*temp\ !=\ scan[iEnd])}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp++;}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00565\ }
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ monthCount\ =\ temp\ -\/\ convert;}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (monthCount\ <\ 3)}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ convert\ -\/\ datetime;}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_month\ =\ T\_LOCALE::CharsToMonth(convert,\ monthCount);}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ countConverted\ =\ monthCount;}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_month\ =\ T\_LOCALE::CharsToMonth(convert,\ count);}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ countConverted\ =\ count;}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00582\ }
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'D'}:}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ countConverted\ =\ CharsToNumber<uint8\_t>(convert,\ \&\_dayOfMonth,\ count);}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00586\ }
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'h'}:}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ countConverted\ =\ CharsToNumber<uint8\_t>(convert,\ \&\_hour,\ count);}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00590\ }
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'m'}:}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ countConverted\ =\ CharsToNumber<uint8\_t>(convert,\ \&\_minute,\ count);}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00594\ }
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'s'}:}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ countConverted\ =\ CharsToNumber<uint8\_t>(convert,\ \&\_second,\ count);}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00598\ }
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'z'}:}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ ==\ 1)}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ temp\ =\ convert;}
+\DoxyCodeLine{00603\ }
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ +hh:mm\ or\ Z\ formated\ timezone}}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ adjusting\ to\ local\ time}}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (*temp\ ==\ \textcolor{charliteral}{'+'}\ ||\ *temp\ ==\ \textcolor{charliteral}{'-\/'})}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ hours;}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ minutes;}
+\DoxyCodeLine{00610\ }
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int32\_t\ timezoneSign\ =\ (*temp\ ==\ \textcolor{charliteral}{'+'})\ ?\ 1\ :\ -\/1;}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp++;}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp\ +=\ CharsToNumber<uint8\_t>(temp,\ \&hours,\ 2);}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp++;\ \textcolor{comment}{//\ :}}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp\ +=\ CharsToNumber<uint8\_t>(temp,\ \&minutes,\ 2);}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ timezoneMinutes\ =\ (\textcolor{keyword}{static\_cast<}int32\_t\textcolor{keyword}{>}(hours)\ *\ 60\ +\ minutes)\ *\ timezoneSign;}
+\DoxyCodeLine{00617\ }
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ countConverted\ =\ temp\ -\/\ datetime;}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (*temp\ ==\ \textcolor{charliteral}{'Z'}\ ||\ *temp\ ==\ \textcolor{charliteral}{'z'})}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ nothing\ to\ adjust,\ }}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ zulu\ time\ is\ what\ we\ want}}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ countConverted\ =\ 1;}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ convert\ -\/\ datetime;}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ zzz\ -\/\ abbreviation\ timezone\ format}}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ adjust\ from\ local\ time}}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ countConverted\ =\ T\_LOCALE::TimeZoneMinutesFromAbbreviation(\&timezoneMinutes,\ convert);}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00639\ }
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (countConverted)}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scan\ +=\ count;}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ convert\ +=\ countConverted;}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ convert\ -\/\ datetime;}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00651\ }
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ adjust\ our\ time\ by\ the\ timezone\ to\ get\ GMT/Z}}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ as\ by\ default\ RtcDateTime\ is\ GMT}}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this}\ -\/=\ timezoneMinutes\ *\ 60;}
+\DoxyCodeLine{00656\ }
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ convert\ -\/\ datetime;}
+\DoxyCodeLine{00658\ \ \ \ \ \}}
+\DoxyCodeLine{00659\ }
+\DoxyCodeLine{00660\ \ \ \ \ \textcolor{comment}{//\ Version\ of\ above\ but\ supporting\ PROGMEM\ for\ the\ format,\ }}
+\DoxyCodeLine{00661\ \ \ \ \ \textcolor{comment}{//\ specifically\ the\ F("{}"{})\ use\ for\ format}}
+\DoxyCodeLine{00662\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T\_LOCALE\ =\ RtcLocaleEnUs>\ \textcolor{keywordtype}{size\_t}\ InitWithDateTimeFormatString(}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \_\_FlashStringHelper*\ format,}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ datetime)}
+\DoxyCodeLine{00665\ \ \ \ \ \{}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ ramFormat[32];}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ strncpy\_P(ramFormat,\ }
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(format),\ }
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \ \ \ \ countof(ramFormat));}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ InitWithDateTimeFormatString<T\_LOCALE>(ramFormat,\ datetime);}
+\DoxyCodeLine{00672\ \ \ \ \ \}}
+\DoxyCodeLine{00673\ \ \ \ \ }
+\DoxyCodeLine{00674\ \ \ \ \ \textcolor{comment}{//\ convert\ our\ Day\ of\ Week\ to\ Rtc\ Day\ of\ Week\ }}
+\DoxyCodeLine{00675\ \ \ \ \ \textcolor{comment}{//\ RTC\ Hardware\ Day\ of\ Week\ is\ 1-\/7,\ 1\ =\ Monday}}
+\DoxyCodeLine{00676\ \ \ \ \ \textcolor{keyword}{static}\ uint8\_t\ ConvertDowToRtc(uint8\_t\ dow)}
+\DoxyCodeLine{00677\ \ \ \ \ \{}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dow\ ==\ 0)}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \ \ \ \ dow\ =\ 7;}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ dow;}
+\DoxyCodeLine{00683\ \ \ \ \ \}}
+\DoxyCodeLine{00684\ }
+\DoxyCodeLine{00685\ \ \ \ \ \textcolor{comment}{//\ convert\ Rtc\ Day\ of\ Week\ to\ our\ Day\ of\ Week}}
+\DoxyCodeLine{00686\ \ \ \ \ \textcolor{keyword}{static}\ uint8\_t\ ConvertRtcToDow(uint8\_t\ rtcDow)}
+\DoxyCodeLine{00687\ \ \ \ \ \{}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (rtcDow\ \%\ 7);}
+\DoxyCodeLine{00689\ \ \ \ \ \}}
+\DoxyCodeLine{00690\ }
+\DoxyCodeLine{00691\ \ \ \ \ \textcolor{comment}{//\ returns\ the\ number\ days\ in\ the\ month}}
+\DoxyCodeLine{00692\ \ \ \ \ \textcolor{comment}{//\ month\ (1-\/12)}}
+\DoxyCodeLine{00693\ \ \ \ \ \textcolor{keyword}{static}\ uint8\_t\ DaysInMonth(uint16\_t\ year,\ uint8\_t\ month)}
+\DoxyCodeLine{00694\ \ \ \ \ \{}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ uint8\_t\ zMonth\ =\ 0;}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cap\ and\ convert\ to\ zero\ based}}
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (month\ !=\ 0)}
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (month\ >\ 11)}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ zMonth\ =\ 11;}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ zMonth\ =\ month\ -\/\ 1;}
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00708\ }
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ uint8\_t\ days\ =\ pgm\_read\_byte(c\_daysInMonth\ +\ zMonth);}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ february\ for\ leap\ years}}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (month\ ==\ 2\ \&\&\ IsLeapYear(year))}
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \ \ \ \ days++;}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00715\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ days;}
+\DoxyCodeLine{00716\ \ \ \ \ \}}
+\DoxyCodeLine{00717\ }
+\DoxyCodeLine{00718\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ IsLeapYear(uint16\_t\ year)}
+\DoxyCodeLine{00719\ \ \ \ \ \{}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ((year\ \%\ 4)\ ==\ 0);}
+\DoxyCodeLine{00721\ \ \ \ \ \}}
+\DoxyCodeLine{00722\ }
+\DoxyCodeLine{00723\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00724\ \ \ \ \ uint8\_t\ \_yearFrom2000;}
+\DoxyCodeLine{00725\ \ \ \ \ uint8\_t\ \_month;}
+\DoxyCodeLine{00726\ \ \ \ \ uint8\_t\ \_dayOfMonth;}
+\DoxyCodeLine{00727\ \ \ \ \ uint8\_t\ \_hour;}
+\DoxyCodeLine{00728\ \ \ \ \ uint8\_t\ \_minute;}
+\DoxyCodeLine{00729\ \ \ \ \ uint8\_t\ \_second;}
+\DoxyCodeLine{00730\ }
+\DoxyCodeLine{00731\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \textcolor{keywordtype}{void}\ \_initWithSecondsFrom2000(T\ secondsFrom2000)}
+\DoxyCodeLine{00732\ \ \ \ \ \{}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \_second\ =\ secondsFrom2000\ \%\ 60;}
+\DoxyCodeLine{00734\ \ \ \ \ \ \ \ \ T\ timeFrom2000\ =\ secondsFrom2000\ /\ 60;}
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ \_minute\ =\ timeFrom2000\ \%\ 60;}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ timeFrom2000\ /=\ 60;}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \_hour\ =\ timeFrom2000\ \%\ 24;}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ T\ days\ =\ timeFrom2000\ /\ 24;}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ T\ leapDays;}
+\DoxyCodeLine{00740\ }
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\_yearFrom2000\ =\ 0;;\ ++\_yearFrom2000)}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ \ \ \ \ leapDays\ =\ (\_yearFrom2000\ \%\ 4\ ==\ 0)\ ?\ 1\ :\ 0;}
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (days\ <\ 365U\ +\ leapDays)}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \ \ \ \ days\ -\/=\ 365\ +\ leapDays;}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\_month\ =\ 1;;\ ++\_month)}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ daysPerMonth\ =\ pgm\_read\_byte(c\_daysInMonth\ +\ \_month\ -\/\ 1);}
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (leapDays\ \&\&\ \_month\ ==\ 2)}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ daysPerMonth++;}
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (days\ <\ daysPerMonth)}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ \ \ \ \ days\ -\/=\ daysPerMonth;}
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \_dayOfMonth\ =\ days\ +\ 1;}
+\DoxyCodeLine{00758\ \ \ \ \ \}}
+\DoxyCodeLine{00759\ }
+\DoxyCodeLine{00760\ \ \ \ \ \textcolor{comment}{//\ CharsToNumber\ -\/\ convert\ a\ series\ of\ chars\ to\ a\ number\ of\ the\ given\ type}}
+\DoxyCodeLine{00761\ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00762\ \ \ \ \ \textcolor{comment}{//\ str\ -\/\ the\ pointer\ to\ string\ to\ process}}
+\DoxyCodeLine{00763\ \ \ \ \ \textcolor{comment}{//\ result\ -\/\ the\ value\ converted\ from\ the\ string}}
+\DoxyCodeLine{00764\ \ \ \ \ \textcolor{comment}{//\ count\ -\/\ the\ number\ of\ numerals\ to\ stop\ processing\ with\ }}
+\DoxyCodeLine{00765\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ excludes\ leading\ non-\/numeral\ chars}}
+\DoxyCodeLine{00766\ \ \ \ \ \textcolor{comment}{//\ return\ -\/\ the\ number\ to\ increment\ str\ for\ more\ processing,}}
+\DoxyCodeLine{00767\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ 0\ for\ failure}}
+\DoxyCodeLine{00768\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T\_NUMBER>\ \textcolor{keywordtype}{size\_t}\ CharsToNumber(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ str,\ T\_NUMBER*\ result,\ \textcolor{keywordtype}{size\_t}\ count)}
+\DoxyCodeLine{00769\ \ \ \ \ \{}
+\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ scan\ =\ str;}
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ converted\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00772\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ left\ =\ count;}
+\DoxyCodeLine{00773\ }
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \ \ *result\ =\ 0;}
+\DoxyCodeLine{00775\ }
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ skip\ leading\ 0\ and\ non\ numericals}}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (left\ \&\&\ \textcolor{charliteral}{'\(\backslash\)0'}\ !=\ *scan\ \&\&\ (\textcolor{charliteral}{'0'}\ >=\ *scan\ ||\ \textcolor{charliteral}{'9'}\ <\ *scan))}
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ only\ decrement\ left\ with\ numerals}}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (left\ \&\&\ \textcolor{charliteral}{'0'}\ ==\ *scan)}
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ converted\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ left-\/-\/;}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \ \ \ \ scan++;}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00787\ }
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ calculate\ number\ until\ we\ hit\ non-\/numeral\ char}}
+\DoxyCodeLine{00789\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (left\ \&\&\ \textcolor{charliteral}{'\(\backslash\)0'}\ !=\ *scan\ \&\&\ \textcolor{charliteral}{'0'}\ <=\ *scan\ \&\&\ *scan\ <=\ \textcolor{charliteral}{'9'})}
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00791\ \ \ \ \ \ \ \ \ \ \ \ \ converted\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00792\ }
+\DoxyCodeLine{00793\ \ \ \ \ \ \ \ \ \ \ \ \ *result\ *=\ 10;}
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \ \ \ \ *result\ +=\ *scan\ -\/\ \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{00795\ }
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ \ \ \ \ left-\/-\/;}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ \ \ \ \ scan++;}
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00799\ }
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ ignore\ decimal\ numbers\ but\ we\ need\ to\ scan\ past\ them}}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (left\ \&\&\ \textcolor{charliteral}{'.'}\ ==\ *scan)}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ skip\ decimal}}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \ \ \ \ left-\/-\/;}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \ \ \ \ scan++;}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ continue\ to\ discard\ numerals}}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (left\ \&\&\ \textcolor{charliteral}{'\(\backslash\)0'}\ !=\ *scan\ \&\&\ \textcolor{charliteral}{'0'}\ <=\ *scan\ \&\&\ *scan\ <=\ \textcolor{charliteral}{'9'})}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ left-\/-\/;}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scan++;}
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00815\ }
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ converted\ ?\ scan\ -\/\ str\ :\ 0;}
+\DoxyCodeLine{00817\ \ \ \ \ \}}
+\DoxyCodeLine{00818\ \};}
+\DoxyCodeLine{00819\ }
+\DoxyCodeLine{00820\ }
+
+\end{DoxyCode}

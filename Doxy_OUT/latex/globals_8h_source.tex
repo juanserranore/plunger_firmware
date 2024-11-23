@@ -1,0 +1,182 @@
+\doxysection{globals.\+h}
+\hypertarget{globals_8h_source}{}\label{globals_8h_source}\index{globals/globals.h@{globals/globals.h}}
+\mbox{\hyperlink{globals_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#ifndef\ GLOBALS\_H}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ GLOBALS\_H}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{libraries_8h}{libraries.h}}>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ Graphics\ and\ Pin\ Definitions}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ LOAD\_GFXFF}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ BRIGHTNESS\_PIN\ 25\ }}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ Custom\ Color\ Definitions}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ LIGHT\_GRAY\ 0xC618\ \ }}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ LIGHT\_BLUE\ 0xE7DF\ \ }}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ PALE\_GRAY\ 0xE71C\ \ \ }}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ MINT\_GREEN\ 0x97F6\ \ }}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ PALE\_YELLOW\ 0xFFFB\ }}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ PALE\_PINK\ 0xFDBC\ \ \ }}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ BEIGE\ 0xFF7B\ \ \ \ \ \ \ }}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ LAVENDER\ 0xE5FF\ \ \ \ }}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ SKY\_BLUE\ 0x9FFF\ \ \ \ }}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ DARK\_ORANGE\ 0xDBC9\ }}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ DARK\_BLUE\ 0x00B1\ \ \ }}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ DARK\_GREEN\ 0x22A2\ \ }}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ Timing\ and\ Scheduling\ Constants}}
+\DoxyCodeLine{00048\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uint32\_t\ \mbox{\hyperlink{globals_8h_af26f75fe269e2354b07be07d548f1439}{LOOP\_TICKS}};\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{globals_8h_a4dd8b32b4ad9a7422198238b8ca72424}{min\_bright\_timer}};\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{globals_8h_a8c3703c5abd33375161673bb6ea9a467}{turn\_off\_timer}};\ \ \ }
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ Rotary\ Encoder\ Pin\ Definitions}}
+\DoxyCodeLine{00053\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a53dfd3081ecb5cbde9c66ee0ac81a653}{DIR\_PIN}};\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a1990422736e314cfb1270ba7927f533f}{STEP\_PIN}};\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_af7aeafada2fc5a4b2b50c8a0bbacb915}{DT}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_aa17761af794bd8e8349cc093af8ff7c8}{CLK}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ Rotary\ Encoder\ State\ Variables}}
+\DoxyCodeLine{00059\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_ae9eba260d34d82f17daba520dfe95bb1}{lastClk}};\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a508ee9f30b22e38f0a1cfb7093bd1e8b}{newClk}};\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a04748eed6e3d5fdfcf9dfc35350fc30f}{dtValue}};\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a617a47c70795bcff659815ad0efd2266}{counter}};\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a63177970cacb40efba67ce501ea89210}{angle}};\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a12311bb365ac4b3a48bef1d72f432c4f}{aState}};\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a56beea51f1faca422c14d3e0322bd80a}{aLastState}};\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{globals_8h_ac037f68bf86d3712a034faa2d3ac428a}{position}};\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a50b340f5c1c66f547409f1c569df6c24}{lastAngle}};\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ Display\ Geometry\ Variables}}
+\DoxyCodeLine{00070\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a2ef9a98c01d810b5c65529f7a96db72c}{centerX}};\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a02c5292ed607e9932ef7083772bd1df8}{centerY}};\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a395279899207ce7f17adf9fdb8ee97ee}{radius}};\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ Brightness\ Control\ Variables}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_aa9ab47cb95fe28c44bed59b685c3aaa1}{minBrightness}};\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_ae7b37fab7892f3c0b1bd94c7895e2ecc}{maxBrightness}};\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_af99e493d54e3dd51e11ace615bfe1928}{numBrightnessLevels}};\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a3c6418394574dcdd1b88580cb85be4e6}{brightnessLevel}};\ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{comment}{//\ Enum\ for\ Menu\ States}}
+\DoxyCodeLine{00085\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2}{MenuState}}\ \{}
+\DoxyCodeLine{00086\ \ \ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2ac22743f1fc74de09544ecc9bab74a17b}{MAIN\_MENU}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00087\ \ \ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2ac678338caea29d77d56be2ea56325610}{SETTINGS}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2a46b1a1705dc1e975e82422901b8ecdf2}{BRIGHTNESS}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2a7a5ecb5193db2d5f258ae1abd33714b9}{COLOR}},\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2a3210301d23296d5cf181153c8b435a79}{TEXT\_TYPE}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2aa44b734476c2f3d073ee7aca08660a0e}{BACKGROUND}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2af9a60b6f3549778932afee28db904f30}{SELECTION\_BAR}},\ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2aaac8b72a410fb17e620a6884d1ad6227}{SELECTION\_BORDER}},\ }
+\DoxyCodeLine{00094\ \ \ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2a9a4a47c1606e295076055a9cc4373197}{TEXT}},\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00095\ \ \ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2a65d59f75bc58f75380983837537920e2}{SERVIDOR\_TCP}},\ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2a8fc89282c6047847059874e30568fd3f}{STEPPER\_MOTOR}},\ \ \ \ }
+\DoxyCodeLine{00097\ \ \ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2a506e8dd29460ea318b68d035f679b01b}{MANUAL}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2aeef9468d1b98bca652a04bf5063fd9d6}{AUTO}},\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00099\ \ \ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2a15d3a258bbbfa24e1f6f0180f90644ee}{INITIAL\_SCREEN}}\ \ \ \ }
+\DoxyCodeLine{00100\ \};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2}{MenuState}}\ \mbox{\hyperlink{globals_8h_a769032f0823a4b3622685d9450817cea}{currentMenu}};\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2}{MenuState}}\ \mbox{\hyperlink{globals_8h_ac8456eecf8d905cb9371997fc87baa89}{previousMenu}};\ }
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{comment}{//\ Menu\ Structure\ and\ Indexes}}
+\DoxyCodeLine{00106\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a5f8e88cec6297972de98d6751a7d69be}{menuIndex}};\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_ad575c5d8ace760e6bd6afb13c641e44d}{menuItems}};\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{extern}\ String\ \mbox{\hyperlink{globals_8h_aa5a68731066a05c489e7789346212233}{menu}}[];\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_aeb144c569687c0771ed094e4a15bf04e}{submenuItems}};\ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{extern}\ String\ \mbox{\hyperlink{globals_8h_af7f6b9e37b99856ba9c4df355aba1830}{submenu}}[];\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a9617fb90d3b9c9ed3f0c31e0b113bba4}{colormenuItems}};\ }
+\DoxyCodeLine{00112\ \textcolor{keyword}{extern}\ String\ \mbox{\hyperlink{globals_8h_afb42b84f93ca053af75b6abce73dc6e4}{colormenu}}[];\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ethernetmenuItems;}
+\DoxyCodeLine{00114\ \textcolor{keyword}{extern}\ String\ ethernetmenu[];\ }
+\DoxyCodeLine{00115\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ steppermenuItems;}
+\DoxyCodeLine{00116\ \textcolor{keyword}{extern}\ String\ steppermenu[];}
+\DoxyCodeLine{00117\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ manualmenuItems;}
+\DoxyCodeLine{00118\ \textcolor{keyword}{extern}\ String\ manualmenu[];}
+\DoxyCodeLine{00119\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ automenuItems;}
+\DoxyCodeLine{00120\ \textcolor{keyword}{extern}\ String\ automenu[];}
+\DoxyCodeLine{00121\ \textcolor{comment}{//\ Ethernet\ Configuration}}
+\DoxyCodeLine{00122\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{byte}\ \mbox{\hyperlink{globals_8h_aea3f7775fecafb66a619eb2dcb0357bd}{mac}}[];}
+\DoxyCodeLine{00123\ \textcolor{keyword}{extern}\ IPAddress\ ip;}
+\DoxyCodeLine{00124\ \textcolor{keyword}{extern}\ EthernetServer\ server;}
+\DoxyCodeLine{00125\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{char}\ ipchar[16];}
+\DoxyCodeLine{00126\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{char}\ subnetchar[16];}
+\DoxyCodeLine{00127\ \textcolor{keyword}{extern}\ IPAddress\ subnet;}
+\DoxyCodeLine{00128\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{char}\ ipadress;}
+\DoxyCodeLine{00129\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{char}\ subnetadress;}
+\DoxyCodeLine{00130\ \textcolor{keyword}{extern}\ String\ ipip;}
+\DoxyCodeLine{00131\ \textcolor{keyword}{extern}\ String\ subnetsubnet;}
+\DoxyCodeLine{00132\ \textcolor{keyword}{extern}\ String\ \mbox{\hyperlink{globals_8h_a349898585eb60ca77175c8a60094808c}{ethernetInfo}}[5];\ }
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{comment}{//\ Icons\ for\ Menus}}
+\DoxyCodeLine{00136\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ *\mbox{\hyperlink{globals_8h_aed9b7a4019d30995bd4d557002c5ba5e}{images\_main}}[];\ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ *\mbox{\hyperlink{globals_8h_aada6cde9d87c0a7b7c50cd786c571c07}{images\_settings}}[];\ }
+\DoxyCodeLine{00138\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ *\mbox{\hyperlink{globals_8h_a663d9f46f7825dc47d24a2686c7fcdc1}{images\_stepper}}[];\ }
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{comment}{//\ Screen\ Control\ Variables}}
+\DoxyCodeLine{00141\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{globals_8h_aa9e9b2e282a3494c7ce3d60256a4ea8d}{screenOn}};\ }
+\DoxyCodeLine{00142\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{globals_8h_ab62d60c5ad54ec166026d386ec9a9b3a}{engineeringMode}};\ }
+\DoxyCodeLine{00143\ \textcolor{keyword}{extern}\ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a077c86ea52123eb3794884dfc053d890}{encoderState}};\ }
+\DoxyCodeLine{00144\ \textcolor{keyword}{extern}\ RtcDateTime\ \mbox{\hyperlink{globals_8h_ad926fc3916a64d6a3980aaa5360c1165}{lastDisplayedTime}};\ }
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{comment}{//\ Queues\ and\ Synchronization}}
+\DoxyCodeLine{00147\ \textcolor{keyword}{extern}\ QueueHandle\_t\ \mbox{\hyperlink{globals_8h_aaf623fe161cdf19ca07d4c1e29b0bd5f}{screenUpdateQueue}};\ }
+\DoxyCodeLine{00148\ \textcolor{keyword}{extern}\ xSemaphoreHandle\ \mbox{\hyperlink{globals_8h_a119bbace9abbf6d8daffc41eaaa1defb}{gatekeeper}};\ }
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00154\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{globals_8h_a1b06255088be0619cf099d600ef17ee2}{ScreenUpdateCommand}}\ \{\ }
+\DoxyCodeLine{00155\ \ \ \mbox{\hyperlink{globals_8h_a1b06255088be0619cf099d600ef17ee2ac34814c1f26a778ac75bfc27ccc910fb}{UPDATE\_MAIN\_MENU}},\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00156\ \ \ \mbox{\hyperlink{globals_8h_a1b06255088be0619cf099d600ef17ee2ab7baa998fb2f70d59da417ac5aca67ff}{UPDATE\_CONFIG\_BRIGHTNESS}},\ \ \ \ }
+\DoxyCodeLine{00157\ \ \ \mbox{\hyperlink{globals_8h_a1b06255088be0619cf099d600ef17ee2a73120ccce2d1fc73da99abb7ecfa538f}{UPDATE\_CONFIG\_BACKGROUNDCOLOR}},\ }
+\DoxyCodeLine{00158\ \ \ \mbox{\hyperlink{globals_8h_a1b06255088be0619cf099d600ef17ee2a781bff40673d0bba42ddf8d411fd1580}{UPDATE\_CONFIG\_ASPECT}}\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00159\ \};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{comment}{//\ Color\ Arrays\ for\ Background,\ Selection\ Bar,\ Border,\ and\ Text}}
+\DoxyCodeLine{00162\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{globals_8h_ae401b875b7bfb059b75b56726ed3d2c8}{backgroundpossibleColors}}[];\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{globals_8h_a25479c6b6ba2cf5f78957eb2084fff57}{selectbarpossibleColors}}[];\ }
+\DoxyCodeLine{00164\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{globals_8h_a9716fbf0ab5c1368148f2bf0140a611a}{borderpossibleColors}}[];\ }
+\DoxyCodeLine{00165\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uint16\_t\ \mbox{\hyperlink{globals_8h_a70f6ceca6e907056c43faa62888509a1}{textpossibleColors}}[];\ }
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{comment}{//\ Color\ Count\ Variables}}
+\DoxyCodeLine{00168\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a90ba5032211a02dd3b3577d1002f0fe4}{backgroundcolors}};\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a6e73a84066164b6d9f9b4163e32e26e8}{selectbarcolors}};\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a3da248ec491040450983dd1a8a5478fd}{textcolors}};\ }
+\DoxyCodeLine{00171\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_aed64c1493a8b74f14aeb20eb7ea5d6fa}{bordercolors}};\ }
+\DoxyCodeLine{00172\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ selectnumcolors[];}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{comment}{//\ Color\ Menu\ Arrays}}
+\DoxyCodeLine{00175\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{globals_8h_aa3041ae4242c0dd57a126d17505443b2}{MenuState}}\ \mbox{\hyperlink{globals_8h_a431bcfedd78dea3c96d64d119f978805}{colormenuArray}}[];\ }
+\DoxyCodeLine{00176\ \textcolor{keyword}{extern}\ String\ \mbox{\hyperlink{globals_8h_a4b7cc1cadcc5662ef2a9846eee81e525}{background}}[];\ }
+\DoxyCodeLine{00177\ \textcolor{keyword}{extern}\ String\ \mbox{\hyperlink{globals_8h_ac4879508a2e86a69828bd1cf95622753}{selectionbar}}[];\ }
+\DoxyCodeLine{00178\ \textcolor{keyword}{extern}\ String\ \mbox{\hyperlink{globals_8h_aeafa6f178b5b47e84fd21c37fc12b364}{border}}[];\ }
+\DoxyCodeLine{00179\ \textcolor{keyword}{extern}\ String\ \mbox{\hyperlink{globals_8h_a245e72ea325d44b40240e654a44470cc}{text}}[];\ }
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \textcolor{comment}{//\ Selected\ Colors}}
+\DoxyCodeLine{00182\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a1ccf7c5f8094a76b58c9ede32381734d}{selectedBackgroundColor}};\ }
+\DoxyCodeLine{00183\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a32e21127f5e32593af845236e1dc5a53}{selectedTextColor}};\ }
+\DoxyCodeLine{00184\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a8b66a55359ddeea3e6976e9c60c6bbab}{selectedBarColor}};\ }
+\DoxyCodeLine{00185\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a0820104f144feafedcf789edaff972f2}{selectedBorderColor}};\ }
+\DoxyCodeLine{00186\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ *\mbox{\hyperlink{globals_8h_ab31fba1d7a121e252a8319258a725c85}{selection}}[];\ }
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{comment}{//\ Font\ Configuration}}
+\DoxyCodeLine{00189\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ GFXfont*\ \mbox{\hyperlink{globals_8h_ae67982d9cd69b4c1b5f4b49f2e9de7f0}{possibleFont12}}[];\ }
+\DoxyCodeLine{00190\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ GFXfont*\ \mbox{\hyperlink{globals_8h_a6888b0770eb27403db501d65681a46ec}{possibleFont9}}[];\ }
+\DoxyCodeLine{00191\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{globals_8h_a2d8219c8d3eb0ebeb69046e2a6677bb4}{numFonts}};\ }
+\DoxyCodeLine{00192\ \textcolor{keyword}{extern}\ String\ \mbox{\hyperlink{globals_8h_a1eda6ed1cbdda88b8a989daccc7c0774}{fontType}}[];\ }
+\DoxyCodeLine{00193\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ GFXfont*\ \mbox{\hyperlink{globals_8h_a1ae81caf9234659f5f96a0c9cabe0928}{textType12}};\ }
+\DoxyCodeLine{00194\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ GFXfont*\ \mbox{\hyperlink{globals_8h_a0d6da904e8eebd5078909273e10c3c34}{textType9}};\ }
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \textcolor{keyword}{extern}\ BfButton\ btn;}
+\DoxyCodeLine{00197\ \textcolor{keyword}{extern}\ ThreeWire\ myWire;}
+\DoxyCodeLine{00198\ \textcolor{keyword}{extern}\ RtcDS1302<ThreeWire>\ Rtc;}
+\DoxyCodeLine{00199\ \textcolor{keyword}{extern}\ AccelStepper\ motor;}
+\DoxyCodeLine{00200\ \textcolor{keyword}{extern}\ TFT\_eSPI\ \mbox{\hyperlink{globals_8h_ac5d2dc3534f30f704fd7529ad0f89ff1}{tft}};}
+\DoxyCodeLine{00201\ \textcolor{keyword}{extern}\ TickType\_t\ previousTick;}
+\DoxyCodeLine{00202\ \textcolor{keyword}{extern}\ TickType\_t\ previousTime;}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GLOBALS\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,263 @@
+\doxysection{enc28j60.\+h}
+\label{enc28j60_8h_source}\index{lib/EthernetENC-\/2.0.5/src/utility/enc28j60.h@{lib/EthernetENC-\/2.0.5/src/utility/enc28j60.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{*}}
+\DoxyCodeLine{00003\ \textcolor{comment}{*\ Title\ \ \ \ \ \ \ \ :\ Microchip\ ENC28J60\ Ethernet\ Interface\ Driver}}
+\DoxyCodeLine{00004\ \textcolor{comment}{*\ Author\ \ \ \ \ \ \ \ :\ Pascal\ Stang\ (c)2005}}
+\DoxyCodeLine{00005\ \textcolor{comment}{*\ Modified\ by\ Norbert\ Truchsess}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*\ Copyright:\ GPL\ V2}}
+\DoxyCodeLine{00007\ \textcolor{comment}{*}}
+\DoxyCodeLine{00008\ \textcolor{comment}{*This\ driver\ provides\ initialization\ and\ transmit/receive}}
+\DoxyCodeLine{00009\ \textcolor{comment}{*functions\ for\ the\ Microchip\ ENC28J60\ 10Mb\ Ethernet\ Controller\ and\ PHY.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{*This\ chip\ is\ novel\ in\ that\ it\ is\ a\ full\ MAC+PHY\ interface\ all\ in\ a\ 28-\/pin}}
+\DoxyCodeLine{00011\ \textcolor{comment}{*chip,\ using\ an\ SPI\ interface\ to\ the\ host\ processor.}}
+\DoxyCodeLine{00012\ \textcolor{comment}{*}}
+\DoxyCodeLine{00013\ \textcolor{comment}{*}}
+\DoxyCodeLine{00014\ \textcolor{comment}{*****************************************************************************/}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#ifndef\ ENC28J60\_H}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ ENC28J60\_H}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <inttypes.h>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ ENC28J60\ Control\ Registers}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ Control\ register\ definitions\ are\ a\ combination\ of\ address,}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ bank\ number,\ and\ Ethernet/MAC/PHY\ indicator\ bits.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ -\/\ Register\ address\ \ \ \ \ \ \ \ (bits\ 0-\/4)}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ -\/\ Bank\ number\ \ \ \ \ \ \ \ (bits\ 5-\/6)}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ -\/\ MAC/PHY\ indicator\ \ \ \ \ \ \ \ (bit\ 7)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ ADDR\_MASK\ \ \ \ \ \ \ \ 0x1F}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ BANK\_MASK\ \ \ \ \ \ \ \ 0x60}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ SPRD\_MASK\ \ \ \ \ \ \ \ 0x80}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ All-\/bank\ registers}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ EIE\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x1B}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ EIR\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x1C}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ ESTAT\ \ \ \ \ \ \ \ \ \ \ \ 0x1D}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ ECON2\ \ \ \ \ \ \ \ \ \ \ \ 0x1E}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ ECON1\ \ \ \ \ \ \ \ \ \ \ \ 0x1F}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ Bank\ 0\ registers}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ ERDPTL\ \ \ \ \ \ \ \ \ \ \ (0x00|0x00)}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ ERDPTH\ \ \ \ \ \ \ \ \ \ \ (0x01|0x00)}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ EWRPTL\ \ \ \ \ \ \ \ \ \ \ (0x02|0x00)}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ EWRPTH\ \ \ \ \ \ \ \ \ \ \ (0x03|0x00)}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ ETXSTL\ \ \ \ \ \ \ \ \ \ \ (0x04|0x00)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ ETXSTH\ \ \ \ \ \ \ \ \ \ \ (0x05|0x00)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ ETXNDL\ \ \ \ \ \ \ \ \ \ \ (0x06|0x00)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ ETXNDH\ \ \ \ \ \ \ \ \ \ \ (0x07|0x00)}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ ERXSTL\ \ \ \ \ \ \ \ \ \ \ (0x08|0x00)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ ERXSTH\ \ \ \ \ \ \ \ \ \ \ (0x09|0x00)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ ERXNDL\ \ \ \ \ \ \ \ \ \ \ (0x0A|0x00)}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ ERXNDH\ \ \ \ \ \ \ \ \ \ \ (0x0B|0x00)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ ERXRDPTL\ \ \ \ \ \ \ \ \ (0x0C|0x00)}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ ERXRDPTH\ \ \ \ \ \ \ \ \ (0x0D|0x00)}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ ERXWRPTL\ \ \ \ \ \ \ \ \ (0x0E|0x00)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ ERXWRPTH\ \ \ \ \ \ \ \ \ (0x0F|0x00)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ EDMASTL\ \ \ \ \ \ \ \ \ \ (0x10|0x00)}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ EDMASTH\ \ \ \ \ \ \ \ \ \ (0x11|0x00)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ EDMANDL\ \ \ \ \ \ \ \ \ \ (0x12|0x00)}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ EDMANDH\ \ \ \ \ \ \ \ \ \ (0x13|0x00)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ EDMADSTL\ \ \ \ \ \ \ \ \ (0x14|0x00)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ EDMADSTH\ \ \ \ \ \ \ \ \ (0x15|0x00)}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ EDMACSL\ \ \ \ \ \ \ \ \ \ (0x16|0x00)}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ EDMACSH\ \ \ \ \ \ \ \ \ \ (0x17|0x00)}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ Bank\ 1\ registers}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ EHT0\ \ \ \ \ \ \ \ \ \ \ \ \ (0x00|0x20)}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ EHT1\ \ \ \ \ \ \ \ \ \ \ \ \ (0x01|0x20)}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ EHT2\ \ \ \ \ \ \ \ \ \ \ \ \ (0x02|0x20)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ EHT3\ \ \ \ \ \ \ \ \ \ \ \ \ (0x03|0x20)}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ EHT4\ \ \ \ \ \ \ \ \ \ \ \ \ (0x04|0x20)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ EHT5\ \ \ \ \ \ \ \ \ \ \ \ \ (0x05|0x20)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ EHT6\ \ \ \ \ \ \ \ \ \ \ \ \ (0x06|0x20)}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ EHT7\ \ \ \ \ \ \ \ \ \ \ \ \ (0x07|0x20)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ EPMM0\ \ \ \ \ \ \ \ \ \ \ \ (0x08|0x20)}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ EPMM1\ \ \ \ \ \ \ \ \ \ \ \ (0x09|0x20)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ EPMM2\ \ \ \ \ \ \ \ \ \ \ \ (0x0A|0x20)}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ EPMM3\ \ \ \ \ \ \ \ \ \ \ \ (0x0B|0x20)}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ EPMM4\ \ \ \ \ \ \ \ \ \ \ \ (0x0C|0x20)}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ EPMM5\ \ \ \ \ \ \ \ \ \ \ \ (0x0D|0x20)}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ EPMM6\ \ \ \ \ \ \ \ \ \ \ \ (0x0E|0x20)}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ EPMM7\ \ \ \ \ \ \ \ \ \ \ \ (0x0F|0x20)}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ EPMCSL\ \ \ \ \ \ \ \ \ \ \ (0x10|0x20)}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ EPMCSH\ \ \ \ \ \ \ \ \ \ \ (0x11|0x20)}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ EPMOL\ \ \ \ \ \ \ \ \ \ \ \ (0x14|0x20)}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ EPMOH\ \ \ \ \ \ \ \ \ \ \ \ (0x15|0x20)}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ EWOLIE\ \ \ \ \ \ \ \ \ \ \ (0x16|0x20)}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ EWOLIR\ \ \ \ \ \ \ \ \ \ \ (0x17|0x20)}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ ERXFCON\ \ \ \ \ \ \ \ \ \ (0x18|0x20)}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ EPKTCNT\ \ \ \ \ \ \ \ \ \ (0x19|0x20)}}
+\DoxyCodeLine{00085\ \textcolor{comment}{//\ Bank\ 2\ registers}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ MACON1\ \ \ \ \ \ \ \ \ \ \ (0x00|0x40|0x80)}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ MACON2\ \ \ \ \ \ \ \ \ \ \ (0x01|0x40|0x80)}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ MACON3\ \ \ \ \ \ \ \ \ \ \ (0x02|0x40|0x80)}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ MACON4\ \ \ \ \ \ \ \ \ \ \ (0x03|0x40|0x80)}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ MABBIPG\ \ \ \ \ \ \ \ \ \ (0x04|0x40|0x80)}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ MAIPGL\ \ \ \ \ \ \ \ \ \ \ (0x06|0x40|0x80)}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ MAIPGH\ \ \ \ \ \ \ \ \ \ \ (0x07|0x40|0x80)}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ MACLCON1\ \ \ \ \ \ \ \ \ (0x08|0x40|0x80)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ MACLCON2\ \ \ \ \ \ \ \ \ (0x09|0x40|0x80)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ MAMXFLL\ \ \ \ \ \ \ \ \ \ (0x0A|0x40|0x80)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ MAMXFLH\ \ \ \ \ \ \ \ \ \ (0x0B|0x40|0x80)}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ MAPHSUP\ \ \ \ \ \ \ \ \ \ (0x0D|0x40|0x80)}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ MICON\ \ \ \ \ \ \ \ \ \ \ \ (0x11|0x40|0x80)}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ MICMD\ \ \ \ \ \ \ \ \ \ \ \ (0x12|0x40|0x80)}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ MIREGADR\ \ \ \ \ \ \ \ \ (0x14|0x40|0x80)}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ MIWRL\ \ \ \ \ \ \ \ \ \ \ \ (0x16|0x40|0x80)}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ MIWRH\ \ \ \ \ \ \ \ \ \ \ \ (0x17|0x40|0x80)}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ MIRDL\ \ \ \ \ \ \ \ \ \ \ \ (0x18|0x40|0x80)}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ MIRDH\ \ \ \ \ \ \ \ \ \ \ \ (0x19|0x40|0x80)}}
+\DoxyCodeLine{00105\ \textcolor{comment}{//\ Bank\ 3\ registers}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ MAADR1\ \ \ \ \ \ \ \ \ \ \ (0x00|0x60|0x80)}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ MAADR0\ \ \ \ \ \ \ \ \ \ \ (0x01|0x60|0x80)}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ MAADR3\ \ \ \ \ \ \ \ \ \ \ (0x02|0x60|0x80)}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ MAADR2\ \ \ \ \ \ \ \ \ \ \ (0x03|0x60|0x80)}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ MAADR5\ \ \ \ \ \ \ \ \ \ \ (0x04|0x60|0x80)}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#define\ MAADR4\ \ \ \ \ \ \ \ \ \ \ (0x05|0x60|0x80)}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ EBSTSD\ \ \ \ \ \ \ \ \ \ \ (0x06|0x60)}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ EBSTCON\ \ \ \ \ \ \ \ \ \ (0x07|0x60)}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ EBSTCSL\ \ \ \ \ \ \ \ \ \ (0x08|0x60)}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ EBSTCSH\ \ \ \ \ \ \ \ \ \ (0x09|0x60)}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#define\ MISTAT\ \ \ \ \ \ \ \ \ \ \ (0x0A|0x60|0x80)}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ EREVID\ \ \ \ \ \ \ \ \ \ \ (0x12|0x60)}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ ECOCON\ \ \ \ \ \ \ \ \ \ \ (0x15|0x60)}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ EFLOCON\ \ \ \ \ \ \ \ \ \ (0x17|0x60)}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ EPAUSL\ \ \ \ \ \ \ \ \ \ \ (0x18|0x60)}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ EPAUSH\ \ \ \ \ \ \ \ \ \ \ (0x19|0x60)}}
+\DoxyCodeLine{00122\ \textcolor{comment}{//\ PHY\ registers}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ PHCON1\ \ \ \ \ \ \ \ \ \ \ 0x00}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ PHSTAT1\ \ \ \ \ \ \ \ \ \ 0x01}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#define\ PHHID1\ \ \ \ \ \ \ \ \ \ \ 0x02}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#define\ PHHID2\ \ \ \ \ \ \ \ \ \ \ 0x03}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ PHCON2\ \ \ \ \ \ \ \ \ \ \ 0x10}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ PHSTAT2\ \ \ \ \ \ \ \ \ \ 0x11}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#define\ PHIE\ \ \ \ \ \ \ \ \ \ \ \ \ 0x12}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ PHIR\ \ \ \ \ \ \ \ \ \ \ \ \ 0x13}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#define\ PHLCON\ \ \ \ \ \ \ \ \ \ \ 0x14}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{comment}{//\ ENC28J60\ ERXFCON\ Register\ Bit\ Definitions}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#define\ ERXFCON\_UCEN\ \ \ \ \ 0x80}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#define\ ERXFCON\_ANDOR\ \ \ \ 0x40}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#define\ ERXFCON\_CRCEN\ \ \ \ 0x20}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#define\ ERXFCON\_PMEN\ \ \ \ \ 0x10}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#define\ ERXFCON\_MPEN\ \ \ \ \ 0x08}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#define\ ERXFCON\_HTEN\ \ \ \ \ 0x04}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#define\ ERXFCON\_MCEN\ \ \ \ \ 0x02}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#define\ ERXFCON\_BCEN\ \ \ \ \ 0x01}}
+\DoxyCodeLine{00142\ \textcolor{comment}{//\ ENC28J60\ EIE\ Register\ Bit\ Definitions}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#define\ EIE\_INTIE\ \ \ \ \ \ \ \ 0x80}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#define\ EIE\_PKTIE\ \ \ \ \ \ \ \ 0x40}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#define\ EIE\_DMAIE\ \ \ \ \ \ \ \ 0x20}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#define\ EIE\_LINKIE\ \ \ \ \ \ \ 0x10}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#define\ EIE\_TXIE\ \ \ \ \ \ \ \ \ 0x08}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#define\ EIE\_WOLIE\ \ \ \ \ \ \ \ 0x04}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#define\ EIE\_TXERIE\ \ \ \ \ \ \ 0x02}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ EIE\_RXERIE\ \ \ \ \ \ \ 0x01}}
+\DoxyCodeLine{00151\ \textcolor{comment}{//\ ENC28J60\ EIR\ Register\ Bit\ Definitions}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#define\ EIR\_PKTIF\ \ \ \ \ \ \ \ 0x40}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#define\ EIR\_DMAIF\ \ \ \ \ \ \ \ 0x20}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#define\ EIR\_LINKIF\ \ \ \ \ \ \ 0x10}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#define\ EIR\_TXIF\ \ \ \ \ \ \ \ \ 0x08}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#define\ EIR\_WOLIF\ \ \ \ \ \ \ \ 0x04}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#define\ EIR\_TXERIF\ \ \ \ \ \ \ 0x02}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#define\ EIR\_RXERIF\ \ \ \ \ \ \ 0x01}}
+\DoxyCodeLine{00159\ \textcolor{comment}{//\ ENC28J60\ ESTAT\ Register\ Bit\ Definitions}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#define\ ESTAT\_INT\ \ \ \ \ \ \ \ 0x80}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#define\ ESTAT\_LATECOL\ \ \ \ 0x10}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#define\ ESTAT\_RXBUSY\ \ \ \ \ 0x04}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#define\ ESTAT\_TXABRT\ \ \ \ \ 0x02}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#define\ ESTAT\_CLKRDY\ \ \ \ \ 0x01}}
+\DoxyCodeLine{00165\ \textcolor{comment}{//\ ENC28J60\ ECON2\ Register\ Bit\ Definitions}}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#define\ ECON2\_AUTOINC\ \ \ \ 0x80}}
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\#define\ ECON2\_PKTDEC\ \ \ \ \ 0x40}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#define\ ECON2\_PWRSV\ \ \ \ \ \ 0x20}}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\#define\ ECON2\_VRPS\ \ \ \ \ \ \ 0x08}}
+\DoxyCodeLine{00170\ \textcolor{comment}{//\ ENC28J60\ ECON1\ Register\ Bit\ Definitions}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#define\ ECON1\_TXRST\ \ \ \ \ \ 0x80}}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#define\ ECON1\_RXRST\ \ \ \ \ \ 0x40}}
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#define\ ECON1\_DMAST\ \ \ \ \ \ 0x20}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#define\ ECON1\_CSUMEN\ \ \ \ \ 0x10}}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#define\ ECON1\_TXRTS\ \ \ \ \ \ 0x08}}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#define\ ECON1\_RXEN\ \ \ \ \ \ \ 0x04}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#define\ ECON1\_BSEL1\ \ \ \ \ \ 0x02}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#define\ ECON1\_BSEL0\ \ \ \ \ \ 0x01}}
+\DoxyCodeLine{00179\ \textcolor{comment}{//\ ENC28J60\ MACON1\ Register\ Bit\ Definitions}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#define\ MACON1\_LOOPBK\ \ \ \ 0x10}}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#define\ MACON1\_TXPAUS\ \ \ \ 0x08}}
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\#define\ MACON1\_RXPAUS\ \ \ \ 0x04}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#define\ MACON1\_PASSALL\ \ \ 0x02}}
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\#define\ MACON1\_MARXEN\ \ \ \ 0x01}}
+\DoxyCodeLine{00185\ \textcolor{comment}{//\ ENC28J60\ MACON2\ Register\ Bit\ Definitions}}
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#define\ MACON2\_MARST\ \ \ \ \ 0x80}}
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#define\ MACON2\_RNDRST\ \ \ \ 0x40}}
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#define\ MACON2\_MARXRST\ \ \ 0x08}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#define\ MACON2\_RFUNRST\ \ \ 0x04}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#define\ MACON2\_MATXRST\ \ \ 0x02}}
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\#define\ MACON2\_TFUNRST\ \ \ 0x01}}
+\DoxyCodeLine{00192\ \textcolor{comment}{//\ ENC28J60\ MACON3\ Register\ Bit\ Definitions}}
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\#define\ MACON3\_PADCFG2\ \ \ 0x80}}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#define\ MACON3\_PADCFG1\ \ \ 0x40}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#define\ MACON3\_PADCFG0\ \ \ 0x20}}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#define\ MACON3\_TXCRCEN\ \ \ 0x10}}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\#define\ MACON3\_PHDRLEN\ \ \ 0x08}}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#define\ MACON3\_HFRMLEN\ \ \ 0x04}}
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\#define\ MACON3\_FRMLNEN\ \ \ 0x02}}
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\#define\ MACON3\_FULDPX\ \ \ \ 0x01}}
+\DoxyCodeLine{00201\ \textcolor{comment}{//\ ENC28J60\ MICMD\ Register\ Bit\ Definitions}}
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\#define\ MICMD\_MIISCAN\ \ \ \ 0x02}}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#define\ MICMD\_MIIRD\ \ \ \ \ \ 0x01}}
+\DoxyCodeLine{00204\ \textcolor{comment}{//\ ENC28J60\ MISTAT\ Register\ Bit\ Definitions}}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#define\ MISTAT\_NVALID\ \ \ \ 0x04}}
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\#define\ MISTAT\_SCAN\ \ \ \ \ \ 0x02}}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#define\ MISTAT\_BUSY\ \ \ \ \ \ 0x01}}
+\DoxyCodeLine{00208\ \textcolor{comment}{//\ ENC28J60\ PHY\ PHCON1\ Register\ Bit\ Definitions}}
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\#define\ PHCON1\_PRST\ \ \ \ \ \ 0x8000}}
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#define\ PHCON1\_PLOOPBK\ \ \ 0x4000}}
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\#define\ PHCON1\_PPWRSV\ \ \ \ 0x0800}}
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\#define\ PHCON1\_PDPXMD\ \ \ \ 0x0100}}
+\DoxyCodeLine{00213\ \textcolor{comment}{//\ ENC28J60\ PHY\ PHSTAT1\ Register\ Bit\ Definitions}}
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\#define\ PHSTAT1\_PFDPX\ \ \ \ 0x1000}}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#define\ PHSTAT1\_PHDPX\ \ \ \ 0x0800}}
+\DoxyCodeLine{00216\ \textcolor{preprocessor}{\#define\ PHSTAT1\_LLSTAT\ \ \ 0x0004}}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#define\ PHSTAT1\_JBSTAT\ \ \ 0x0002}}
+\DoxyCodeLine{00218\ \textcolor{comment}{//\ ENC28J60\ PHY\ PHCON2\ Register\ Bit\ Definitions}}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#define\ PHCON2\_FRCLINK\ \ \ 0x4000}}
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\#define\ PHCON2\_TXDIS\ \ \ \ \ 0x2000}}
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#define\ PHCON2\_JABBER\ \ \ \ 0x0400}}
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\#define\ PHCON2\_HDLDIS\ \ \ \ 0x0100}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{comment}{//\ ENC28J60\ Packet\ Control\ Byte\ Bit\ Definitions}}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#define\ PKTCTRL\_PHUGEEN\ \ 0x08}}
+\DoxyCodeLine{00226\ \textcolor{preprocessor}{\#define\ PKTCTRL\_PPADEN\ \ \ 0x04}}
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\#define\ PKTCTRL\_PCRCEN\ \ \ 0x02}}
+\DoxyCodeLine{00228\ \textcolor{preprocessor}{\#define\ PKTCTRL\_POVERRIDE\ 0x01}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \textcolor{comment}{//\ SPI\ operation\ codes}}
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\#define\ ENC28J60\_READ\_CTRL\_REG\ \ \ \ \ \ \ 0x00}}
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\#define\ ENC28J60\_READ\_BUF\_MEM\ \ \ \ \ \ \ \ 0x3A}}
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\#define\ ENC28J60\_WRITE\_CTRL\_REG\ \ \ \ \ \ 0x40}}
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#define\ ENC28J60\_WRITE\_BUF\_MEM\ \ \ \ \ \ \ 0x7A}}
+\DoxyCodeLine{00235\ \textcolor{preprocessor}{\#define\ ENC28J60\_BIT\_FIELD\_SET\ \ \ \ \ \ \ 0x80}}
+\DoxyCodeLine{00236\ \textcolor{preprocessor}{\#define\ ENC28J60\_BIT\_FIELD\_CLR\ \ \ \ \ \ \ 0xA0}}
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#define\ ENC28J60\_SOFT\_RESET\ \ \ \ \ \ \ \ \ \ 0xFF}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \textcolor{comment}{//\ The\ RXSTART\_INIT\ should\ be\ zero.\ See\ Rev.\ B4\ Silicon\ Errata}}
+\DoxyCodeLine{00241\ \textcolor{comment}{//\ buffer\ boundaries\ applied\ to\ internal\ 8K\ ram}}
+\DoxyCodeLine{00242\ \textcolor{comment}{//\ the\ entire\ available\ packet\ buffer\ space\ is\ allocated}}
+\DoxyCodeLine{00243\ \textcolor{comment}{//}}
+\DoxyCodeLine{00244\ \textcolor{comment}{//\ start\ with\ recbuf\ at\ 0/}}
+\DoxyCodeLine{00245\ \textcolor{preprocessor}{\#define\ RXSTART\_INIT\ \ \ \ \ 0x0}}
+\DoxyCodeLine{00246\ \textcolor{comment}{//\ receive\ buffer\ end.\ make\ sure\ this\ is\ an\ odd\ value\ (\ See\ Rev.\ B1,B4,B5,B7\ Silicon\ Errata\ 'Memory\ (Ethernet\ Buffer)')}}
+\DoxyCodeLine{00247\ \textcolor{preprocessor}{\#define\ RXSTOP\_INIT\ \ \ \ \ \ (0x1FFF-\/0x1800)}}
+\DoxyCodeLine{00248\ \textcolor{comment}{//\ start\ TX\ buffer\ RXSTOP\_INIT+1}}
+\DoxyCodeLine{00249\ \textcolor{preprocessor}{\#define\ TXSTART\_INIT\ \ \ \ \ (RXSTOP\_INIT+1)}}
+\DoxyCodeLine{00250\ \textcolor{comment}{//\ stp\ TX\ buffer\ at\ end\ of\ mem}}
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\#define\ TXSTOP\_INIT\ \ \ \ \ \ 0x1FFF}}
+\DoxyCodeLine{00252\ \textcolor{comment}{//}}
+\DoxyCodeLine{00253\ \textcolor{comment}{//\ max\ frame\ length\ which\ the\ conroller\ will\ accept:}}
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\#define\ \ \ \ \ \ \ \ MAX\_FRAMELEN\ \ \ \ \ \ \ \ 1500\ \ \ \ \ \ \ \ }\textcolor{comment}{//\ (note:\ maximum\ ethernet\ frame\ length\ would\ be\ 1518)}}
+\DoxyCodeLine{00255\ \textcolor{comment}{//\#define\ MAX\_FRAMELEN\ \ \ \ \ 600}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

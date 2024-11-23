@@ -1,0 +1,39 @@
+\doxysection{Setup137\+\_\+\+Lily\+Go\+\_\+\+TDisplay\+\_\+\+RP2040.\+h}
+\label{_setup137___lily_go___t_display___r_p2040_8h_source}\index{lib/TFT\_eSPI-\/master/User\_Setups/Setup137\_LilyGo\_TDisplay\_RP2040.h@{lib/TFT\_eSPI-\/master/User\_Setups/Setup137\_LilyGo\_TDisplay\_RP2040.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ LilyGo\ T-\/Display\ RP2040\ (ST7789\ 135\ x\ 240\ display)}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ USER\_SETUP\_ID\ 137}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ ST7789\_DRIVER\ \ \ \ \ }\textcolor{comment}{//\ Configure\ all\ registers}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ TFT\_WIDTH\ \ 135}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ TFT\_HEIGHT\ 240}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ CGRAM\_OFFSET\ \ \ \ \ \ }\textcolor{comment}{//\ Library\ will\ add\ offsets\ required}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ For\ LilyGo\ T-\/Display\ RP2040}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ TFT\_CS\ \ \ 5\ \ }\textcolor{comment}{//\ Chip\ Select\ pin}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ TFT\_DC\ \ \ 1\ \ }\textcolor{comment}{//\ Data\ Command\ control\ pin}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ TFT\_RST\ \ 0\ \ }\textcolor{comment}{//\ Reset\ pin}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ TFT\_MOSI\ 3}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ TFT\_SCLK\ 2}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ Don't\ uncomment\ next\ line\ if\ you\ want\ PWM\ control\ of\ the\ backlight\ in\ the\ sketch}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\#define\ TFT\_BL\ 4}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ LOAD\_GLCD\ \ \ }\textcolor{comment}{//\ Font\ 1.\ Original\ Adafruit\ 8\ pixel\ font\ needs\ \string~1820\ bytes\ in\ FLASH}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ LOAD\_FONT2\ \ }\textcolor{comment}{//\ Font\ 2.\ Small\ 16\ pixel\ high\ font,\ needs\ \string~3534\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ LOAD\_FONT4\ \ }\textcolor{comment}{//\ Font\ 4.\ Medium\ 26\ pixel\ high\ font,\ needs\ \string~5848\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ LOAD\_FONT6\ \ }\textcolor{comment}{//\ Font\ 6.\ Large\ 48\ pixel\ font,\ needs\ \string~2666\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.apm}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ LOAD\_FONT7\ \ }\textcolor{comment}{//\ Font\ 7.\ 7\ segment\ 48\ pixel\ font,\ needs\ \string~2438\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:.}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ LOAD\_FONT8\ \ }\textcolor{comment}{//\ Font\ 8.\ Large\ 75\ pixel\ font\ needs\ \string~3256\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\#define\ LOAD\_FONT8N\ //\ Font\ 8.\ Alternative\ to\ Font\ 8\ above,\ slightly\ narrower,\ so\ 3\ digits\ fit\ a\ 160\ pixel\ TFT}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ LOAD\_GFXFF\ \ }\textcolor{comment}{//\ FreeFonts.\ Include\ access\ to\ the\ 48\ Adafruit\_GFX\ free\ fonts\ FF1\ to\ FF48\ and\ custom\ fonts}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ SMOOTH\_FONT}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ SPI\_FREQUENCY\ \ 40000000}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ SPI\_READ\_FREQUENCY\ \ 20000000}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ SPI\_TOUCH\_FREQUENCY\ \ 2500000}}
+
+\end{DoxyCode}

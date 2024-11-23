@@ -1,0 +1,89 @@
+\doxysection{Enc28\+J60\+Network Class Reference}
+\label{class_enc28_j60_network}\index{Enc28J60Network@{Enc28J60Network}}
+Inheritance diagram for Enc28\+J60\+Network\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_enc28_j60_network}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_enc28_j60_network_a3aecea2de68b5eaaf7282b199e3c423f} 
+static uint8\+\_\+t {\bfseries getrev} (void)
+\item 
+\label{class_enc28_j60_network_a8ee206780a600ca312304e946ec9c043} 
+static void {\bfseries power\+On} ()
+\item 
+\label{class_enc28_j60_network_a20e88bbfa8d7c123137a2247404ddf6b} 
+static void {\bfseries power\+Off} ()
+\item 
+\label{class_enc28_j60_network_af1f6eeca651cc8da253b47da5f7e129a} 
+static bool {\bfseries link\+Status} ()
+\item 
+\label{class_enc28_j60_network_ab8e6407f6789ff7f2540ad4c28ef92cf} 
+static void {\bfseries set\+Cs\+Pin} (uint8\+\_\+t \+\_\+cs\+Pin)
+\item 
+\label{class_enc28_j60_network_a0cbc0426a5f2a241f414da43aea6e079} 
+static void {\bfseries init\+SPI} ()
+\item 
+\label{class_enc28_j60_network_aa44663e7a22b4ab2243b3e934e55672a} 
+static bool {\bfseries init} (uint8\+\_\+t $\ast$macaddr)
+\item 
+\label{class_enc28_j60_network_a00feb43ac1653f3dddefab51bb405cbd} 
+static memhandle {\bfseries receive\+Packet} ()
+\item 
+\label{class_enc28_j60_network_af3c2601406c9460abdc5a69c579cb7ec} 
+static void {\bfseries free\+Packet} ()
+\item 
+\label{class_enc28_j60_network_a90fcec9745ab29e5713e3dc44a062340} 
+static memaddress {\bfseries block\+Size} (memhandle handle)
+\item 
+\label{class_enc28_j60_network_ad029c93278170fe2f77d0b75b863262d} 
+static bool {\bfseries send\+Packet} (memhandle handle)
+\item 
+\label{class_enc28_j60_network_a7ca190a26db982de3644ec776f6bc16e} 
+static uint16\+\_\+t {\bfseries read\+Packet} (memhandle handle, memaddress position, uint8\+\_\+t $\ast$buffer, uint16\+\_\+t len)
+\item 
+\label{class_enc28_j60_network_a4ea6e1833ff9357e30f4db05b71d00f1} 
+static uint16\+\_\+t {\bfseries write\+Packet} (memhandle handle, memaddress position, uint8\+\_\+t $\ast$buffer, uint16\+\_\+t len)
+\item 
+\label{class_enc28_j60_network_a5a0ffe1ce15b0f0b60f15418af07e105} 
+static void {\bfseries copy\+Packet} (memhandle dest, memaddress dest\+\_\+pos, memhandle src, memaddress src\+\_\+pos, uint16\+\_\+t len)
+\item 
+\label{class_enc28_j60_network_a90140ccc650e80b5d1b4536347a42428} 
+static uint16\+\_\+t {\bfseries chksum} (uint16\+\_\+t sum, memhandle handle, memaddress pos, uint16\+\_\+t len)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions inherited from \textbf{ Memory\+Pool}}
+\begin{DoxyCompactItemize}
+\item 
+static void {\bfseries init} ()
+\item 
+static memhandle {\bfseries alloc\+Block} (memaddress)
+\item 
+static void {\bfseries free\+Block} (memhandle)
+\item 
+static void {\bfseries resize\+Block} (memhandle handle, memaddress position)
+\item 
+static void {\bfseries resize\+Block} (memhandle handle, memaddress position, memaddress size)
+\item 
+static memaddress {\bfseries block\+Size} (memhandle)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_enc28_j60_network_ac8780433be8e45dc134f8c603a49588b} 
+void {\bfseries enc28\+J60\+\_\+mempool\+\_\+block\+\_\+move\+\_\+callback} (memaddress dest, memaddress src, memaddress len)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Protected Attributes inherited from \textbf{ Memory\+Pool}}
+\begin{DoxyCompactItemize}
+\item 
+static struct \textbf{ memblock} {\bfseries blocks} [MEMPOOL\+\_\+\+NUM\+\_\+\+MEMBLOCKS+1]
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Ethernet\+ENC-\/2.\+0.\+5/src/utility/Enc28\+J60\+Network.\+h\item 
+lib/\+Ethernet\+ENC-\/2.\+0.\+5/src/utility/Enc28\+J60\+Network.\+cpp\end{DoxyCompactItemize}

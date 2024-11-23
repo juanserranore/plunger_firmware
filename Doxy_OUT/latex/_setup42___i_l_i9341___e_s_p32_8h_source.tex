@@ -1,0 +1,42 @@
+\doxysection{Setup42\+\_\+\+ILI9341\+\_\+\+ESP32.\+h}
+\label{_setup42___i_l_i9341___e_s_p32_8h_source}\index{lib/TFT\_eSPI-\/master/User\_Setups/Setup42\_ILI9341\_ESP32.h@{lib/TFT\_eSPI-\/master/User\_Setups/Setup42\_ILI9341\_ESP32.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ See\ SetupX\_Template.h\ for\ all\ options\ available}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ USER\_SETUP\_ID\ 42}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ ILI9341\_DRIVER}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ TFT\_MISO\ 19\ \ }\textcolor{comment}{//\ (leave\ TFT\ SDO\ disconnected\ if\ other\ SPI\ devices\ share\ MISO)}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ TFT\_MOSI\ 23}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ TFT\_SCLK\ 18}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ TFT\_CS\ \ \ 15\ \ }\textcolor{comment}{//\ Chip\ select\ control\ pin}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ TFT\_DC\ \ \ \ 2\ \ }\textcolor{comment}{//\ Data\ Command\ control\ pin}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ TFT\_RST\ \ \ 4\ \ }\textcolor{comment}{//\ Reset\ pin\ (could\ connect\ to\ RST\ pin)}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Optional\ touch\ screen\ chip\ select}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\#define\ TOUCH\_CS\ 5\ //\ Chip\ select\ pin\ (T\_CS)\ of\ touch\ screen}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ LOAD\_GLCD\ \ \ \ }\textcolor{comment}{//\ Font\ 1.\ Original\ Adafruit\ 8\ pixel\ font\ needs\ \string~1820\ bytes\ in\ FLASH}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ LOAD\_FONT2\ \ \ }\textcolor{comment}{//\ Font\ 2.\ Small\ 16\ pixel\ high\ font,\ needs\ \string~3534\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ LOAD\_FONT4\ \ \ }\textcolor{comment}{//\ Font\ 4.\ Medium\ 26\ pixel\ high\ font,\ needs\ \string~5848\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ LOAD\_FONT6\ \ \ }\textcolor{comment}{//\ Font\ 6.\ Large\ 48\ pixel\ font,\ needs\ \string~2666\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.apm}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ LOAD\_FONT7\ \ \ }\textcolor{comment}{//\ Font\ 7.\ 7\ segment\ 48\ pixel\ font,\ needs\ \string~2438\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:.}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ LOAD\_FONT8\ \ \ }\textcolor{comment}{//\ Font\ 8.\ Large\ 75\ pixel\ font\ needs\ \string~3256\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ LOAD\_GFXFF\ \ \ }\textcolor{comment}{//\ FreeFonts.\ Include\ access\ to\ the\ 48\ Adafruit\_GFX\ free\ fonts\ FF1\ to\ FF48\ and\ custom\ fonts}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ SMOOTH\_FONT}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ TFT\ SPI\ clock\ frequency}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ \#define\ SPI\_FREQUENCY\ \ 20000000}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \#define\ SPI\_FREQUENCY\ \ 27000000}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ SPI\_FREQUENCY\ \ 40000000}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \#define\ SPI\_FREQUENCY\ \ 80000000}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ Optional\ reduced\ SPI\ frequency\ for\ reading\ TFT}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ SPI\_READ\_FREQUENCY\ \ 16000000}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ SPI\ clock\ frequency\ for\ touch\ controller}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ SPI\_TOUCH\_FREQUENCY\ \ 2500000}}
+
+\end{DoxyCode}

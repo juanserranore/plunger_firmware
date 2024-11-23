@@ -1,0 +1,58 @@
+\doxysection{Setup209\+\_\+\+Lily\+Go\+\_\+\+T\+\_\+\+Dongle\+\_\+\+S3.\+h}
+\label{_setup209___lily_go___t___dongle___s3_8h_source}\index{lib/TFT\_eSPI-\/master/User\_Setups/Setup209\_LilyGo\_T\_Dongle\_S3.h@{lib/TFT\_eSPI-\/master/User\_Setups/Setup209\_LilyGo\_T\_Dongle\_S3.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Config\ for\ LilyGo\ T-\/Dongle\ S3\ w\ ESP32\ and\ ST7735\ 80\ x\ 160\ display}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ USER\_SETUP\_ID\ 209}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ ST7735\_DRIVER\ \ \ \ \ }\textcolor{comment}{//\ Configure\ all\ registers}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ TFT\_WIDTH\ \ 80}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ TFT\_HEIGHT\ 160}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ \#define\ ST7735\_INITB}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \#define\ ST7735\_GREENTAB}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ \#define\ ST7735\_GREENTAB2}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ \#define\ ST7735\_GREENTAB3}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ \#define\ ST7735\_GREENTAB128\ \ \ \ //\ For\ 128\ x\ 128\ display}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ ST7735\_GREENTAB160x80\ }\textcolor{comment}{//\ For\ 160\ x\ 80\ display\ (BGR,\ inverted,\ 26\ offset)}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ \#define\ ST7735\_REDTAB}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\#define\ ST7735\_BLACKTAB}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \#define\ ST7735\_REDTAB160x80\ \ \ //\ For\ 160\ x\ 80\ display\ with\ 24\ pixel\ offset}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\#define\ TFT\_RGB\_ORDER\ TFT\_RGB\ \ //\ Colour\ order\ Red-\/Green-\/Blue}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ TFT\_RGB\_ORDER\ TFT\_BGR\ \ }\textcolor{comment}{//\ Colour\ order\ Blue-\/Green-\/Red}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\#define\ TFT\_INVERSION\_ON}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\#define\ TFT\_INVERSION\_OFF}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ Generic\ ESP32\ setup}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ TFT\_MISO\ -\/1}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ TFT\_MOSI\ 3}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ TFT\_SCLK\ 5}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ TFT\_CS\ \ \ \ 4}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ TFT\_DC\ \ \ \ 2}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ TFT\_RST\ \ \ 1\ \ }\textcolor{comment}{//\ Connect\ reset\ to\ ensure\ display\ initialises}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ LOAD\_GLCD\ \ \ }\textcolor{comment}{//\ Font\ 1.\ Original\ Adafruit\ 8\ pixel\ font\ needs\ \string~1820\ bytes\ in\ FLASH}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ LOAD\_FONT2\ \ }\textcolor{comment}{//\ Font\ 2.\ Small\ 16\ pixel\ high\ font,\ needs\ \string~3534\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ LOAD\_FONT4\ \ }\textcolor{comment}{//\ Font\ 4.\ Medium\ 26\ pixel\ high\ font,\ needs\ \string~5848\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ LOAD\_FONT6\ \ }\textcolor{comment}{//\ Font\ 6.\ Large\ 48\ pixel\ font,\ needs\ \string~2666\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.apm}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ LOAD\_FONT7\ \ }\textcolor{comment}{//\ Font\ 7.\ 7\ segment\ 48\ pixel\ font,\ needs\ \string~2438\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:.}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ LOAD\_FONT8\ \ }\textcolor{comment}{//\ Font\ 8.\ Large\ 75\ pixel\ font\ needs\ \string~3256\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\#define\ LOAD\_FONT8N\ //\ Font\ 8.\ Alternative\ to\ Font\ 8\ above,\ slightly\ narrower,\ so\ 3\ digits\ fit\ a\ 160\ pixel\ TFT}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ LOAD\_GFXFF\ \ }\textcolor{comment}{//\ FreeFonts.\ Include\ access\ to\ the\ 48\ Adafruit\_GFX\ free\ fonts\ FF1\ to\ FF48\ and\ custom\ fonts}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ SMOOTH\_FONT}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ SPI\_FREQUENCY\ \ 27000000}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\#define\ SPI\_FREQUENCY\ \ 40000000}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ SPI\_READ\_FREQUENCY\ \ 20000000}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ SPI\_TOUCH\_FREQUENCY\ \ 2500000}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ \#define\ SUPPORT\_TRANSACTIONS}}
+
+\end{DoxyCode}

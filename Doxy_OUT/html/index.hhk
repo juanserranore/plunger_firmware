@@ -1,0 +1,1530 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML><HEAD></HEAD><BODY>
+<OBJECT type="text/site properties">
+<param name="FrameName" value="right">
+</OBJECT>
+<UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a56beea51f1faca422c14d3e0322bd80a"><param name="Name" value="aLastState"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a56beea51f1faca422c14d3e0322bd80a"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a56beea51f1faca422c14d3e0322bd80a"><param name="Name" value="aLastState"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a56beea51f1faca422c14d3e0322bd80a"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a63177970cacb40efba67ce501ea89210"><param name="Name" value="angle"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a63177970cacb40efba67ce501ea89210"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a63177970cacb40efba67ce501ea89210"><param name="Name" value="angle"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a63177970cacb40efba67ce501ea89210"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a12311bb365ac4b3a48bef1d72f432c4f"><param name="Name" value="aState"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a12311bb365ac4b3a48bef1d72f432c4f"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a12311bb365ac4b3a48bef1d72f432c4f"><param name="Name" value="aState"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a12311bb365ac4b3a48bef1d72f432c4f"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2aeef9468d1b98bca652a04bf5063fd9d6"><param name="Name" value="AUTO"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2aa44b734476c2f3d073ee7aca08660a0e"><param name="Name" value="BACKGROUND"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a4b7cc1cadcc5662ef2a9846eee81e525"><param name="Name" value="background[]"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a390c61a0ade82de6bdd5144cfa20edc2"><param name="Name" value="background[backgroundcolors]"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a90ba5032211a02dd3b3577d1002f0fe4"><param name="Name" value="backgroundcolors"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a90ba5032211a02dd3b3577d1002f0fe4"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a90ba5032211a02dd3b3577d1002f0fe4"><param name="Name" value="backgroundcolors"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a90ba5032211a02dd3b3577d1002f0fe4"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ae401b875b7bfb059b75b56726ed3d2c8"><param name="Name" value="backgroundpossibleColors[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ae401b875b7bfb059b75b56726ed3d2c8"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ae401b875b7bfb059b75b56726ed3d2c8"><param name="Name" value="backgroundpossibleColors[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ae401b875b7bfb059b75b56726ed3d2c8"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1ea47e8fb8d56ffc617fabdc1e3fdb69"><param name="Name" value="BEIGE"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aeafa6f178b5b47e84fd21c37fc12b364"><param name="Name" value="border[]"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a9fc61700794aa74c7ebc634cbe381195"><param name="Name" value="border[bordercolors]"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aed64c1493a8b74f14aeb20eb7ea5d6fa"><param name="Name" value="bordercolors"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aed64c1493a8b74f14aeb20eb7ea5d6fa"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aed64c1493a8b74f14aeb20eb7ea5d6fa"><param name="Name" value="bordercolors"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aed64c1493a8b74f14aeb20eb7ea5d6fa"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a9716fbf0ab5c1368148f2bf0140a611a"><param name="Name" value="borderpossibleColors[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a9716fbf0ab5c1368148f2bf0140a611a"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a9716fbf0ab5c1368148f2bf0140a611a"><param name="Name" value="borderpossibleColors[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a9716fbf0ab5c1368148f2bf0140a611a"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a46b1a1705dc1e975e82422901b8ecdf2"><param name="Name" value="BRIGHTNESS"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a12bf309daf47e76d2acd0aaa5d462475"><param name="Name" value="BRIGHTNESS_PIN"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a3c6418394574dcdd1b88580cb85be4e6"><param name="Name" value="brightnessLevel"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a3c6418394574dcdd1b88580cb85be4e6"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a3c6418394574dcdd1b88580cb85be4e6"><param name="Name" value="brightnessLevel"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a3c6418394574dcdd1b88580cb85be4e6"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8cpp.html"><param name="Name" value="button.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8cpp.html#a8fe924418a98a66f1f468f74e24868fd"><param name="Name" value="doublePressHandler(BfButton *btn, BfButton::press_pattern_t pattern)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8cpp.html"><param name="Name" value="button.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8cpp.html#aac93b2619e700e5c61bb53a8d9a62f0e"><param name="Name" value="longPressHandler(BfButton *btn, BfButton::press_pattern_t pattern)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8cpp.html"><param name="Name" value="button.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8cpp.html#a0d9c04fe4434f768c15608b82479f830"><param name="Name" value="singlePressHandler(BfButton *btn, BfButton::press_pattern_t pattern)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8h.html"><param name="Name" value="button.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8h.html#a8fe924418a98a66f1f468f74e24868fd"><param name="Name" value="doublePressHandler(BfButton *btn, BfButton::press_pattern_t pattern)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8h.html"><param name="Name" value="button.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8h.html#aac93b2619e700e5c61bb53a8d9a62f0e"><param name="Name" value="longPressHandler(BfButton *btn, BfButton::press_pattern_t pattern)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8h.html"><param name="Name" value="button.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8h.html#a0d9c04fe4434f768c15608b82479f830"><param name="Name" value="singlePressHandler(BfButton *btn, BfButton::press_pattern_t pattern)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a2ef9a98c01d810b5c65529f7a96db72c"><param name="Name" value="centerX"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a2ef9a98c01d810b5c65529f7a96db72c"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a2ef9a98c01d810b5c65529f7a96db72c"><param name="Name" value="centerX"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a2ef9a98c01d810b5c65529f7a96db72c"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a02c5292ed607e9932ef7083772bd1df8"><param name="Name" value="centerY"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a02c5292ed607e9932ef7083772bd1df8"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a02c5292ed607e9932ef7083772bd1df8"><param name="Name" value="centerY"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a02c5292ed607e9932ef7083772bd1df8"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aa17761af794bd8e8349cc093af8ff7c8"><param name="Name" value="CLK"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aa17761af794bd8e8349cc093af8ff7c8"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa17761af794bd8e8349cc093af8ff7c8"><param name="Name" value="CLK"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa17761af794bd8e8349cc093af8ff7c8"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a7a5ecb5193db2d5f258ae1abd33714b9"><param name="Name" value="COLOR"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#afb42b84f93ca053af75b6abce73dc6e4"><param name="Name" value="colormenu[]"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#af40231b083b4009e15d816ce3c181f8b"><param name="Name" value="colormenu[colormenuItems]"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a431bcfedd78dea3c96d64d119f978805"><param name="Name" value="colormenuArray[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a431bcfedd78dea3c96d64d119f978805"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a431bcfedd78dea3c96d64d119f978805"><param name="Name" value="colormenuArray[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a431bcfedd78dea3c96d64d119f978805"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a9617fb90d3b9c9ed3f0c31e0b113bba4"><param name="Name" value="colormenuItems"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a9617fb90d3b9c9ed3f0c31e0b113bba4"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a9617fb90d3b9c9ed3f0c31e0b113bba4"><param name="Name" value="colormenuItems"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a9617fb90d3b9c9ed3f0c31e0b113bba4"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a617a47c70795bcff659815ad0efd2266"><param name="Name" value="counter"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a617a47c70795bcff659815ad0efd2266"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a617a47c70795bcff659815ad0efd2266"><param name="Name" value="counter"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a617a47c70795bcff659815ad0efd2266"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a769032f0823a4b3622685d9450817cea"><param name="Name" value="currentMenu"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a769032f0823a4b3622685d9450817cea"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a769032f0823a4b3622685d9450817cea"><param name="Name" value="currentMenu"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a769032f0823a4b3622685d9450817cea"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ab17de36a1b487f9ad9ef7dabd63531ab"><param name="Name" value="DARK_BLUE"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a2ebb0bf1d379e615bda6e25cccf0f08f"><param name="Name" value="DARK_GREEN"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a3aaa01c080fbef329d92db1fcae3e620"><param name="Name" value="DARK_ORANGE"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a53dfd3081ecb5cbde9c66ee0ac81a653"><param name="Name" value="DIR_PIN"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a53dfd3081ecb5cbde9c66ee0ac81a653"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a53dfd3081ecb5cbde9c66ee0ac81a653"><param name="Name" value="DIR_PIN"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a53dfd3081ecb5cbde9c66ee0ac81a653"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8cpp.html#a8fe924418a98a66f1f468f74e24868fd"><param name="Name" value="doublePressHandler(BfButton *btn, BfButton::press_pattern_t pattern)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8cpp.html#a8fe924418a98a66f1f468f74e24868fd"><param name="Name" value="button.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8h.html#a8fe924418a98a66f1f468f74e24868fd"><param name="Name" value="doublePressHandler(BfButton *btn, BfButton::press_pattern_t pattern)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8h.html#a8fe924418a98a66f1f468f74e24868fd"><param name="Name" value="button.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a46042d785a73bd5032401f69d4e20fa2"><param name="Name" value="drawBrightnessBar(int level)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a46042d785a73bd5032401f69d4e20fa2"><param name="Name" value="GUI.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a46042d785a73bd5032401f69d4e20fa2"><param name="Name" value="drawBrightnessBar(int level)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a46042d785a73bd5032401f69d4e20fa2"><param name="Name" value="GUI.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a82f49ee626cd627228e917bd0f346e3b"><param name="Name" value="drawDialMarks()"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a82f49ee626cd627228e917bd0f346e3b"><param name="Name" value="GUI.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a82f49ee626cd627228e917bd0f346e3b"><param name="Name" value="drawDialMarks()"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a82f49ee626cd627228e917bd0f346e3b"><param name="Name" value="GUI.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#aceca082dd9e31cf1120c603929f8b7d6"><param name="Name" value="drawNeedle(int angle, int length, uint32_t color)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#aceca082dd9e31cf1120c603929f8b7d6"><param name="Name" value="GUI.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#aceca082dd9e31cf1120c603929f8b7d6"><param name="Name" value="drawNeedle(int angle, int length, uint32_t color)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#aceca082dd9e31cf1120c603929f8b7d6"><param name="Name" value="GUI.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a085b83e7f92f72a8b9da0b08f45961f0"><param name="Name" value="drawSelectionBar(int16_t y, bool isSelected, int currentIndex, int totalItems)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a085b83e7f92f72a8b9da0b08f45961f0"><param name="Name" value="GUI.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a085b83e7f92f72a8b9da0b08f45961f0"><param name="Name" value="drawSelectionBar(int16_t y, bool isSelected, int currentIndex, int totalItems)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a085b83e7f92f72a8b9da0b08f45961f0"><param name="Name" value="GUI.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#af7aeafada2fc5a4b2b50c8a0bbacb915"><param name="Name" value="DT"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#af7aeafada2fc5a4b2b50c8a0bbacb915"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#af7aeafada2fc5a4b2b50c8a0bbacb915"><param name="Name" value="DT"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#af7aeafada2fc5a4b2b50c8a0bbacb915"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a04748eed6e3d5fdfcf9dfc35350fc30f"><param name="Name" value="dtValue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a04748eed6e3d5fdfcf9dfc35350fc30f"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a04748eed6e3d5fdfcf9dfc35350fc30f"><param name="Name" value="dtValue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a04748eed6e3d5fdfcf9dfc35350fc30f"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a077c86ea52123eb3794884dfc053d890"><param name="Name" value="encoderState"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a077c86ea52123eb3794884dfc053d890"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a077c86ea52123eb3794884dfc053d890"><param name="Name" value="encoderState"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a077c86ea52123eb3794884dfc053d890"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ab62d60c5ad54ec166026d386ec9a9b3a"><param name="Name" value="engineeringMode"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ab62d60c5ad54ec166026d386ec9a9b3a"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ab62d60c5ad54ec166026d386ec9a9b3a"><param name="Name" value="engineeringMode"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ab62d60c5ad54ec166026d386ec9a9b3a"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a349898585eb60ca77175c8a60094808c"><param name="Name" value="ethernetInfo[5]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a349898585eb60ca77175c8a60094808c"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a349898585eb60ca77175c8a60094808c"><param name="Name" value="ethernetInfo[5]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a349898585eb60ca77175c8a60094808c"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1eda6ed1cbdda88b8a989daccc7c0774"><param name="Name" value="fontType[]"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a37229f730a89862e3e1f07c17d0f18a2"><param name="Name" value="fontType[numFonts]"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a119bbace9abbf6d8daffc41eaaa1defb"><param name="Name" value="gatekeeper"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a119bbace9abbf6d8daffc41eaaa1defb"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a119bbace9abbf6d8daffc41eaaa1defb"><param name="Name" value="gatekeeper"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a119bbace9abbf6d8daffc41eaaa1defb"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a56beea51f1faca422c14d3e0322bd80a"><param name="Name" value="aLastState"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a63177970cacb40efba67ce501ea89210"><param name="Name" value="angle"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a12311bb365ac4b3a48bef1d72f432c4f"><param name="Name" value="aState"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a390c61a0ade82de6bdd5144cfa20edc2"><param name="Name" value="background[backgroundcolors]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a90ba5032211a02dd3b3577d1002f0fe4"><param name="Name" value="backgroundcolors"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ae401b875b7bfb059b75b56726ed3d2c8"><param name="Name" value="backgroundpossibleColors[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a9fc61700794aa74c7ebc634cbe381195"><param name="Name" value="border[bordercolors]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aed64c1493a8b74f14aeb20eb7ea5d6fa"><param name="Name" value="bordercolors"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a9716fbf0ab5c1368148f2bf0140a611a"><param name="Name" value="borderpossibleColors[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a3c6418394574dcdd1b88580cb85be4e6"><param name="Name" value="brightnessLevel"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a2ef9a98c01d810b5c65529f7a96db72c"><param name="Name" value="centerX"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a02c5292ed607e9932ef7083772bd1df8"><param name="Name" value="centerY"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aa17761af794bd8e8349cc093af8ff7c8"><param name="Name" value="CLK"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#af40231b083b4009e15d816ce3c181f8b"><param name="Name" value="colormenu[colormenuItems]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a431bcfedd78dea3c96d64d119f978805"><param name="Name" value="colormenuArray[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a9617fb90d3b9c9ed3f0c31e0b113bba4"><param name="Name" value="colormenuItems"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a617a47c70795bcff659815ad0efd2266"><param name="Name" value="counter"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a769032f0823a4b3622685d9450817cea"><param name="Name" value="currentMenu"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a53dfd3081ecb5cbde9c66ee0ac81a653"><param name="Name" value="DIR_PIN"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#af7aeafada2fc5a4b2b50c8a0bbacb915"><param name="Name" value="DT"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a04748eed6e3d5fdfcf9dfc35350fc30f"><param name="Name" value="dtValue"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a077c86ea52123eb3794884dfc053d890"><param name="Name" value="encoderState"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ab62d60c5ad54ec166026d386ec9a9b3a"><param name="Name" value="engineeringMode"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a349898585eb60ca77175c8a60094808c"><param name="Name" value="ethernetInfo[5]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a37229f730a89862e3e1f07c17d0f18a2"><param name="Name" value="fontType[numFonts]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a119bbace9abbf6d8daffc41eaaa1defb"><param name="Name" value="gatekeeper"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aed9b7a4019d30995bd4d557002c5ba5e"><param name="Name" value="images_main[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aada6cde9d87c0a7b7c50cd786c571c07"><param name="Name" value="images_settings[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a663d9f46f7825dc47d24a2686c7fcdc1"><param name="Name" value="images_stepper[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a50b340f5c1c66f547409f1c569df6c24"><param name="Name" value="lastAngle"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ae9eba260d34d82f17daba520dfe95bb1"><param name="Name" value="lastClk"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ad926fc3916a64d6a3980aaa5360c1165"><param name="Name" value="lastDisplayedTime"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#af26f75fe269e2354b07be07d548f1439"><param name="Name" value="LOOP_TICKS"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aea3f7775fecafb66a619eb2dcb0357bd"><param name="Name" value="mac[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ae7b37fab7892f3c0b1bd94c7895e2ecc"><param name="Name" value="maxBrightness"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a77cc627f7d60c4df0bf701373d9a4c2e"><param name="Name" value="menu[menuItems]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a5f8e88cec6297972de98d6751a7d69be"><param name="Name" value="menuIndex"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ad575c5d8ace760e6bd6afb13c641e44d"><param name="Name" value="menuItems"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a4dd8b32b4ad9a7422198238b8ca72424"><param name="Name" value="min_bright_timer"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aa9ab47cb95fe28c44bed59b685c3aaa1"><param name="Name" value="minBrightness"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a508ee9f30b22e38f0a1cfb7093bd1e8b"><param name="Name" value="newClk"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#af99e493d54e3dd51e11ace615bfe1928"><param name="Name" value="numBrightnessLevels"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a2d8219c8d3eb0ebeb69046e2a6677bb4"><param name="Name" value="numFonts"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ac037f68bf86d3712a034faa2d3ac428a"><param name="Name" value="position"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ae67982d9cd69b4c1b5f4b49f2e9de7f0"><param name="Name" value="possibleFont12[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a6888b0770eb27403db501d65681a46ec"><param name="Name" value="possibleFont9[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ac8456eecf8d905cb9371997fc87baa89"><param name="Name" value="previousMenu"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a395279899207ce7f17adf9fdb8ee97ee"><param name="Name" value="radius"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aa9e9b2e282a3494c7ce3d60256a4ea8d"><param name="Name" value="screenOn"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aaf623fe161cdf19ca07d4c1e29b0bd5f"><param name="Name" value="screenUpdateQueue"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a6e73a84066164b6d9f9b4163e32e26e8"><param name="Name" value="selectbarcolors"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a25479c6b6ba2cf5f78957eb2084fff57"><param name="Name" value="selectbarpossibleColors[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a1ccf7c5f8094a76b58c9ede32381734d"><param name="Name" value="selectedBackgroundColor"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a8b66a55359ddeea3e6976e9c60c6bbab"><param name="Name" value="selectedBarColor"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a0820104f144feafedcf789edaff972f2"><param name="Name" value="selectedBorderColor"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a32e21127f5e32593af845236e1dc5a53"><param name="Name" value="selectedTextColor"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ab31fba1d7a121e252a8319258a725c85"><param name="Name" value="selection[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aa36dfd195eb1d6dfa143ece14956b263"><param name="Name" value="selectionbar[selectbarcolors]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a1990422736e314cfb1270ba7927f533f"><param name="Name" value="STEP_PIN"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a20f0069e783e96b951776933f68c119c"><param name="Name" value="submenu[submenuItems]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aeb144c569687c0771ed094e4a15bf04e"><param name="Name" value="submenuItems"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a1772cc8632ea1a6c58ff2beffb777b3f"><param name="Name" value="text[textcolors]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a3da248ec491040450983dd1a8a5478fd"><param name="Name" value="textcolors"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a70f6ceca6e907056c43faa62888509a1"><param name="Name" value="textpossibleColors[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a1ae81caf9234659f5f96a0c9cabe0928"><param name="Name" value="textType12"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a0d6da904e8eebd5078909273e10c3c34"><param name="Name" value="textType9"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ac5d2dc3534f30f704fd7529ad0f89ff1"><param name="Name" value="tft"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html"><param name="Name" value="globals.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a8c3703c5abd33375161673bb6ea9a467"><param name="Name" value="turn_off_timer"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a56beea51f1faca422c14d3e0322bd80a"><param name="Name" value="aLastState"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a63177970cacb40efba67ce501ea89210"><param name="Name" value="angle"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a12311bb365ac4b3a48bef1d72f432c4f"><param name="Name" value="aState"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2aeef9468d1b98bca652a04bf5063fd9d6"><param name="Name" value="AUTO"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2aa44b734476c2f3d073ee7aca08660a0e"><param name="Name" value="BACKGROUND"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a4b7cc1cadcc5662ef2a9846eee81e525"><param name="Name" value="background[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a90ba5032211a02dd3b3577d1002f0fe4"><param name="Name" value="backgroundcolors"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ae401b875b7bfb059b75b56726ed3d2c8"><param name="Name" value="backgroundpossibleColors[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1ea47e8fb8d56ffc617fabdc1e3fdb69"><param name="Name" value="BEIGE"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aeafa6f178b5b47e84fd21c37fc12b364"><param name="Name" value="border[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aed64c1493a8b74f14aeb20eb7ea5d6fa"><param name="Name" value="bordercolors"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a9716fbf0ab5c1368148f2bf0140a611a"><param name="Name" value="borderpossibleColors[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a46b1a1705dc1e975e82422901b8ecdf2"><param name="Name" value="BRIGHTNESS"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a12bf309daf47e76d2acd0aaa5d462475"><param name="Name" value="BRIGHTNESS_PIN"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a3c6418394574dcdd1b88580cb85be4e6"><param name="Name" value="brightnessLevel"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a2ef9a98c01d810b5c65529f7a96db72c"><param name="Name" value="centerX"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a02c5292ed607e9932ef7083772bd1df8"><param name="Name" value="centerY"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa17761af794bd8e8349cc093af8ff7c8"><param name="Name" value="CLK"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a7a5ecb5193db2d5f258ae1abd33714b9"><param name="Name" value="COLOR"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#afb42b84f93ca053af75b6abce73dc6e4"><param name="Name" value="colormenu[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a431bcfedd78dea3c96d64d119f978805"><param name="Name" value="colormenuArray[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a9617fb90d3b9c9ed3f0c31e0b113bba4"><param name="Name" value="colormenuItems"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a617a47c70795bcff659815ad0efd2266"><param name="Name" value="counter"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a769032f0823a4b3622685d9450817cea"><param name="Name" value="currentMenu"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ab17de36a1b487f9ad9ef7dabd63531ab"><param name="Name" value="DARK_BLUE"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a2ebb0bf1d379e615bda6e25cccf0f08f"><param name="Name" value="DARK_GREEN"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a3aaa01c080fbef329d92db1fcae3e620"><param name="Name" value="DARK_ORANGE"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a53dfd3081ecb5cbde9c66ee0ac81a653"><param name="Name" value="DIR_PIN"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#af7aeafada2fc5a4b2b50c8a0bbacb915"><param name="Name" value="DT"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a04748eed6e3d5fdfcf9dfc35350fc30f"><param name="Name" value="dtValue"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a077c86ea52123eb3794884dfc053d890"><param name="Name" value="encoderState"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ab62d60c5ad54ec166026d386ec9a9b3a"><param name="Name" value="engineeringMode"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a349898585eb60ca77175c8a60094808c"><param name="Name" value="ethernetInfo[5]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1eda6ed1cbdda88b8a989daccc7c0774"><param name="Name" value="fontType[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a119bbace9abbf6d8daffc41eaaa1defb"><param name="Name" value="gatekeeper"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aed9b7a4019d30995bd4d557002c5ba5e"><param name="Name" value="images_main[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aada6cde9d87c0a7b7c50cd786c571c07"><param name="Name" value="images_settings[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a663d9f46f7825dc47d24a2686c7fcdc1"><param name="Name" value="images_stepper[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a15d3a258bbbfa24e1f6f0180f90644ee"><param name="Name" value="INITIAL_SCREEN"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a50b340f5c1c66f547409f1c569df6c24"><param name="Name" value="lastAngle"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ae9eba260d34d82f17daba520dfe95bb1"><param name="Name" value="lastClk"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ad926fc3916a64d6a3980aaa5360c1165"><param name="Name" value="lastDisplayedTime"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1746136a69201a3ef1738b390b439c9a"><param name="Name" value="LAVENDER"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a959d1249a76cfbd90fc6d96e2a9744e9"><param name="Name" value="LIGHT_BLUE"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a9663e02e20b5b578e6a31adae265cb88"><param name="Name" value="LIGHT_GRAY"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#af26f75fe269e2354b07be07d548f1439"><param name="Name" value="LOOP_TICKS"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aea3f7775fecafb66a619eb2dcb0357bd"><param name="Name" value="mac[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2ac22743f1fc74de09544ecc9bab74a17b"><param name="Name" value="MAIN_MENU"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a506e8dd29460ea318b68d035f679b01b"><param name="Name" value="MANUAL"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ae7b37fab7892f3c0b1bd94c7895e2ecc"><param name="Name" value="maxBrightness"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa5a68731066a05c489e7789346212233"><param name="Name" value="menu[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a5f8e88cec6297972de98d6751a7d69be"><param name="Name" value="menuIndex"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ad575c5d8ace760e6bd6afb13c641e44d"><param name="Name" value="menuItems"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2"><param name="Name" value="MenuState"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a4dd8b32b4ad9a7422198238b8ca72424"><param name="Name" value="min_bright_timer"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa9ab47cb95fe28c44bed59b685c3aaa1"><param name="Name" value="minBrightness"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a80e510c7200e9e75f39282e6ead4ea02"><param name="Name" value="MINT_GREEN"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a508ee9f30b22e38f0a1cfb7093bd1e8b"><param name="Name" value="newClk"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#af99e493d54e3dd51e11ace615bfe1928"><param name="Name" value="numBrightnessLevels"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a2d8219c8d3eb0ebeb69046e2a6677bb4"><param name="Name" value="numFonts"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a845bfa94c221be4b5a7e163373e6a142"><param name="Name" value="PALE_GRAY"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ad608c49dff024e6ddde34cede35c042a"><param name="Name" value="PALE_PINK"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#abbe885ae219091dc944479d6bac3c5a8"><param name="Name" value="PALE_YELLOW"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ac037f68bf86d3712a034faa2d3ac428a"><param name="Name" value="position"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ae67982d9cd69b4c1b5f4b49f2e9de7f0"><param name="Name" value="possibleFont12[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a6888b0770eb27403db501d65681a46ec"><param name="Name" value="possibleFont9[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ac8456eecf8d905cb9371997fc87baa89"><param name="Name" value="previousMenu"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a395279899207ce7f17adf9fdb8ee97ee"><param name="Name" value="radius"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa9e9b2e282a3494c7ce3d60256a4ea8d"><param name="Name" value="screenOn"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1b06255088be0619cf099d600ef17ee2"><param name="Name" value="ScreenUpdateCommand"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aaf623fe161cdf19ca07d4c1e29b0bd5f"><param name="Name" value="screenUpdateQueue"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a6e73a84066164b6d9f9b4163e32e26e8"><param name="Name" value="selectbarcolors"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a25479c6b6ba2cf5f78957eb2084fff57"><param name="Name" value="selectbarpossibleColors[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1ccf7c5f8094a76b58c9ede32381734d"><param name="Name" value="selectedBackgroundColor"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a8b66a55359ddeea3e6976e9c60c6bbab"><param name="Name" value="selectedBarColor"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a0820104f144feafedcf789edaff972f2"><param name="Name" value="selectedBorderColor"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a32e21127f5e32593af845236e1dc5a53"><param name="Name" value="selectedTextColor"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ab31fba1d7a121e252a8319258a725c85"><param name="Name" value="selection[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2af9a60b6f3549778932afee28db904f30"><param name="Name" value="SELECTION_BAR"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2aaac8b72a410fb17e620a6884d1ad6227"><param name="Name" value="SELECTION_BORDER"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ac4879508a2e86a69828bd1cf95622753"><param name="Name" value="selectionbar[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a65d59f75bc58f75380983837537920e2"><param name="Name" value="SERVIDOR_TCP"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2ac678338caea29d77d56be2ea56325610"><param name="Name" value="SETTINGS"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a0fec447e4a91ea353278a081496bba14"><param name="Name" value="SKY_BLUE"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1990422736e314cfb1270ba7927f533f"><param name="Name" value="STEP_PIN"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a8fc89282c6047847059874e30568fd3f"><param name="Name" value="STEPPER_MOTOR"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#af7f6b9e37b99856ba9c4df355aba1830"><param name="Name" value="submenu[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aeb144c569687c0771ed094e4a15bf04e"><param name="Name" value="submenuItems"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a9a4a47c1606e295076055a9cc4373197"><param name="Name" value="TEXT"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a245e72ea325d44b40240e654a44470cc"><param name="Name" value="text[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a3210301d23296d5cf181153c8b435a79"><param name="Name" value="TEXT_TYPE"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a3da248ec491040450983dd1a8a5478fd"><param name="Name" value="textcolors"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a70f6ceca6e907056c43faa62888509a1"><param name="Name" value="textpossibleColors[]"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1ae81caf9234659f5f96a0c9cabe0928"><param name="Name" value="textType12"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a0d6da904e8eebd5078909273e10c3c34"><param name="Name" value="textType9"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ac5d2dc3534f30f704fd7529ad0f89ff1"><param name="Name" value="tft"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a8c3703c5abd33375161673bb6ea9a467"><param name="Name" value="turn_off_timer"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1b06255088be0619cf099d600ef17ee2a781bff40673d0bba42ddf8d411fd1580"><param name="Name" value="UPDATE_CONFIG_ASPECT"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1b06255088be0619cf099d600ef17ee2a73120ccce2d1fc73da99abb7ecfa538f"><param name="Name" value="UPDATE_CONFIG_BACKGROUNDCOLOR"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1b06255088be0619cf099d600ef17ee2ab7baa998fb2f70d59da417ac5aca67ff"><param name="Name" value="UPDATE_CONFIG_BRIGHTNESS"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html"><param name="Name" value="globals.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1b06255088be0619cf099d600ef17ee2ac34814c1f26a778ac75bfc27ccc910fb"><param name="Name" value="UPDATE_MAIN_MENU"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html"><param name="Name" value="GUI.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a46042d785a73bd5032401f69d4e20fa2"><param name="Name" value="drawBrightnessBar(int level)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html"><param name="Name" value="GUI.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a82f49ee626cd627228e917bd0f346e3b"><param name="Name" value="drawDialMarks()"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html"><param name="Name" value="GUI.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#aceca082dd9e31cf1120c603929f8b7d6"><param name="Name" value="drawNeedle(int angle, int length, uint32_t color)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html"><param name="Name" value="GUI.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a085b83e7f92f72a8b9da0b08f45961f0"><param name="Name" value="drawSelectionBar(int16_t y, bool isSelected, int currentIndex, int totalItems)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html"><param name="Name" value="GUI.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a8771a313ed8db0ac1d4ce6524940ab4f"><param name="Name" value="printDateTime(const RtcDateTime &amp;dt)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html"><param name="Name" value="GUI.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a4b400f1f91381fc146bbc345743ded4f"><param name="Name" value="setBrightness(int level)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html"><param name="Name" value="GUI.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a48bde8da2b12eee5a7b2a39d6f64c38b"><param name="Name" value="updateDial()"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html"><param name="Name" value="GUI.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a46042d785a73bd5032401f69d4e20fa2"><param name="Name" value="drawBrightnessBar(int level)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html"><param name="Name" value="GUI.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a82f49ee626cd627228e917bd0f346e3b"><param name="Name" value="drawDialMarks()"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html"><param name="Name" value="GUI.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#aceca082dd9e31cf1120c603929f8b7d6"><param name="Name" value="drawNeedle(int angle, int length, uint32_t color)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html"><param name="Name" value="GUI.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a085b83e7f92f72a8b9da0b08f45961f0"><param name="Name" value="drawSelectionBar(int16_t y, bool isSelected, int currentIndex, int totalItems)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html"><param name="Name" value="GUI.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a8771a313ed8db0ac1d4ce6524940ab4f"><param name="Name" value="printDateTime(const RtcDateTime &amp;dt)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html"><param name="Name" value="GUI.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a4b400f1f91381fc146bbc345743ded4f"><param name="Name" value="setBrightness(int level)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html"><param name="Name" value="GUI.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a48bde8da2b12eee5a7b2a39d6f64c38b"><param name="Name" value="updateDial()"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aed9b7a4019d30995bd4d557002c5ba5e"><param name="Name" value="images_main[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aed9b7a4019d30995bd4d557002c5ba5e"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aed9b7a4019d30995bd4d557002c5ba5e"><param name="Name" value="images_main[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aed9b7a4019d30995bd4d557002c5ba5e"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aada6cde9d87c0a7b7c50cd786c571c07"><param name="Name" value="images_settings[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aada6cde9d87c0a7b7c50cd786c571c07"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aada6cde9d87c0a7b7c50cd786c571c07"><param name="Name" value="images_settings[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aada6cde9d87c0a7b7c50cd786c571c07"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a663d9f46f7825dc47d24a2686c7fcdc1"><param name="Name" value="images_stepper[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a663d9f46f7825dc47d24a2686c7fcdc1"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a663d9f46f7825dc47d24a2686c7fcdc1"><param name="Name" value="images_stepper[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a663d9f46f7825dc47d24a2686c7fcdc1"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a15d3a258bbbfa24e1f6f0180f90644ee"><param name="Name" value="INITIAL_SCREEN"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a50b340f5c1c66f547409f1c569df6c24"><param name="Name" value="lastAngle"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a50b340f5c1c66f547409f1c569df6c24"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a50b340f5c1c66f547409f1c569df6c24"><param name="Name" value="lastAngle"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a50b340f5c1c66f547409f1c569df6c24"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ae9eba260d34d82f17daba520dfe95bb1"><param name="Name" value="lastClk"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ae9eba260d34d82f17daba520dfe95bb1"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ae9eba260d34d82f17daba520dfe95bb1"><param name="Name" value="lastClk"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ae9eba260d34d82f17daba520dfe95bb1"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ad926fc3916a64d6a3980aaa5360c1165"><param name="Name" value="lastDisplayedTime"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ad926fc3916a64d6a3980aaa5360c1165"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ad926fc3916a64d6a3980aaa5360c1165"><param name="Name" value="lastDisplayedTime"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ad926fc3916a64d6a3980aaa5360c1165"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1746136a69201a3ef1738b390b439c9a"><param name="Name" value="LAVENDER"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a959d1249a76cfbd90fc6d96e2a9744e9"><param name="Name" value="LIGHT_BLUE"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a9663e02e20b5b578e6a31adae265cb88"><param name="Name" value="LIGHT_GRAY"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8cpp.html#aac93b2619e700e5c61bb53a8d9a62f0e"><param name="Name" value="longPressHandler(BfButton *btn, BfButton::press_pattern_t pattern)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8cpp.html#aac93b2619e700e5c61bb53a8d9a62f0e"><param name="Name" value="button.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8h.html#aac93b2619e700e5c61bb53a8d9a62f0e"><param name="Name" value="longPressHandler(BfButton *btn, BfButton::press_pattern_t pattern)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8h.html#aac93b2619e700e5c61bb53a8d9a62f0e"><param name="Name" value="button.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#af26f75fe269e2354b07be07d548f1439"><param name="Name" value="LOOP_TICKS"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#af26f75fe269e2354b07be07d548f1439"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#af26f75fe269e2354b07be07d548f1439"><param name="Name" value="LOOP_TICKS"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#af26f75fe269e2354b07be07d548f1439"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aea3f7775fecafb66a619eb2dcb0357bd"><param name="Name" value="mac[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aea3f7775fecafb66a619eb2dcb0357bd"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aea3f7775fecafb66a619eb2dcb0357bd"><param name="Name" value="mac[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aea3f7775fecafb66a619eb2dcb0357bd"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2ac22743f1fc74de09544ecc9bab74a17b"><param name="Name" value="MAIN_MENU"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a506e8dd29460ea318b68d035f679b01b"><param name="Name" value="MANUAL"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ae7b37fab7892f3c0b1bd94c7895e2ecc"><param name="Name" value="maxBrightness"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ae7b37fab7892f3c0b1bd94c7895e2ecc"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ae7b37fab7892f3c0b1bd94c7895e2ecc"><param name="Name" value="maxBrightness"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ae7b37fab7892f3c0b1bd94c7895e2ecc"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa5a68731066a05c489e7789346212233"><param name="Name" value="menu[]"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a77cc627f7d60c4df0bf701373d9a4c2e"><param name="Name" value="menu[menuItems]"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a5f8e88cec6297972de98d6751a7d69be"><param name="Name" value="menuIndex"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a5f8e88cec6297972de98d6751a7d69be"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a5f8e88cec6297972de98d6751a7d69be"><param name="Name" value="menuIndex"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a5f8e88cec6297972de98d6751a7d69be"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ad575c5d8ace760e6bd6afb13c641e44d"><param name="Name" value="menuItems"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ad575c5d8ace760e6bd6afb13c641e44d"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ad575c5d8ace760e6bd6afb13c641e44d"><param name="Name" value="menuItems"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ad575c5d8ace760e6bd6afb13c641e44d"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2"><param name="Name" value="MenuState"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a4dd8b32b4ad9a7422198238b8ca72424"><param name="Name" value="min_bright_timer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a4dd8b32b4ad9a7422198238b8ca72424"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a4dd8b32b4ad9a7422198238b8ca72424"><param name="Name" value="min_bright_timer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a4dd8b32b4ad9a7422198238b8ca72424"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aa9ab47cb95fe28c44bed59b685c3aaa1"><param name="Name" value="minBrightness"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aa9ab47cb95fe28c44bed59b685c3aaa1"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa9ab47cb95fe28c44bed59b685c3aaa1"><param name="Name" value="minBrightness"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa9ab47cb95fe28c44bed59b685c3aaa1"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a80e510c7200e9e75f39282e6ead4ea02"><param name="Name" value="MINT_GREEN"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="motor_8cpp.html#a1dd4fd9f6e2c0773c937feb9f381bcd5"><param name="Name" value="motor.cpp"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="motor_8h.html#a1dd4fd9f6e2c0773c937feb9f381bcd5"><param name="Name" value="motor.h"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a65a62f2829f1c3ae1f8562b0648ccaa4"><param name="Name" value="motorTask(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a65a62f2829f1c3ae1f8562b0648ccaa4"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a65a62f2829f1c3ae1f8562b0648ccaa4"><param name="Name" value="motorTask(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a65a62f2829f1c3ae1f8562b0648ccaa4"><param name="Name" value="projectTasks.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="motor_8cpp.html#a1dd4fd9f6e2c0773c937feb9f381bcd5"><param name="Name" value="moveMotor(int steps)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="motor_8cpp.html#a1dd4fd9f6e2c0773c937feb9f381bcd5"><param name="Name" value="motor.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="motor_8h.html#a1dd4fd9f6e2c0773c937feb9f381bcd5"><param name="Name" value="moveMotor(int steps)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="motor_8h.html#a1dd4fd9f6e2c0773c937feb9f381bcd5"><param name="Name" value="motor.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a508ee9f30b22e38f0a1cfb7093bd1e8b"><param name="Name" value="newClk"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a508ee9f30b22e38f0a1cfb7093bd1e8b"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a508ee9f30b22e38f0a1cfb7093bd1e8b"><param name="Name" value="newClk"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a508ee9f30b22e38f0a1cfb7093bd1e8b"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#af99e493d54e3dd51e11ace615bfe1928"><param name="Name" value="numBrightnessLevels"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#af99e493d54e3dd51e11ace615bfe1928"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#af99e493d54e3dd51e11ace615bfe1928"><param name="Name" value="numBrightnessLevels"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#af99e493d54e3dd51e11ace615bfe1928"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a2d8219c8d3eb0ebeb69046e2a6677bb4"><param name="Name" value="numFonts"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a2d8219c8d3eb0ebeb69046e2a6677bb4"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a2d8219c8d3eb0ebeb69046e2a6677bb4"><param name="Name" value="numFonts"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a2d8219c8d3eb0ebeb69046e2a6677bb4"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a845bfa94c221be4b5a7e163373e6a142"><param name="Name" value="PALE_GRAY"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ad608c49dff024e6ddde34cede35c042a"><param name="Name" value="PALE_PINK"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#abbe885ae219091dc944479d6bac3c5a8"><param name="Name" value="PALE_YELLOW"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ac037f68bf86d3712a034faa2d3ac428a"><param name="Name" value="position"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ac037f68bf86d3712a034faa2d3ac428a"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ac037f68bf86d3712a034faa2d3ac428a"><param name="Name" value="position"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ac037f68bf86d3712a034faa2d3ac428a"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ae67982d9cd69b4c1b5f4b49f2e9de7f0"><param name="Name" value="possibleFont12[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ae67982d9cd69b4c1b5f4b49f2e9de7f0"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ae67982d9cd69b4c1b5f4b49f2e9de7f0"><param name="Name" value="possibleFont12[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ae67982d9cd69b4c1b5f4b49f2e9de7f0"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a6888b0770eb27403db501d65681a46ec"><param name="Name" value="possibleFont9[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a6888b0770eb27403db501d65681a46ec"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a6888b0770eb27403db501d65681a46ec"><param name="Name" value="possibleFont9[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a6888b0770eb27403db501d65681a46ec"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ac8456eecf8d905cb9371997fc87baa89"><param name="Name" value="previousMenu"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ac8456eecf8d905cb9371997fc87baa89"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ac8456eecf8d905cb9371997fc87baa89"><param name="Name" value="previousMenu"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ac8456eecf8d905cb9371997fc87baa89"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a8771a313ed8db0ac1d4ce6524940ab4f"><param name="Name" value="printDateTime(const RtcDateTime &amp;dt)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a8771a313ed8db0ac1d4ce6524940ab4f"><param name="Name" value="GUI.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a8771a313ed8db0ac1d4ce6524940ab4f"><param name="Name" value="printDateTime(const RtcDateTime &amp;dt)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a8771a313ed8db0ac1d4ce6524940ab4f"><param name="Name" value="GUI.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a65a62f2829f1c3ae1f8562b0648ccaa4"><param name="Name" value="motorTask(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#afce3c225e8e1c47b44f594ef20806ed9"><param name="Name" value="rotarymotorTask(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a247838970da8dc68d145ceaca3eadeca"><param name="Name" value="taskButtonPress(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a1c18bb47e34f815f3704982968624db3"><param name="Name" value="taskEncoder(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a56ef46894910bd6b5719ab787a9d3e04"><param name="Name" value="taskEthernet(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a04c00ef3a0228a3a585bd5234272306d"><param name="Name" value="taskScreenTimeout(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#ad27b1f3cd48fd0d4c4e001ce936655ed"><param name="Name" value="taskShowTime(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a842d434c1a5974229f29449eccc0c6b9"><param name="Name" value="taskStartScreen(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a95b4196d7cc3c3c908c70ec40498fd76"><param name="Name" value="taskUpdateScreen(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html"><param name="Name" value="projectTasks.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a65a62f2829f1c3ae1f8562b0648ccaa4"><param name="Name" value="motorTask(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html"><param name="Name" value="projectTasks.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#afce3c225e8e1c47b44f594ef20806ed9"><param name="Name" value="rotarymotorTask(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html"><param name="Name" value="projectTasks.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a247838970da8dc68d145ceaca3eadeca"><param name="Name" value="taskButtonPress(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html"><param name="Name" value="projectTasks.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a1c18bb47e34f815f3704982968624db3"><param name="Name" value="taskEncoder(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html"><param name="Name" value="projectTasks.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a56ef46894910bd6b5719ab787a9d3e04"><param name="Name" value="taskEthernet(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html"><param name="Name" value="projectTasks.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a04c00ef3a0228a3a585bd5234272306d"><param name="Name" value="taskScreenTimeout(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html"><param name="Name" value="projectTasks.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#ad27b1f3cd48fd0d4c4e001ce936655ed"><param name="Name" value="taskShowTime(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html"><param name="Name" value="projectTasks.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a842d434c1a5974229f29449eccc0c6b9"><param name="Name" value="taskStartScreen(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html"><param name="Name" value="projectTasks.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a95b4196d7cc3c3c908c70ec40498fd76"><param name="Name" value="taskUpdateScreen(void *pvParameters)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a395279899207ce7f17adf9fdb8ee97ee"><param name="Name" value="radius"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a395279899207ce7f17adf9fdb8ee97ee"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a395279899207ce7f17adf9fdb8ee97ee"><param name="Name" value="radius"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a395279899207ce7f17adf9fdb8ee97ee"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#afce3c225e8e1c47b44f594ef20806ed9"><param name="Name" value="rotarymotorTask(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#afce3c225e8e1c47b44f594ef20806ed9"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#afce3c225e8e1c47b44f594ef20806ed9"><param name="Name" value="rotarymotorTask(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#afce3c225e8e1c47b44f594ef20806ed9"><param name="Name" value="projectTasks.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aa9e9b2e282a3494c7ce3d60256a4ea8d"><param name="Name" value="screenOn"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aa9e9b2e282a3494c7ce3d60256a4ea8d"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa9e9b2e282a3494c7ce3d60256a4ea8d"><param name="Name" value="screenOn"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa9e9b2e282a3494c7ce3d60256a4ea8d"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1b06255088be0619cf099d600ef17ee2"><param name="Name" value="ScreenUpdateCommand"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aaf623fe161cdf19ca07d4c1e29b0bd5f"><param name="Name" value="screenUpdateQueue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aaf623fe161cdf19ca07d4c1e29b0bd5f"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aaf623fe161cdf19ca07d4c1e29b0bd5f"><param name="Name" value="screenUpdateQueue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aaf623fe161cdf19ca07d4c1e29b0bd5f"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a6e73a84066164b6d9f9b4163e32e26e8"><param name="Name" value="selectbarcolors"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a6e73a84066164b6d9f9b4163e32e26e8"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a6e73a84066164b6d9f9b4163e32e26e8"><param name="Name" value="selectbarcolors"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a6e73a84066164b6d9f9b4163e32e26e8"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a25479c6b6ba2cf5f78957eb2084fff57"><param name="Name" value="selectbarpossibleColors[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a25479c6b6ba2cf5f78957eb2084fff57"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a25479c6b6ba2cf5f78957eb2084fff57"><param name="Name" value="selectbarpossibleColors[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a25479c6b6ba2cf5f78957eb2084fff57"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a1ccf7c5f8094a76b58c9ede32381734d"><param name="Name" value="selectedBackgroundColor"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a1ccf7c5f8094a76b58c9ede32381734d"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1ccf7c5f8094a76b58c9ede32381734d"><param name="Name" value="selectedBackgroundColor"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1ccf7c5f8094a76b58c9ede32381734d"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a8b66a55359ddeea3e6976e9c60c6bbab"><param name="Name" value="selectedBarColor"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a8b66a55359ddeea3e6976e9c60c6bbab"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a8b66a55359ddeea3e6976e9c60c6bbab"><param name="Name" value="selectedBarColor"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a8b66a55359ddeea3e6976e9c60c6bbab"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a0820104f144feafedcf789edaff972f2"><param name="Name" value="selectedBorderColor"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a0820104f144feafedcf789edaff972f2"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a0820104f144feafedcf789edaff972f2"><param name="Name" value="selectedBorderColor"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a0820104f144feafedcf789edaff972f2"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a32e21127f5e32593af845236e1dc5a53"><param name="Name" value="selectedTextColor"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a32e21127f5e32593af845236e1dc5a53"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a32e21127f5e32593af845236e1dc5a53"><param name="Name" value="selectedTextColor"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a32e21127f5e32593af845236e1dc5a53"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ab31fba1d7a121e252a8319258a725c85"><param name="Name" value="selection[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ab31fba1d7a121e252a8319258a725c85"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ab31fba1d7a121e252a8319258a725c85"><param name="Name" value="selection[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ab31fba1d7a121e252a8319258a725c85"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2af9a60b6f3549778932afee28db904f30"><param name="Name" value="SELECTION_BAR"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2aaac8b72a410fb17e620a6884d1ad6227"><param name="Name" value="SELECTION_BORDER"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ac4879508a2e86a69828bd1cf95622753"><param name="Name" value="selectionbar[]"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aa36dfd195eb1d6dfa143ece14956b263"><param name="Name" value="selectionbar[selectbarcolors]"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a65d59f75bc58f75380983837537920e2"><param name="Name" value="SERVIDOR_TCP"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a4b400f1f91381fc146bbc345743ded4f"><param name="Name" value="setBrightness(int level)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a4b400f1f91381fc146bbc345743ded4f"><param name="Name" value="GUI.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a4b400f1f91381fc146bbc345743ded4f"><param name="Name" value="setBrightness(int level)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a4b400f1f91381fc146bbc345743ded4f"><param name="Name" value="GUI.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2ac678338caea29d77d56be2ea56325610"><param name="Name" value="SETTINGS"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="setup_8h.html#a4fc01d736fe50cf5b977f755b675f11d"><param name="Name" value="setup()"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="setup_8h.html#a4fc01d736fe50cf5b977f755b675f11d"><param name="Name" value="setup.h"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8cpp.html#a0d9c04fe4434f768c15608b82479f830"><param name="Name" value="singlePressHandler(BfButton *btn, BfButton::press_pattern_t pattern)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8cpp.html#a0d9c04fe4434f768c15608b82479f830"><param name="Name" value="button.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8h.html#a0d9c04fe4434f768c15608b82479f830"><param name="Name" value="singlePressHandler(BfButton *btn, BfButton::press_pattern_t pattern)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="button_8h.html#a0d9c04fe4434f768c15608b82479f830"><param name="Name" value="button.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a0fec447e4a91ea353278a081496bba14"><param name="Name" value="SKY_BLUE"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a1990422736e314cfb1270ba7927f533f"><param name="Name" value="STEP_PIN"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a1990422736e314cfb1270ba7927f533f"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1990422736e314cfb1270ba7927f533f"><param name="Name" value="STEP_PIN"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1990422736e314cfb1270ba7927f533f"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a8fc89282c6047847059874e30568fd3f"><param name="Name" value="STEPPER_MOTOR"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#af7f6b9e37b99856ba9c4df355aba1830"><param name="Name" value="submenu[]"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a20f0069e783e96b951776933f68c119c"><param name="Name" value="submenu[submenuItems]"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aeb144c569687c0771ed094e4a15bf04e"><param name="Name" value="submenuItems"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#aeb144c569687c0771ed094e4a15bf04e"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aeb144c569687c0771ed094e4a15bf04e"><param name="Name" value="submenuItems"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aeb144c569687c0771ed094e4a15bf04e"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a247838970da8dc68d145ceaca3eadeca"><param name="Name" value="taskButtonPress(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a247838970da8dc68d145ceaca3eadeca"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a247838970da8dc68d145ceaca3eadeca"><param name="Name" value="taskButtonPress(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a247838970da8dc68d145ceaca3eadeca"><param name="Name" value="projectTasks.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a1c18bb47e34f815f3704982968624db3"><param name="Name" value="taskEncoder(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a1c18bb47e34f815f3704982968624db3"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a1c18bb47e34f815f3704982968624db3"><param name="Name" value="taskEncoder(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a1c18bb47e34f815f3704982968624db3"><param name="Name" value="projectTasks.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a56ef46894910bd6b5719ab787a9d3e04"><param name="Name" value="taskEthernet(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a56ef46894910bd6b5719ab787a9d3e04"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a56ef46894910bd6b5719ab787a9d3e04"><param name="Name" value="taskEthernet(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a56ef46894910bd6b5719ab787a9d3e04"><param name="Name" value="projectTasks.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a04c00ef3a0228a3a585bd5234272306d"><param name="Name" value="taskScreenTimeout(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a04c00ef3a0228a3a585bd5234272306d"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a04c00ef3a0228a3a585bd5234272306d"><param name="Name" value="taskScreenTimeout(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a04c00ef3a0228a3a585bd5234272306d"><param name="Name" value="projectTasks.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#ad27b1f3cd48fd0d4c4e001ce936655ed"><param name="Name" value="taskShowTime(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#ad27b1f3cd48fd0d4c4e001ce936655ed"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#ad27b1f3cd48fd0d4c4e001ce936655ed"><param name="Name" value="taskShowTime(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#ad27b1f3cd48fd0d4c4e001ce936655ed"><param name="Name" value="projectTasks.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a842d434c1a5974229f29449eccc0c6b9"><param name="Name" value="taskStartScreen(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a842d434c1a5974229f29449eccc0c6b9"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a842d434c1a5974229f29449eccc0c6b9"><param name="Name" value="taskStartScreen(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a842d434c1a5974229f29449eccc0c6b9"><param name="Name" value="projectTasks.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a95b4196d7cc3c3c908c70ec40498fd76"><param name="Name" value="taskUpdateScreen(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8cpp.html#a95b4196d7cc3c3c908c70ec40498fd76"><param name="Name" value="projectTasks.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a95b4196d7cc3c3c908c70ec40498fd76"><param name="Name" value="taskUpdateScreen(void *pvParameters)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="project_tasks_8h.html#a95b4196d7cc3c3c908c70ec40498fd76"><param name="Name" value="projectTasks.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a9a4a47c1606e295076055a9cc4373197"><param name="Name" value="TEXT"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a245e72ea325d44b40240e654a44470cc"><param name="Name" value="text[]"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a1772cc8632ea1a6c58ff2beffb777b3f"><param name="Name" value="text[textcolors]"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#aa3041ae4242c0dd57a126d17505443b2a3210301d23296d5cf181153c8b435a79"><param name="Name" value="TEXT_TYPE"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a3da248ec491040450983dd1a8a5478fd"><param name="Name" value="textcolors"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a3da248ec491040450983dd1a8a5478fd"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a3da248ec491040450983dd1a8a5478fd"><param name="Name" value="textcolors"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a3da248ec491040450983dd1a8a5478fd"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a70f6ceca6e907056c43faa62888509a1"><param name="Name" value="textpossibleColors[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a70f6ceca6e907056c43faa62888509a1"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a70f6ceca6e907056c43faa62888509a1"><param name="Name" value="textpossibleColors[]"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a70f6ceca6e907056c43faa62888509a1"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a1ae81caf9234659f5f96a0c9cabe0928"><param name="Name" value="textType12"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a1ae81caf9234659f5f96a0c9cabe0928"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1ae81caf9234659f5f96a0c9cabe0928"><param name="Name" value="textType12"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1ae81caf9234659f5f96a0c9cabe0928"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a0d6da904e8eebd5078909273e10c3c34"><param name="Name" value="textType9"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a0d6da904e8eebd5078909273e10c3c34"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a0d6da904e8eebd5078909273e10c3c34"><param name="Name" value="textType9"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a0d6da904e8eebd5078909273e10c3c34"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ac5d2dc3534f30f704fd7529ad0f89ff1"><param name="Name" value="tft"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#ac5d2dc3534f30f704fd7529ad0f89ff1"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ac5d2dc3534f30f704fd7529ad0f89ff1"><param name="Name" value="tft"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#ac5d2dc3534f30f704fd7529ad0f89ff1"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a8c3703c5abd33375161673bb6ea9a467"><param name="Name" value="turn_off_timer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8cpp.html#a8c3703c5abd33375161673bb6ea9a467"><param name="Name" value="globals.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a8c3703c5abd33375161673bb6ea9a467"><param name="Name" value="turn_off_timer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a8c3703c5abd33375161673bb6ea9a467"><param name="Name" value="globals.h"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1b06255088be0619cf099d600ef17ee2a781bff40673d0bba42ddf8d411fd1580"><param name="Name" value="UPDATE_CONFIG_ASPECT"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1b06255088be0619cf099d600ef17ee2a73120ccce2d1fc73da99abb7ecfa538f"><param name="Name" value="UPDATE_CONFIG_BACKGROUNDCOLOR"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1b06255088be0619cf099d600ef17ee2ab7baa998fb2f70d59da417ac5aca67ff"><param name="Name" value="UPDATE_CONFIG_BRIGHTNESS"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="globals_8h.html#a1b06255088be0619cf099d600ef17ee2ac34814c1f26a778ac75bfc27ccc910fb"><param name="Name" value="UPDATE_MAIN_MENU"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a48bde8da2b12eee5a7b2a39d6f64c38b"><param name="Name" value="updateDial()"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8cpp.html#a48bde8da2b12eee5a7b2a39d6f64c38b"><param name="Name" value="GUI.cpp"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a48bde8da2b12eee5a7b2a39d6f64c38b"><param name="Name" value="updateDial()"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_g_u_i_8h.html#a48bde8da2b12eee5a7b2a39d6f64c38b"><param name="Name" value="GUI.h"></OBJECT>
+  </UL>
+</UL>
+</BODY>
+</HTML>

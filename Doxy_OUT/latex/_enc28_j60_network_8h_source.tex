@@ -1,0 +1,100 @@
+\doxysection{Enc28\+J60\+Network.\+h}
+\label{_enc28_j60_network_8h_source}\index{lib/EthernetENC-\/2.0.5/src/utility/Enc28J60Network.h@{lib/EthernetENC-\/2.0.5/src/utility/Enc28J60Network.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ Enc28J60NetworkClass.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ UIPEthernet\ network\ driver\ for\ Microchip\ ENC28J60\ Ethernet\ Interface.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ Copyright\ (c)\ 2013\ Norbert\ Truchsess\ <norbert.truchsess@t-\/online.de>}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ All\ rights\ reserved.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ inspired\ by\ enc28j60.c\ file\ from\ the\ AVRlib\ library\ by\ Pascal\ Stang.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ For\ AVRlib\ See\ http://www.procyonengineering.com/}}
+\DoxyCodeLine{00010\ \textcolor{comment}{}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ This\ program\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ This\ program\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ along\ with\ this\ program.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#ifndef\ Enc28J60Network\_H\_}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ Enc28J60Network\_H\_}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}mempool.h"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ UIP\_RECEIVEBUFFERHANDLE\ 0xff}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ UIP\_SENDBUFFER\_PADDING\ 7}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ UIP\_SENDBUFFER\_OFFSET\ 1}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ TX\_COLLISION\_RETRY\_COUNT\ 3}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{//\#define\ ENC28J60DEBUG}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ *\ Empfangen\ von\ ip-\/header,\ arp\ etc...}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ *\ wenn\ tcp/udp\ -\/>\ tcp/udp-\/callback\ -\/>\ assign\ new\ packet\ to\ connection}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }Enc28J60Network\ :\ \textcolor{keyword}{public}\ MemoryPool}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00048\ \ \ \textcolor{keyword}{static}\ uint8\_t\ csPin;}
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ spiInitialized;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{static}\ uint16\_t\ nextPacketPtr;}
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{static}\ uint8\_t\ bank;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{struct\ }memblock\ receivePkt;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{static}\ uint8\_t\ readOp(uint8\_t\ op,\ uint8\_t\ address);}
+\DoxyCodeLine{00057\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ writeOp(uint8\_t\ op,\ uint8\_t\ address,\ uint8\_t\ data);}
+\DoxyCodeLine{00058\ \ \ \textcolor{keyword}{static}\ uint16\_t\ setReadPtr(memhandle\ handle,\ memaddress\ position,\ uint16\_t\ len);}
+\DoxyCodeLine{00059\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setERXRDPT();}
+\DoxyCodeLine{00060\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ readBuffer(uint16\_t\ len,\ uint8\_t*\ data);}
+\DoxyCodeLine{00061\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ writeBuffer(uint16\_t\ len,\ uint8\_t*\ data);}
+\DoxyCodeLine{00062\ \ \ \textcolor{keyword}{static}\ uint8\_t\ readByte(uint16\_t\ addr);}
+\DoxyCodeLine{00063\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ writeByte(uint16\_t\ addr,\ uint8\_t\ data);}
+\DoxyCodeLine{00064\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setBank(uint8\_t\ address);}
+\DoxyCodeLine{00065\ \ \ \textcolor{keyword}{static}\ uint8\_t\ readReg(uint8\_t\ address);}
+\DoxyCodeLine{00066\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ writeReg(uint8\_t\ address,\ uint8\_t\ data);}
+\DoxyCodeLine{00067\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ writeRegPair(uint8\_t\ address,\ uint16\_t\ data);}
+\DoxyCodeLine{00068\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ phyWrite(uint8\_t\ address,\ uint16\_t\ data);}
+\DoxyCodeLine{00069\ \ \ \textcolor{keyword}{static}\ uint16\_t\ phyRead(uint8\_t\ address);}
+\DoxyCodeLine{00070\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ clkout(uint8\_t\ clk);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \textcolor{keyword}{friend}\ \textcolor{keywordtype}{void}\ enc28J60\_mempool\_block\_move\_callback(memaddress,memaddress,memaddress);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \textcolor{keyword}{static}\ uint8\_t\ getrev(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00077\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ powerOn();}
+\DoxyCodeLine{00078\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ powerOff();}
+\DoxyCodeLine{00079\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ linkStatus();}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ setCsPin(uint8\_t\ \_csPin)\ \{csPin\ =\ \_csPin;\}}
+\DoxyCodeLine{00082\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ initSPI();}
+\DoxyCodeLine{00083\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ init(uint8\_t*\ macaddr);}
+\DoxyCodeLine{00084\ \ \ \textcolor{keyword}{static}\ memhandle\ receivePacket();}
+\DoxyCodeLine{00085\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ freePacket();}
+\DoxyCodeLine{00086\ \ \ \textcolor{keyword}{static}\ memaddress\ blockSize(memhandle\ handle);}
+\DoxyCodeLine{00087\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ sendPacket(memhandle\ handle);}
+\DoxyCodeLine{00088\ \ \ \textcolor{keyword}{static}\ uint16\_t\ readPacket(memhandle\ handle,\ memaddress\ position,\ uint8\_t*\ buffer,\ uint16\_t\ len);}
+\DoxyCodeLine{00089\ \ \ \textcolor{keyword}{static}\ uint16\_t\ writePacket(memhandle\ handle,\ memaddress\ position,\ uint8\_t*\ buffer,\ uint16\_t\ len);}
+\DoxyCodeLine{00090\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ copyPacket(memhandle\ dest,\ memaddress\ dest\_pos,\ memhandle\ src,\ memaddress\ src\_pos,\ uint16\_t\ len);}
+\DoxyCodeLine{00091\ \ \ \textcolor{keyword}{static}\ uint16\_t\ chksum(uint16\_t\ sum,\ memhandle\ handle,\ memaddress\ pos,\ uint16\_t\ len);}
+\DoxyCodeLine{00092\ \};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ Enc28J60NetworkClass\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

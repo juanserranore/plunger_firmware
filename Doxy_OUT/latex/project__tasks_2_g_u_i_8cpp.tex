@@ -1,0 +1,150 @@
+\doxysection{C\+:/\+Users/\+Usuario/\+Documents/\+Platform\+IO/\+Projects/\+Plunger\+\_\+firmware\+\_\+def/src/project\+\_\+tasks/\+GUI.cpp File Reference}
+\label{project__tasks_2_g_u_i_8cpp}\index{C:/Users/Usuario/Documents/PlatformIO/Projects/Plunger\_firmware\_def/src/project\_tasks/GUI.cpp@{C:/Users/Usuario/Documents/PlatformIO/Projects/Plunger\_firmware\_def/src/project\_tasks/GUI.cpp}}
+
+
+Implementation of the functions related to the graphical user interface (GUI).  
+
+
+{\ttfamily \#include "{}GUI.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ print\+Date\+Time} (const Rtc\+Date\+Time \&dt)
+\begin{DoxyCompactList}\small\item\em Displays the date and time on the screen and in the serial monitor. \end{DoxyCompactList}\item 
+void \textbf{ draw\+Needle} (int angle, int length, uint32\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Draws a needle on the dial. \end{DoxyCompactList}\item 
+void \textbf{ draw\+Dial\+Marks} ()
+\begin{DoxyCompactList}\small\item\em Draws the dial marks. \end{DoxyCompactList}\item 
+void \textbf{ update\+Dial} ()
+\begin{DoxyCompactList}\small\item\em Updates the dial by moving the needle to the new position. \end{DoxyCompactList}\item 
+void \textbf{ set\+Brightness} (int level)
+\begin{DoxyCompactList}\small\item\em Sets the screen brightness level. \end{DoxyCompactList}\item 
+void \textbf{ draw\+Brightness\+Bar} (int level)
+\begin{DoxyCompactList}\small\item\em Draws the brightness bar on the screen. \end{DoxyCompactList}\item 
+void \textbf{ draw\+Selection\+Bar} (int16\+\_\+t y, bool is\+Selected, int current\+Index, int total\+Items)
+\begin{DoxyCompactList}\small\item\em Draws a selection bar on the screen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the functions related to the graphical user interface (GUI). 
+
+This file contains the implementation of the functions to handle the GUI, such as drawing the dial needle, selection bar, and other functionalities.
+
+\begin{DoxyAuthor}{Author}
+Juan Alberto Serrano Redondo. 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\index{GUI.cpp@{GUI.cpp}!drawBrightnessBar@{drawBrightnessBar}}
+\index{drawBrightnessBar@{drawBrightnessBar}!GUI.cpp@{GUI.cpp}}
+\doxysubsubsection{drawBrightnessBar()}
+{\footnotesize\ttfamily \label{project__tasks_2_g_u_i_8cpp_a46042d785a73bd5032401f69d4e20fa2} 
+void draw\+Brightness\+Bar (\begin{DoxyParamCaption}\item[{int}]{level}{}\end{DoxyParamCaption})}
+
+
+
+Draws the brightness bar on the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & Current brightness level. \\
+\hline
+\end{DoxyParams}
+\index{GUI.cpp@{GUI.cpp}!drawDialMarks@{drawDialMarks}}
+\index{drawDialMarks@{drawDialMarks}!GUI.cpp@{GUI.cpp}}
+\doxysubsubsection{drawDialMarks()}
+{\footnotesize\ttfamily \label{project__tasks_2_g_u_i_8cpp_a82f49ee626cd627228e917bd0f346e3b} 
+void draw\+Dial\+Marks (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Draws the dial marks. 
+
+Draws the marks and numbers at regular intervals around the dial. \index{GUI.cpp@{GUI.cpp}!drawNeedle@{drawNeedle}}
+\index{drawNeedle@{drawNeedle}!GUI.cpp@{GUI.cpp}}
+\doxysubsubsection{drawNeedle()}
+{\footnotesize\ttfamily \label{project__tasks_2_g_u_i_8cpp_aceca082dd9e31cf1120c603929f8b7d6} 
+void draw\+Needle (\begin{DoxyParamCaption}\item[{int}]{angle}{, }\item[{int}]{length}{, }\item[{uint32\+\_\+t}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Draws a needle on the dial. 
+
+This function draws a needle on the dial based on the specified angle and length.
+
+
+\begin{DoxyParams}{Parameters}
+{\em angle} & Angle of the needle. \\
+\hline
+{\em length} & Length of the needle. \\
+\hline
+{\em color} & Color of the needle. \\
+\hline
+\end{DoxyParams}
+\index{GUI.cpp@{GUI.cpp}!drawSelectionBar@{drawSelectionBar}}
+\index{drawSelectionBar@{drawSelectionBar}!GUI.cpp@{GUI.cpp}}
+\doxysubsubsection{drawSelectionBar()}
+{\footnotesize\ttfamily \label{project__tasks_2_g_u_i_8cpp_a085b83e7f92f72a8b9da0b08f45961f0} 
+void draw\+Selection\+Bar (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{y}{, }\item[{bool}]{is\+Selected}{, }\item[{int}]{current\+Index}{, }\item[{int}]{total\+Items}{}\end{DoxyParamCaption})}
+
+
+
+Draws a selection bar on the screen. 
+
+This function draws a selection bar at the specified vertical position. The bar will be drawn differently based on whether it is selected or not, and its appearance can change depending on the current and total items.
+
+
+\begin{DoxyParams}{Parameters}
+{\em y} & Vertical position of the bar (in pixels). \\
+\hline
+{\em is\+Selected} & A boolean flag indicating whether the bar is selected. \\
+\hline
+{\em current\+Index} & Index of the currently selected item (starting from 0). \\
+\hline
+{\em total\+Items} & Total number of items in the selection list. \\
+\hline
+\end{DoxyParams}
+\index{GUI.cpp@{GUI.cpp}!printDateTime@{printDateTime}}
+\index{printDateTime@{printDateTime}!GUI.cpp@{GUI.cpp}}
+\doxysubsubsection{printDateTime()}
+{\footnotesize\ttfamily \label{project__tasks_2_g_u_i_8cpp_a8771a313ed8db0ac1d4ce6524940ab4f} 
+void print\+Date\+Time (\begin{DoxyParamCaption}\item[{const Rtc\+Date\+Time \&}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+Displays the date and time on the screen and in the serial monitor. 
+
+This function takes a Rtc\+Date\+Time object, formats the time as HH\+:MM, and displays it both on the serial monitor and the TFT screen.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & The current date and time in Rtc\+Date\+Time format. \\
+\hline
+\end{DoxyParams}
+\index{GUI.cpp@{GUI.cpp}!setBrightness@{setBrightness}}
+\index{setBrightness@{setBrightness}!GUI.cpp@{GUI.cpp}}
+\doxysubsubsection{setBrightness()}
+{\footnotesize\ttfamily \label{project__tasks_2_g_u_i_8cpp_a4b400f1f91381fc146bbc345743ded4f} 
+void set\+Brightness (\begin{DoxyParamCaption}\item[{int}]{level}{}\end{DoxyParamCaption})}
+
+
+
+Sets the screen brightness level. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The brightness level to set. \\
+\hline
+\end{DoxyParams}
+\index{GUI.cpp@{GUI.cpp}!updateDial@{updateDial}}
+\index{updateDial@{updateDial}!GUI.cpp@{GUI.cpp}}
+\doxysubsubsection{updateDial()}
+{\footnotesize\ttfamily \label{project__tasks_2_g_u_i_8cpp_a48bde8da2b12eee5a7b2a39d6f64c38b} 
+void update\+Dial (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Updates the dial by moving the needle to the new position. 
+
+This function is responsible for refreshing the dial display by updating the needle\textquotesingle{}s position based on new data or changes in the system state. 

@@ -1,0 +1,190 @@
+\doxysection{GUI/\+GUI.h File Reference}
+\hypertarget{_g_u_i_8h}{}\label{_g_u_i_8h}\index{GUI/GUI.h@{GUI/GUI.h}}
+
+
+Graphical User Interface (GUI) module for managing the display elements.  
+
+
+{\ttfamily \#include $<$globals/globals.\+h$>$}\newline
+{\ttfamily \#include $<$libraries.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_g_u_i_8h_aceca082dd9e31cf1120c603929f8b7d6}{draw\+Needle}} (int \mbox{\hyperlink{globals_8cpp_a63177970cacb40efba67ce501ea89210}{angle}}, int length, uint32\+\_\+t color)
+\begin{DoxyCompactList}\small\item\em Draws a needle on the dial. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_g_u_i_8h_a82f49ee626cd627228e917bd0f346e3b}{draw\+Dial\+Marks}} ()
+\begin{DoxyCompactList}\small\item\em Draws the dial marks. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_g_u_i_8h_a085b83e7f92f72a8b9da0b08f45961f0}{draw\+Selection\+Bar}} (int16\+\_\+t y, bool is\+Selected, int current\+Index, int total\+Items)
+\begin{DoxyCompactList}\small\item\em Draws a selection bar on the screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_g_u_i_8h_a48bde8da2b12eee5a7b2a39d6f64c38b}{update\+Dial}} ()
+\begin{DoxyCompactList}\small\item\em Updates the dial by moving the needle to the new position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_g_u_i_8h_a4b400f1f91381fc146bbc345743ded4f}{set\+Brightness}} (int level)
+\begin{DoxyCompactList}\small\item\em Sets the screen brightness level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_g_u_i_8h_a46042d785a73bd5032401f69d4e20fa2}{draw\+Brightness\+Bar}} (int level)
+\begin{DoxyCompactList}\small\item\em Draws the brightness bar on the screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_g_u_i_8h_a8771a313ed8db0ac1d4ce6524940ab4f}{print\+Date\+Time}} (const Rtc\+Date\+Time \&dt)
+\begin{DoxyCompactList}\small\item\em Displays the date and time on the screen and in the serial monitor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Graphical User Interface (GUI) module for managing the display elements. 
+
+This header file contains the function declarations for managing the graphical user interface (GUI) of the system. The functions provided here allow drawing different UI elements like needles, dials, selection bars, and adjusting the screen\textquotesingle{}s brightness. This module interacts with the hardware display and manages visual elements based on user input or system state changes.
+
+The primary purpose of this module is to offer functions that facilitate displaying information in a structured and visually intuitive manner on the screen, including dynamic updates such as moving the needle on a dial, changing brightness levels, and displaying the date and time.
+
+It is assumed that the GUI interacts with a TFT display and uses a rotary encoder for user input, as well as other UI elements such as selection bars for menu navigation.
+
+The file also defines various graphical components like brightness bars, dials, and selection bars.
+
+Dependencies\+:
+\begin{DoxyItemize}
+\item This file relies on the global variables defined in {\ttfamily \doxylink{globals_8h}{globals.\+h}} and the libraries included in {\ttfamily \doxylink{libraries_8h}{libraries.\+h}}.
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{Author}
+Juan Alberto Serrano Redondo. 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_g_u_i_8h_a46042d785a73bd5032401f69d4e20fa2}\index{GUI.h@{GUI.h}!drawBrightnessBar@{drawBrightnessBar}}
+\index{drawBrightnessBar@{drawBrightnessBar}!GUI.h@{GUI.h}}
+\doxysubsubsection{\texorpdfstring{drawBrightnessBar()}{drawBrightnessBar()}}
+{\footnotesize\ttfamily \label{_g_u_i_8h_a46042d785a73bd5032401f69d4e20fa2} 
+void draw\+Brightness\+Bar (\begin{DoxyParamCaption}\item[{int}]{level}{}\end{DoxyParamCaption})}
+
+
+
+Draws the brightness bar on the screen. 
+
+This function draws a visual representation of the current brightness level on the screen, showing the user the current setting.
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & Current brightness level.\\
+\hline
+{\em level} & Current brightness level. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_g_u_i_8h_a82f49ee626cd627228e917bd0f346e3b}\index{GUI.h@{GUI.h}!drawDialMarks@{drawDialMarks}}
+\index{drawDialMarks@{drawDialMarks}!GUI.h@{GUI.h}}
+\doxysubsubsection{\texorpdfstring{drawDialMarks()}{drawDialMarks()}}
+{\footnotesize\ttfamily \label{_g_u_i_8h_a82f49ee626cd627228e917bd0f346e3b} 
+void draw\+Dial\+Marks (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Draws the dial marks. 
+
+This function draws the marks around the dial, including numbers at angles 0, 60, 120, etc. It is used to set up the dial\textquotesingle{}s appearance with evenly spaced markings.
+
+Draws the marks and numbers at regular intervals around the dial. \Hypertarget{_g_u_i_8h_aceca082dd9e31cf1120c603929f8b7d6}\index{GUI.h@{GUI.h}!drawNeedle@{drawNeedle}}
+\index{drawNeedle@{drawNeedle}!GUI.h@{GUI.h}}
+\doxysubsubsection{\texorpdfstring{drawNeedle()}{drawNeedle()}}
+{\footnotesize\ttfamily \label{_g_u_i_8h_aceca082dd9e31cf1120c603929f8b7d6} 
+void draw\+Needle (\begin{DoxyParamCaption}\item[{int}]{angle}{, }\item[{int}]{length}{, }\item[{uint32\+\_\+t}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Draws a needle on the dial. 
+
+This function draws a needle on the dial at the specified angle and length, using the given color.
+
+
+\begin{DoxyParams}{Parameters}
+{\em angle} & The angle at which to draw the needle (in degrees). \\
+\hline
+{\em length} & The length of the needle. \\
+\hline
+{\em color} & The color of the needle, represented as a 32-\/bit unsigned integer (usually RGB color).\\
+\hline
+\end{DoxyParams}
+This function draws a needle on the dial based on the specified angle and length.
+
+
+\begin{DoxyParams}{Parameters}
+{\em angle} & Angle of the needle. \\
+\hline
+{\em length} & Length of the needle. \\
+\hline
+{\em color} & Color of the needle. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_g_u_i_8h_a085b83e7f92f72a8b9da0b08f45961f0}\index{GUI.h@{GUI.h}!drawSelectionBar@{drawSelectionBar}}
+\index{drawSelectionBar@{drawSelectionBar}!GUI.h@{GUI.h}}
+\doxysubsubsection{\texorpdfstring{drawSelectionBar()}{drawSelectionBar()}}
+{\footnotesize\ttfamily \label{_g_u_i_8h_a085b83e7f92f72a8b9da0b08f45961f0} 
+void draw\+Selection\+Bar (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{y}{, }\item[{bool}]{is\+Selected}{, }\item[{int}]{current\+Index}{, }\item[{int}]{total\+Items}{}\end{DoxyParamCaption})}
+
+
+
+Draws a selection bar on the screen. 
+
+This function draws a selection bar at the specified vertical position. The bar will be drawn differently based on whether it is selected or not, and its appearance can change depending on the current and total items.
+
+
+\begin{DoxyParams}{Parameters}
+{\em y} & Vertical position of the bar (in pixels). \\
+\hline
+{\em is\+Selected} & A boolean flag indicating whether the bar is selected. \\
+\hline
+{\em current\+Index} & Index of the currently selected item (starting from 0). \\
+\hline
+{\em total\+Items} & Total number of items in the selection list. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_g_u_i_8h_a8771a313ed8db0ac1d4ce6524940ab4f}\index{GUI.h@{GUI.h}!printDateTime@{printDateTime}}
+\index{printDateTime@{printDateTime}!GUI.h@{GUI.h}}
+\doxysubsubsection{\texorpdfstring{printDateTime()}{printDateTime()}}
+{\footnotesize\ttfamily \label{_g_u_i_8h_a8771a313ed8db0ac1d4ce6524940ab4f} 
+void print\+Date\+Time (\begin{DoxyParamCaption}\item[{const Rtc\+Date\+Time \&}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+Displays the date and time on the screen and in the serial monitor. 
+
+This function prints the current date and time on the screen, as well as in the serial monitor for debugging purposes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & The current date and time in Rtc\+Date\+Time format, typically retrieved from a real-\/time clock (RTC).\\
+\hline
+\end{DoxyParams}
+This function takes a Rtc\+Date\+Time object, formats the time as HH\+:MM, and displays it both on the serial monitor and the TFT screen.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & The current date and time in Rtc\+Date\+Time format. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_g_u_i_8h_a4b400f1f91381fc146bbc345743ded4f}\index{GUI.h@{GUI.h}!setBrightness@{setBrightness}}
+\index{setBrightness@{setBrightness}!GUI.h@{GUI.h}}
+\doxysubsubsection{\texorpdfstring{setBrightness()}{setBrightness()}}
+{\footnotesize\ttfamily \label{_g_u_i_8h_a4b400f1f91381fc146bbc345743ded4f} 
+void set\+Brightness (\begin{DoxyParamCaption}\item[{int}]{level}{}\end{DoxyParamCaption})}
+
+
+
+Sets the screen brightness level. 
+
+This function adjusts the brightness level of the screen based on the provided level value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The brightness level to set (usually between a predefined min and max value).\\
+\hline
+{\em level} & The brightness level to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_g_u_i_8h_a48bde8da2b12eee5a7b2a39d6f64c38b}\index{GUI.h@{GUI.h}!updateDial@{updateDial}}
+\index{updateDial@{updateDial}!GUI.h@{GUI.h}}
+\doxysubsubsection{\texorpdfstring{updateDial()}{updateDial()}}
+{\footnotesize\ttfamily \label{_g_u_i_8h_a48bde8da2b12eee5a7b2a39d6f64c38b} 
+void update\+Dial (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Updates the dial by moving the needle to the new position. 
+
+This function is responsible for refreshing the dial display by updating the needle\textquotesingle{}s position based on new data or changes in the system state. 

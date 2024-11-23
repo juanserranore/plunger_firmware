@@ -1,0 +1,43 @@
+\doxysection{lib/\+Ethernet\+ENC-\/2.0.5/src/utility/uip\+\_\+arp.h File Reference}
+\label{uip__arp_8h}\index{lib/EthernetENC-\/2.0.5/src/utility/uip\_arp.h@{lib/EthernetENC-\/2.0.5/src/utility/uip\_arp.h}}
+{\ttfamily \#include "{}uip.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ uip\+\_\+eth\+\_\+hdr}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries UIP\+\_\+\+ETHTYPE\+\_\+\+ARP}~0x0806
+\item 
+\#define {\bfseries UIP\+\_\+\+ETHTYPE\+\_\+\+IP}~0x0800
+\item 
+\#define {\bfseries UIP\+\_\+\+ETHTYPE\+\_\+\+IP6}~0x86dd
+\item 
+\#define \textbf{ uip\+\_\+setethaddr}(eaddr)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ uip\+\_\+arp\+\_\+init} (void)
+\item 
+void \textbf{ uip\+\_\+arp\+\_\+ipin} (void)
+\item 
+void \textbf{ uip\+\_\+arp\+\_\+arpin} (void)
+\item 
+void \textbf{ uip\+\_\+arp\+\_\+out} (void)
+\item 
+void \textbf{ uip\+\_\+arp\+\_\+timer} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ uip\+\_\+eth\+\_\+addr} {\bfseries uip\+\_\+ethaddr}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Macros and definitions for the ARP module. \begin{DoxyAuthor}{Author}
+Adam Dunkels {\texttt{ adam@dunkels.\+com}} 
+\end{DoxyAuthor}

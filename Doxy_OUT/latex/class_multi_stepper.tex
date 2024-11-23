@@ -1,0 +1,81 @@
+\doxysection{Multi\+Stepper Class Reference}
+\label{class_multi_stepper}\index{MultiStepper@{MultiStepper}}
+
+
+Operate multiple Accel\+Steppers in a co-\/ordinated fashion.  
+
+
+
+
+{\ttfamily \#include $<$Multi\+Stepper.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_multi_stepper_a14c0c1c0f55e5bbdc4971730e32304c2} 
+{\bfseries Multi\+Stepper} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+boolean \textbf{ add\+Stepper} (\textbf{ Accel\+Stepper} \&stepper)
+\item 
+void \textbf{ move\+To} (long absolute[$\,$])
+\item 
+boolean \textbf{ run} ()
+\item 
+void \textbf{ run\+Speed\+To\+Position} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Operate multiple Accel\+Steppers in a co-\/ordinated fashion. 
+
+This class can manage multiple Accel\+Steppers (up to MULTISTEPPER\+\_\+\+MAX\+\_\+\+STEPPERS = 10), and cause them all to move to selected positions at such a (constant) speed that they all arrive at their target position at the same time. This can be used to support devices with multiple steppers on say multiple axes to cause linear diagonal motion. Suitable for use with X-\/Y plotters, flatbeds, 3D printers etc to get linear straight line movement between arbitrary 2d (or 3d or ...) positions.
+
+Caution\+: only constant speed stepper motion is supported\+: acceleration and deceleration is not supported All the steppers managed by \doxyref{Multi\+Stepper}{p.}{class_multi_stepper} will step at a constant speed to their target (albeit perhaps different speeds for each stepper). 
+
+\doxysubsection{Member Function Documentation}
+\index{MultiStepper@{MultiStepper}!addStepper@{addStepper}}
+\index{addStepper@{addStepper}!MultiStepper@{MultiStepper}}
+\doxysubsubsection{addStepper()}
+{\footnotesize\ttfamily \label{class_multi_stepper_a383d8486e17ad9de9f1bafcbd9aa52ee} 
+boolean Multi\+Stepper\+::add\+Stepper (\begin{DoxyParamCaption}\item[{\textbf{ Accel\+Stepper} \&}]{stepper}{}\end{DoxyParamCaption})}
+
+Add a stepper to the set of managed steppers There is an upper limit of MULTISTEPPER\+\_\+\+MAX\+\_\+\+STEPPERS = 10 to the number of steppers that can be managed 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em stepper} & Reference to a stepper to add to the managed list \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful. false if the number of managed steppers would exceed MULTISTEPPER\+\_\+\+MAX\+\_\+\+STEPPERS 
+\end{DoxyReturn}
+\index{MultiStepper@{MultiStepper}!moveTo@{moveTo}}
+\index{moveTo@{moveTo}!MultiStepper@{MultiStepper}}
+\doxysubsubsection{moveTo()}
+{\footnotesize\ttfamily \label{class_multi_stepper_a291fec32a79390b6eb00296cffac49ee} 
+void Multi\+Stepper\+::move\+To (\begin{DoxyParamCaption}\item[{long}]{absolute}{[$\,$]}\end{DoxyParamCaption})}
+
+Set the target positions of all managed steppers according to a coordinate array. New speeds will be computed for each stepper so they will all arrive at their respective targets at very close to the same time. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em absolute} & An array of desired absolute stepper positions. absolute[0] will be used to set the absolute position of the first stepper added by \doxyref{add\+Stepper()}{p.}{class_multi_stepper_a383d8486e17ad9de9f1bafcbd9aa52ee} etc. The array must be at least as long as the number of steppers that have been added by add\+Stepper, else results are undefined. \\
+\hline
+\end{DoxyParams}
+\index{MultiStepper@{MultiStepper}!run@{run}}
+\index{run@{run}!MultiStepper@{MultiStepper}}
+\doxysubsubsection{run()}
+{\footnotesize\ttfamily \label{class_multi_stepper_a26c2f53b1e7ddf5d5dfb333f6fb7fb92} 
+boolean Multi\+Stepper\+::run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Calls run\+Speed() on all the managed steppers that have not acheived their target position. \begin{DoxyReturn}{Returns}
+true if any stepper is still in the process of running to its target position. 
+\end{DoxyReturn}
+\index{MultiStepper@{MultiStepper}!runSpeedToPosition@{runSpeedToPosition}}
+\index{runSpeedToPosition@{runSpeedToPosition}!MultiStepper@{MultiStepper}}
+\doxysubsubsection{runSpeedToPosition()}
+{\footnotesize\ttfamily \label{class_multi_stepper_a2592f55864ce3ace125944db624317bc} 
+void Multi\+Stepper\+::run\+Speed\+To\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Runs all managed steppers until they acheived their target position. Blocks until all that position is acheived. If you dont want blocking consider using \doxyref{run()}{p.}{class_multi_stepper_a26c2f53b1e7ddf5d5dfb333f6fb7fb92} instead. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Accel\+Stepper-\/1.\+64.\+0/src/Multi\+Stepper.\+h\item 
+lib/\+Accel\+Stepper-\/1.\+64.\+0/src/Multi\+Stepper.\+cpp\end{DoxyCompactItemize}

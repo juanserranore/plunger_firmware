@@ -1,0 +1,151 @@
+\doxysection{Eeprom\+AT24\+C32.\+h}
+\label{_eeprom_a_t24_c32_8h_source}\index{lib/Rtc-\/master/src/EepromAT24C32.h@{lib/Rtc-\/master/src/EepromAT24C32.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00002\ \textcolor{comment}{RTC\ library}}
+\DoxyCodeLine{00003\ \textcolor{comment}{}}
+\DoxyCodeLine{00004\ \textcolor{comment}{Written\ by\ Michael\ C.\ Miller.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{}}
+\DoxyCodeLine{00006\ \textcolor{comment}{I\ invest\ time\ and\ resources\ providing\ this\ open\ source\ code,}}
+\DoxyCodeLine{00007\ \textcolor{comment}{please\ support\ me\ by\ dontating\ (see\ https://github.com/Makuna/Rtc)}}
+\DoxyCodeLine{00008\ \textcolor{comment}{}}
+\DoxyCodeLine{00009\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00010\ \textcolor{comment}{This\ file\ is\ part\ of\ the\ Makuna/Rtc\ library.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Rtc\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00013\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as}}
+\DoxyCodeLine{00014\ \textcolor{comment}{published\ by\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of}}
+\DoxyCodeLine{00015\ \textcolor{comment}{the\ License,\ or\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{Rtc\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00018\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00019\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00020\ \textcolor{comment}{GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public}}
+\DoxyCodeLine{00023\ \textcolor{comment}{License\ along\ with\ Rtc.\ \ If\ not,\ see}}
+\DoxyCodeLine{00024\ \textcolor{comment}{<http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{//I2C\ Slave\ Address\ \ }}
+\DoxyCodeLine{00032\ \textcolor{keyword}{const}\ uint8\_t\ AT24C32\_ADDRESS\ =\ 0x50;\ \textcolor{comment}{//\ 0b0\ 1010\ A2\ A1\ A0}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T\_WIRE\_METHOD>\ \textcolor{keyword}{class\ }EepromAt24c32}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ EepromAt24c32(T\_WIRE\_METHOD\&\ wire,\ uint8\_t\ addressBits\ =\ 0b000)\ :}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \_address(AT24C32\_ADDRESS\ |\ (addressBits\ \&\ 0b00000111)),}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \_wire(wire),}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \_lastError(Rtc\_Wire\_Error\_None)}
+\DoxyCodeLine{00041\ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ Begin()}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \_wire.begin();}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ Begin(\textcolor{keywordtype}{int}\ sda,\ \textcolor{keywordtype}{int}\ scl)}
+\DoxyCodeLine{00050\ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \_wire.begin(sda,\ scl);}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ uint8\_t\ LastError()}
+\DoxyCodeLine{00055\ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_lastError;}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ SetMemory(uint16\_t\ memoryAddress,\ uint8\_t\ value)}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ SetMemory(memoryAddress,\ \&value,\ 1);}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ uint8\_t\ GetMemory(uint16\_t\ memoryAddress)}
+\DoxyCodeLine{00065\ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ uint8\_t\ value;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ GetMemory(memoryAddress,\ \&value,\ 1);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value;}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ note:\ this\ method\ will\ write\ within\ a\ single\ page\ of\ eeprom.}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ Pages\ are\ 32\ bytes\ (5\ bits),\ so\ writing\ past\ a\ page\ boundary\ will}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ just\ wrap\ within\ the\ page\ of\ the\ starting\ memory\ address.\ \ }}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ xxxppppp\ pppaaaaa\ =>\ p\ =\ page\ \#,\ a\ =\ address\ within\ the\ page}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ NOTE:\ hardware\ WIRE\ libraries\ often\ have\ a\ limit\ of\ a\ 32\ byte\ send\ buffer.\ \ The\ }}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ effect\ of\ this\ is\ that\ only\ 30\ bytes\ can\ be\ sent,\ 2\ bytes\ for\ the\ address\ to\ write\ to,}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ and\ then\ 30\ bytes\ of\ the\ actual\ data.\ }}
+\DoxyCodeLine{00082\ \ \ \ \ uint8\_t\ SetMemory(uint16\_t\ memoryAddress,\ \textcolor{keyword}{const}\ uint8\_t*\ pValue,\ uint8\_t\ countBytes)}
+\DoxyCodeLine{00083\ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ uint8\_t\ countWritten\ =\ 0;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ beginTransmission(memoryAddress);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (countBytes\ >\ 0)}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \_wire.write(*pValue++);}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ delay(10);\ \textcolor{comment}{//\ per\ spec,\ memory\ writes}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ countBytes-\/-\/;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ countWritten++;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \_lastError\ =\ \_wire.endTransmission();}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ countWritten;}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ reading\ data\ does\ not\ wrap\ within\ pages,\ but\ due\ to\ only\ using}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//\ 12\ (32K)\ or\ 13\ (64K)\ bits\ are\ used,\ they\ will\ wrap\ within\ the\ memory\ limits}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//\ of\ the\ installed\ EEPROM}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{//\ NOTE:\ hardware\ WIRE\ libraries\ may\ have\ a\ limit\ of\ a\ 32\ byte\ recieve\ buffer.\ \ The\ }}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ effect\ of\ this\ is\ that\ only\ 32\ bytes\ can\ be\ read\ at\ one\ time.}}
+\DoxyCodeLine{00108\ \ \ \ \ uint8\_t\ GetMemory(uint16\_t\ memoryAddress,\ uint8\_t*\ pValue,\ uint8\_t\ countBytes)}
+\DoxyCodeLine{00109\ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ set\ address\ to\ read\ from}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ beginTransmission(memoryAddress);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \_lastError\ =\ \_wire.endTransmission();}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_lastError\ !=\ 0)}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ read\ the\ data}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ uint8\_t\ countRead\ =\ 0;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ countRead\ =\ \_wire.requestFrom(\_address,\ countBytes);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ countBytes\ =\ countRead;}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (countBytes-\/-\/\ >\ 0)}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ *pValue++\ =\ \_wire.read();}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ countRead;}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ \_address;}
+\DoxyCodeLine{00135\ \ \ \ \ }
+\DoxyCodeLine{00136\ \ \ \ \ T\_WIRE\_METHOD\&\ \_wire;}
+\DoxyCodeLine{00137\ \ \ \ \ uint8\_t\ \_lastError;}
+\DoxyCodeLine{00138\ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{void}\ beginTransmission(uint16\_t\ memoryAddress)}
+\DoxyCodeLine{00140\ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \_wire.beginTransmission(\_address);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \_wire.write(memoryAddress\ >>\ 8);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \_wire.write(memoryAddress\ \&\ 0xFf);}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \};}
+
+\end{DoxyCode}

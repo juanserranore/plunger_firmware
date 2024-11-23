@@ -1,0 +1,27 @@
+\chapter{README}
+\label{md_lib_2_accel_stepper-1_864_80_2_r_e_a_d_m_e}\index{README@{README}}
+This fork follows the {\texttt{ upstream version}}. Files are slightly reorganized to follow Arduino library conventions to allow for inclusion into the Arduino IDE library manager.
+
+Please direct questions and discussion to {\texttt{ http\+://groups.\+google.\+com/group/accelstepper}}
+
+\DoxyHorRuler{0}
+
+
+This is the Arduino \doxyref{Accel\+Stepper}{p.}{class_accel_stepper} library. It provides an object-\/oriented interface for 2, 3 or 4 pin stepper motors and motor drivers.
+
+The standard Arduino IDE includes the Stepper library ({\texttt{ http\+://arduino.\+cc/en/\+Reference/\+Stepper}}) for stepper motors. It is perfectly adequate for simple, single motor applications.
+
+\doxyref{Accel\+Stepper}{p.}{class_accel_stepper} significantly improves on the standard Arduino Stepper library in several ways\+:
+
+
+\begin{DoxyItemize}
+\item Supports acceleration and deceleration
+\item Supports multiple simultaneous steppers, with independent concurrent stepping on each stepper
+\item API functions never delay() or block
+\item Supports 2, 3 and 4 wire steppers, plus 3 and 4 wire half steppers.
+\item Supports alternate stepping functions to enable support of AFMotor ({\texttt{ https\+://github.\+com/adafruit/\+Adafruit-\/\+Motor-\/\+Shield-\/library}})
+\item Supports stepper drivers such as the Sparkfun Easy\+Driver (based on 3967 driver chip)
+\item Very slow speeds are supported
+\item Extensive API
+\item Subclass support 
+\end{DoxyItemize}

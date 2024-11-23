@@ -1,0 +1,514 @@
+\doxysection{astronomy.\+h}
+\label{astronomy_8h_source}\index{lib/TFT\_eSPI-\/master/examples/Sprite/Orrery/astronomy.h@{lib/TFT\_eSPI-\/master/examples/Sprite/Orrery/astronomy.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ \ Astronomy\ Engine\ for\ C/C++.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ \ https://github.com/cosinekitty/astronomy}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ \ \ MIT\ License}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ \ \ Copyright\ (c)\ 2019-\/2020\ Don\ Cross\ <cosinekitty@gmail.com>}}
+\DoxyCodeLine{00008\ \textcolor{comment}{}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ \ \ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a\ copy}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),\ to\ deal}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ \ in\ the\ Software\ without\ restriction,\ including\ without\ limitation\ the\ rights}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ \ \ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,\ and/or\ sell}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ \ \ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the\ Software\ is}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ \ \ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:}}
+\DoxyCodeLine{00015\ \textcolor{comment}{}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ \ \ The\ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ \ \ \ copies\ or\ substantial\ portions\ of\ the\ Software.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ \ \ \ THE\ SOFTWARE\ IS\ PROVIDED\ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ \ \ \ IMPLIED,\ INCLUDING\ BUT\ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ \ \ \ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ \ \ AUTHORS\ OR\ COPYRIGHT\ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ \ \ LIABILITY,\ WHETHER\ IN\ AN\ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ \ \ OUT\ OF\ OR\ IN\ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ SOFTWARE.}}
+\DoxyCodeLine{00026\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#ifndef\ \_\_ASTRONOMY\_H}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ \_\_ASTRONOMY\_H}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <stddef.h>}\ \ \ \ \ \textcolor{comment}{/*\ for\ size\_t\ */}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00034\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ types\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00043\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ ASTRO\_SUCCESS,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ ASTRO\_NOT\_INITIALIZED,\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ ASTRO\_INVALID\_BODY,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ ASTRO\_NO\_CONVERGE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ ASTRO\_BAD\_TIME,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ ASTRO\_BAD\_VECTOR,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ ASTRO\_SEARCH\_FAILURE,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ ASTRO\_EARTH\_NOT\_ALLOWED,\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ ASTRO\_NO\_MOON\_QUARTER,\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00053\ \ \ \ \ ASTRO\_WRONG\_MOON\_QUARTER,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ ASTRO\_INTERNAL\_ERROR,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ ASTRO\_INVALID\_PARAMETER,\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ ASTRO\_FAIL\_APSIS,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ ASTRO\_BUFFER\_TOO\_SMALL,\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ ASTRO\_OUT\_OF\_MEMORY\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00060\ astro\_status\_t;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00094\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{double}\ ut;}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{double}\ tt;}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{double}\ psi;}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{double}\ eps;}
+\DoxyCodeLine{00148\ \}}
+\DoxyCodeLine{00149\ astro\_time\_t;}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00154\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00155\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ year;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ month;\ \ \ \ \ \ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ day;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ hour;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ minute;\ \ \ \ \ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{double}\ \ second;\ \ \ \ \ }
+\DoxyCodeLine{00162\ \}}
+\DoxyCodeLine{00163\ astro\_utc\_t;}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00168\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00169\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ astro\_status\_t\ status;\ \ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{double}\ x;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{double}\ y;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordtype}{double}\ z;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00174\ \ \ \ \ astro\_time\_t\ t;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00175\ \}}
+\DoxyCodeLine{00176\ astro\_vector\_t;}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00181\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00182\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ astro\_status\_t\ status;\ \ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{double}\ lat;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordtype}{double}\ lon;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordtype}{double}\ dist;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00187\ \}}
+\DoxyCodeLine{00188\ astro\_spherical\_t;}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00193\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00194\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ astro\_status\_t\ status;\ \ }
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordtype}{double}\ angle;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00197\ \}}
+\DoxyCodeLine{00198\ astro\_angle\_result\_t;}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00203\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00204\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ BODY\_INVALID\ =\ -\/1,\ \ \ \ \ \ }
+\DoxyCodeLine{00206\ \ \ \ \ BODY\_MERCURY,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00207\ \ \ \ \ BODY\_VENUS,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00208\ \ \ \ \ BODY\_EARTH,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00209\ \ \ \ \ BODY\_MARS,\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00210\ \ \ \ \ BODY\_JUPITER,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00211\ \ \ \ \ BODY\_SATURN,\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00212\ \ \ \ \ BODY\_URANUS,\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00213\ \ \ \ \ BODY\_NEPTUNE,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00214\ \ \ \ \ BODY\_PLUTO,\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00215\ \ \ \ \ BODY\_SUN,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00216\ \ \ \ \ BODY\_MOON,\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00217\ \ \ \ \ BODY\_EMB,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00218\ \ \ \ \ BODY\_SSB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00219\ \}}
+\DoxyCodeLine{00220\ astro\_body\_t;}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\#define\ MIN\_BODY\ \ \ \ BODY\_MERCURY\ \ \ \ }}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#define\ MAX\_BODY\ \ \ \ BODY\_SSB\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#define\ MIN\_YEAR\ \ \ \ 1700\ \ \ \ }}
+\DoxyCodeLine{00226\ \textcolor{preprocessor}{\#define\ MAX\_YEAR\ \ \ \ 2200\ \ \ \ }}
+\DoxyCodeLine{00237\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00238\ \{}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordtype}{double}\ latitude;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keywordtype}{double}\ longitude;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordtype}{double}\ height;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00242\ \}}
+\DoxyCodeLine{00243\ astro\_observer\_t;}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00251\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00252\ \{}
+\DoxyCodeLine{00253\ \ \ \ \ astro\_status\_t\ status;\ \ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordtype}{double}\ ra;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordtype}{double}\ dec;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{keywordtype}{double}\ dist;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00257\ \}}
+\DoxyCodeLine{00258\ astro\_equatorial\_t;}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00266\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00267\ \{}
+\DoxyCodeLine{00268\ \ \ \ \ astro\_status\_t\ status;\ \ }
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keywordtype}{double}\ ex;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordtype}{double}\ ey;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordtype}{double}\ ez;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordtype}{double}\ elat;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keywordtype}{double}\ elon;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00274\ \}}
+\DoxyCodeLine{00275\ astro\_ecliptic\_t;}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00284\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00285\ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keywordtype}{double}\ azimuth;\ \ \ \ \ }
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordtype}{double}\ altitude;\ \ \ \ }
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keywordtype}{double}\ ra;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keywordtype}{double}\ dec;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00290\ \}}
+\DoxyCodeLine{00291\ astro\_horizon\_t;}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00296\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00297\ \{}
+\DoxyCodeLine{00298\ \ \ \ \ astro\_status\_t\ status;\ \ }
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordtype}{double}\ rot[3][3];\ \ \ \ \ \ \ }
+\DoxyCodeLine{00300\ \}}
+\DoxyCodeLine{00301\ astro\_rotation\_t;}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00306\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00307\ \{}
+\DoxyCodeLine{00308\ \ \ \ \ REFRACTION\_NONE,\ \ \ \ }
+\DoxyCodeLine{00309\ \ \ \ \ REFRACTION\_NORMAL,\ \ }
+\DoxyCodeLine{00310\ \ \ \ \ REFRACTION\_JPLHOR\ \ \ }
+\DoxyCodeLine{00311\ \}}
+\DoxyCodeLine{00312\ astro\_refraction\_t;}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00317\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00318\ \{}
+\DoxyCodeLine{00319\ \ \ \ \ astro\_status\_t\ \ status;\ \ \ \ \ }
+\DoxyCodeLine{00320\ \ \ \ \ astro\_time\_t\ \ \ \ time;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00321\ \}}
+\DoxyCodeLine{00322\ astro\_search\_result\_t;}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00329\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00330\ \{}
+\DoxyCodeLine{00331\ \ \ \ \ astro\_status\_t\ \ status;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00332\ \ \ \ \ astro\_time\_t\ \ \ \ mar\_equinox;\ \ \ \ }
+\DoxyCodeLine{00333\ \ \ \ \ astro\_time\_t\ \ \ \ jun\_solstice;\ \ \ }
+\DoxyCodeLine{00334\ \ \ \ \ astro\_time\_t\ \ \ \ sep\_equinox;\ \ \ \ }
+\DoxyCodeLine{00335\ \ \ \ \ astro\_time\_t\ \ \ \ dec\_solstice;\ \ \ }
+\DoxyCodeLine{00336\ \}}
+\DoxyCodeLine{00337\ astro\_seasons\_t;}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00342\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00343\ \{}
+\DoxyCodeLine{00344\ \ \ \ \ astro\_status\_t\ \ status;\ \ \ \ \ }
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ quarter;\ \ \ \ }
+\DoxyCodeLine{00346\ \ \ \ \ astro\_time\_t\ \ \ \ time;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00347\ \}}
+\DoxyCodeLine{00348\ astro\_moon\_quarter\_t;}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00362\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00363\ \{}
+\DoxyCodeLine{00364\ \ \ \ \ astro\_status\_t\ status;\ \ \ \ \ \ }
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keywordtype}{double}\ value;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00366\ \}}
+\DoxyCodeLine{00367\ astro\_func\_result\_t;}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00389\ \textcolor{keyword}{typedef}\ astro\_func\_result\_t\ (*\ astro\_search\_func\_t)\ (\textcolor{keywordtype}{void}\ *context,\ astro\_time\_t\ time);}
+\DoxyCodeLine{00390\ }
+\DoxyCodeLine{00403\ \textcolor{keyword}{typedef}\ double\ (*\ astro\_deltat\_func)\ (\textcolor{keywordtype}{double}\ ut);}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \textcolor{keywordtype}{double}\ Astronomy\_DeltaT\_EspenakMeeus(\textcolor{keywordtype}{double}\ ut);}
+\DoxyCodeLine{00406\ \textcolor{keywordtype}{double}\ Astronomy\_DeltaT\_JplHorizons(\textcolor{keywordtype}{double}\ ut);}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \textcolor{keywordtype}{void}\ Astronomy\_SetDeltaTFunction(astro\_deltat\_func\ func);}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00413\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00414\ \{}
+\DoxyCodeLine{00415\ \ \ \ \ VISIBLE\_MORNING,\ \ \ \ }
+\DoxyCodeLine{00416\ \ \ \ \ VISIBLE\_EVENING\ \ \ \ \ }
+\DoxyCodeLine{00417\ \}}
+\DoxyCodeLine{00418\ astro\_visibility\_t;}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00426\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00427\ \{}
+\DoxyCodeLine{00428\ \ \ \ \ astro\_status\_t\ \ \ \ \ \ status;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00429\ \ \ \ \ astro\_time\_t\ \ \ \ \ \ \ \ time;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00430\ \ \ \ \ astro\_visibility\_t\ \ visibility;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00431\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ elongation;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ ecliptic\_separation;\ \ \ \ }
+\DoxyCodeLine{00433\ \}}
+\DoxyCodeLine{00434\ astro\_elongation\_t;}
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00442\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00443\ \{}
+\DoxyCodeLine{00444\ \ \ \ \ astro\_status\_t\ \ \ \ \ \ status;\ \ \ \ \ }
+\DoxyCodeLine{00445\ \ \ \ \ astro\_time\_t\ \ \ \ \ \ \ \ time;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00446\ \ \ \ \ astro\_horizon\_t\ \ \ \ \ hor;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00447\ \}}
+\DoxyCodeLine{00448\ astro\_hour\_angle\_t;}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00456\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00457\ \{}
+\DoxyCodeLine{00458\ \ \ \ \ astro\_status\_t\ \ \ \ \ \ status;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00459\ \ \ \ \ astro\_time\_t\ \ \ \ \ \ \ \ time;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00460\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ mag;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ phase\_angle;\ \ \ \ }
+\DoxyCodeLine{00462\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ helio\_dist;\ \ \ \ \ }
+\DoxyCodeLine{00463\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ ring\_tilt;\ \ \ \ \ \ }
+\DoxyCodeLine{00464\ \}}
+\DoxyCodeLine{00465\ astro\_illum\_t;}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00470\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00471\ \{}
+\DoxyCodeLine{00472\ \ \ \ \ APSIS\_PERICENTER,\ \ \ }
+\DoxyCodeLine{00473\ \ \ \ \ APSIS\_APOCENTER,\ \ \ \ }
+\DoxyCodeLine{00474\ \ \ \ \ APSIS\_INVALID\ \ \ \ \ \ \ }
+\DoxyCodeLine{00475\ \}}
+\DoxyCodeLine{00476\ astro\_apsis\_kind\_t;}
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00493\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00494\ \{}
+\DoxyCodeLine{00495\ \ \ \ \ astro\_status\_t\ \ \ \ \ \ status;\ \ \ \ \ }
+\DoxyCodeLine{00496\ \ \ \ \ astro\_time\_t\ \ \ \ \ \ \ \ time;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00497\ \ \ \ \ astro\_apsis\_kind\_t\ \ kind;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00498\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ dist\_au;\ \ \ \ }
+\DoxyCodeLine{00499\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ dist\_km;\ \ \ \ }
+\DoxyCodeLine{00500\ \}}
+\DoxyCodeLine{00501\ astro\_apsis\_t;}
+\DoxyCodeLine{00502\ }
+\DoxyCodeLine{00506\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00507\ \{}
+\DoxyCodeLine{00508\ \ \ \ \ ECLIPSE\_NONE,\ \ \ \ \ \ \ }
+\DoxyCodeLine{00509\ \ \ \ \ ECLIPSE\_PENUMBRAL,\ \ }
+\DoxyCodeLine{00510\ \ \ \ \ ECLIPSE\_PARTIAL,\ \ \ \ }
+\DoxyCodeLine{00511\ \ \ \ \ ECLIPSE\_ANNULAR,\ \ \ \ }
+\DoxyCodeLine{00512\ \ \ \ \ ECLIPSE\_TOTAL\ \ \ \ \ \ \ }
+\DoxyCodeLine{00513\ \}}
+\DoxyCodeLine{00514\ astro\_eclipse\_kind\_t;}
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00541\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00542\ \{}
+\DoxyCodeLine{00543\ \ \ \ \ astro\_status\_t\ \ \ \ \ \ \ \ \ \ status;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00544\ \ \ \ \ astro\_eclipse\_kind\_t\ \ \ \ kind;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00545\ \ \ \ \ astro\_time\_t\ \ \ \ \ \ \ \ \ \ \ \ peak;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00546\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sd\_penum;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00547\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sd\_partial;\ \ \ \ \ }
+\DoxyCodeLine{00548\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sd\_total;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00549\ \}}
+\DoxyCodeLine{00550\ astro\_lunar\_eclipse\_t;}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ }
+\DoxyCodeLine{00584\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00585\ \{}
+\DoxyCodeLine{00586\ \ \ \ \ astro\_status\_t\ \ \ \ \ \ \ \ \ \ status;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00587\ \ \ \ \ astro\_eclipse\_kind\_t\ \ \ \ kind;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00588\ \ \ \ \ astro\_time\_t\ \ \ \ \ \ \ \ \ \ \ \ peak;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00589\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ distance;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00590\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ latitude;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00591\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ longitude;\ \ \ \ \ \ }
+\DoxyCodeLine{00592\ \}}
+\DoxyCodeLine{00593\ astro\_global\_solar\_eclipse\_t;}
+\DoxyCodeLine{00594\ }
+\DoxyCodeLine{00595\ }
+\DoxyCodeLine{00610\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00611\ \{}
+\DoxyCodeLine{00612\ \ \ \ \ astro\_time\_t\ \ \ \ time;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00613\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ altitude;\ \ \ }
+\DoxyCodeLine{00614\ \}}
+\DoxyCodeLine{00615\ astro\_eclipse\_event\_t;}
+\DoxyCodeLine{00616\ }
+\DoxyCodeLine{00617\ }
+\DoxyCodeLine{00645\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00646\ \{}
+\DoxyCodeLine{00647\ \ \ \ \ astro\_status\_t\ \ \ \ \ \ \ \ \ \ status;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00648\ \ \ \ \ astro\_eclipse\_kind\_t\ \ \ \ kind;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00649\ \ \ \ \ astro\_eclipse\_event\_t\ \ \ partial\_begin;\ \ }
+\DoxyCodeLine{00650\ \ \ \ \ astro\_eclipse\_event\_t\ \ \ total\_begin;\ \ \ \ }
+\DoxyCodeLine{00651\ \ \ \ \ astro\_eclipse\_event\_t\ \ \ peak;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00652\ \ \ \ \ astro\_eclipse\_event\_t\ \ \ total\_end;\ \ \ \ \ \ }
+\DoxyCodeLine{00653\ \ \ \ \ astro\_eclipse\_event\_t\ \ \ partial\_end;\ \ \ \ }
+\DoxyCodeLine{00654\ \}}
+\DoxyCodeLine{00655\ astro\_local\_solar\_eclipse\_t;}
+\DoxyCodeLine{00656\ }
+\DoxyCodeLine{00657\ }
+\DoxyCodeLine{00675\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00676\ \{}
+\DoxyCodeLine{00677\ \ \ \ \ astro\_status\_t\ \ status;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00678\ \ \ \ \ astro\_time\_t\ \ \ \ start;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00679\ \ \ \ \ astro\_time\_t\ \ \ \ peak;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00680\ \ \ \ \ astro\_time\_t\ \ \ \ finish;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00681\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ separation;\ \ \ \ \ }
+\DoxyCodeLine{00682\ \}}
+\DoxyCodeLine{00683\ astro\_transit\_t;}
+\DoxyCodeLine{00684\ }
+\DoxyCodeLine{00685\ }
+\DoxyCodeLine{00705\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00706\ \{}
+\DoxyCodeLine{00707\ \ \ \ \ ABERRATION,\ \ \ \ \ }
+\DoxyCodeLine{00708\ \ \ \ \ NO\_ABERRATION\ \ \ }
+\DoxyCodeLine{00709\ \}}
+\DoxyCodeLine{00710\ astro\_aberration\_t;}
+\DoxyCodeLine{00711\ }
+\DoxyCodeLine{00728\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00729\ \{}
+\DoxyCodeLine{00730\ \ \ \ \ EQUATOR\_J2000,\ \ \ \ \ \ }
+\DoxyCodeLine{00731\ \ \ \ \ EQUATOR\_OF\_DATE\ \ \ \ \ }
+\DoxyCodeLine{00732\ \}}
+\DoxyCodeLine{00733\ astro\_equator\_date\_t;}
+\DoxyCodeLine{00734\ }
+\DoxyCodeLine{00741\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00742\ \{}
+\DoxyCodeLine{00743\ \ \ \ \ DIRECTION\_RISE\ =\ +1,\ \ \ \ }
+\DoxyCodeLine{00744\ \ \ \ \ DIRECTION\_SET\ \ =\ -\/1,\ \ \ \ }
+\DoxyCodeLine{00745\ \}}
+\DoxyCodeLine{00746\ astro\_direction\_t;}
+\DoxyCodeLine{00747\ }
+\DoxyCodeLine{00748\ }
+\DoxyCodeLine{00758\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00759\ \{}
+\DoxyCodeLine{00760\ \ \ \ \ astro\_status\_t\ status;\ \ \ \ \ \ }
+\DoxyCodeLine{00761\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ \ \ \ *symbol;\ \ \ \ \ \ }
+\DoxyCodeLine{00762\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ \ \ \ *name;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00763\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ ra\_1875;\ \ \ \ \ }
+\DoxyCodeLine{00764\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ dec\_1875;\ \ \ \ }
+\DoxyCodeLine{00765\ \}}
+\DoxyCodeLine{00766\ astro\_constellation\_t;}
+\DoxyCodeLine{00767\ }
+\DoxyCodeLine{00768\ }
+\DoxyCodeLine{00772\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00773\ \{}
+\DoxyCodeLine{00774\ \ \ \ \ TIME\_FORMAT\_DAY,\ \ \ \ }
+\DoxyCodeLine{00775\ \ \ \ \ TIME\_FORMAT\_MINUTE,\ }
+\DoxyCodeLine{00776\ \ \ \ \ TIME\_FORMAT\_SECOND,\ }
+\DoxyCodeLine{00777\ \ \ \ \ TIME\_FORMAT\_MILLI\ \ \ }
+\DoxyCodeLine{00778\ \}}
+\DoxyCodeLine{00779\ astro\_time\_format\_t;}
+\DoxyCodeLine{00780\ }
+\DoxyCodeLine{00781\ \textcolor{preprocessor}{\#define\ TIME\_TEXT\_BYTES\ \ 25\ \ \ }}
+\DoxyCodeLine{00783\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ functions\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00784\ }
+\DoxyCodeLine{00785\ \textcolor{keywordtype}{void}\ Astronomy\_Reset(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00786\ \textcolor{keywordtype}{double}\ Astronomy\_VectorLength(astro\_vector\_t\ vector);}
+\DoxyCodeLine{00787\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *Astronomy\_BodyName(astro\_body\_t\ body);}
+\DoxyCodeLine{00788\ astro\_body\_t\ Astronomy\_BodyCode(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name);}
+\DoxyCodeLine{00789\ astro\_observer\_t\ Astronomy\_MakeObserver(\textcolor{keywordtype}{double}\ latitude,\ \textcolor{keywordtype}{double}\ longitude,\ \textcolor{keywordtype}{double}\ height);}
+\DoxyCodeLine{00790\ astro\_time\_t\ Astronomy\_CurrentTime(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00791\ astro\_time\_t\ Astronomy\_MakeTime(\textcolor{keywordtype}{int}\ year,\ \textcolor{keywordtype}{int}\ month,\ \textcolor{keywordtype}{int}\ day,\ \textcolor{keywordtype}{int}\ hour,\ \textcolor{keywordtype}{int}\ minute,\ \textcolor{keywordtype}{double}\ second);}
+\DoxyCodeLine{00792\ astro\_time\_t\ Astronomy\_TimeFromUtc(astro\_utc\_t\ utc);}
+\DoxyCodeLine{00793\ astro\_utc\_t\ \ Astronomy\_UtcFromTime(astro\_time\_t\ time);}
+\DoxyCodeLine{00794\ astro\_status\_t\ Astronomy\_FormatTime(astro\_time\_t\ time,\ astro\_time\_format\_t\ format,\ \textcolor{keywordtype}{char}\ *text,\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{00795\ astro\_time\_t\ Astronomy\_TimeFromDays(\textcolor{keywordtype}{double}\ ut);}
+\DoxyCodeLine{00796\ astro\_time\_t\ Astronomy\_AddDays(astro\_time\_t\ time,\ \textcolor{keywordtype}{double}\ days);}
+\DoxyCodeLine{00797\ astro\_func\_result\_t\ Astronomy\_HelioDistance(astro\_body\_t\ body,\ astro\_time\_t\ time);}
+\DoxyCodeLine{00798\ astro\_vector\_t\ Astronomy\_HelioVector(astro\_body\_t\ body,\ astro\_time\_t\ time);}
+\DoxyCodeLine{00799\ astro\_vector\_t\ Astronomy\_GeoVector(astro\_body\_t\ body,\ astro\_time\_t\ time,\ astro\_aberration\_t\ aberration);}
+\DoxyCodeLine{00800\ astro\_vector\_t\ Astronomy\_GeoMoon(astro\_time\_t\ time);}
+\DoxyCodeLine{00801\ }
+\DoxyCodeLine{00802\ astro\_equatorial\_t\ Astronomy\_Equator(}
+\DoxyCodeLine{00803\ \ \ \ \ astro\_body\_t\ body,}
+\DoxyCodeLine{00804\ \ \ \ \ astro\_time\_t\ *time,}
+\DoxyCodeLine{00805\ \ \ \ \ astro\_observer\_t\ observer,}
+\DoxyCodeLine{00806\ \ \ \ \ astro\_equator\_date\_t\ equdate,}
+\DoxyCodeLine{00807\ \ \ \ \ astro\_aberration\_t\ aberration}
+\DoxyCodeLine{00808\ );}
+\DoxyCodeLine{00809\ }
+\DoxyCodeLine{00810\ astro\_ecliptic\_t\ Astronomy\_SunPosition(astro\_time\_t\ time);}
+\DoxyCodeLine{00811\ astro\_ecliptic\_t\ Astronomy\_Ecliptic(astro\_vector\_t\ equ);}
+\DoxyCodeLine{00812\ astro\_angle\_result\_t\ Astronomy\_EclipticLongitude(astro\_body\_t\ body,\ astro\_time\_t\ time);}
+\DoxyCodeLine{00813\ }
+\DoxyCodeLine{00814\ astro\_horizon\_t\ Astronomy\_Horizon(}
+\DoxyCodeLine{00815\ \ \ \ \ astro\_time\_t\ *time,}
+\DoxyCodeLine{00816\ \ \ \ \ astro\_observer\_t\ observer,}
+\DoxyCodeLine{00817\ \ \ \ \ \textcolor{keywordtype}{double}\ ra,}
+\DoxyCodeLine{00818\ \ \ \ \ \textcolor{keywordtype}{double}\ dec,}
+\DoxyCodeLine{00819\ \ \ \ \ astro\_refraction\_t\ refraction);}
+\DoxyCodeLine{00820\ }
+\DoxyCodeLine{00821\ astro\_angle\_result\_t\ Astronomy\_AngleFromSun(astro\_body\_t\ body,\ astro\_time\_t\ time);}
+\DoxyCodeLine{00822\ astro\_elongation\_t\ Astronomy\_Elongation(astro\_body\_t\ body,\ astro\_time\_t\ time);}
+\DoxyCodeLine{00823\ astro\_elongation\_t\ Astronomy\_SearchMaxElongation(astro\_body\_t\ body,\ astro\_time\_t\ startTime);}
+\DoxyCodeLine{00824\ astro\_angle\_result\_t\ Astronomy\_LongitudeFromSun(astro\_body\_t\ body,\ astro\_time\_t\ time);}
+\DoxyCodeLine{00825\ astro\_search\_result\_t\ Astronomy\_SearchRelativeLongitude(astro\_body\_t\ body,\ \textcolor{keywordtype}{double}\ targetRelLon,\ astro\_time\_t\ startTime);}
+\DoxyCodeLine{00826\ astro\_angle\_result\_t\ Astronomy\_MoonPhase(astro\_time\_t\ time);}
+\DoxyCodeLine{00827\ astro\_search\_result\_t\ Astronomy\_SearchMoonPhase(\textcolor{keywordtype}{double}\ targetLon,\ astro\_time\_t\ startTime,\ \textcolor{keywordtype}{double}\ limitDays);}
+\DoxyCodeLine{00828\ astro\_moon\_quarter\_t\ Astronomy\_SearchMoonQuarter(astro\_time\_t\ startTime);}
+\DoxyCodeLine{00829\ astro\_moon\_quarter\_t\ Astronomy\_NextMoonQuarter(astro\_moon\_quarter\_t\ mq);}
+\DoxyCodeLine{00830\ astro\_lunar\_eclipse\_t\ Astronomy\_SearchLunarEclipse(astro\_time\_t\ startTime);}
+\DoxyCodeLine{00831\ astro\_lunar\_eclipse\_t\ Astronomy\_NextLunarEclipse(astro\_time\_t\ prevEclipseTime);}
+\DoxyCodeLine{00832\ astro\_global\_solar\_eclipse\_t\ Astronomy\_SearchGlobalSolarEclipse(astro\_time\_t\ startTime);}
+\DoxyCodeLine{00833\ astro\_global\_solar\_eclipse\_t\ Astronomy\_NextGlobalSolarEclipse(astro\_time\_t\ prevEclipseTime);}
+\DoxyCodeLine{00834\ astro\_local\_solar\_eclipse\_t\ Astronomy\_SearchLocalSolarEclipse(astro\_time\_t\ startTime,\ astro\_observer\_t\ observer);}
+\DoxyCodeLine{00835\ astro\_local\_solar\_eclipse\_t\ Astronomy\_NextLocalSolarEclipse(astro\_time\_t\ prevEclipseTime,\ astro\_observer\_t\ observer);}
+\DoxyCodeLine{00836\ astro\_transit\_t\ Astronomy\_SearchTransit(astro\_body\_t\ body,\ astro\_time\_t\ startTime);}
+\DoxyCodeLine{00837\ astro\_transit\_t\ Astronomy\_NextTransit(astro\_body\_t\ body,\ astro\_time\_t\ prevTransitTime);}
+\DoxyCodeLine{00838\ }
+\DoxyCodeLine{00839\ astro\_search\_result\_t\ Astronomy\_Search(}
+\DoxyCodeLine{00840\ \ \ \ \ astro\_search\_func\_t\ func,}
+\DoxyCodeLine{00841\ \ \ \ \ \textcolor{keywordtype}{void}\ *context,}
+\DoxyCodeLine{00842\ \ \ \ \ astro\_time\_t\ t1,}
+\DoxyCodeLine{00843\ \ \ \ \ astro\_time\_t\ t2,}
+\DoxyCodeLine{00844\ \ \ \ \ \textcolor{keywordtype}{double}\ dt\_tolerance\_seconds);}
+\DoxyCodeLine{00845\ }
+\DoxyCodeLine{00846\ astro\_search\_result\_t\ Astronomy\_SearchSunLongitude(}
+\DoxyCodeLine{00847\ \ \ \ \ \textcolor{keywordtype}{double}\ targetLon,}
+\DoxyCodeLine{00848\ \ \ \ \ astro\_time\_t\ startTime,}
+\DoxyCodeLine{00849\ \ \ \ \ \textcolor{keywordtype}{double}\ limitDays);}
+\DoxyCodeLine{00850\ }
+\DoxyCodeLine{00851\ astro\_hour\_angle\_t\ Astronomy\_SearchHourAngle(}
+\DoxyCodeLine{00852\ \ \ \ \ astro\_body\_t\ body,}
+\DoxyCodeLine{00853\ \ \ \ \ astro\_observer\_t\ observer,}
+\DoxyCodeLine{00854\ \ \ \ \ \textcolor{keywordtype}{double}\ hourAngle,}
+\DoxyCodeLine{00855\ \ \ \ \ astro\_time\_t\ startTime);}
+\DoxyCodeLine{00856\ }
+\DoxyCodeLine{00857\ astro\_search\_result\_t\ Astronomy\_SearchRiseSet(}
+\DoxyCodeLine{00858\ \ \ \ \ astro\_body\_t\ body,}
+\DoxyCodeLine{00859\ \ \ \ \ astro\_observer\_t\ observer,}
+\DoxyCodeLine{00860\ \ \ \ \ astro\_direction\_t\ direction,}
+\DoxyCodeLine{00861\ \ \ \ \ astro\_time\_t\ startTime,}
+\DoxyCodeLine{00862\ \ \ \ \ \textcolor{keywordtype}{double}\ limitDays);}
+\DoxyCodeLine{00863\ }
+\DoxyCodeLine{00864\ astro\_seasons\_t\ Astronomy\_Seasons(\textcolor{keywordtype}{int}\ year);}
+\DoxyCodeLine{00865\ astro\_illum\_t\ Astronomy\_Illumination(astro\_body\_t\ body,\ astro\_time\_t\ time);}
+\DoxyCodeLine{00866\ astro\_illum\_t\ Astronomy\_SearchPeakMagnitude(astro\_body\_t\ body,\ astro\_time\_t\ startTime);}
+\DoxyCodeLine{00867\ astro\_apsis\_t\ Astronomy\_SearchLunarApsis(astro\_time\_t\ startTime);}
+\DoxyCodeLine{00868\ astro\_apsis\_t\ Astronomy\_NextLunarApsis(astro\_apsis\_t\ apsis);}
+\DoxyCodeLine{00869\ astro\_apsis\_t\ Astronomy\_SearchPlanetApsis(astro\_body\_t\ body,\ astro\_time\_t\ startTime);}
+\DoxyCodeLine{00870\ astro\_apsis\_t\ Astronomy\_NextPlanetApsis(astro\_body\_t\ body,\ astro\_apsis\_t\ apsis);}
+\DoxyCodeLine{00871\ }
+\DoxyCodeLine{00872\ astro\_rotation\_t\ Astronomy\_InverseRotation(astro\_rotation\_t\ rotation);}
+\DoxyCodeLine{00873\ astro\_rotation\_t\ Astronomy\_CombineRotation(astro\_rotation\_t\ a,\ astro\_rotation\_t\ b);}
+\DoxyCodeLine{00874\ astro\_vector\_t\ Astronomy\_VectorFromSphere(astro\_spherical\_t\ sphere,\ astro\_time\_t\ time);}
+\DoxyCodeLine{00875\ astro\_spherical\_t\ Astronomy\_SphereFromVector(astro\_vector\_t\ vector);}
+\DoxyCodeLine{00876\ astro\_vector\_t\ Astronomy\_VectorFromEquator(astro\_equatorial\_t\ equ,\ astro\_time\_t\ time);}
+\DoxyCodeLine{00877\ astro\_equatorial\_t\ Astronomy\_EquatorFromVector(astro\_vector\_t\ vector);}
+\DoxyCodeLine{00878\ astro\_vector\_t\ Astronomy\_VectorFromHorizon(astro\_spherical\_t\ sphere,\ astro\_time\_t\ time,\ astro\_refraction\_t\ refraction);}
+\DoxyCodeLine{00879\ astro\_spherical\_t\ Astronomy\_HorizonFromVector(astro\_vector\_t\ vector,\ astro\_refraction\_t\ refraction);}
+\DoxyCodeLine{00880\ astro\_vector\_t\ Astronomy\_RotateVector(astro\_rotation\_t\ rotation,\ astro\_vector\_t\ vector);}
+\DoxyCodeLine{00881\ }
+\DoxyCodeLine{00882\ astro\_rotation\_t\ Astronomy\_Rotation\_EQD\_EQJ(astro\_time\_t\ time);}
+\DoxyCodeLine{00883\ astro\_rotation\_t\ Astronomy\_Rotation\_EQD\_ECL(astro\_time\_t\ time);}
+\DoxyCodeLine{00884\ astro\_rotation\_t\ Astronomy\_Rotation\_EQD\_HOR(astro\_time\_t\ time,\ astro\_observer\_t\ observer);}
+\DoxyCodeLine{00885\ astro\_rotation\_t\ Astronomy\_Rotation\_EQJ\_EQD(astro\_time\_t\ time);}
+\DoxyCodeLine{00886\ astro\_rotation\_t\ Astronomy\_Rotation\_EQJ\_ECL(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00887\ astro\_rotation\_t\ Astronomy\_Rotation\_EQJ\_HOR(astro\_time\_t\ time,\ astro\_observer\_t\ observer);}
+\DoxyCodeLine{00888\ astro\_rotation\_t\ Astronomy\_Rotation\_ECL\_EQD(astro\_time\_t\ time);}
+\DoxyCodeLine{00889\ astro\_rotation\_t\ Astronomy\_Rotation\_ECL\_EQJ(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00890\ astro\_rotation\_t\ Astronomy\_Rotation\_ECL\_HOR(astro\_time\_t\ time,\ astro\_observer\_t\ observer);}
+\DoxyCodeLine{00891\ astro\_rotation\_t\ Astronomy\_Rotation\_HOR\_EQD(astro\_time\_t\ time,\ astro\_observer\_t\ observer);}
+\DoxyCodeLine{00892\ astro\_rotation\_t\ Astronomy\_Rotation\_HOR\_EQJ(astro\_time\_t\ time,\ astro\_observer\_t\ observer);}
+\DoxyCodeLine{00893\ astro\_rotation\_t\ Astronomy\_Rotation\_HOR\_ECL(astro\_time\_t\ time,\ astro\_observer\_t\ observer);}
+\DoxyCodeLine{00894\ }
+\DoxyCodeLine{00895\ \textcolor{keywordtype}{double}\ Astronomy\_Refraction(astro\_refraction\_t\ refraction,\ \textcolor{keywordtype}{double}\ altitude);}
+\DoxyCodeLine{00896\ \textcolor{keywordtype}{double}\ Astronomy\_InverseRefraction(astro\_refraction\_t\ refraction,\ \textcolor{keywordtype}{double}\ bent\_altitude);}
+\DoxyCodeLine{00897\ }
+\DoxyCodeLine{00898\ astro\_constellation\_t\ Astronomy\_Constellation(\textcolor{keywordtype}{double}\ ra,\ \textcolor{keywordtype}{double}\ dec);}
+\DoxyCodeLine{00899\ }
+\DoxyCodeLine{00900\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00901\ \}}
+\DoxyCodeLine{00902\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00903\ }
+\DoxyCodeLine{00904\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ ifndef\ \_\_ASTRONOMY\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,31 @@
+\chapter{bmp2array4bit}
+\label{md_lib_2_t_f_t__e_s_p_i-master_2_tools_2bmp2array4bit_2_r_e_a_d_m_e}\index{bmp2array4bit@{bmp2array4bit}}
+\label{md_lib_2_t_f_t__e_s_p_i-master_2_tools_2bmp2array4bit_2_r_e_a_d_m_e_autotoc_md21}%
+
+
+bmp2array4bit.\+py reads a bmp file, and creates C (or C++) code that contains two arrays for adding images to four-\/bit sprites. See {\texttt{ Sprite\+\_\+image\+\_\+4bit}} for an example.
+
+It is loosely based on Spark Fun\textquotesingle{}s bmp2array script, {\texttt{ https\+://github.\+com/sparkfun/\+BMPto\+Array/blob/master/bmp2array.\+py}}. The bmp file format is documented in {\texttt{ https\+://en.\+wikipedia.\+org/wiki/\+BMP\+\_\+file\+\_\+format}}.
+
+You\textquotesingle{}ll need python 3.\+6 (the original uses Python 2.\+7)
+
+{\ttfamily usage\+: python bmp2array4bit.\+py [-\/v] star.\+bmp [-\/o myfile.\+c]}
+
+Create the bmp file in Gimp (www.\+gimp.\+org) from any image as follows\+:
+
+
+\begin{DoxyItemize}
+\item Remove the alpha channel (if it has one) Layer -\/$>$ Transparency -\/$>$ Remove Alpha Channel
+\item Set the mode to indexed. Image -\/$>$ Mode -\/$>$ Indexed...
+\item Select Generate optimum palette with 16 colors (max)
+\item Export the file with a .bmp extension. Do {\bfseries{NOT}} select options\+:
+\begin{DoxyItemize}
+\item Run-\/\+Length Encoded
+\item Compatibility Options\+: "{}\+Do not write color space information"{}
+\item There are no Advanced Options available with these settings
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+(There are other tools that will produce bmp files, and these should work provided you don\textquotesingle{}t use run-\/length encoding or other advanced features).
+
+The first array produced is the palette for the image. The second is the image itself. 

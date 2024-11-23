@@ -1,0 +1,150 @@
+\doxysection{UIPEthernet\+Class Class Reference}
+\label{class_u_i_p_ethernet_class}\index{UIPEthernetClass@{UIPEthernetClass}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_u_i_p_ethernet_class_a6f11a14f2e3b82f6cd62d3a9cc22985f} 
+void {\bfseries init} (uint8\+\_\+t cs\+Pin)
+\item 
+\label{class_u_i_p_ethernet_class_ad32b0725d1f852ffbba4ac7d8e0bd906} 
+int {\bfseries begin} (const uint8\+\_\+t $\ast$mac, unsigned long timeout=60000, unsigned long response\+Timeout=4000)
+\item 
+\label{class_u_i_p_ethernet_class_afd9cf8c87875a0092d469825762c527b} 
+void {\bfseries begin} (const uint8\+\_\+t $\ast$mac, IPAddress ip)
+\item 
+\label{class_u_i_p_ethernet_class_a055f15bb632ddc21298b015dcbf4953e} 
+void {\bfseries begin} (const uint8\+\_\+t $\ast$mac, IPAddress ip, IPAddress dns)
+\item 
+\label{class_u_i_p_ethernet_class_a961255fb084ace8517fd965cab2e6c91} 
+void {\bfseries begin} (const uint8\+\_\+t $\ast$mac, IPAddress ip, IPAddress dns, IPAddress gateway)
+\item 
+\label{class_u_i_p_ethernet_class_a141c984506f833330416a032cc29b0a9} 
+void {\bfseries begin} (const uint8\+\_\+t $\ast$mac, IPAddress ip, IPAddress dns, IPAddress gateway, IPAddress subnet)
+\item 
+\label{class_u_i_p_ethernet_class_ac6967b8bbed6fd6d685b05075771ac56} 
+void {\bfseries end} ()
+\item 
+\label{class_u_i_p_ethernet_class_a02e274bd5665f2ecb6eae872d4c2908c} 
+int {\bfseries maintain} ()
+\item 
+\label{class_u_i_p_ethernet_class_a239d5151709de5d15f0d7bd5a536e675} 
+Ethernet\+Link\+Status {\bfseries link\+Status} ()
+\item 
+\label{class_u_i_p_ethernet_class_a7225d5ed77be172469a10181a1d4feb3} 
+Ethernet\+Hardware\+Status {\bfseries hardware\+Status} ()
+\item 
+\label{class_u_i_p_ethernet_class_a940dabe5b9a4b6169498986e2db13e02} 
+uint8\+\_\+t $\ast$ {\bfseries mac\+Address} (uint8\+\_\+t $\ast$mac)
+\item 
+\label{class_u_i_p_ethernet_class_a553c945c7f6a02b7c1967c6f28fe0224} 
+void {\bfseries MACAddress} (uint8\+\_\+t $\ast$mac\+\_\+address)
+\item 
+\label{class_u_i_p_ethernet_class_a735452ad0be10f67c711571f9d24c63c} 
+IPAddress {\bfseries local\+IP} ()
+\item 
+\label{class_u_i_p_ethernet_class_a71d788d4e53fbf284cdf630a94e78260} 
+IPAddress {\bfseries subnet\+Mask} ()
+\item 
+\label{class_u_i_p_ethernet_class_aae0417279e0b60d44aafaf60df199b39} 
+IPAddress {\bfseries gateway\+IP} ()
+\item 
+\label{class_u_i_p_ethernet_class_ac94598aecfb36814c96f0dab3bcc26ae} 
+IPAddress {\bfseries dns\+Server\+IP} ()
+\item 
+\label{class_u_i_p_ethernet_class_a306670cbd03a8952b22f3b9b185db7b1} 
+IPAddress {\bfseries dns\+IP} (int n=0)
+\item 
+\label{class_u_i_p_ethernet_class_a67301c9329b75ac6c5c82f50fb6fa5eb} 
+void {\bfseries set\+Dns\+Server\+IP} (const IPAddress dns\+\_\+server)
+\item 
+\label{class_u_i_p_ethernet_class_a83a5009b9824c799845748a95650d95c} 
+void {\bfseries set\+DNS} (IPAddress dns\+\_\+server)
+\item 
+\label{class_u_i_p_ethernet_class_af49d682ea907fb2b0b2b62da1f74f0ee} 
+void {\bfseries set\+Hostname} (const char $\ast$hostname)
+\item 
+\label{class_u_i_p_ethernet_class_a6232ba8c5319d3d7b31313b156520ff4} 
+int {\bfseries host\+By\+Name} (const char $\ast$hostname, IPAddress \&result)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_u_i_p_ethernet_class_a785f428668d14e56fb12f9c51e236fa5} 
+class {\bfseries Ethernet\+Server}
+\item 
+\label{class_u_i_p_ethernet_class_afc01a27fff227f851230c6370453a09e} 
+class {\bfseries Ethernet\+Client}
+\item 
+\label{class_u_i_p_ethernet_class_a685b9f0afea2980919bcb47f405d3806} 
+class {\bfseries Ethernet\+UDP}
+\item 
+uint16\+\_\+t \textbf{ uip\+\_\+ipchksum} (void)
+\item 
+uint16\+\_\+t \textbf{ uip\+\_\+tcpchksum} (void)
+\item 
+uint16\+\_\+t \textbf{ uip\+\_\+udpchksum} (void)
+\item 
+\label{class_u_i_p_ethernet_class_abe149db4e2377c86c67dd8ea22d79491} 
+void {\bfseries uipclient\+\_\+appcall} (void)
+\item 
+\label{class_u_i_p_ethernet_class_aabcb6018b6d071112561466fcac249c0} 
+void {\bfseries uipudp\+\_\+appcall} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\index{UIPEthernetClass@{UIPEthernetClass}!uip\_ipchksum@{uip\_ipchksum}}
+\index{uip\_ipchksum@{uip\_ipchksum}!UIPEthernetClass@{UIPEthernetClass}}
+\doxysubsubsection{uip\_ipchksum}
+{\footnotesize\ttfamily \label{class_u_i_p_ethernet_class_a707e869bd80c32239d214a8ebe560c04} 
+uint16\+\_\+t uip\+\_\+ipchksum (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Calculate the IP header checksum of the packet header in uip\+\_\+buf.
+
+The IP header checksum is the Internet checksum of the 20 bytes of the IP header.
+
+\begin{DoxyReturn}{Returns}
+The IP header checksum of the IP header in the uip\+\_\+buf buffer. 
+\end{DoxyReturn}
+\index{UIPEthernetClass@{UIPEthernetClass}!uip\_tcpchksum@{uip\_tcpchksum}}
+\index{uip\_tcpchksum@{uip\_tcpchksum}!UIPEthernetClass@{UIPEthernetClass}}
+\doxysubsubsection{uip\_tcpchksum}
+{\footnotesize\ttfamily \label{class_u_i_p_ethernet_class_a969ff8bccf86e1c4becc3c3fd23f93b4} 
+uint16\+\_\+t uip\+\_\+tcpchksum (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Calculate the TCP checksum of the packet in uip\+\_\+buf and uip\+\_\+appdata.
+
+The TCP checksum is the Internet checksum of data contents of the TCP segment, and a pseudo-\/header as defined in RFC793.
+
+\begin{DoxyReturn}{Returns}
+The TCP checksum of the TCP segment in uip\+\_\+buf and pointed to by uip\+\_\+appdata.
+\end{DoxyReturn}
+Calculate the TCP checksum of the packet in uip\+\_\+buf and uip\+\_\+appdata.
+
+The TCP checksum is the Internet checksum of data contents of the TCP segment, and a pseudo-\/header as defined in RFC793.
+
+\begin{DoxyNote}{Note}
+The uip\+\_\+appdata pointer that points to the packet data may point anywhere in memory, so it is not possible to simply calculate the Internet checksum of the contents of the uip\+\_\+buf buffer.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+The TCP checksum of the TCP segment in uip\+\_\+buf and pointed to by uip\+\_\+appdata. 
+\end{DoxyReturn}
+\index{UIPEthernetClass@{UIPEthernetClass}!uip\_udpchksum@{uip\_udpchksum}}
+\index{uip\_udpchksum@{uip\_udpchksum}!UIPEthernetClass@{UIPEthernetClass}}
+\doxysubsubsection{uip\_udpchksum}
+{\footnotesize\ttfamily \label{class_u_i_p_ethernet_class_aeb447241dcd4e7840ea4b0603fc2c330} 
+uint16\+\_\+t uip\+\_\+udpchksum (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Calculate the UDP checksum of the packet in uip\+\_\+buf and uip\+\_\+appdata.
+
+The UDP checksum is the Internet checksum of data contents of the UDP segment, and a pseudo-\/header as defined in RFC768.
+
+\begin{DoxyReturn}{Returns}
+The UDP checksum of the UDP segment in uip\+\_\+buf and pointed to by uip\+\_\+appdata. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Ethernet\+ENC-\/2.\+0.\+5/src/Ethernet.\+h\item 
+lib/\+Ethernet\+ENC-\/2.\+0.\+5/src/Ethernet.\+cpp\end{DoxyCompactItemize}

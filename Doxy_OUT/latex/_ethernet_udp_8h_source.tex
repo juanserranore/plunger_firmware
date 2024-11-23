@@ -1,0 +1,145 @@
+\doxysection{Ethernet\+Udp.\+h}
+\label{_ethernet_udp_8h_source}\index{lib/EthernetENC-\/2.0.5/src/EthernetUdp.h@{lib/EthernetENC-\/2.0.5/src/EthernetUdp.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ UIPUdp.h\ -\/\ Arduino\ implementation\ of\ a\ uIP\ wrapper\ class.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ Copyright\ (c)\ 2013\ Norbert\ Truchsess\ <norbert.truchsess@t-\/online.de>}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ All\ rights\ reserved.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ This\ program\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ This\ program\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ along\ with\ this\ program.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ UIPUDP\_H}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ UIPUDP\_H}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <Udp.h>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}utility/mempool.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\ \ \#include\ "{}utility/uip.h"{}}}
+\DoxyCodeLine{00028\ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ UIP\_UDP\_MAXDATALEN\ 1500}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ UIP\_UDP\_PHYH\_LEN\ UIP\_LLH\_LEN+UIP\_IPUDPH\_LEN}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ UIP\_UDP\_MAXPACKETSIZE\ UIP\_UDP\_MAXDATALEN+UIP\_UDP\_PHYH\_LEN}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00035\ \ \ memhandle\ packet\ =\ NOBLOCK;}
+\DoxyCodeLine{00036\ \ \ uip\_ipaddr\_t\ remote\_ip;}
+\DoxyCodeLine{00037\ \ \ uint16\_t\ remote\_port\ =\ 0;}
+\DoxyCodeLine{00038\ \}\ uip\_udp\_msg\_rec\_t;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00041\ \ \ memaddress\ out\_pos;}
+\DoxyCodeLine{00042\ \ \ uip\_udp\_msg\_rec\_t\ packet\_next[UIP\_UDP\_BACKLOG];}
+\DoxyCodeLine{00043\ \ \ memhandle\ packet\_in\ =\ NOBLOCK;}
+\DoxyCodeLine{00044\ \ \ memhandle\ packet\_out\ =\ NOBLOCK;}
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordtype}{boolean}\ send;}
+\DoxyCodeLine{00046\ \ \ uip\_ipaddr\_t\ remote\_ip;}
+\DoxyCodeLine{00047\ \ \ uint16\_t\ remote\_port\ =\ 0;}
+\DoxyCodeLine{00048\ \}\ uip\_udp\_userdata\_t;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{class\ }EthernetUDP\ :\ \textcolor{keyword}{public}\ UDP}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00054\ \ \ \textcolor{keyword}{struct\ }uip\_udp\_conn\ *\_uip\_udp\_conn;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ uip\_udp\_userdata\_t\ appdata;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ EthernetUDP();\ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{00060\ \ \ uint8\_t}
+\DoxyCodeLine{00061\ \ \ begin(uint16\_t);\textcolor{comment}{//\ initialize,\ start\ listening\ on\ specified\ port.\ Returns\ 1\ if\ successful,\ 0\ if\ there\ are\ no\ sockets\ available\ to\ use}}
+\DoxyCodeLine{00062\ \ \ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00063\ \ \ stop();\ \ \textcolor{comment}{//\ Finish\ with\ the\ UDP\ socket}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \textcolor{comment}{//\ Sending\ UDP\ packets}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \textcolor{comment}{//\ Start\ building\ up\ a\ packet\ to\ send\ to\ the\ remote\ host\ specific\ in\ ip\ and\ port}}
+\DoxyCodeLine{00068\ \ \ \textcolor{comment}{//\ Returns\ 1\ if\ successful,\ 0\ if\ there\ was\ a\ problem\ with\ the\ supplied\ IP\ address\ or\ port}}
+\DoxyCodeLine{00069\ \ \ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00070\ \ \ beginPacket(IPAddress\ ip,\ uint16\_t\ port);}
+\DoxyCodeLine{00071\ \ \ \textcolor{comment}{//\ Start\ building\ up\ a\ packet\ to\ send\ to\ the\ remote\ host\ specific\ in\ host\ and\ port}}
+\DoxyCodeLine{00072\ \ \ \textcolor{comment}{//\ Returns\ 1\ if\ successful,\ 0\ if\ there\ was\ a\ problem\ resolving\ the\ hostname\ or\ port}}
+\DoxyCodeLine{00073\ \ \ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00074\ \ \ beginPacket(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *host,\ uint16\_t\ port);}
+\DoxyCodeLine{00075\ \ \ \textcolor{comment}{//\ Finish\ off\ this\ packet\ and\ send\ it}}
+\DoxyCodeLine{00076\ \ \ \textcolor{comment}{//\ Returns\ 1\ if\ the\ packet\ was\ sent\ successfully,\ 0\ if\ there\ was\ an\ error}}
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00078\ \ \ endPacket();}
+\DoxyCodeLine{00079\ \ \ \textcolor{comment}{//\ Write\ a\ single\ byte\ into\ the\ packet}}
+\DoxyCodeLine{00080\ \ \ \textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00081\ \ \ write(uint8\_t);}
+\DoxyCodeLine{00082\ \ \ \textcolor{comment}{//\ Write\ size\ bytes\ from\ buffer\ into\ the\ packet}}
+\DoxyCodeLine{00083\ \ \ \textcolor{keywordtype}{size\_t}}
+\DoxyCodeLine{00084\ \ \ write(\textcolor{keyword}{const}\ uint8\_t\ *buffer,\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{00085\ \ \ \textcolor{comment}{//\ flush()\ should\ send\ the\ data,\ but\ here\ endPacket\ does\ it}}
+\DoxyCodeLine{00086\ \ \ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00087\ \ \ flush()\ \{\};\ \textcolor{comment}{//\ in\ Print\ it\ is\ empty,\ UDP\ makes\ it\ pure\ virtual}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \textcolor{keyword}{using\ }Print::write;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \textcolor{comment}{//\ Start\ processing\ the\ next\ available\ incoming\ packet}}
+\DoxyCodeLine{00092\ \ \ \textcolor{comment}{//\ Returns\ the\ size\ of\ the\ packet\ in\ bytes,\ or\ 0\ if\ no\ packets\ are\ available}}
+\DoxyCodeLine{00093\ \ \ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00094\ \ \ parsePacket();}
+\DoxyCodeLine{00095\ \ \ \textcolor{comment}{//\ Number\ of\ bytes\ remaining\ in\ the\ current\ packet}}
+\DoxyCodeLine{00096\ \ \ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00097\ \ \ available();}
+\DoxyCodeLine{00098\ \ \ \textcolor{comment}{//\ Read\ a\ single\ byte\ from\ the\ current\ packet}}
+\DoxyCodeLine{00099\ \ \ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00100\ \ \ read();}
+\DoxyCodeLine{00101\ \ \ \textcolor{comment}{//\ Read\ up\ to\ len\ bytes\ from\ the\ current\ packet\ and\ place\ them\ into\ buffer}}
+\DoxyCodeLine{00102\ \ \ \textcolor{comment}{//\ Returns\ the\ number\ of\ bytes\ read,\ or\ 0\ if\ none\ are\ available}}
+\DoxyCodeLine{00103\ \ \ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00104\ \ \ read(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ buffer,\ \textcolor{keywordtype}{size\_t}\ len);}
+\DoxyCodeLine{00105\ \ \ \textcolor{comment}{//\ Read\ up\ to\ len\ characters\ from\ the\ current\ packet\ and\ place\ them\ into\ buffer}}
+\DoxyCodeLine{00106\ \ \ \textcolor{comment}{//\ Returns\ the\ number\ of\ characters\ read,\ or\ 0\ if\ none\ are\ available}}
+\DoxyCodeLine{00107\ \ \ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00108\ \ \ read(\textcolor{keywordtype}{char}*\ buffer,\ \textcolor{keywordtype}{size\_t}\ len)}
+\DoxyCodeLine{00109\ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{return}\ read((\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*)\ buffer,\ len);}
+\DoxyCodeLine{00111\ \ \ \}}
+\DoxyCodeLine{00112\ \ \ ;}
+\DoxyCodeLine{00113\ \ \ \textcolor{comment}{//\ Return\ the\ next\ byte\ from\ the\ current\ packet\ without\ moving\ on\ to\ the\ next\ byte}}
+\DoxyCodeLine{00114\ \ \ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00115\ \ \ peek();}
+\DoxyCodeLine{00116\ \ \ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00117\ \ \ discardReceived();\ \textcolor{comment}{//\ former\ flush}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \textcolor{comment}{//\ Return\ the\ IP\ address\ of\ the\ host\ who\ sent\ the\ current\ incoming\ packet}}
+\DoxyCodeLine{00120\ \ \ IPAddress}
+\DoxyCodeLine{00121\ \ \ remoteIP();}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \textcolor{comment}{//\ Return\ the\ port\ of\ the\ host\ who\ sent\ the\ current\ incoming\ packet}}
+\DoxyCodeLine{00124\ \ \ uint16\_t}
+\DoxyCodeLine{00125\ \ \ remotePort();}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \textcolor{keyword}{friend}\ \textcolor{keywordtype}{void}\ uipudp\_appcall(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }UIPEthernetClass;}
+\DoxyCodeLine{00132\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \_send(\textcolor{keyword}{struct}\ uip\_udp\_conn\ *uip\_udp\_conn);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \textcolor{keyword}{static}\ uint8\_t\ \_newBlock(uip\_udp\_msg\_rec\_t*\ blocks);}
+\DoxyCodeLine{00135\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \_moveBlocks(uip\_udp\_msg\_rec\_t*\ blocks);}
+\DoxyCodeLine{00136\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \_flushBlocks(uip\_udp\_msg\_rec\_t*\ blocks);}
+\DoxyCodeLine{00137\ \};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

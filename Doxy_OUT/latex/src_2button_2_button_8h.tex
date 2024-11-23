@@ -1,0 +1,109 @@
+\doxysection{src/button/button.h File Reference}
+\label{src_2button_2_button_8h}\index{src/button/button.h@{src/button/button.h}}
+
+
+Header file for button press handling functions.  
+
+
+{\ttfamily \#include $<$libraries.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ single\+Press\+Handler} (\textbf{ Bf\+Button} $\ast$btn, Bf\+Button\+::press\+\_\+pattern\+\_\+t pattern)
+\begin{DoxyCompactList}\small\item\em Handles single button press events. \end{DoxyCompactList}\item 
+void \textbf{ double\+Press\+Handler} (\textbf{ Bf\+Button} $\ast$btn, Bf\+Button\+::press\+\_\+pattern\+\_\+t pattern)
+\begin{DoxyCompactList}\small\item\em Handles double button press events. \end{DoxyCompactList}\item 
+void \textbf{ long\+Press\+Handler} (\textbf{ Bf\+Button} $\ast$btn, Bf\+Button\+::press\+\_\+pattern\+\_\+t pattern)
+\begin{DoxyCompactList}\small\item\em Handles long button press events. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for button press handling functions. 
+
+This file contains the declarations of the button press handling functions, including single, double, and long press actions for navigating the menu and controlling various settings. 
+
+\doxysubsection{Function Documentation}
+\index{button.h@{button.h}!doublePressHandler@{doublePressHandler}}
+\index{doublePressHandler@{doublePressHandler}!button.h@{button.h}}
+\doxysubsubsection{doublePressHandler()}
+{\footnotesize\ttfamily \label{src_2button_2_button_8h_a8fe924418a98a66f1f468f74e24868fd} 
+void double\+Press\+Handler (\begin{DoxyParamCaption}\item[{\textbf{ Bf\+Button} $\ast$}]{btn}{, }\item[{Bf\+Button\+::press\+\_\+pattern\+\_\+t}]{pattern}{}\end{DoxyParamCaption})}
+
+
+
+Handles double button press events. 
+
+This function is called when a double press is detected. It toggles the engineering mode or any other logic that needs to be implemented for a double press event.
+
+
+\begin{DoxyParams}{Parameters}
+{\em btn} & Pointer to the button object. \\
+\hline
+{\em pattern} & The press pattern detected (double press in this case).\\
+\hline
+\end{DoxyParams}
+This function toggles the engineering mode when a double press is detected.
+
+
+\begin{DoxyParams}{Parameters}
+{\em btn} & Pointer to the button object. \\
+\hline
+{\em pattern} & The press pattern detected (double press in this case). \\
+\hline
+\end{DoxyParams}
+\index{button.h@{button.h}!longPressHandler@{longPressHandler}}
+\index{longPressHandler@{longPressHandler}!button.h@{button.h}}
+\doxysubsubsection{longPressHandler()}
+{\footnotesize\ttfamily \label{src_2button_2_button_8h_aac93b2619e700e5c61bb53a8d9a62f0e} 
+void long\+Press\+Handler (\begin{DoxyParamCaption}\item[{\textbf{ Bf\+Button} $\ast$}]{btn}{, }\item[{Bf\+Button\+::press\+\_\+pattern\+\_\+t}]{pattern}{}\end{DoxyParamCaption})}
+
+
+
+Handles long button press events. 
+
+This function is called when a long press is detected. It toggles the screen on/off, adjusts the brightness, and manages the sleep mode of the display.
+
+
+\begin{DoxyParams}{Parameters}
+{\em btn} & Pointer to the button object. \\
+\hline
+{\em pattern} & The press pattern detected (long press in this case).\\
+\hline
+\end{DoxyParams}
+This function toggles the screen on/off. If the screen is turned off, it reduces the brightness to zero and puts the display into sleep mode. When turned back on, the display is woken up and the brightness is restored to the previous level.
+
+
+\begin{DoxyParams}{Parameters}
+{\em btn} & Pointer to the button object. \\
+\hline
+{\em pattern} & The press pattern detected (long press in this case). \\
+\hline
+\end{DoxyParams}
+\index{button.h@{button.h}!singlePressHandler@{singlePressHandler}}
+\index{singlePressHandler@{singlePressHandler}!button.h@{button.h}}
+\doxysubsubsection{singlePressHandler()}
+{\footnotesize\ttfamily \label{src_2button_2_button_8h_a0d9c04fe4434f768c15608b82479f830} 
+void single\+Press\+Handler (\begin{DoxyParamCaption}\item[{\textbf{ Bf\+Button} $\ast$}]{btn}{, }\item[{Bf\+Button\+::press\+\_\+pattern\+\_\+t}]{pattern}{}\end{DoxyParamCaption})}
+
+
+
+Handles single button press events. 
+
+This function is called when a single press is detected. It manages the navigation through different menus and performs specific actions based on the current menu and selection.
+
+
+\begin{DoxyParams}{Parameters}
+{\em btn} & Pointer to the button object. \\
+\hline
+{\em pattern} & The press pattern detected (single press in this case).\\
+\hline
+\end{DoxyParams}
+This function manages the navigation between different menus (main menu, settings, motor control, etc.) based on the current state and selection. It sends update commands to the screen to reflect the changes in the UI.
+
+
+\begin{DoxyParams}{Parameters}
+{\em btn} & Pointer to the button object. \\
+\hline
+{\em pattern} & The press pattern detected (single press in this case). \\
+\hline
+\end{DoxyParams}

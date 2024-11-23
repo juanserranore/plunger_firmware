@@ -1,0 +1,430 @@
+\doxysection{Rtc\+PCF8563.\+h}
+\label{_rtc_p_c_f8563_8h_source}\index{lib/Rtc-\/master/src/RtcPCF8563.h@{lib/Rtc-\/master/src/RtcPCF8563.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00002\ \textcolor{comment}{RTC\ library}}
+\DoxyCodeLine{00003\ \textcolor{comment}{}}
+\DoxyCodeLine{00004\ \textcolor{comment}{Written\ by\ Michael\ C.\ Miller.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{}}
+\DoxyCodeLine{00006\ \textcolor{comment}{I\ invest\ time\ and\ resources\ providing\ this\ open\ source\ code,}}
+\DoxyCodeLine{00007\ \textcolor{comment}{please\ support\ me\ by\ dontating\ (see\ https://github.com/Makuna/Rtc)}}
+\DoxyCodeLine{00008\ \textcolor{comment}{}}
+\DoxyCodeLine{00009\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00010\ \textcolor{comment}{This\ file\ is\ part\ of\ the\ Makuna/Rtc\ library.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Rtc\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00013\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public\ License\ as}}
+\DoxyCodeLine{00014\ \textcolor{comment}{published\ by\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of}}
+\DoxyCodeLine{00015\ \textcolor{comment}{the\ License,\ or\ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{Rtc\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00018\ \textcolor{comment}{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00019\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00020\ \textcolor{comment}{GNU\ Lesser\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ Lesser\ General\ Public}}
+\DoxyCodeLine{00023\ \textcolor{comment}{License\ along\ with\ Rtc.\ \ If\ not,\ see}}
+\DoxyCodeLine{00024\ \textcolor{comment}{<http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}RtcUtility.h"{}}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}RtcDateTime.h"{}}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{comment}{//I2C\ Slave\ Address}}
+\DoxyCodeLine{00035\ \textcolor{keyword}{const}\ uint8\_t\ PCF8563\_ADDRESS\ =\ 0x51;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{//PCF8563\ Register\ Addresses}}
+\DoxyCodeLine{00038\ \textcolor{keyword}{const}\ uint8\_t\ PCF8563\_REG\_CONTROL\ =\ 0x00;}
+\DoxyCodeLine{00039\ \textcolor{keyword}{const}\ uint8\_t\ PCF8563\_REG\_STATUS\ =\ 0x01;}
+\DoxyCodeLine{00040\ \textcolor{keyword}{const}\ uint8\_t\ PCF8563\_REG\_TIMEDATE\ \ =\ 0x02;}
+\DoxyCodeLine{00041\ \textcolor{keyword}{const}\ uint8\_t\ PCF8563\_REG\_INTEGRITY\ =\ 0x02;}
+\DoxyCodeLine{00042\ \textcolor{keyword}{const}\ uint8\_t\ PCF8563\_REG\_ALARM\ \ =\ 0x09;}
+\DoxyCodeLine{00043\ \textcolor{keyword}{const}\ uint8\_t\ PCF8563\_REG\_CLKOUT\_CONTROL\ =\ 0x0D;}
+\DoxyCodeLine{00044\ \textcolor{keyword}{const}\ uint8\_t\ PCF8563\_REG\_TIMER\_CONTROL\ =\ 0x0E;}
+\DoxyCodeLine{00045\ \textcolor{keyword}{const}\ uint8\_t\ PCF8563\_REG\_TIMER\ \ =\ 0x0F;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//PCF8563\ Register\ Data\ Size\ if\ not\ just\ 1}}
+\DoxyCodeLine{00048\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ PCF8563\_REG\_TIMEDATE\_SIZE\ =\ 7;}
+\DoxyCodeLine{00049\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ PCF8563\_REG\_ALARM\_SIZE\ =\ 4;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ PCF8563\ Valid\ Register\ Bits\ (PCF8563\_REG\_INTEGRITY)}}
+\DoxyCodeLine{00052\ \textcolor{keyword}{const}\ uint8\_t\ PCF8563\_INTEGRITY\_VALID\ =\ 7;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ PCF8563\ Control\ Register\ Bits\ (PCF8563\_REG\_CONTROL)}}
+\DoxyCodeLine{00055\ \textcolor{keyword}{const}\ uint8\_t\ PCF8563\_CONTROL\_CLOCK\ =\ 5;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ PCF8563\ Status\ Register\ Bits\ (PCF8563\_REG\_STATUS)}}
+\DoxyCodeLine{00058\ \textcolor{keyword}{const}\ uint8\_t\ PCF8563\_STATUS\_TIE\ =\ 0;\ \textcolor{comment}{//\ timer\ interrupt\ enable}}
+\DoxyCodeLine{00059\ \textcolor{keyword}{const}\ uint8\_t\ PCF8563\_STATUS\_AIE\ =\ 1;\ \textcolor{comment}{//\ alarm\ interrupt\ enable}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{const}\ uint8\_t\ PCF8563\_STATUS\_TF\ =\ 2;\ \textcolor{comment}{//\ timer\ flag}}
+\DoxyCodeLine{00061\ \textcolor{keyword}{const}\ uint8\_t\ PCF8563\_STATUS\_AF\ =\ 3;\ \textcolor{comment}{//\ alarm\ flag}}
+\DoxyCodeLine{00062\ \textcolor{keyword}{const}\ uint8\_t\ PCF8563\_STATUS\_TITP\ =\ 4;\ \textcolor{comment}{//\ timer\ interrupt\ period\ config}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{enum}\ PCF8563SquareWavePinMode}
+\DoxyCodeLine{00066\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ PCF8563SquareWavePinMode\_None\ \ =\ 0b00000000,}
+\DoxyCodeLine{00068\ \ \ \ \ PCF8563SquareWavePinMode\_32kHz\ =\ 0b10000000,}
+\DoxyCodeLine{00069\ \ \ \ \ PCF8563SquareWavePinMode\_1kHz\ \ =\ 0b10000001,}
+\DoxyCodeLine{00070\ \ \ \ \ PCF8563SquareWavePinMode\_32Hz\ \ =\ 0b10000010,}
+\DoxyCodeLine{00071\ \ \ \ \ PCF8563SquareWavePinMode\_1Hz\ \ \ =\ 0b10000011}
+\DoxyCodeLine{00072\ \};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ defines\ the\ timer\ period\ for\ the\ timer\ and}}
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ when\ to\ trigger,\ minutes\ means\ at\ the\ top\ of\ the\ minute}}
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ and\ period\ of\ 60\ seconds}}
+\DoxyCodeLine{00077\ \textcolor{comment}{//}}
+\DoxyCodeLine{00078\ \textcolor{keyword}{enum}\ PCF8563TimerMode}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ PCF8563TimerMode\_None\ \ \ \ \ \ \ \ \ \ \ \ =\ 0b00000000,}
+\DoxyCodeLine{00081\ \ \ \ \ PCF8563TimerMode\_4096thOfASecond\ =\ 0b10000000,}
+\DoxyCodeLine{00082\ \ \ \ \ PCF8563TimerMode\_64thOfASecond\ \ \ =\ 0b10000001,}
+\DoxyCodeLine{00083\ \ \ \ \ PCF8563TimerMode\_Seconds\ \ \ \ \ \ \ \ \ =\ 0b10000010,}
+\DoxyCodeLine{00084\ \ \ \ \ PCF8563TimerMode\_Minutes\ \ \ \ \ \ \ \ \ =\ 0b10000011\ \textcolor{comment}{//\ at\ the\ top\ of\ and\ by}}
+\DoxyCodeLine{00085\ \};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{enum}\ PCF8563AlarmControlFlags}
+\DoxyCodeLine{00088\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ PCF8563AlarmControl\_MinuteMatch\ =\ 0x01,}
+\DoxyCodeLine{00090\ \ \ \ \ PCF8563AlarmControl\_HourMatch\ =\ 0x02,}
+\DoxyCodeLine{00091\ \ \ \ \ PCF8563AlarmControl\_DayOfMonthMatch\ =\ 0x04,}
+\DoxyCodeLine{00092\ \ \ \ \ PCF8563AlarmControl\_DayOfWeekMatch\ =\ 0x08}
+\DoxyCodeLine{00093\ \};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{class\ }PCF8563Alarm}
+\DoxyCodeLine{00096\ \{}
+\DoxyCodeLine{00097\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00098\ \ \ \ \ PCF8563Alarm(uint8\_t\ dayOfMonth,}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ uint8\_t\ hour,}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ uint8\_t\ minute,}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ uint8\_t\ dayOfWeek,}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ uint8\_t\ controlFlags)\ :}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \_flags(controlFlags),}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \_dayOfMonth(dayOfMonth),}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \_hour(hour),}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \_minute(minute),}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \_dayOfWeek(dayOfWeek)}
+\DoxyCodeLine{00108\ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ uint8\_t\ DayOfMonth()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00112\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_dayOfMonth;}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ uint8\_t\ Hour()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00117\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_hour;}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ uint8\_t\ Minute()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00122\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_minute;}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ uint8\_t\ DayOfWeek()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00127\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_dayOfWeek;}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ uint8\_t\ ControlFlags()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00132\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_flags;}
+\DoxyCodeLine{00134\ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator\ ==\ (\textcolor{keyword}{const}\ PCF8563Alarm\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00137\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\_dayOfMonth\ ==\ other.\_dayOfMonth\ \&\&}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \_hour\ ==\ other.\_hour\ \&\&}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \_minute\ ==\ other.\_minute\ \&\&}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \_dayOfWeek\ ==\ other.\_dayOfWeek\ \&\&}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \_flags\ ==\ other.\_flags);}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator\ !=\ (\textcolor{keyword}{const}\ PCF8563Alarm\&\ other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00146\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ other);}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00151\ \ \ \ \ uint8\_t\ \_flags;}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ uint8\_t\ \_dayOfMonth;}
+\DoxyCodeLine{00154\ \ \ \ \ uint8\_t\ \_hour;}
+\DoxyCodeLine{00155\ \ \ \ \ uint8\_t\ \_minute;}
+\DoxyCodeLine{00156\ \ \ \ \ uint8\_t\ \_dayOfWeek;}
+\DoxyCodeLine{00157\ \};}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T\_WIRE\_METHOD>\ \textcolor{keyword}{class\ }RtcPCF8563}
+\DoxyCodeLine{00160\ \{}
+\DoxyCodeLine{00161\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00162\ \ \ \ \ RtcPCF8563(T\_WIRE\_METHOD\&\ wire)\ :}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \_wire(wire),}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \_lastError(Rtc\_Wire\_Error\_None)}
+\DoxyCodeLine{00165\ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordtype}{void}\ Begin()}
+\DoxyCodeLine{00169\ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \_wire.begin();}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordtype}{void}\ Begin(\textcolor{keywordtype}{int}\ sda,\ \textcolor{keywordtype}{int}\ scl)}
+\DoxyCodeLine{00174\ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \_wire.begin(sda,\ scl);}
+\DoxyCodeLine{00176\ \ \ \ \ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ uint8\_t\ LastError()}
+\DoxyCodeLine{00179\ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_lastError;}
+\DoxyCodeLine{00181\ \ \ \ \ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{bool}\ IsDateTimeValid()}
+\DoxyCodeLine{00184\ \ \ \ \ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ uint8\_t\ status\ =\ getReg(PCF8563\_REG\_INTEGRITY);}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (!(status\ \&\ \_BV(PCF8563\_INTEGRITY\_VALID))\ \&\&\ (\_lastError\ ==\ Rtc\_Wire\_Error\_None));}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordtype}{bool}\ GetIsRunning()}
+\DoxyCodeLine{00190\ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ uint8\_t\ creg\ =\ getReg(PCF8563\_REG\_CONTROL);}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (!(creg\ \&\ \_BV(PCF8563\_CONTROL\_CLOCK))\ \&\&\ (\_lastError\ ==\ Rtc\_Wire\_Error\_None));}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordtype}{void}\ SetIsRunning(\textcolor{keywordtype}{bool}\ isRunning)}
+\DoxyCodeLine{00196\ \ \ \ \ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ uint8\_t\ creg\ =\ getReg(PCF8563\_REG\_CONTROL);}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isRunning)}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ creg\ \&=\ \string~\_BV(PCF8563\_CONTROL\_CLOCK);}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ creg\ |=\ \_BV(PCF8563\_CONTROL\_CLOCK);}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ setReg(PCF8563\_REG\_CONTROL,\ creg);}
+\DoxyCodeLine{00207\ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordtype}{void}\ SetDateTime(\textcolor{keyword}{const}\ RtcDateTime\&\ dt)}
+\DoxyCodeLine{00210\ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ invalid\ flag\ is\ part\ of\ seconds,}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ so\ is\ automatically\ cleared\ when\ it\ is\ set}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ set\ the\ date\ time}}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \_wire.beginTransmission(PCF8563\_ADDRESS);}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \_wire.write(PCF8563\_REG\_TIMEDATE);}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \_wire.write(Uint8ToBcd(dt.Second()));}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \_wire.write(Uint8ToBcd(dt.Minute()));}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \_wire.write(Uint8ToBcd(dt.Hour()));\ \textcolor{comment}{//\ 24\ hour\ mode\ only}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \_wire.write(Uint8ToBcd(dt.Day()));}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ RTC\ Hardware\ Day\ of\ Week\ is\ the\ same\ as\ RtcDateTime}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \_wire.write(dt.DayOfWeek());}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ uint8\_t\ year\ =\ dt.Year()\ -\/\ 2000;}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ uint8\_t\ centuryFlag\ =\ 0;}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (year\ >=\ 100)}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ year\ -\/=\ 100;}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ centuryFlag\ =\ \_BV(7);}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \_wire.write(Uint8ToBcd(dt.Month())\ |\ centuryFlag);}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \_wire.write(Uint8ToBcd(year));}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \_lastError\ =\ \_wire.endTransmission();}
+\DoxyCodeLine{00238\ \ \ \ \ \}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \ \ RtcDateTime\ GetDateTime()}
+\DoxyCodeLine{00241\ \ \ \ \ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \_wire.beginTransmission(PCF8563\_ADDRESS);}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \_wire.write(PCF8563\_REG\_TIMEDATE);}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \_lastError\ =\ \_wire.endTransmission();}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_lastError\ !=\ Rtc\_Wire\_Error\_None)}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RtcDateTime(0);}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ bytesRead\ =\ \_wire.requestFrom(PCF8563\_ADDRESS,\ PCF8563\_REG\_TIMEDATE\_SIZE);}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (PCF8563\_REG\_TIMEDATE\_SIZE\ !=\ bytesRead)}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \_lastError\ =\ Rtc\_Wire\_Error\_Unspecific;}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RtcDateTime(0);}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ uint8\_t\ second\ =\ BcdToUint8(\_wire.read()\ \&\ 0x7F);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ uint8\_t\ minute\ =\ BcdToUint8(\_wire.read()\ \&\ 0x7F);}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ uint8\_t\ hour\ =\ BcdToBin24Hour(\_wire.read()\ \&\ 0x3F);}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ uint8\_t\ dayOfMonth\ =\ BcdToUint8(\_wire.read()\ \&\ 0x3F);}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \_wire.read();\ \ \textcolor{comment}{//\ throwing\ away\ day\ of\ week\ as\ we\ calculate\ it}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ uint8\_t\ monthRaw\ =\ \_wire.read();}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ uint16\_t\ year\ =\ BcdToUint8(\_wire.read())\ +\ 2000;}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (monthRaw\ \&\ \_BV(7))\ \textcolor{comment}{//\ century\ wrap\ flag}}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ year\ +=\ 100;}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ uint8\_t\ month\ =\ BcdToUint8(monthRaw\ \&\ 0x1F);}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RtcDateTime(year,\ month,\ dayOfMonth,\ hour,\ minute,\ second);}
+\DoxyCodeLine{00273\ \ \ \ \ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keywordtype}{void}\ SetSquareWavePin(PCF8563SquareWavePinMode\ pinMode)}
+\DoxyCodeLine{00276\ \ \ \ \ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ setReg(PCF8563\_REG\_CLKOUT\_CONTROL,\ pinMode);}
+\DoxyCodeLine{00278\ \ \ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keywordtype}{void}\ SetAlarm(\textcolor{keyword}{const}\ PCF8563Alarm\&\ alarm)}
+\DoxyCodeLine{00281\ \ \ \ \ \{}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \_wire.beginTransmission(PCF8563\_ADDRESS);}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \_wire.write(PCF8563\_REG\_ALARM);}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ uint8\_t\ matchFlag\ =\ (alarm.ControlFlags()\ \&\ PCF8563AlarmControl\_MinuteMatch)\ ?\ 0x00\ :\ 0x80;}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \_wire.write(Uint8ToBcd(alarm.Minute())\ |\ matchFlag);}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ matchFlag\ =\ (alarm.ControlFlags()\ \&\ PCF8563AlarmControl\_HourMatch)\ ?\ 0x00\ :\ 0x80;}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \_wire.write(Uint8ToBcd(alarm.Hour())\ |\ matchFlag);\ \textcolor{comment}{//\ 24\ hour\ mode\ only}}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ matchFlag\ =\ (alarm.ControlFlags()\ \&\ PCF8563AlarmControl\_DayOfMonthMatch)\ ?\ 0x00\ :\ 0x80;}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \_wire.write(Uint8ToBcd(alarm.DayOfMonth())\ |\ matchFlag);}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ matchFlag\ =\ (alarm.ControlFlags()\ \&\ PCF8563AlarmControl\_DayOfWeekMatch)\ ?\ 0x00\ :\ 0x80;}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \_wire.write(Uint8ToBcd(alarm.DayOfWeek())\ |\ matchFlag);}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \_lastError\ =\ \_wire.endTransmission();}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_lastError\ ==\ Rtc\_Wire\_Error\_None)}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ enable\ alarm}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ sreg\ =\ getReg(PCF8563\_REG\_STATUS);}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ sreg\ \&=\ \string~\_BV(PCF8563\_STATUS\_AF);}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ sreg\ |=\ \_BV(PCF8563\_STATUS\_AIE);}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ setReg(PCF8563\_REG\_STATUS,\ sreg);}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00307\ \ \ \ \ \}}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keywordtype}{void}\ StopAlarm()}
+\DoxyCodeLine{00310\ \ \ \ \ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ uint8\_t\ sreg\ =\ getReg(PCF8563\_REG\_STATUS);}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ sreg\ \&=\ \string~(\_BV(PCF8563\_STATUS\_AIE)\ |\ \_BV(PCF8563\_STATUS\_AF));}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ setReg(PCF8563\_REG\_STATUS,\ sreg);}
+\DoxyCodeLine{00314\ \ \ \ \ \}}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keywordtype}{void}\ SetTimer(PCF8563TimerMode\ mode,\ uint8\_t\ time)}
+\DoxyCodeLine{00317\ \ \ \ \ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \_wire.beginTransmission(PCF8563\_ADDRESS);}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \_wire.write(PCF8563\_REG\_TIMER\_CONTROL);}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \_wire.write(mode);}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \_wire.write(time);}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \_lastError\ =\ \_wire.endTransmission();}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_lastError\ ==\ Rtc\_Wire\_Error\_None)}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ enable\ timer}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ sreg\ =\ getReg(PCF8563\_REG\_STATUS);}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ sreg\ \&=\ \string~\_BV(PCF8563\_STATUS\_TF);}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ sreg\ |=\ \_BV(PCF8563\_STATUS\_TIE)\ |\ \_BV(PCF8563\_STATUS\_TITP);}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ setReg(PCF8563\_REG\_STATUS,\ sreg);}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00334\ \ \ \ \ \}}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keywordtype}{void}\ StopTimer()}
+\DoxyCodeLine{00337\ \ \ \ \ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ uint8\_t\ sreg\ =\ getReg(PCF8563\_REG\_STATUS);}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ sreg\ \&=\ \string~\_BV(PCF8563\_STATUS\_TF);}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ sreg\ \&=\ \string~(\_BV(PCF8563\_STATUS\_TIE)\ |\ \_BV(PCF8563\_STATUS\_TITP));}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ setReg(PCF8563\_REG\_STATUS,\ sreg);}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_lastError\ ==\ Rtc\_Wire\_Error\_None)}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ setReg(PCF8563\_REG\_TIMER\_CONTROL,\ PCF8563TimerMode\_None);}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00347\ \ \ \ \ \}}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{comment}{//\ Latch\ must\ be\ called\ after\ an\ alarm\ otherwise\ it\ will\ not}}
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{comment}{//\ trigger\ again?}}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keywordtype}{bool}\ LatchAlarmTriggeredFlag()}
+\DoxyCodeLine{00352\ \ \ \ \ \{}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ uint8\_t\ sreg\ =\ getReg(PCF8563\_REG\_STATUS);}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ triggered\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sreg\ \&\ \_BV(PCF8563\_STATUS\_AF))}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ triggered\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ sreg\ \&=\ \string~\_BV(PCF8563\_STATUS\_AF);}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ setReg(PCF8563\_REG\_STATUS,\ sreg);}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ triggered;}
+\DoxyCodeLine{00362\ \ \ \ \ \}}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keywordtype}{bool}\ LatchTimerTriggeredFlag()}
+\DoxyCodeLine{00365\ \ \ \ \ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ uint8\_t\ sreg\ =\ getReg(PCF8563\_REG\_STATUS);}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ triggered\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sreg\ \&\ \_BV(PCF8563\_STATUS\_TF))}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ triggered\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ sreg\ \&=\ \string~\_BV(PCF8563\_STATUS\_TF);}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ setReg(PCF8563\_REG\_STATUS,\ sreg);}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ triggered;}
+\DoxyCodeLine{00375\ \ \ \ \ \}}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{keywordtype}{bool}\ GetAlarmTriggered()}
+\DoxyCodeLine{00378\ \ \ \ \ \{}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ uint8\_t\ sreg\ =\ getReg(PCF8563\_REG\_STATUS);}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (sreg\ \&\ \_BV(PCF8563\_STATUS\_AF));}
+\DoxyCodeLine{00381\ \ \ \ \ \}}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \ \ \ \ \textcolor{keywordtype}{bool}\ GetTimerTriggered()}
+\DoxyCodeLine{00384\ \ \ \ \ \{}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ uint8\_t\ sreg\ =\ getReg(PCF8563\_REG\_STATUS);}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (sreg\ \&\ \_BV(PCF8563\_STATUS\_TF));}
+\DoxyCodeLine{00387\ \ \ \ \ \}}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00389\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00390\ \ \ \ \ T\_WIRE\_METHOD\&\ \_wire;}
+\DoxyCodeLine{00391\ \ \ \ \ uint8\_t\ \_lastError;}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \ \ \ \ uint8\_t\ getReg(uint8\_t\ regAddress)}
+\DoxyCodeLine{00394\ \ \ \ \ \{}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \_wire.beginTransmission(PCF8563\_ADDRESS);}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \_wire.write(regAddress);}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \_lastError\ =\ \_wire.endTransmission();}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_lastError\ !=\ Rtc\_Wire\_Error\_None)}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ control\ register}}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ bytesRead\ =\ \_wire.requestFrom(PCF8563\_ADDRESS,\ (uint8\_t)1);}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (1\ !=\ bytesRead)}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \_lastError\ =\ Rtc\_Wire\_Error\_Unspecific;}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ uint8\_t\ regValue\ =\ \_wire.read();}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ regValue;}
+\DoxyCodeLine{00413\ \ \ \ \ \}}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keywordtype}{void}\ setReg(uint8\_t\ regAddress,\ uint8\_t\ regValue)}
+\DoxyCodeLine{00416\ \ \ \ \ \{}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \_wire.beginTransmission(PCF8563\_ADDRESS);}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \_wire.write(regAddress);}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \_wire.write(regValue);}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \_lastError\ =\ \_wire.endTransmission();}
+\DoxyCodeLine{00421\ \ \ \ \ \}}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00423\ \};}
+\DoxyCodeLine{00424\ }
+
+\end{DoxyCode}

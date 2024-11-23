@@ -1,0 +1,44 @@
+\doxysection{Multi\+Stepper.\+h}
+\label{_multi_stepper_8h_source}\index{lib/AccelStepper-\/1.64.0/src/MultiStepper.h@{lib/AccelStepper-\/1.64.0/src/MultiStepper.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MultiStepper.h}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ MultiStepper\_h}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ MultiStepper\_h}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#if\ ARDUINO\ >=\ 100}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <WProgram.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <wiring.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ MULTISTEPPER\_MAX\_STEPPERS\ 10}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }AccelStepper;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }MultiStepper}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ MultiStepper();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{boolean}\ addStepper(AccelStepper\&\ stepper);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ moveTo(\textcolor{keywordtype}{long}\ absolute[]);}
+\DoxyCodeLine{00053\ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{boolean}\ run();}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ runSpeedToPosition();}
+\DoxyCodeLine{00063\ \ \ \ \ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00067\ \ \ \ \ AccelStepper*\ \_steppers[MULTISTEPPER\_MAX\_STEPPERS];}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00071\ \ \ \ \ uint8\_t\ \ \ \ \ \ \ \_num\_steppers;}
+\DoxyCodeLine{00072\ \};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,32 @@
+\doxysection{HX8357\+D\+\_\+\+Rotation.\+h}
+\label{_h_x8357_d___rotation_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/HX8357D\_Rotation.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/HX8357D\_Rotation.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \ \ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ rotates\ the\ HX8357D\ driver\ coordinate\ frame}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \ \ writecommand(TFT\_MADCTL);}
+\DoxyCodeLine{00004\ \ \ rotation\ =\ m\ \%\ 4;}
+\DoxyCodeLine{00005\ \ \ \textcolor{keywordflow}{switch}\ (rotation)\ \{}
+\DoxyCodeLine{00006\ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{comment}{//\ Portrait}}
+\DoxyCodeLine{00007\ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00010\ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00011\ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{comment}{//\ Landscape\ (Portrait\ +\ 90)}}
+\DoxyCodeLine{00012\ \ \ \ \ \ writedata(TFT\_MAD\_MV\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00015\ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00016\ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{comment}{//\ Inverter\ portrait}}
+\DoxyCodeLine{00017\ \ \ \ \ \ writedata(TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00021\ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \textcolor{comment}{//\ Inverted\ landscape}}
+\DoxyCodeLine{00022\ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00026\ \ \ \}}
+
+\end{DoxyCode}

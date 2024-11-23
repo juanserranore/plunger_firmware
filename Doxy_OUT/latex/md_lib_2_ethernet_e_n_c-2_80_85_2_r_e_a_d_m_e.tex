@@ -1,0 +1,161 @@
+\chapter{README}
+\label{md_lib_2_ethernet_e_n_c-2_80_85_2_r_e_a_d_m_e}\index{README@{README}}
+First an important note\+: There are more suitable libraries for ENC28\+J60 with ESP8266, RP2040, ESP32 and Mbed Arduino platforms\+:
+
+
+\begin{DoxyItemize}
+\item With ESP8266 and RP2040 platform you can use the Ethernet\+Compat.\+h from the lw\+IP\+\_\+enc28j60 bundled library.
+\item With ESP32 platform version 3 you can use the {\texttt{ Ethernet\+ESP32}} library which integrates with networking on the ESP32 platform.
+\item With Arduino Mbed Core boards you can use the {\texttt{ ENC28\+J60-\/\+EMAC}} library with the platforms Ethernet library
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\doxysection{Ethernet\+ENC}\label{md_lib_2_ethernet_e_n_c-2_80_85_2_r_e_a_d_m_e_autotoc_md2}
+Ethernet\+ENC is the Ethernet library for ENC28\+J60. It is a modern version of {\texttt{ the UIPEthernet library}}.
+
+The modernization includes\+:
+\begin{DoxyItemize}
+\item Ethernet 2.\+0.\+0 Arduino library functions
+\item compatible include file names \doxyref{Ethernet\+Client.\+h}{p.}{_ethernet_client_8h_source}, \doxyref{Ethernet\+Server.\+h}{p.}{_ethernet_server_8h_source} and \doxyref{Ethernet\+Udp.\+h}{p.}{_ethernet_udp_8h_source}
+\item support of many Arduino architectures by using the SPI library
+\item SPI transactions to share the SPI bus with devices with different communication settings
+\item SPI communication at 20 MHz if the MCU supports it, else on the maximum supported by the MCU
+\item client.\+flush() to send the packet immediately
+\item calls yield() in blocking functions
+\item has UDP backlog to receive more than one message at time
+\item Arduino 1.\+5 library format built with dot\+\_\+a\+\_\+linkage option for optimal build result
+\end{DoxyItemize}
+
+{\texttt{ The documentation of Arduino Ethernet library}} applies for classes and functions descriptions.
+
+Limitations\+:
+\begin{DoxyItemize}
+\item UDP.\+begin\+Multicast is not supported, because the u\+IP stack doesn\textquotesingle{}t support multicast
+\item UDP broadcasts receiving is turned off on ENC to lower the processing load on the library
+\end{DoxyItemize}
+
+This library doesn\textquotesingle{}t have examples, because examples of the Arduino Ethernet library apply. You can find them in the Arduino IDE Examples menu Ethernet section. Only change {\ttfamily \#include $<$\doxyref{Ethernet.\+h}{p.}{_ethernet_8h_source}$>$} to {\ttfamily \#include $<$\doxyref{Ethernet\+ENC.\+h}{p.}{_ethernet_e_n_c_8h_source}$>$}. Some examples require {\texttt{ a little change}}.
+
+This library is based on the Norbert Truchsess\textquotesingle{}s arduino-\/uip original source code repository and uses experience from the development of the multi-\/architecture support by Cassy. Applicable fixes and enhancements from development of Ethernet\+ENC were transfered to Cassy\textquotesingle{}s UIPEthernet.
+
+{\bfseries{You can find more information in project\textquotesingle{}s {\texttt{ Wiki}}.}}\doxysubsection{Original notes by Norbert Truchsess}\label{md_lib_2_ethernet_e_n_c-2_80_85_2_r_e_a_d_m_e_autotoc_md3}
+UIPEthernet is written as a wrapper around the mature u\+IP Stack by Adam Dunkels, which provides the low-\/level implementation for all supported protocols. To overcome the memory-\/constrains (a \textquotesingle{}regular\textquotesingle{} u\+IP-\/application does all processing in RAM) the ENC28\+J60 internal memory is used for all stream buffers (in and out). Only 400-\/600 Bytes of Arduinos RAM are used (depending on the number of concurrently open connections). As of Flash-\/memory a ATmega368-\/based Arduino is the minimum requirenment.
+
+u\+IP was written by Adam Dunkels of the Networked Embedded Systems group at the Swedish Institute of Computer Science.
+
+This library was inspired by the Serial\+IP implementation by Adam Nielsen {\texttt{ malvineous@shikadi.\+net}}, actually I took this code as a starting point, but in the latest versions there are very few lines left.\doxysubsection{Licenses}\label{md_lib_2_ethernet_e_n_c-2_80_85_2_r_e_a_d_m_e_autotoc_md4}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{UIPEthernet.h}
+\DoxyCodeLine{UIPEthernet.cpp}
+\DoxyCodeLine{UIPServer.h}
+\DoxyCodeLine{UIPServer.cpp}
+\DoxyCodeLine{UIPClient.h}
+\DoxyCodeLine{UIPClient.cpp}
+\DoxyCodeLine{UIPUdp.h}
+\DoxyCodeLine{UIPUdp.cpp}
+\DoxyCodeLine{utility/mempool.h}
+\DoxyCodeLine{utility/mempool.cpp}
+\DoxyCodeLine{}
+\DoxyCodeLine{Copyright\ (c)\ 2013\ Norbert\ Truchsess\ <norbert.truchsess@t-\/online.de>}
+\DoxyCodeLine{All\ rights\ reserved.}
+\DoxyCodeLine{}
+\DoxyCodeLine{This\ program\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}
+\DoxyCodeLine{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}
+\DoxyCodeLine{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}
+\DoxyCodeLine{(at\ your\ option)\ any\ later\ version.}
+\DoxyCodeLine{}
+\DoxyCodeLine{This\ program\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}
+\DoxyCodeLine{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}
+\DoxyCodeLine{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}
+\DoxyCodeLine{GNU\ General\ Public\ License\ for\ more\ details.}
+\DoxyCodeLine{}
+\DoxyCodeLine{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}
+\DoxyCodeLine{along\ with\ this\ program.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}
+\DoxyCodeLine{}
+\DoxyCodeLine{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{}
+\DoxyCodeLine{utility/enc28j60.h}
+\DoxyCodeLine{}
+\DoxyCodeLine{Author\ \ \ \ \ \ \ \ :\ Pascal\ Stang\ (c)2005}
+\DoxyCodeLine{Modified\ by\ Norbert\ Truchsess}
+\DoxyCodeLine{Copyright:\ GPL\ V2}
+\DoxyCodeLine{}
+\DoxyCodeLine{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{}
+\DoxyCodeLine{utility/Enc28J60Network.h}
+\DoxyCodeLine{utility/Enc28J60Network.cpp}
+\DoxyCodeLine{}
+\DoxyCodeLine{Copyright\ (c)\ 2013\ Norbert\ Truchsess\ <norbert.truchsess@t-\/online.de>}
+\DoxyCodeLine{All\ rights\ reserved.}
+\DoxyCodeLine{}
+\DoxyCodeLine{inspired\ and\ based\ on\ enc28j60.c\ file\ from\ the\ AVRlib\ library\ by\ Pascal\ Stang.}
+\DoxyCodeLine{}
+\DoxyCodeLine{This\ program\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}
+\DoxyCodeLine{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}
+\DoxyCodeLine{the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}
+\DoxyCodeLine{(at\ your\ option)\ any\ later\ version.}
+\DoxyCodeLine{}
+\DoxyCodeLine{This\ program\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}
+\DoxyCodeLine{but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}
+\DoxyCodeLine{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}
+\DoxyCodeLine{GNU\ General\ Public\ License\ for\ more\ details.}
+\DoxyCodeLine{}
+\DoxyCodeLine{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}
+\DoxyCodeLine{along\ with\ this\ program.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}
+\DoxyCodeLine{}
+\DoxyCodeLine{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{}
+\DoxyCodeLine{utility/uip.c}
+\DoxyCodeLine{utility/uip\_arp.h}
+\DoxyCodeLine{utility/uip\_arp.c}
+\DoxyCodeLine{utility/uip\_arch.h}
+\DoxyCodeLine{utility/uip.h}
+\DoxyCodeLine{utility/uipopt.h}
+\DoxyCodeLine{}
+\DoxyCodeLine{Copyright\ (c)\ 2001-\/2003,\ Adam\ Dunkels\ <adam@sics.se>,\ <adam@dunkels.com>.}
+\DoxyCodeLine{All\ rights\ reserved.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Redistribution\ and\ use\ in\ source\ and\ binary\ forms,\ with\ or\ without}
+\DoxyCodeLine{modification,\ are\ permitted\ provided\ that\ the\ following\ conditions}
+\DoxyCodeLine{are\ met:}
+\DoxyCodeLine{1.\ Redistributions\ of\ source\ code\ must\ retain\ the\ above\ copyright}
+\DoxyCodeLine{\ \ \ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer.}
+\DoxyCodeLine{2.\ Redistributions\ in\ binary\ form\ must\ reproduce\ the\ above\ copyright}
+\DoxyCodeLine{\ \ \ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer\ in\ the}
+\DoxyCodeLine{\ \ \ documentation\ and/or\ other\ materials\ provided\ with\ the\ distribution.}
+\DoxyCodeLine{3.\ Neither\ the\ name\ of\ the\ Institute\ nor\ the\ names\ of\ its\ contributors}
+\DoxyCodeLine{\ \ \ may\ be\ used\ to\ endorse\ or\ promote\ products\ derived\ from\ this\ software}
+\DoxyCodeLine{\ \ \ without\ specific\ prior\ written\ permission.}
+\DoxyCodeLine{}
+\DoxyCodeLine{THIS\ SOFTWARE\ IS\ PROVIDED\ BY\ THE\ INSTITUTE\ AND\ CONTRIBUTORS\ \`{}\`{}AS\ IS''\ AND}
+\DoxyCodeLine{ANY\ EXPRESS\ OR\ IMPLIED\ WARRANTIES,\ INCLUDING,\ BUT\ NOT\ LIMITED\ TO,\ THE}
+\DoxyCodeLine{IMPLIED\ WARRANTIES\ OF\ MERCHANTABILITY\ AND\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE}
+\DoxyCodeLine{ARE\ DISCLAIMED.\ \ IN\ NO\ EVENT\ SHALL\ THE\ INSTITUTE\ OR\ CONTRIBUTORS\ BE\ LIABLE}
+\DoxyCodeLine{FOR\ ANY\ DIRECT,\ INDIRECT,\ INCIDENTAL,\ SPECIAL,\ EXEMPLARY,\ OR\ CONSEQUENTIAL}
+\DoxyCodeLine{DAMAGES\ (INCLUDING,\ BUT\ NOT\ LIMITED\ TO,\ PROCUREMENT\ OF\ SUBSTITUTE\ GOODS}
+\DoxyCodeLine{OR\ SERVICES;\ LOSS\ OF\ USE,\ DATA,\ OR\ PROFITS;\ OR\ BUSINESS\ INTERRUPTION)}
+\DoxyCodeLine{HOWEVER\ CAUSED\ AND\ ON\ ANY\ THEORY\ OF\ LIABILITY,\ WHETHER\ IN\ CONTRACT,\ STRICT}
+\DoxyCodeLine{LIABILITY,\ OR\ TORT\ (INCLUDING\ NEGLIGENCE\ OR\ OTHERWISE)\ ARISING\ IN\ ANY\ WAY}
+\DoxyCodeLine{OUT\ OF\ THE\ USE\ OF\ THIS\ SOFTWARE,\ EVEN\ IF\ ADVISED\ OF\ THE\ POSSIBILITY\ OF}
+\DoxyCodeLine{SUCH\ DAMAGE.}
+\DoxyCodeLine{}
+\DoxyCodeLine{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{}
+\DoxyCodeLine{Dhcp.h}
+\DoxyCodeLine{Dhcp.cpp}
+\DoxyCodeLine{}
+\DoxyCodeLine{DHCP\ Library\ v0.3\ -\/\ April\ 25,\ 2009}
+\DoxyCodeLine{Author:\ Jordan\ Terrell\ -\/\ blog.jordanterrell.com}
+\DoxyCodeLine{-\/\ as\ included\ in\ Arduinos\ stock\ Ethernet-\/library,\ no\ special\ licence\ mentioned\ here}
+\DoxyCodeLine{}
+\DoxyCodeLine{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{}
+\DoxyCodeLine{Dns.h}
+\DoxyCodeLine{Dns.cpp}
+\DoxyCodeLine{}
+\DoxyCodeLine{(c)\ Copyright\ 2009-\/2010\ MCQN\ Ltd.}
+\DoxyCodeLine{Released\ under\ Apache\ License,\ version\ 2.0}
+
+\end{DoxyCode}
+ 

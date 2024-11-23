@@ -1,0 +1,16 @@
+\doxysection{util.\+h}
+\label{util_8h_source}\index{lib/EthernetENC-\/2.0.5/src/utility/util.h@{lib/EthernetENC-\/2.0.5/src/utility/util.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ UTIL\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ UTIL\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ htonl(x)\ (\ ((x)<<24\ \&\ 0xFF000000UL)\ |\ \(\backslash\)}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((x)<<\ 8\ \&\ 0x00FF0000UL)\ |\ \(\backslash\)}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((x)>>\ 8\ \&\ 0x0000FF00UL)\ |\ \(\backslash\)}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((x)>>24\ \&\ 0x000000FFUL)\ )}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ ntohl(x)\ htonl(x)}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

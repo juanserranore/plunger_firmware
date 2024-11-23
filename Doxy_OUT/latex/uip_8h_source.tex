@@ -1,0 +1,587 @@
+\doxysection{uip.\+h}
+\label{uip_8h_source}\index{lib/EthernetENC-\/2.0.5/src/utility/uip.h@{lib/EthernetENC-\/2.0.5/src/utility/uip.h}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2001-\/2003,\ Adam\ Dunkels.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ All\ rights\ reserved.}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ Redistribution\ and\ use\ in\ source\ and\ binary\ forms,\ with\ or\ without}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ modification,\ are\ permitted\ provided\ that\ the\ following\ conditions}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ are\ met:}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ 1.\ Redistributions\ of\ source\ code\ must\ retain\ the\ above\ copyright}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *\ \ \ \ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer.}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *\ 2.\ Redistributions\ in\ binary\ form\ must\ reproduce\ the\ above\ copyright}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ *\ \ \ \ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer\ in\ the}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ *\ \ \ \ documentation\ and/or\ other\ materials\ provided\ with\ the\ distribution.}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *\ 3.\ The\ name\ of\ the\ author\ may\ not\ be\ used\ to\ endorse\ or\ promote}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ *\ \ \ \ products\ derived\ from\ this\ software\ without\ specific\ prior}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ *\ \ \ \ written\ permission.}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ *\ THIS\ SOFTWARE\ IS\ PROVIDED\ BY\ THE\ AUTHOR\ \`{}\`{}AS\ IS''\ AND\ ANY\ EXPRESS}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ *\ OR\ IMPLIED\ WARRANTIES,\ INCLUDING,\ BUT\ NOT\ LIMITED\ TO,\ THE\ IMPLIED}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ *\ WARRANTIES\ OF\ MERCHANTABILITY\ AND\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ *\ ARE\ DISCLAIMED.\ \ IN\ NO\ EVENT\ SHALL\ THE\ AUTHOR\ BE\ LIABLE\ FOR\ ANY}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ *\ DIRECT,\ INDIRECT,\ INCIDENTAL,\ SPECIAL,\ EXEMPLARY,\ OR\ CONSEQUENTIAL}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ *\ DAMAGES\ (INCLUDING,\ BUT\ NOT\ LIMITED\ TO,\ PROCUREMENT\ OF\ SUBSTITUTE}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ *\ GOODS\ OR\ SERVICES;\ LOSS\ OF\ USE,\ DATA,\ OR\ PROFITS;\ OR\ BUSINESS}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ *\ INTERRUPTION)\ HOWEVER\ CAUSED\ AND\ ON\ ANY\ THEORY\ OF\ LIABILITY,}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ *\ WHETHER\ IN\ CONTRACT,\ STRICT\ LIABILITY,\ OR\ TORT\ (INCLUDING}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ *\ NEGLIGENCE\ OR\ OTHERWISE)\ ARISING\ IN\ ANY\ WAY\ OUT\ OF\ THE\ USE\ OF\ THIS}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ *\ SOFTWARE,\ EVEN\ IF\ ADVISED\ OF\ THE\ POSSIBILITY\ OF\ SUCH\ DAMAGE.}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ *\ This\ file\ is\ part\ of\ the\ uIP\ TCP/IP\ stack.}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ *\ \$Id:\ uip.h,v\ 1.40\ 2006/06/08\ 07:12:07\ adam\ Exp\ \$}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#ifndef\ \_\_UIP\_H\_\_}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ \_\_UIP\_H\_\_}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ "{}uipopt.h"{}}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{typedef}\ u16\_t\ uip\_ip4addr\_t[2];}
+\DoxyCodeLine{00063\ \textcolor{keyword}{typedef}\ u16\_t\ uip\_ip6addr\_t[8];}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#if\ UIP\_CONF\_IPV6}}
+\DoxyCodeLine{00065\ \textcolor{keyword}{typedef}\ uip\_ip6addr\_t\ uip\_ipaddr\_t;}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ UIP\_CONF\_IPV6\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00067\ \textcolor{keyword}{typedef}\ uip\_ip4addr\_t\ uip\_ipaddr\_t;}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_CONF\_IPV6\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00071\ \textcolor{comment}{/*\ First,\ the\ functions\ that\ should\ be\ called\ from\ the}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ *\ system.\ Initialization,\ the\ periodic\ timer\ and\ incoming\ packets\ are}}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ *\ handled\ by\ the\ following\ three\ functions.}}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ uip\_sethostaddr(addr)\ uip\_ipaddr\_copy(uip\_hostaddr,\ (addr))}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#define\ uip\_gethostaddr(addr)\ uip\_ipaddr\_copy((addr),\ uip\_hostaddr)}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#define\ uip\_setdraddr(addr)\ uip\_ipaddr\_copy(uip\_draddr,\ (addr))}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ uip\_setnetmask(addr)\ uip\_ipaddr\_copy(uip\_netmask,\ (addr))}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#define\ uip\_getdraddr(addr)\ uip\_ipaddr\_copy((addr),\ uip\_draddr)}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#define\ uip\_getnetmask(addr)\ uip\_ipaddr\_copy((addr),\ uip\_netmask)}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00188\ \textcolor{keywordtype}{void}\ uip\_init(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00195\ \textcolor{keywordtype}{void}\ uip\_setipid(u16\_t\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\#define\ uip\_input()\ \ \ \ \ \ \ \ uip\_process(UIP\_DATA)}}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00301\ \textcolor{preprocessor}{\#define\ uip\_periodic(conn)\ do\ \{\ uip\_conn\ =\ \&uip\_conns[conn];\ \(\backslash\)}}
+\DoxyCodeLine{00302\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_process(UIP\_TIMER);\ \}\ while\ (0)}}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00308\ \textcolor{preprocessor}{\#define\ uip\_conn\_active(conn)\ (uip\_conns[conn].tcpstateflags\ !=\ UIP\_CLOSED)}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#define\ uip\_periodic\_conn(conn)\ do\ \{\ uip\_conn\ =\ conn;\ \(\backslash\)}}
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_process(UIP\_TIMER);\ \}\ while\ (0)}}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00337\ \textcolor{preprocessor}{\#define\ uip\_poll\_conn(conn)\ do\ \{\ uip\_conn\ =\ conn;\ \(\backslash\)}}
+\DoxyCodeLine{00338\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_process(UIP\_POLL\_REQUEST);\ \}\ while\ (0)}}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \textcolor{preprocessor}{\#if\ UIP\_UDP}}
+\DoxyCodeLine{00373\ \textcolor{preprocessor}{\#define\ uip\_udp\_periodic(conn)\ do\ \{\ uip\_udp\_conn\ =\ \&uip\_udp\_conns[conn];\ \(\backslash\)}}
+\DoxyCodeLine{00374\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_process(UIP\_UDP\_TIMER);\ \}\ while\ (0)}}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00390\ \textcolor{preprocessor}{\#define\ uip\_udp\_periodic\_conn(conn)\ do\ \{\ uip\_udp\_conn\ =\ conn;\ \(\backslash\)}}
+\DoxyCodeLine{00391\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_process(UIP\_UDP\_TIMER);\ \}\ while\ (0)}}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_UDP\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00422\ \textcolor{keyword}{extern}\ u8\_t\ uip\_buf[UIP\_BUFSIZE+2];}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00426\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00427\ \textcolor{comment}{/*\ Functions\ that\ are\ used\ by\ the\ uIP\ application\ program.\ Opening\ and}}
+\DoxyCodeLine{00428\ \textcolor{comment}{\ *\ closing\ connections,\ sending\ and\ receiving\ data,\ etc.\ is\ all}}
+\DoxyCodeLine{00429\ \textcolor{comment}{\ *\ handled\ by\ the\ functions\ below.}}
+\DoxyCodeLine{00430\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00450\ \textcolor{keywordtype}{void}\ uip\_listen(u16\_t\ port);}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00464\ \textcolor{keywordtype}{void}\ uip\_unlisten(u16\_t\ port);}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00498\ \textcolor{keyword}{struct\ }uip\_conn\ *uip\_connect(uip\_ipaddr\_t\ *ripaddr,\ u16\_t\ port);}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ }
+\DoxyCodeLine{00511\ \textcolor{preprocessor}{\#define\ uip\_outstanding(conn)\ ((conn)-\/>len)}}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00538\ \textcolor{keywordtype}{void}\ uip\_send(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *data,\ \textcolor{keywordtype}{int}\ len);}
+\DoxyCodeLine{00539\ }
+\DoxyCodeLine{00549\ \textcolor{comment}{/*void\ uip\_datalen(void);*/}}
+\DoxyCodeLine{00550\ \textcolor{preprocessor}{\#define\ uip\_datalen()\ \ \ \ \ \ \ uip\_len}}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00561\ \textcolor{preprocessor}{\#define\ uip\_urgdatalen()\ \ \ \ uip\_urglen}}
+\DoxyCodeLine{00562\ }
+\DoxyCodeLine{00570\ \textcolor{preprocessor}{\#define\ uip\_close()\ \ \ \ \ \ \ \ \ (uip\_flags\ =\ UIP\_CLOSE)}}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00581\ \textcolor{preprocessor}{\#define\ uip\_abort()\ \ \ \ \ \ \ \ \ (uip\_flags\ =\ UIP\_ABORT)}}
+\DoxyCodeLine{00582\ }
+\DoxyCodeLine{00591\ \textcolor{preprocessor}{\#define\ uip\_stop()\ \ \ \ \ \ \ \ \ \ (uip\_conn-\/>tcpstateflags\ |=\ UIP\_STOPPED)}}
+\DoxyCodeLine{00592\ }
+\DoxyCodeLine{00599\ \textcolor{preprocessor}{\#define\ uip\_stopped(conn)\ \ \ ((conn)-\/>tcpstateflags\ \&\ UIP\_STOPPED)}}
+\DoxyCodeLine{00600\ }
+\DoxyCodeLine{00610\ \textcolor{preprocessor}{\#define\ uip\_restart()\ \ \ \ \ \ \ \ \ do\ \{\ uip\_flags\ |=\ UIP\_NEWDATA;\ \(\backslash\)}}
+\DoxyCodeLine{00611\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_conn-\/>tcpstateflags\ \&=\ \string~UIP\_STOPPED;\ \(\backslash\)}}
+\DoxyCodeLine{00612\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ while(0)}}
+\DoxyCodeLine{00613\ }
+\DoxyCodeLine{00614\ }
+\DoxyCodeLine{00615\ \textcolor{comment}{/*\ uIP\ tests\ that\ can\ be\ made\ to\ determine\ in\ what\ state\ the\ current}}
+\DoxyCodeLine{00616\ \textcolor{comment}{\ \ \ connection\ is,\ and\ what\ the\ application\ function\ should\ do.\ */}}
+\DoxyCodeLine{00617\ }
+\DoxyCodeLine{00626\ \textcolor{preprocessor}{\#define\ uip\_udpconnection()\ (uip\_conn\ ==\ NULL)}}
+\DoxyCodeLine{00627\ }
+\DoxyCodeLine{00637\ \textcolor{preprocessor}{\#define\ uip\_newdata()\ \ \ (uip\_flags\ \&\ UIP\_NEWDATA)}}
+\DoxyCodeLine{00638\ }
+\DoxyCodeLine{00648\ \textcolor{preprocessor}{\#define\ uip\_acked()\ \ \ (uip\_flags\ \&\ UIP\_ACKDATA)}}
+\DoxyCodeLine{00649\ }
+\DoxyCodeLine{00660\ \textcolor{preprocessor}{\#define\ uip\_connected()\ (uip\_flags\ \&\ UIP\_CONNECTED)}}
+\DoxyCodeLine{00661\ }
+\DoxyCodeLine{00670\ \textcolor{preprocessor}{\#define\ uip\_closed()\ \ \ \ (uip\_flags\ \&\ UIP\_CLOSE)}}
+\DoxyCodeLine{00671\ }
+\DoxyCodeLine{00680\ \textcolor{preprocessor}{\#define\ uip\_aborted()\ \ \ \ (uip\_flags\ \&\ UIP\_ABORT)}}
+\DoxyCodeLine{00681\ }
+\DoxyCodeLine{00690\ \textcolor{preprocessor}{\#define\ uip\_timedout()\ \ \ \ (uip\_flags\ \&\ UIP\_TIMEDOUT)}}
+\DoxyCodeLine{00691\ }
+\DoxyCodeLine{00702\ \textcolor{preprocessor}{\#define\ uip\_rexmit()\ \ \ \ \ (uip\_flags\ \&\ UIP\_REXMIT)}}
+\DoxyCodeLine{00703\ }
+\DoxyCodeLine{00716\ \textcolor{preprocessor}{\#define\ uip\_poll()\ \ \ \ \ \ \ (uip\_flags\ \&\ UIP\_POLL)}}
+\DoxyCodeLine{00717\ }
+\DoxyCodeLine{00724\ \textcolor{preprocessor}{\#define\ uip\_initialmss()\ \ \ \ \ \ \ \ \ \ \ \ \ (uip\_conn-\/>initialmss)}}
+\DoxyCodeLine{00725\ }
+\DoxyCodeLine{00737\ \textcolor{preprocessor}{\#define\ uip\_mss()\ \ \ \ \ \ \ \ \ \ \ \ \ (uip\_conn-\/>mss)}}
+\DoxyCodeLine{00738\ }
+\DoxyCodeLine{00766\ \textcolor{keyword}{struct\ }uip\_udp\_conn\ *uip\_udp\_new(uip\_ipaddr\_t\ *ripaddr,\ u16\_t\ rport);}
+\DoxyCodeLine{00767\ }
+\DoxyCodeLine{00775\ \textcolor{preprocessor}{\#define\ uip\_udp\_remove(conn)\ (conn)-\/>lport\ =\ 0}}
+\DoxyCodeLine{00776\ }
+\DoxyCodeLine{00787\ \textcolor{preprocessor}{\#define\ uip\_udp\_bind(conn,\ port)\ (conn)-\/>lport\ =\ port}}
+\DoxyCodeLine{00788\ }
+\DoxyCodeLine{00800\ \textcolor{preprocessor}{\#define\ uip\_udp\_send(len)\ uip\_send((char\ *)uip\_appdata,\ len)}}
+\DoxyCodeLine{00801\ }
+\DoxyCodeLine{00804\ \textcolor{comment}{/*\ uIP\ convenience\ and\ converting\ functions.\ */}}
+\DoxyCodeLine{00805\ }
+\DoxyCodeLine{00840\ \textcolor{preprocessor}{\#define\ uip\_ipaddr(addr,\ addr0,addr1,addr2,addr3)\ do\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00841\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((u16\_t\ *)(addr))[0]\ =\ HTONS(((addr0)\ <<\ 8)\ |\ (addr1));\ \(\backslash\)}}
+\DoxyCodeLine{00842\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((u16\_t\ *)(addr))[1]\ =\ HTONS(((addr2)\ <<\ 8)\ |\ (addr3));\ \(\backslash\)}}
+\DoxyCodeLine{00843\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ while(0)}}
+\DoxyCodeLine{00844\ }
+\DoxyCodeLine{00852\ \textcolor{preprocessor}{\#define\ uip\_ip6addr(addr,\ addr0,addr1,addr2,addr3,addr4,addr5,addr6,addr7)\ do\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00853\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((u16\_t\ *)(addr))[0]\ =\ HTONS((addr0));\ \(\backslash\)}}
+\DoxyCodeLine{00854\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((u16\_t\ *)(addr))[1]\ =\ HTONS((addr1));\ \(\backslash\)}}
+\DoxyCodeLine{00855\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((u16\_t\ *)(addr))[2]\ =\ HTONS((addr2));\ \(\backslash\)}}
+\DoxyCodeLine{00856\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((u16\_t\ *)(addr))[3]\ =\ HTONS((addr3));\ \(\backslash\)}}
+\DoxyCodeLine{00857\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((u16\_t\ *)(addr))[4]\ =\ HTONS((addr4));\ \(\backslash\)}}
+\DoxyCodeLine{00858\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((u16\_t\ *)(addr))[5]\ =\ HTONS((addr5));\ \(\backslash\)}}
+\DoxyCodeLine{00859\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((u16\_t\ *)(addr))[6]\ =\ HTONS((addr6));\ \(\backslash\)}}
+\DoxyCodeLine{00860\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((u16\_t\ *)(addr))[7]\ =\ HTONS((addr7));\ \(\backslash\)}}
+\DoxyCodeLine{00861\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ while(0)}}
+\DoxyCodeLine{00862\ }
+\DoxyCodeLine{00881\ \textcolor{preprocessor}{\#if\ !UIP\_CONF\_IPV6}}
+\DoxyCodeLine{00882\ \textcolor{preprocessor}{\#define\ uip\_ipaddr\_copy(dest,\ src)\ do\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00883\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((u16\_t\ *)dest)[0]\ =\ ((u16\_t\ *)src)[0];\ \(\backslash\)}}
+\DoxyCodeLine{00884\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((u16\_t\ *)dest)[1]\ =\ ((u16\_t\ *)src)[1];\ \(\backslash\)}}
+\DoxyCodeLine{00885\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ while(0)}}
+\DoxyCodeLine{00886\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ !UIP\_CONF\_IPV6\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00887\ \textcolor{preprocessor}{\#define\ uip\_ipaddr\_copy(dest,\ src)\ memcpy(dest,\ src,\ sizeof(uip\_ip6addr\_t))}}
+\DoxyCodeLine{00888\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !UIP\_CONF\_IPV6\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00889\ }
+\DoxyCodeLine{00910\ \textcolor{preprocessor}{\#if\ !UIP\_CONF\_IPV6}}
+\DoxyCodeLine{00911\ \textcolor{preprocessor}{\#define\ uip\_ipaddr\_cmp(addr1,\ addr2)\ (((u16\_t\ *)addr1)[0]\ ==\ ((u16\_t\ *)addr2)[0]\ \&\&\ \(\backslash\)}}
+\DoxyCodeLine{00912\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((u16\_t\ *)addr1)[1]\ ==\ ((u16\_t\ *)addr2)[1])}}
+\DoxyCodeLine{00913\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ !UIP\_CONF\_IPV6\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00914\ \textcolor{preprocessor}{\#define\ uip\_ipaddr\_cmp(addr1,\ addr2)\ (memcmp(addr1,\ addr2,\ sizeof(uip\_ip6addr\_t))\ ==\ 0)}}
+\DoxyCodeLine{00915\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !UIP\_CONF\_IPV6\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00916\ }
+\DoxyCodeLine{00941\ \textcolor{preprocessor}{\#define\ uip\_ipaddr\_maskcmp(addr1,\ addr2,\ mask)\ \(\backslash\)}}
+\DoxyCodeLine{00942\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (((((u16\_t\ *)addr1)[0]\ \&\ ((u16\_t\ *)mask)[0])\ ==\ \(\backslash\)}}
+\DoxyCodeLine{00943\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (((u16\_t\ *)addr2)[0]\ \&\ ((u16\_t\ *)mask)[0]))\ \&\&\ \(\backslash\)}}
+\DoxyCodeLine{00944\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((((u16\_t\ *)addr1)[1]\ \&\ ((u16\_t\ *)mask)[1])\ ==\ \(\backslash\)}}
+\DoxyCodeLine{00945\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (((u16\_t\ *)addr2)[1]\ \&\ ((u16\_t\ *)mask)[1])))}}
+\DoxyCodeLine{00946\ }
+\DoxyCodeLine{00947\ }
+\DoxyCodeLine{00972\ \textcolor{preprocessor}{\#define\ uip\_ipaddr\_mask(dest,\ src,\ mask)\ do\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00973\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((u16\_t\ *)dest)[0]\ =\ ((u16\_t\ *)src)[0]\ \&\ ((u16\_t\ *)mask)[0];\ \(\backslash\)}}
+\DoxyCodeLine{00974\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((u16\_t\ *)dest)[1]\ =\ ((u16\_t\ *)src)[1]\ \&\ ((u16\_t\ *)mask)[1];\ \(\backslash\)}}
+\DoxyCodeLine{00975\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ while(0)}}
+\DoxyCodeLine{00976\ }
+\DoxyCodeLine{00995\ \textcolor{preprocessor}{\#define\ uip\_ipaddr1(addr)\ (htons(((u16\_t\ *)(addr))[0])\ >>\ 8)}}
+\DoxyCodeLine{00996\ }
+\DoxyCodeLine{01015\ \textcolor{preprocessor}{\#define\ uip\_ipaddr2(addr)\ (htons(((u16\_t\ *)(addr))[0])\ \&\ 0xff)}}
+\DoxyCodeLine{01016\ }
+\DoxyCodeLine{01035\ \textcolor{preprocessor}{\#define\ uip\_ipaddr3(addr)\ (htons(((u16\_t\ *)(addr))[1])\ >>\ 8)}}
+\DoxyCodeLine{01036\ }
+\DoxyCodeLine{01055\ \textcolor{preprocessor}{\#define\ uip\_ipaddr4(addr)\ (htons(((u16\_t\ *)(addr))[1])\ \&\ 0xff)}}
+\DoxyCodeLine{01056\ }
+\DoxyCodeLine{01066\ \textcolor{preprocessor}{\#ifndef\ HTONS}}
+\DoxyCodeLine{01067\ \textcolor{preprocessor}{\#\ \ \ if\ UIP\_BYTE\_ORDER\ ==\ UIP\_BIG\_ENDIAN}}
+\DoxyCodeLine{01068\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ HTONS(n)\ (n)}}
+\DoxyCodeLine{01069\ \textcolor{preprocessor}{\#\ \ \ else\ }\textcolor{comment}{/*\ UIP\_BYTE\_ORDER\ ==\ UIP\_BIG\_ENDIAN\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01070\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ HTONS(n)\ (u16\_t)((((u16\_t)\ (n))\ <<\ 8)\ |\ (((u16\_t)\ (n))\ >>\ 8))}}
+\DoxyCodeLine{01071\ \textcolor{preprocessor}{\#\ \ \ endif\ }\textcolor{comment}{/*\ UIP\_BYTE\_ORDER\ ==\ UIP\_BIG\_ENDIAN\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01072\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{01073\ \textcolor{preprocessor}{\#error\ "{}HTONS\ already\ defined!"{}}}
+\DoxyCodeLine{01074\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ HTONS\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01075\ }
+\DoxyCodeLine{01083\ \textcolor{preprocessor}{\#ifndef\ htons}}
+\DoxyCodeLine{01084\ u16\_t\ htons(u16\_t\ val);}
+\DoxyCodeLine{01085\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ htons\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01086\ \textcolor{preprocessor}{\#ifndef\ ntohs}}
+\DoxyCodeLine{01087\ \textcolor{preprocessor}{\#define\ ntohs\ htons}}
+\DoxyCodeLine{01088\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{01089\ }
+\DoxyCodeLine{01099\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *uip\_appdata;}
+\DoxyCodeLine{01100\ }
+\DoxyCodeLine{01101\ \textcolor{preprocessor}{\#if\ UIP\_URGDATA\ >\ 0}}
+\DoxyCodeLine{01102\ \textcolor{comment}{/*\ u8\_t\ *uip\_urgdata:}}
+\DoxyCodeLine{01103\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{01104\ \textcolor{comment}{\ *\ This\ pointer\ points\ to\ any\ urgent\ data\ that\ has\ been\ received.\ Only}}
+\DoxyCodeLine{01105\ \textcolor{comment}{\ *\ present\ if\ compiled\ with\ support\ for\ urgent\ data\ (UIP\_URGDATA).}}
+\DoxyCodeLine{01106\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{01107\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *uip\_urgdata;}
+\DoxyCodeLine{01108\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_URGDATA\ >\ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01109\ }
+\DoxyCodeLine{01110\ }
+\DoxyCodeLine{01134\ \textcolor{keyword}{extern}\ u16\_t\ uip\_len;}
+\DoxyCodeLine{01135\ }
+\DoxyCodeLine{01138\ \textcolor{preprocessor}{\#if\ UIP\_URGDATA\ >\ 0}}
+\DoxyCodeLine{01139\ \textcolor{keyword}{extern}\ u16\_t\ uip\_urglen,\ uip\_surglen;}
+\DoxyCodeLine{01140\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_URGDATA\ >\ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01141\ }
+\DoxyCodeLine{01142\ }
+\DoxyCodeLine{01153\ \textcolor{keyword}{struct\ }uip\_conn\ \{}
+\DoxyCodeLine{01154\ \ \ uip\_ipaddr\_t\ ripaddr;\ \ \ }
+\DoxyCodeLine{01156\ \ \ u16\_t\ lport;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01157\ \ \ u16\_t\ rport;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01160\ \ \ u8\_t\ rcv\_nxt[4];\ \ \ \ }
+\DoxyCodeLine{01162\ \ \ u8\_t\ snd\_nxt[4];\ \ \ \ }
+\DoxyCodeLine{01164\ \ \ u16\_t\ len;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01165\ \ \ u16\_t\ mss;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01167\ \ \ u16\_t\ initialmss;\ \ \ }
+\DoxyCodeLine{01169\ \ \ u8\_t\ sa;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01171\ \ \ u8\_t\ sv;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01173\ \ \ u8\_t\ rto;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01174\ \ \ u8\_t\ tcpstateflags;\ }
+\DoxyCodeLine{01175\ \ \ u8\_t\ timer;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01176\ \ \ u8\_t\ nrtx;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01180\ \ \ uip\_tcp\_appstate\_t\ appstate;}
+\DoxyCodeLine{01181\ \};}
+\DoxyCodeLine{01182\ }
+\DoxyCodeLine{01183\ }
+\DoxyCodeLine{01190\ \textcolor{keyword}{extern}\ \textcolor{keyword}{struct\ }uip\_conn\ *uip\_conn;}
+\DoxyCodeLine{01191\ \textcolor{comment}{/*\ The\ array\ containing\ all\ uIP\ connections.\ */}}
+\DoxyCodeLine{01192\ \textcolor{keyword}{extern}\ \textcolor{keyword}{struct\ }uip\_conn\ uip\_conns[UIP\_CONNS];}
+\DoxyCodeLine{01201\ \textcolor{keyword}{extern}\ u8\_t\ uip\_acc32[4];}
+\DoxyCodeLine{01202\ }
+\DoxyCodeLine{01206\ \textcolor{preprocessor}{\#if\ UIP\_UDP}}
+\DoxyCodeLine{01210\ \textcolor{keyword}{struct\ }uip\_udp\_conn\ \{}
+\DoxyCodeLine{01211\ \ \ uip\_ipaddr\_t\ ripaddr;\ \ \ }
+\DoxyCodeLine{01212\ \ \ u16\_t\ lport;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01213\ \ \ u16\_t\ rport;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01214\ \ \ u8\_t\ \ ttl;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01217\ \ \ uip\_udp\_appstate\_t\ appstate;}
+\DoxyCodeLine{01218\ \};}
+\DoxyCodeLine{01219\ }
+\DoxyCodeLine{01223\ \textcolor{keyword}{extern}\ \textcolor{keyword}{struct\ }uip\_udp\_conn\ *uip\_udp\_conn;}
+\DoxyCodeLine{01224\ \textcolor{keyword}{extern}\ \textcolor{keyword}{struct\ }uip\_udp\_conn\ uip\_udp\_conns[UIP\_UDP\_CONNS];}
+\DoxyCodeLine{01225\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_UDP\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01226\ }
+\DoxyCodeLine{01232\ \textcolor{keyword}{struct\ }uip\_stats\ \{}
+\DoxyCodeLine{01233\ \ \ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{01234\ \ \ \ \ uip\_stats\_t\ drop;\ \ \ \ \ }
+\DoxyCodeLine{01236\ \ \ \ \ uip\_stats\_t\ recv;\ \ \ \ \ }
+\DoxyCodeLine{01238\ \ \ \ \ uip\_stats\_t\ sent;\ \ \ \ \ }
+\DoxyCodeLine{01240\ \ \ \ \ uip\_stats\_t\ vhlerr;\ \ \ }
+\DoxyCodeLine{01242\ \ \ \ \ uip\_stats\_t\ hblenerr;\ }
+\DoxyCodeLine{01244\ \ \ \ \ uip\_stats\_t\ lblenerr;\ }
+\DoxyCodeLine{01246\ \ \ \ \ uip\_stats\_t\ fragerr;\ \ }
+\DoxyCodeLine{01248\ \ \ \ \ uip\_stats\_t\ chkerr;\ \ \ }
+\DoxyCodeLine{01250\ \ \ \ \ uip\_stats\_t\ protoerr;\ }
+\DoxyCodeLine{01252\ \ \ \}\ ip;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01253\ \ \ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{01254\ \ \ \ \ uip\_stats\_t\ drop;\ \ \ \ \ }
+\DoxyCodeLine{01255\ \ \ \ \ uip\_stats\_t\ recv;\ \ \ \ \ }
+\DoxyCodeLine{01256\ \ \ \ \ uip\_stats\_t\ sent;\ \ \ \ \ }
+\DoxyCodeLine{01257\ \ \ \ \ uip\_stats\_t\ typeerr;\ \ }
+\DoxyCodeLine{01259\ \ \ \}\ icmp;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01260\ \ \ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{01261\ \ \ \ \ uip\_stats\_t\ drop;\ \ \ \ \ }
+\DoxyCodeLine{01262\ \ \ \ \ uip\_stats\_t\ recv;\ \ \ \ \ }
+\DoxyCodeLine{01263\ \ \ \ \ uip\_stats\_t\ sent;\ \ \ \ \ }
+\DoxyCodeLine{01264\ \ \ \ \ uip\_stats\_t\ chkerr;\ \ \ }
+\DoxyCodeLine{01266\ \ \ \ \ uip\_stats\_t\ ackerr;\ \ \ }
+\DoxyCodeLine{01268\ \ \ \ \ uip\_stats\_t\ rst;\ \ \ \ \ \ }
+\DoxyCodeLine{01269\ \ \ \ \ uip\_stats\_t\ rexmit;\ \ \ }
+\DoxyCodeLine{01270\ \ \ \ \ uip\_stats\_t\ syndrop;\ \ }
+\DoxyCodeLine{01272\ \ \ \ \ uip\_stats\_t\ synrst;\ \ \ }
+\DoxyCodeLine{01274\ \ \ \}\ tcp;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01275\ \textcolor{preprocessor}{\#if\ UIP\_UDP}}
+\DoxyCodeLine{01276\ \ \ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{01277\ \ \ \ \ uip\_stats\_t\ drop;\ \ \ \ \ }
+\DoxyCodeLine{01278\ \ \ \ \ uip\_stats\_t\ recv;\ \ \ \ \ }
+\DoxyCodeLine{01279\ \ \ \ \ uip\_stats\_t\ sent;\ \ \ \ \ }
+\DoxyCodeLine{01280\ \ \ \ \ uip\_stats\_t\ chkerr;\ \ \ }
+\DoxyCodeLine{01282\ \ \ \}\ udp;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01283\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_UDP\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01284\ \};}
+\DoxyCodeLine{01285\ }
+\DoxyCodeLine{01291\ \textcolor{keyword}{extern}\ \textcolor{keyword}{struct\ }uip\_stats\ uip\_stat;}
+\DoxyCodeLine{01292\ }
+\DoxyCodeLine{01293\ }
+\DoxyCodeLine{01294\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{01295\ \textcolor{comment}{/*\ All\ the\ stuff\ below\ this\ point\ is\ internal\ to\ uIP\ and\ should\ not\ be}}
+\DoxyCodeLine{01296\ \textcolor{comment}{\ *\ used\ directly\ by\ an\ application\ or\ by\ a\ device\ driver.}}
+\DoxyCodeLine{01297\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{01298\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{01299\ \textcolor{comment}{/*\ u8\_t\ uip\_flags:}}
+\DoxyCodeLine{01300\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{01301\ \textcolor{comment}{\ *\ When\ the\ application\ is\ called,\ uip\_flags\ will\ contain\ the\ flags}}
+\DoxyCodeLine{01302\ \textcolor{comment}{\ *\ that\ are\ defined\ in\ this\ file.\ Please\ read\ below\ for\ more}}
+\DoxyCodeLine{01303\ \textcolor{comment}{\ *\ infomation.}}
+\DoxyCodeLine{01304\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{01305\ \textcolor{keyword}{extern}\ u8\_t\ uip\_flags;}
+\DoxyCodeLine{01306\ }
+\DoxyCodeLine{01307\ \textcolor{comment}{/*\ The\ following\ flags\ may\ be\ set\ in\ the\ global\ variable\ uip\_flags}}
+\DoxyCodeLine{01308\ \textcolor{comment}{\ \ \ before\ calling\ the\ application\ callback.\ The\ UIP\_ACKDATA,}}
+\DoxyCodeLine{01309\ \textcolor{comment}{\ \ \ UIP\_NEWDATA,\ and\ UIP\_CLOSE\ flags\ may\ both\ be\ set\ at\ the\ same\ time,}}
+\DoxyCodeLine{01310\ \textcolor{comment}{\ \ \ whereas\ the\ others\ are\ mutualy\ exclusive.\ Note\ that\ these\ flags}}
+\DoxyCodeLine{01311\ \textcolor{comment}{\ \ \ should\ *NOT*\ be\ accessed\ directly,\ but\ only\ through\ the\ uIP}}
+\DoxyCodeLine{01312\ \textcolor{comment}{\ \ \ functions/macros.\ */}}
+\DoxyCodeLine{01313\ }
+\DoxyCodeLine{01314\ \textcolor{preprocessor}{\#define\ UIP\_ACKDATA\ \ \ 1\ \ \ \ \ }\textcolor{comment}{/*\ Signifies\ that\ the\ outstanding\ data\ was}}
+\DoxyCodeLine{01315\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ acked\ and\ the\ application\ should\ send}}
+\DoxyCodeLine{01316\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\ new\ data\ instead\ of\ retransmitting}}
+\DoxyCodeLine{01317\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ the\ last\ data.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01318\ \textcolor{preprocessor}{\#define\ UIP\_NEWDATA\ \ \ 2\ \ \ \ \ }\textcolor{comment}{/*\ Flags\ the\ fact\ that\ the\ peer\ has\ sent}}
+\DoxyCodeLine{01319\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ us\ new\ data.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01320\ \textcolor{preprocessor}{\#define\ UIP\_REXMIT\ \ \ \ 4\ \ \ \ \ }\textcolor{comment}{/*\ Tells\ the\ application\ to\ retransmit\ the}}
+\DoxyCodeLine{01321\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data\ that\ was\ last\ sent.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01322\ \textcolor{preprocessor}{\#define\ UIP\_POLL\ \ \ \ \ \ 8\ \ \ \ \ }\textcolor{comment}{/*\ Used\ for\ polling\ the\ application,\ to}}
+\DoxyCodeLine{01323\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\ if\ the\ application\ has\ data\ that}}
+\DoxyCodeLine{01324\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ it\ wants\ to\ send.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01325\ \textcolor{preprocessor}{\#define\ UIP\_CLOSE\ \ \ \ \ 16\ \ \ \ }\textcolor{comment}{/*\ The\ remote\ host\ has\ closed\ the}}
+\DoxyCodeLine{01326\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection,\ thus\ the\ connection\ has}}
+\DoxyCodeLine{01327\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ gone\ away.\ Or\ the\ application\ signals}}
+\DoxyCodeLine{01328\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ that\ it\ wants\ to\ close\ the}}
+\DoxyCodeLine{01329\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01330\ \textcolor{preprocessor}{\#define\ UIP\_ABORT\ \ \ \ \ 32\ \ \ \ }\textcolor{comment}{/*\ The\ remote\ host\ has\ aborted\ the}}
+\DoxyCodeLine{01331\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection,\ thus\ the\ connection\ has}}
+\DoxyCodeLine{01332\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ gone\ away.\ Or\ the\ application\ signals}}
+\DoxyCodeLine{01333\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ that\ it\ wants\ to\ abort\ the}}
+\DoxyCodeLine{01334\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01335\ \textcolor{preprocessor}{\#define\ UIP\_CONNECTED\ 64\ \ \ \ }\textcolor{comment}{/*\ We\ have\ got\ a\ connection\ from\ a\ remote}}
+\DoxyCodeLine{01336\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ host\ and\ have\ set\ up\ a\ new\ connection}}
+\DoxyCodeLine{01337\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ for\ it,\ or\ an\ active\ connection\ has}}
+\DoxyCodeLine{01338\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ been\ successfully\ established.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01339\ }
+\DoxyCodeLine{01340\ \textcolor{preprocessor}{\#define\ UIP\_TIMEDOUT\ \ 128\ \ \ }\textcolor{comment}{/*\ The\ connection\ has\ been\ aborted\ due\ to}}
+\DoxyCodeLine{01341\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ too\ many\ retransmissions.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01342\ }
+\DoxyCodeLine{01343\ \textcolor{comment}{/*\ uip\_process(flag):}}
+\DoxyCodeLine{01344\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{01345\ \textcolor{comment}{\ *\ The\ actual\ uIP\ function\ which\ does\ all\ the\ work.}}
+\DoxyCodeLine{01346\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{01347\ \textcolor{keywordtype}{void}\ uip\_process(u8\_t\ flag);}
+\DoxyCodeLine{01348\ }
+\DoxyCodeLine{01349\ \textcolor{comment}{/*\ The\ following\ flags\ are\ passed\ as\ an\ argument\ to\ the\ uip\_process()}}
+\DoxyCodeLine{01350\ \textcolor{comment}{\ \ \ function.\ They\ are\ used\ to\ distinguish\ between\ the\ two\ cases\ where}}
+\DoxyCodeLine{01351\ \textcolor{comment}{\ \ \ uip\_process()\ is\ called.\ It\ can\ be\ called\ either\ because\ we\ have}}
+\DoxyCodeLine{01352\ \textcolor{comment}{\ \ \ incoming\ data\ that\ should\ be\ processed,\ or\ because\ the\ periodic}}
+\DoxyCodeLine{01353\ \textcolor{comment}{\ \ \ timer\ has\ fired.\ These\ values\ are\ never\ used\ directly,\ but\ only\ in}}
+\DoxyCodeLine{01354\ \textcolor{comment}{\ \ \ the\ macrose\ defined\ in\ this\ file.\ */}}
+\DoxyCodeLine{01355\ \ }
+\DoxyCodeLine{01356\ \textcolor{preprocessor}{\#define\ UIP\_DATA\ \ \ \ \ \ \ \ \ \ 1\ \ \ \ \ }\textcolor{comment}{/*\ Tells\ uIP\ that\ there\ is\ incoming}}
+\DoxyCodeLine{01357\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data\ in\ the\ uip\_buf\ buffer.\ The}}
+\DoxyCodeLine{01358\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ length\ of\ the\ data\ is\ stored\ in\ the}}
+\DoxyCodeLine{01359\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ global\ variable\ uip\_len.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01360\ \textcolor{preprocessor}{\#define\ UIP\_TIMER\ \ \ \ \ \ \ \ \ 2\ \ \ \ \ }\textcolor{comment}{/*\ Tells\ uIP\ that\ the\ periodic\ timer}}
+\DoxyCodeLine{01361\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ has\ fired.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01362\ \textcolor{preprocessor}{\#define\ UIP\_POLL\_REQUEST\ \ 3\ \ \ \ \ }\textcolor{comment}{/*\ Tells\ uIP\ that\ a\ connection\ should}}
+\DoxyCodeLine{01363\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ be\ polled.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01364\ \textcolor{preprocessor}{\#define\ UIP\_UDP\_SEND\_CONN\ 4\ \ \ \ \ }\textcolor{comment}{/*\ Tells\ uIP\ that\ a\ UDP\ datagram}}
+\DoxyCodeLine{01365\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ should\ be\ constructed\ in\ the}}
+\DoxyCodeLine{01366\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_buf\ buffer.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01367\ \textcolor{preprocessor}{\#if\ UIP\_UDP}}
+\DoxyCodeLine{01368\ \textcolor{preprocessor}{\#define\ UIP\_UDP\_TIMER\ \ \ \ \ 5}}
+\DoxyCodeLine{01369\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_UDP\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01370\ }
+\DoxyCodeLine{01371\ \textcolor{comment}{/*\ The\ TCP\ states\ used\ in\ the\ uip\_conn-\/>tcpstateflags.\ */}}
+\DoxyCodeLine{01372\ \textcolor{preprocessor}{\#define\ UIP\_CLOSED\ \ \ \ \ \ 0}}
+\DoxyCodeLine{01373\ \textcolor{preprocessor}{\#define\ UIP\_SYN\_RCVD\ \ \ \ 1}}
+\DoxyCodeLine{01374\ \textcolor{preprocessor}{\#define\ UIP\_SYN\_SENT\ \ \ \ 2}}
+\DoxyCodeLine{01375\ \textcolor{preprocessor}{\#define\ UIP\_ESTABLISHED\ 3}}
+\DoxyCodeLine{01376\ \textcolor{preprocessor}{\#define\ UIP\_FIN\_WAIT\_1\ \ 4}}
+\DoxyCodeLine{01377\ \textcolor{preprocessor}{\#define\ UIP\_FIN\_WAIT\_2\ \ 5}}
+\DoxyCodeLine{01378\ \textcolor{preprocessor}{\#define\ UIP\_CLOSING\ \ \ \ \ 6}}
+\DoxyCodeLine{01379\ \textcolor{preprocessor}{\#define\ UIP\_TIME\_WAIT\ \ \ 7}}
+\DoxyCodeLine{01380\ \textcolor{preprocessor}{\#define\ UIP\_LAST\_ACK\ \ \ \ 8}}
+\DoxyCodeLine{01381\ \textcolor{preprocessor}{\#define\ UIP\_TS\_MASK\ \ \ \ \ 15}}
+\DoxyCodeLine{01382\ \ \ }
+\DoxyCodeLine{01383\ \textcolor{preprocessor}{\#define\ UIP\_STOPPED\ \ \ \ \ \ 16}}
+\DoxyCodeLine{01384\ }
+\DoxyCodeLine{01385\ \textcolor{comment}{/*\ The\ TCP\ and\ IP\ headers.\ */}}
+\DoxyCodeLine{01386\ \textcolor{keyword}{struct\ }uip\_tcpip\_hdr\ \{}
+\DoxyCodeLine{01387\ \textcolor{preprocessor}{\#if\ UIP\_CONF\_IPV6}}
+\DoxyCodeLine{01388\ \ \ \textcolor{comment}{/*\ IPv6\ header.\ */}}
+\DoxyCodeLine{01389\ \ \ u8\_t\ vtc,}
+\DoxyCodeLine{01390\ \ \ \ \ tcflow;}
+\DoxyCodeLine{01391\ \ \ u16\_t\ flow;}
+\DoxyCodeLine{01392\ \ \ u8\_t\ len[2];}
+\DoxyCodeLine{01393\ \ \ u8\_t\ proto,\ ttl;}
+\DoxyCodeLine{01394\ \ \ uip\_ip6addr\_t\ srcipaddr,\ destipaddr;}
+\DoxyCodeLine{01395\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ UIP\_CONF\_IPV6\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01396\ \ \ \textcolor{comment}{/*\ IPv4\ header.\ */}}
+\DoxyCodeLine{01397\ \ \ u8\_t\ vhl,}
+\DoxyCodeLine{01398\ \ \ \ \ tos,}
+\DoxyCodeLine{01399\ \ \ \ \ len[2],}
+\DoxyCodeLine{01400\ \ \ \ \ ipid[2],}
+\DoxyCodeLine{01401\ \ \ \ \ ipoffset[2],}
+\DoxyCodeLine{01402\ \ \ \ \ ttl,}
+\DoxyCodeLine{01403\ \ \ \ \ proto;}
+\DoxyCodeLine{01404\ \ \ u16\_t\ ipchksum;}
+\DoxyCodeLine{01405\ \ \ u16\_t\ srcipaddr[2],}
+\DoxyCodeLine{01406\ \ \ \ \ destipaddr[2];}
+\DoxyCodeLine{01407\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_CONF\_IPV6\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01408\ \ \ }
+\DoxyCodeLine{01409\ \ \ \textcolor{comment}{/*\ TCP\ header.\ */}}
+\DoxyCodeLine{01410\ \ \ u16\_t\ srcport,}
+\DoxyCodeLine{01411\ \ \ \ \ destport;}
+\DoxyCodeLine{01412\ \ \ u8\_t\ seqno[4],}
+\DoxyCodeLine{01413\ \ \ \ \ ackno[4],}
+\DoxyCodeLine{01414\ \ \ \ \ tcpoffset,}
+\DoxyCodeLine{01415\ \ \ \ \ flags,}
+\DoxyCodeLine{01416\ \ \ \ \ wnd[2];}
+\DoxyCodeLine{01417\ \ \ u16\_t\ tcpchksum;}
+\DoxyCodeLine{01418\ \ \ u8\_t\ urgp[2];}
+\DoxyCodeLine{01419\ \ \ u8\_t\ optdata[4];}
+\DoxyCodeLine{01420\ \};}
+\DoxyCodeLine{01421\ }
+\DoxyCodeLine{01422\ \textcolor{comment}{/*\ The\ ICMP\ and\ IP\ headers.\ */}}
+\DoxyCodeLine{01423\ \textcolor{keyword}{struct\ }uip\_icmpip\_hdr\ \{}
+\DoxyCodeLine{01424\ \textcolor{preprocessor}{\#if\ UIP\_CONF\_IPV6}}
+\DoxyCodeLine{01425\ \ \ \textcolor{comment}{/*\ IPv6\ header.\ */}}
+\DoxyCodeLine{01426\ \ \ u8\_t\ vtc,}
+\DoxyCodeLine{01427\ \ \ \ \ tcf;}
+\DoxyCodeLine{01428\ \ \ u16\_t\ flow;}
+\DoxyCodeLine{01429\ \ \ u8\_t\ len[2];}
+\DoxyCodeLine{01430\ \ \ u8\_t\ proto,\ ttl;}
+\DoxyCodeLine{01431\ \ \ uip\_ip6addr\_t\ srcipaddr,\ destipaddr;}
+\DoxyCodeLine{01432\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ UIP\_CONF\_IPV6\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01433\ \ \ \textcolor{comment}{/*\ IPv4\ header.\ */}}
+\DoxyCodeLine{01434\ \ \ u8\_t\ vhl,}
+\DoxyCodeLine{01435\ \ \ \ \ tos,}
+\DoxyCodeLine{01436\ \ \ \ \ len[2],}
+\DoxyCodeLine{01437\ \ \ \ \ ipid[2],}
+\DoxyCodeLine{01438\ \ \ \ \ ipoffset[2],}
+\DoxyCodeLine{01439\ \ \ \ \ ttl,}
+\DoxyCodeLine{01440\ \ \ \ \ proto;}
+\DoxyCodeLine{01441\ \ \ u16\_t\ ipchksum;}
+\DoxyCodeLine{01442\ \ \ u16\_t\ srcipaddr[2],}
+\DoxyCodeLine{01443\ \ \ \ \ destipaddr[2];}
+\DoxyCodeLine{01444\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_CONF\_IPV6\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01445\ \ \ }
+\DoxyCodeLine{01446\ \ \ \textcolor{comment}{/*\ ICMP\ (echo)\ header.\ */}}
+\DoxyCodeLine{01447\ \ \ u8\_t\ type,\ icode;}
+\DoxyCodeLine{01448\ \ \ u16\_t\ icmpchksum;}
+\DoxyCodeLine{01449\ \textcolor{preprocessor}{\#if\ !UIP\_CONF\_IPV6}}
+\DoxyCodeLine{01450\ \ \ u16\_t\ id,\ seqno;}
+\DoxyCodeLine{01451\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ !UIP\_CONF\_IPV6\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01452\ \ \ u8\_t\ flags,\ reserved1,\ reserved2,\ reserved3;}
+\DoxyCodeLine{01453\ \ \ u8\_t\ icmp6data[16];}
+\DoxyCodeLine{01454\ \ \ u8\_t\ options[1];}
+\DoxyCodeLine{01455\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !UIP\_CONF\_IPV6\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01456\ \};}
+\DoxyCodeLine{01457\ }
+\DoxyCodeLine{01458\ }
+\DoxyCodeLine{01459\ \textcolor{comment}{/*\ The\ UDP\ and\ IP\ headers.\ */}}
+\DoxyCodeLine{01460\ \textcolor{keyword}{struct\ }uip\_udpip\_hdr\ \{}
+\DoxyCodeLine{01461\ \textcolor{preprocessor}{\#if\ UIP\_CONF\_IPV6}}
+\DoxyCodeLine{01462\ \ \ \textcolor{comment}{/*\ IPv6\ header.\ */}}
+\DoxyCodeLine{01463\ \ \ u8\_t\ vtc,}
+\DoxyCodeLine{01464\ \ \ \ \ tcf;}
+\DoxyCodeLine{01465\ \ \ u16\_t\ flow;}
+\DoxyCodeLine{01466\ \ \ u8\_t\ len[2];}
+\DoxyCodeLine{01467\ \ \ u8\_t\ proto,\ ttl;}
+\DoxyCodeLine{01468\ \ \ uip\_ip6addr\_t\ srcipaddr,\ destipaddr;}
+\DoxyCodeLine{01469\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ UIP\_CONF\_IPV6\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01470\ \ \ \textcolor{comment}{/*\ IP\ header.\ */}}
+\DoxyCodeLine{01471\ \ \ u8\_t\ vhl,}
+\DoxyCodeLine{01472\ \ \ \ \ tos,}
+\DoxyCodeLine{01473\ \ \ \ \ len[2],}
+\DoxyCodeLine{01474\ \ \ \ \ ipid[2],}
+\DoxyCodeLine{01475\ \ \ \ \ ipoffset[2],}
+\DoxyCodeLine{01476\ \ \ \ \ ttl,}
+\DoxyCodeLine{01477\ \ \ \ \ proto;}
+\DoxyCodeLine{01478\ \ \ u16\_t\ ipchksum;}
+\DoxyCodeLine{01479\ \ \ u16\_t\ srcipaddr[2],}
+\DoxyCodeLine{01480\ \ \ \ \ destipaddr[2];}
+\DoxyCodeLine{01481\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_CONF\_IPV6\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01482\ \ \ }
+\DoxyCodeLine{01483\ \ \ \textcolor{comment}{/*\ UDP\ header.\ */}}
+\DoxyCodeLine{01484\ \ \ u16\_t\ srcport,}
+\DoxyCodeLine{01485\ \ \ \ \ destport;}
+\DoxyCodeLine{01486\ \ \ u16\_t\ udplen;}
+\DoxyCodeLine{01487\ \ \ u16\_t\ udpchksum;}
+\DoxyCodeLine{01488\ \};}
+\DoxyCodeLine{01489\ }
+\DoxyCodeLine{01490\ }
+\DoxyCodeLine{01491\ }
+\DoxyCodeLine{01506\ \textcolor{preprocessor}{\#define\ UIP\_APPDATA\_SIZE\ (UIP\_BUFSIZE\ -\/\ UIP\_LLH\_LEN\ -\/\ UIP\_TCPIP\_HLEN)}}
+\DoxyCodeLine{01507\ }
+\DoxyCodeLine{01508\ }
+\DoxyCodeLine{01509\ \textcolor{preprocessor}{\#define\ UIP\_PROTO\_ICMP\ \ 1}}
+\DoxyCodeLine{01510\ \textcolor{preprocessor}{\#define\ UIP\_PROTO\_TCP\ \ \ 6}}
+\DoxyCodeLine{01511\ \textcolor{preprocessor}{\#define\ UIP\_PROTO\_UDP\ \ \ 17}}
+\DoxyCodeLine{01512\ \textcolor{preprocessor}{\#define\ UIP\_PROTO\_ICMP6\ 58}}
+\DoxyCodeLine{01513\ }
+\DoxyCodeLine{01514\ \textcolor{comment}{/*\ Header\ sizes.\ */}}
+\DoxyCodeLine{01515\ \textcolor{preprocessor}{\#if\ UIP\_CONF\_IPV6}}
+\DoxyCodeLine{01516\ \textcolor{preprocessor}{\#define\ UIP\_IPH\_LEN\ \ \ \ 40}}
+\DoxyCodeLine{01517\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ UIP\_CONF\_IPV6\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01518\ \textcolor{preprocessor}{\#define\ UIP\_IPH\_LEN\ \ \ \ 20\ \ \ \ }\textcolor{comment}{/*\ Size\ of\ IP\ header\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01519\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_CONF\_IPV6\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01520\ \textcolor{preprocessor}{\#define\ UIP\_UDPH\_LEN\ \ \ \ 8\ \ \ \ }\textcolor{comment}{/*\ Size\ of\ UDP\ header\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01521\ \textcolor{preprocessor}{\#define\ UIP\_TCPH\_LEN\ \ \ 20\ \ \ \ }\textcolor{comment}{/*\ Size\ of\ TCP\ header\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01522\ \textcolor{preprocessor}{\#define\ UIP\_IPUDPH\_LEN\ (UIP\_UDPH\_LEN\ +\ UIP\_IPH\_LEN)\ \ \ \ }\textcolor{comment}{/*\ Size\ of\ IP\ +}}
+\DoxyCodeLine{01523\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UDP}}
+\DoxyCodeLine{01524\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ header\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01525\ \textcolor{preprocessor}{\#define\ UIP\_IPTCPH\_LEN\ (UIP\_TCPH\_LEN\ +\ UIP\_IPH\_LEN)\ \ \ \ }\textcolor{comment}{/*\ Size\ of\ IP\ +}}
+\DoxyCodeLine{01526\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TCP}}
+\DoxyCodeLine{01527\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ header\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01528\ \textcolor{preprocessor}{\#define\ UIP\_TCPIP\_HLEN\ UIP\_IPTCPH\_LEN}}
+\DoxyCodeLine{01529\ }
+\DoxyCodeLine{01530\ }
+\DoxyCodeLine{01531\ \textcolor{preprocessor}{\#if\ UIP\_FIXEDADDR}}
+\DoxyCodeLine{01532\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ uip\_ipaddr\_t\ uip\_hostaddr,\ uip\_netmask,\ uip\_draddr;}
+\DoxyCodeLine{01533\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{/*\ UIP\_FIXEDADDR\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01534\ \textcolor{keyword}{extern}\ uip\_ipaddr\_t\ uip\_hostaddr,\ uip\_netmask,\ uip\_draddr;}
+\DoxyCodeLine{01535\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ UIP\_FIXEDADDR\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01536\ }
+\DoxyCodeLine{01537\ }
+\DoxyCodeLine{01538\ }
+\DoxyCodeLine{01542\ \textcolor{keyword}{struct\ }uip\_eth\_addr\ \{}
+\DoxyCodeLine{01543\ \ \ u8\_t\ addr[6];}
+\DoxyCodeLine{01544\ \};}
+\DoxyCodeLine{01545\ }
+\DoxyCodeLine{01562\ u16\_t\ uip\_chksum(u16\_t\ *buf,\ u16\_t\ len);}
+\DoxyCodeLine{01563\ }
+\DoxyCodeLine{01573\ u16\_t\ uip\_ipchksum(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{01574\ }
+\DoxyCodeLine{01584\ u16\_t\ uip\_tcpchksum(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{01585\ }
+\DoxyCodeLine{01595\ u16\_t\ uip\_udpchksum(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{01596\ }
+\DoxyCodeLine{01597\ }
+\DoxyCodeLine{01598\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_UIP\_H\_\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{01599\ }
+\DoxyCodeLine{01600\ }
+
+\end{DoxyCode}

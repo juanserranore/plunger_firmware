@@ -1,0 +1,104 @@
+\doxysection{uip\+\_\+arp.\+h}
+\label{uip__arp_8h_source}\index{lib/EthernetENC-\/2.0.5/src/utility/uip\_arp.h@{lib/EthernetENC-\/2.0.5/src/utility/uip\_arp.h}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ Copyright\ (c)\ 2001-\/2003,\ Adam\ Dunkels.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ All\ rights\ reserved.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ Redistribution\ and\ use\ in\ source\ and\ binary\ forms,\ with\ or\ without}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ modification,\ are\ permitted\ provided\ that\ the\ following\ conditions}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ are\ met:}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ 1.\ Redistributions\ of\ source\ code\ must\ retain\ the\ above\ copyright}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ \ \ \ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *\ 2.\ Redistributions\ in\ binary\ form\ must\ reproduce\ the\ above\ copyright}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *\ \ \ \ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer\ in\ the}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ *\ \ \ \ documentation\ and/or\ other\ materials\ provided\ with\ the\ distribution.}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ *\ 3.\ The\ name\ of\ the\ author\ may\ not\ be\ used\ to\ endorse\ or\ promote}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *\ \ \ \ products\ derived\ from\ this\ software\ without\ specific\ prior}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ *\ \ \ \ written\ permission.}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ *\ THIS\ SOFTWARE\ IS\ PROVIDED\ BY\ THE\ AUTHOR\ \`{}\`{}AS\ IS''\ AND\ ANY\ EXPRESS}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ *\ OR\ IMPLIED\ WARRANTIES,\ INCLUDING,\ BUT\ NOT\ LIMITED\ TO,\ THE\ IMPLIED}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ *\ WARRANTIES\ OF\ MERCHANTABILITY\ AND\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ *\ ARE\ DISCLAIMED.\ \ IN\ NO\ EVENT\ SHALL\ THE\ AUTHOR\ BE\ LIABLE\ FOR\ ANY}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ *\ DIRECT,\ INDIRECT,\ INCIDENTAL,\ SPECIAL,\ EXEMPLARY,\ OR\ CONSEQUENTIAL}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ *\ DAMAGES\ (INCLUDING,\ BUT\ NOT\ LIMITED\ TO,\ PROCUREMENT\ OF\ SUBSTITUTE}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ *\ GOODS\ OR\ SERVICES;\ LOSS\ OF\ USE,\ DATA,\ OR\ PROFITS;\ OR\ BUSINESS}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ *\ INTERRUPTION)\ HOWEVER\ CAUSED\ AND\ ON\ ANY\ THEORY\ OF\ LIABILITY,}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ *\ WHETHER\ IN\ CONTRACT,\ STRICT\ LIABILITY,\ OR\ TORT\ (INCLUDING}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ *\ NEGLIGENCE\ OR\ OTHERWISE)\ ARISING\ IN\ ANY\ WAY\ OUT\ OF\ THE\ USE\ OF\ THIS}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ *\ SOFTWARE,\ EVEN\ IF\ ADVISED\ OF\ THE\ POSSIBILITY\ OF\ SUCH\ DAMAGE.}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ *\ This\ file\ is\ part\ of\ the\ uIP\ TCP/IP\ stack.}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ *\ \$Id:\ uip\_arp.h,v\ 1.5\ 2006/06/11\ 21:46:39\ adam\ Exp\ \$}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#ifndef\ \_\_UIP\_ARP\_H\_\_}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ \_\_UIP\_ARP\_H\_\_}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ "{}uip.h"{}}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{extern}\ \textcolor{keyword}{struct\ }uip\_eth\_addr\ uip\_ethaddr;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{struct\ }uip\_eth\_hdr\ \{}
+\DoxyCodeLine{00064\ \ \ \textcolor{keyword}{struct\ }uip\_eth\_addr\ dest;}
+\DoxyCodeLine{00065\ \ \ \textcolor{keyword}{struct\ }uip\_eth\_addr\ src;}
+\DoxyCodeLine{00066\ \ \ u16\_t\ type;}
+\DoxyCodeLine{00067\ \};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ UIP\_ETHTYPE\_ARP\ 0x0806}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ UIP\_ETHTYPE\_IP\ \ 0x0800}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ UIP\_ETHTYPE\_IP6\ 0x86dd}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{/*\ The\ uip\_arp\_init()\ function\ must\ be\ called\ before\ any\ of\ the\ other}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ ARP\ functions.\ */}}
+\DoxyCodeLine{00076\ \textcolor{keywordtype}{void}\ uip\_arp\_init(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{/*\ The\ uip\_arp\_ipin()\ function\ should\ be\ called\ whenever\ an\ IP\ packet}}
+\DoxyCodeLine{00079\ \textcolor{comment}{\ \ \ arrives\ from\ the\ Ethernet.\ This\ function\ refreshes\ the\ ARP\ table\ or}}
+\DoxyCodeLine{00080\ \textcolor{comment}{\ \ \ inserts\ a\ new\ mapping\ if\ none\ exists.\ The\ function\ assumes\ that\ an}}
+\DoxyCodeLine{00081\ \textcolor{comment}{\ \ \ IP\ packet\ with\ an\ Ethernet\ header\ is\ present\ in\ the\ uip\_buf\ buffer}}
+\DoxyCodeLine{00082\ \textcolor{comment}{\ \ \ and\ that\ the\ length\ of\ the\ packet\ is\ in\ the\ uip\_len\ variable.\ */}}
+\DoxyCodeLine{00083\ \textcolor{keywordtype}{void}\ uip\_arp\_ipin(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00084\ \textcolor{comment}{//\#define\ uip\_arp\_ipin()}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{comment}{/*\ The\ uip\_arp\_arpin()\ should\ be\ called\ when\ an\ ARP\ packet\ is\ received}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ \ \ by\ the\ Ethernet\ driver.\ This\ function\ also\ assumes\ that\ the}}
+\DoxyCodeLine{00088\ \textcolor{comment}{\ \ \ Ethernet\ frame\ is\ present\ in\ the\ uip\_buf\ buffer.\ When\ the}}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ \ \ uip\_arp\_arpin()\ function\ returns,\ the\ contents\ of\ the\ uip\_buf}}
+\DoxyCodeLine{00090\ \textcolor{comment}{\ \ \ buffer\ should\ be\ sent\ out\ on\ the\ Ethernet\ if\ the\ uip\_len\ variable}}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ \ \ is\ >\ 0.\ */}}
+\DoxyCodeLine{00092\ \textcolor{keywordtype}{void}\ uip\_arp\_arpin(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{/*\ The\ uip\_arp\_out()\ function\ should\ be\ called\ when\ an\ IP\ packet}}
+\DoxyCodeLine{00095\ \textcolor{comment}{\ \ \ should\ be\ sent\ out\ on\ the\ Ethernet.\ This\ function\ creates\ an}}
+\DoxyCodeLine{00096\ \textcolor{comment}{\ \ \ Ethernet\ header\ before\ the\ IP\ header\ in\ the\ uip\_buf\ buffer.\ The}}
+\DoxyCodeLine{00097\ \textcolor{comment}{\ \ \ Ethernet\ header\ will\ have\ the\ correct\ Ethernet\ MAC\ destination}}
+\DoxyCodeLine{00098\ \textcolor{comment}{\ \ \ address\ filled\ in\ if\ an\ ARP\ table\ entry\ for\ the\ destination\ IP}}
+\DoxyCodeLine{00099\ \textcolor{comment}{\ \ \ address\ (or\ the\ IP\ address\ of\ the\ default\ router)\ is\ present.\ If\ no}}
+\DoxyCodeLine{00100\ \textcolor{comment}{\ \ \ such\ table\ entry\ is\ found,\ the\ IP\ packet\ is\ overwritten\ with\ an\ ARP}}
+\DoxyCodeLine{00101\ \textcolor{comment}{\ \ \ request\ and\ we\ rely\ on\ TCP\ to\ retransmit\ the\ packet\ that\ was}}
+\DoxyCodeLine{00102\ \textcolor{comment}{\ \ \ overwritten.\ In\ any\ case,\ the\ uip\_len\ variable\ holds\ the\ length\ of}}
+\DoxyCodeLine{00103\ \textcolor{comment}{\ \ \ the\ Ethernet\ frame\ that\ should\ be\ transmitted.\ */}}
+\DoxyCodeLine{00104\ \textcolor{keywordtype}{void}\ uip\_arp\_out(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{comment}{/*\ The\ uip\_arp\_timer()\ function\ should\ be\ called\ every\ ten\ seconds.\ It}}
+\DoxyCodeLine{00107\ \textcolor{comment}{\ \ \ is\ responsible\ for\ flushing\ old\ entries\ in\ the\ ARP\ table.\ */}}
+\DoxyCodeLine{00108\ \textcolor{keywordtype}{void}\ uip\_arp\_timer(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#define\ uip\_setethaddr(eaddr)\ do\ \{uip\_ethaddr.addr[0]\ =\ eaddr.addr[0];\ \(\backslash\)}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_ethaddr.addr[1]\ =\ eaddr.addr[1];\(\backslash\)}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_ethaddr.addr[2]\ =\ eaddr.addr[2];\(\backslash\)}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_ethaddr.addr[3]\ =\ eaddr.addr[3];\(\backslash\)}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_ethaddr.addr[4]\ =\ eaddr.addr[4];\(\backslash\)}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uip\_ethaddr.addr[5]\ =\ eaddr.addr[5];\}\ while(0)}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_UIP\_ARP\_H\_\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

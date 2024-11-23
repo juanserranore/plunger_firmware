@@ -1,0 +1,128 @@
+\doxysubsection{u\+IP Address Resolution Protocol}
+\label{group__uiparp}\index{uIP Address Resolution Protocol@{uIP Address Resolution Protocol}}
+\doxysubsubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \textbf{ uip\+\_\+arp.\+c}
+\item 
+file \textbf{ uip\+\_\+arp.\+h}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ arp\+\_\+hdr}
+\item 
+struct \textbf{ ethip\+\_\+hdr}
+\item 
+struct \textbf{ arp\+\_\+entry}
+\item 
+struct \textbf{ uip\+\_\+eth\+\_\+hdr}
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\label{group__uiparp_ga7a7c46ffaba30477b8c9e3e61bd2e106} 
+\#define {\bfseries ARP\+\_\+\+REQUEST}~1
+\item 
+\label{group__uiparp_ga06ba7b414e718081998f2814090debf1} 
+\#define {\bfseries ARP\+\_\+\+REPLY}~2
+\item 
+\label{group__uiparp_gabb56b549f7ab4d86e1cc39b8afc70d1e} 
+\#define {\bfseries ARP\+\_\+\+HWTYPE\+\_\+\+ETH}~1
+\item 
+\label{group__uiparp_ga24f52ac52d6e714cb04a5aa01be3bdd0} 
+\#define {\bfseries BUF}~((struct \textbf{ arp\+\_\+hdr} $\ast$)\&\textbf{ uip\+\_\+buf}[0])
+\item 
+\label{group__uiparp_ga9f2196e2705036869611962425e404bf} 
+\#define {\bfseries IPBUF}~((struct \textbf{ ethip\+\_\+hdr} $\ast$)\&\textbf{ uip\+\_\+buf}[0])
+\item 
+\label{group__uiparp_ga3e1562e8a6de32268e5df92a52152f91} 
+\#define {\bfseries UIP\+\_\+\+ETHTYPE\+\_\+\+ARP}~0x0806
+\item 
+\label{group__uiparp_ga03d140db75de3d3cdfbbab1c4fed8d8d} 
+\#define {\bfseries UIP\+\_\+\+ETHTYPE\+\_\+\+IP}~0x0800
+\item 
+\label{group__uiparp_gabb558f3a9b1ec015e83c314aba694e35} 
+\#define {\bfseries UIP\+\_\+\+ETHTYPE\+\_\+\+IP6}~0x86dd
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ uip\+\_\+arp\+\_\+init} (void)
+\item 
+void \textbf{ uip\+\_\+arp\+\_\+timer} (void)
+\item 
+void \textbf{ uip\+\_\+arp\+\_\+ipin} (void)
+\item 
+void \textbf{ uip\+\_\+arp\+\_\+arpin} (void)
+\item 
+void \textbf{ uip\+\_\+arp\+\_\+out} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\label{group__uiparp_ga499bb98a0b4ae9a98553ede81317606d} 
+struct \textbf{ uip\+\_\+eth\+\_\+addr} {\bfseries uip\+\_\+ethaddr}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+The Address Resolution Protocol ARP is used for mapping between IP addresses and link level addresses such as the Ethernet MAC addresses. ARP uses broadcast queries to ask for the link level address of a known IP address and the host which is configured with the IP address for which the query was meant, will respond with its link level address.
+
+\begin{DoxyNote}{Note}
+This ARP implementation only supports Ethernet.
+\end{DoxyNote}
+
+
+\doxysubsubsection{Function Documentation}
+\index{uIP Address Resolution Protocol@{uIP Address Resolution Protocol}!uip\_arp\_arpin@{uip\_arp\_arpin}}
+\index{uip\_arp\_arpin@{uip\_arp\_arpin}!uIP Address Resolution Protocol@{uIP Address Resolution Protocol}}
+\doxysubsubsubsection{uip\_arp\_arpin()}
+{\footnotesize\ttfamily \label{group__uiparp_ga902c4a360134096224bc2655f623aa5f} 
+void uip\+\_\+arp\+\_\+arpin (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+ARP processing for incoming ARP packets.
+
+This function should be called by the device driver when an ARP packet has been received. The function will act differently depending on the ARP packet type\+: if it is a reply for a request that we previously sent out, the ARP cache will be filled in with the values from the ARP reply. If the incoming ARP packet is an ARP request for our IP address, an ARP reply packet is created and put into the uip\+\_\+buf[] buffer.
+
+When the function returns, the value of the global variable uip\+\_\+len indicates whether the device driver should send out a packet or not. If uip\+\_\+len is zero, no packet should be sent. If uip\+\_\+len is non-\/zero, it contains the length of the outbound packet that is present in the uip\+\_\+buf[] buffer.
+
+This function expects an ARP packet with a prepended Ethernet header in the uip\+\_\+buf[] buffer, and the length of the packet in the global variable uip\+\_\+len. \index{uIP Address Resolution Protocol@{uIP Address Resolution Protocol}!uip\_arp\_init@{uip\_arp\_init}}
+\index{uip\_arp\_init@{uip\_arp\_init}!uIP Address Resolution Protocol@{uIP Address Resolution Protocol}}
+\doxysubsubsubsection{uip\_arp\_init()}
+{\footnotesize\ttfamily \label{group__uiparp_ga2d9d28afa353f662b9bb5234fc419f72} 
+void uip\+\_\+arp\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Initialize the ARP module. \index{uIP Address Resolution Protocol@{uIP Address Resolution Protocol}!uip\_arp\_ipin@{uip\_arp\_ipin}}
+\index{uip\_arp\_ipin@{uip\_arp\_ipin}!uIP Address Resolution Protocol@{uIP Address Resolution Protocol}}
+\doxysubsubsubsection{uip\_arp\_ipin()}
+{\footnotesize\ttfamily \label{group__uiparp_ga5cf8d6974a89ad67c5faf9b19261cb7c} 
+void uip\+\_\+arp\+\_\+ipin (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+ARP processing for incoming IP packets
+
+This function should be called by the device driver when an IP packet has been received. The function will check if the address is in the ARP cache, and if so the ARP cache entry will be refreshed. If no ARP cache entry was found, a new one is created.
+
+This function expects an IP packet with a prepended Ethernet header in the uip\+\_\+buf[] buffer, and the length of the packet in the global variable uip\+\_\+len. \index{uIP Address Resolution Protocol@{uIP Address Resolution Protocol}!uip\_arp\_out@{uip\_arp\_out}}
+\index{uip\_arp\_out@{uip\_arp\_out}!uIP Address Resolution Protocol@{uIP Address Resolution Protocol}}
+\doxysubsubsubsection{uip\_arp\_out()}
+{\footnotesize\ttfamily \label{group__uiparp_ga54b27e45df15e10a0eb1a3e3a91417d2} 
+void uip\+\_\+arp\+\_\+out (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Prepend Ethernet header to an outbound IP packet and see if we need to send out an ARP request.
+
+This function should be called before sending out an IP packet. The function checks the destination IP address of the IP packet to see what Ethernet MAC address that should be used as a destination MAC address on the Ethernet.
+
+If the destination IP address is in the local network (determined by logical ANDing of netmask and our IP address), the function checks the ARP cache to see if an entry for the destination IP address is found. If so, an Ethernet header is prepended and the function returns. If no ARP cache entry is found for the destination IP address, the packet in the uip\+\_\+buf[] is replaced by an ARP request packet for the IP address. The IP packet is dropped and it is assumed that they higher level protocols (e.\+g., TCP) eventually will retransmit the dropped packet.
+
+If the destination IP address is not on the local network, the IP address of the default router is used instead.
+
+When the function returns, a packet is present in the uip\+\_\+buf[] buffer, and the length of the packet is in the global variable uip\+\_\+len. \index{uIP Address Resolution Protocol@{uIP Address Resolution Protocol}!uip\_arp\_timer@{uip\_arp\_timer}}
+\index{uip\_arp\_timer@{uip\_arp\_timer}!uIP Address Resolution Protocol@{uIP Address Resolution Protocol}}
+\doxysubsubsubsection{uip\_arp\_timer()}
+{\footnotesize\ttfamily \label{group__uiparp_ga058a8e6025f67b021862281f1911fcef} 
+void uip\+\_\+arp\+\_\+timer (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+Periodic ARP processing function.
+
+This function performs periodic timer processing in the ARP module and should be called at regular intervals. The recommended interval is 10 seconds between the calls. 

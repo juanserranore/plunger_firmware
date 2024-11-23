@@ -1,0 +1,27 @@
+\doxysection{tcp\+\_\+states.\+h}
+\label{tcp__states_8h_source}\index{lib/EthernetENC-\/2.0.5/src/tcp\_states.h@{lib/EthernetENC-\/2.0.5/src/tcp\_states.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ UIP\_TCP\_STATES\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ UIP\_TCP\_STATES\_H}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <utility/uip.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ common\ constants\ for\ client.state()\ return\ values}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{enum}\ uip\_tcp\_state\ \{}
+\DoxyCodeLine{00009\ \ \ CLOSED\ \ \ \ \ \ =\ UIP\_CLOSED,}
+\DoxyCodeLine{00010\ \ \ SYN\_SENT\ \ \ \ =\ UIP\_SYN\_SENT,}
+\DoxyCodeLine{00011\ \ \ SYN\_RCVD\ \ \ \ =\ UIP\_SYN\_RCVD,}
+\DoxyCodeLine{00012\ \ \ ESTABLISHED\ =\ UIP\_ESTABLISHED,}
+\DoxyCodeLine{00013\ \ \ FIN\_WAIT\_1\ \ =\ UIP\_FIN\_WAIT\_1,}
+\DoxyCodeLine{00014\ \ \ FIN\_WAIT\_2\ \ =\ UIP\_FIN\_WAIT\_2,}
+\DoxyCodeLine{00015\ \ \ CLOSE\_WAIT\ \ =\ 10,\ \textcolor{comment}{//\ not\ used}}
+\DoxyCodeLine{00016\ \ \ CLOSING\ \ \ \ \ =\ UIP\_CLOSING,}
+\DoxyCodeLine{00017\ \ \ LAST\_ACK\ \ \ \ =\ UIP\_LAST\_ACK,}
+\DoxyCodeLine{00018\ \ \ TIME\_WAIT\ \ \ =\ UIP\_TIME\_WAIT}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

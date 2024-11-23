@@ -1,0 +1,74 @@
+\doxysection{DNSClient Class Reference}
+\label{class_d_n_s_client}\index{DNSClient@{DNSClient}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_d_n_s_client_aac123ed1182719dd850b3a05deafcaf0} 
+void {\bfseries begin} (const IPAddress \&a\+DNSServer)
+\item 
+int \textbf{ inet\+\_\+aton} (const char $\ast$a\+IPAddr\+String, IPAddress \&a\+Result)
+\item 
+int \textbf{ get\+Host\+By\+Name} (const char $\ast$a\+Hostname, IPAddress \&a\+Result)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_d_n_s_client_aa48bcfd274245e3d456b7ad0d8170463} 
+uint16\+\_\+t {\bfseries Build\+Request} (const char $\ast$a\+Name)
+\item 
+\label{class_d_n_s_client_a1a03da561244297f59ae89e65ba1e0ef} 
+uint16\+\_\+t {\bfseries Process\+Response} (uint16\+\_\+t a\+Timeout, IPAddress \&a\+Address)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_d_n_s_client_ae1c134ae6c67ff2fc2e0c11e3ba1121a} 
+IPAddress {\bfseries i\+DNSServer}
+\item 
+\label{class_d_n_s_client_a20b50f5a6a4101f8b2d388a75146763d} 
+uint16\+\_\+t {\bfseries i\+Request\+Id}
+\item 
+\label{class_d_n_s_client_a0f66ce3af99bd8c01b965f3945597c9a} 
+\textbf{ Ethernet\+UDP} {\bfseries i\+Udp}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\index{DNSClient@{DNSClient}!getHostByName@{getHostByName}}
+\index{getHostByName@{getHostByName}!DNSClient@{DNSClient}}
+\doxysubsubsection{getHostByName()}
+{\footnotesize\ttfamily \label{class_d_n_s_client_ac62f5c79f85003f598223eec7fc1c22b} 
+int DNSClient\+::get\+Host\+By\+Name (\begin{DoxyParamCaption}\item[{const char $\ast$}]{a\+Hostname}{, }\item[{IPAddress \&}]{a\+Result}{}\end{DoxyParamCaption})}
+
+Resolve the given hostname to an IP address. 
+\begin{DoxyParams}{Parameters}
+{\em a\+Hostname} & Name to be resolved \\
+\hline
+{\em a\+Result} & IPAddress structure to store the returned IP address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if a\+IPAddr\+String was successfully converted to an IP address, else error code 
+\end{DoxyReturn}
+\index{DNSClient@{DNSClient}!inet\_aton@{inet\_aton}}
+\index{inet\_aton@{inet\_aton}!DNSClient@{DNSClient}}
+\doxysubsubsection{inet\_aton()}
+{\footnotesize\ttfamily \label{class_d_n_s_client_acb77b0143a72500dcc6ec5523bceb734} 
+int DNSClient\+::inet\+\_\+aton (\begin{DoxyParamCaption}\item[{const char $\ast$}]{a\+IPAddr\+String}{, }\item[{IPAddress \&}]{a\+Result}{}\end{DoxyParamCaption})}
+
+Convert a numeric IP address string into a four-\/byte IP address. 
+\begin{DoxyParams}{Parameters}
+{\em a\+IPAddr\+String} & IP address to convert \\
+\hline
+{\em a\+Result} & IPAddress structure to store the returned IP address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if a\+IPAddr\+String was successfully converted to an IP address, else error code 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Ethernet\+ENC-\/2.\+0.\+5/src/Dns.\+h\item 
+lib/\+Ethernet\+ENC-\/2.\+0.\+5/src/Dns.\+cpp\end{DoxyCompactItemize}

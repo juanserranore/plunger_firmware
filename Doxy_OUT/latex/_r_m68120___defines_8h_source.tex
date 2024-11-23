@@ -1,0 +1,58 @@
+\doxysection{RM68120\+\_\+\+Defines.\+h}
+\label{_r_m68120___defines_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/RM68120\_Defines.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/RM68120\_Defines.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Change\ the\ width\ and\ height\ if\ required\ (defined\ in\ portrait\ mode)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ or\ use\ the\ constructor\ to\ over-\/ride\ defaults}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ RM68120\_DRIVER}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ TFT\_WIDTH\ \ 480}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ TFT\_HEIGHT\ 800}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//Set\ driver\ type\ common\ to\ all\ TBD\ initialisation\ options}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ RM68120\_DRIVER}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\ \ \#define\ RM68120\_DRIVER}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Delay\ between\ some\ initialisation\ commands}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ TFT\_INIT\_DELAY\ 0x80\ }\textcolor{comment}{//\ Not\ used\ unless\ commandlist\ invoked}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Generic\ commands\ used\ by\ TFT\_eSPI.cpp}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ TFT\_NOP\ \ \ \ \ \ 0x0000}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ TFT\_SWRST\ \ \ \ 0x0100}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ TFT\_INVOFF\ \ \ 0x2000}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ TFT\_INVON\ \ \ \ 0x2100}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ TFT\_DISPOFF\ \ 0x2800}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ TFT\_DISPON\ \ \ 0x2900}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ TFT\_CASET\ \ \ \ 0x2A00}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ TFT\_PASET\ \ \ \ 0x2B00}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ TFT\_RAMWR\ \ \ \ 0x2C00}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ TFT\_RAMRD\ \ \ \ 0x2E00}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ TFT\_IDXRD\ \ \ \ 0xDD00\ }\textcolor{comment}{//\ ILI9341\ only,\ indexed\ control\ register\ read}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ TFT\_MADCTL\ \ \ 0x3600}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_MY\ \ \ \ \ 0x80}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_MX\ \ \ \ \ 0x40}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_MV\ \ \ \ \ 0x20}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_ML\ \ \ \ \ 0x10}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_BGR\ \ \ \ 0x08}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_RGB\ \ \ \ 0x00}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_MH\ \ \ \ \ 0x04}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_H\_FLIP\ 0x02}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_V\_FLIP\ 0x01}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#ifdef\ TFT\_RGB\_ORDER}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\ \ \#if\ (TFT\_RGB\_ORDER\ ==\ 1)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_MAD\_COLOR\_ORDER\ TFT\_MAD\_RGB}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_MAD\_COLOR\_ORDER\ TFT\_MAD\_BGR}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\ \ \#define\ TFT\_MAD\_COLOR\_ORDER\ TFT\_MAD\_RGB}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

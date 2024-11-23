@@ -1,0 +1,62 @@
+\doxysection{Setup70c\+\_\+\+ESP32\+\_\+\+C3\+\_\+\+ILI9341.\+h}
+\label{_setup70c___e_s_p32___c3___i_l_i9341_8h_source}\index{lib/TFT\_eSPI-\/master/User\_Setups/Setup70c\_ESP32\_C3\_ILI9341.h@{lib/TFT\_eSPI-\/master/User\_Setups/Setup70c\_ESP32\_C3\_ILI9341.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Setup\ for\ the\ ESP32\ C3\ with\ ILI9341\ display}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Note\ SPI\ DMA\ with\ ESP32\ C3\ is\ not\ currently\ supported}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ USER\_SETUP\_ID\ 70}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ See\ SetupX\_Template.h\ for\ all\ options\ available}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ ILI9341\_DRIVER}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\#define\ ST7796\_DRIVER}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\#define\ ILI9488\_DRIVER}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Adafruit\ qtpy\ default}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//TFT\_CS\ 6}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//TFT\_MOSI\ 7}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//TFT\_MISO\ 8}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//TFT\_SCLK\ 10}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ Lolin\ C3\ mini\ default}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//TFT\_CS\ 5}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//TFT\_MOSI\ 4}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//TFT\_MISO\ 3}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//TFT\_SCLK\ 2}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//ESP32\ C3\ generic\ default}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//TFT\_CS\ 7}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//TFT\_MOSI\ 6}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//TFT\_MISO\ 5}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//TFT\_SCLK\ 4}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ TFT\_CS\ \ \ 7}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ TFT\_MOSI\ 6}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ TFT\_MISO\ 5}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ TFT\_SCLK\ 4}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ TFT\_DC\ \ \ \ 8}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ TFT\_RST\ \ \ 10}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\#define\ TOUCH\_CS\ \ 1\ //\ Optional\ for\ touch\ screen}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ LOAD\_GLCD}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ LOAD\_FONT2}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ LOAD\_FONT4}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ LOAD\_FONT6}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ LOAD\_FONT7}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ LOAD\_FONT8}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ LOAD\_GFXFF}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ SMOOTH\_FONT}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{//\#define\ SPI\_FREQUENCY\ \ 27000000}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ SPI\_FREQUENCY\ \ 40000000\ \ \ }\textcolor{comment}{//\ Maximum\ for\ ILI9341}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ SPI\_READ\_FREQUENCY\ \ 6000000\ }\textcolor{comment}{//\ 6\ MHz\ is\ the\ maximum\ SPI\ read\ speed\ for\ the\ ST7789V}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ SPI\_TOUCH\_FREQUENCY\ 2500000}}
+
+\end{DoxyCode}

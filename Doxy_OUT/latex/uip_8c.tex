@@ -1,0 +1,141 @@
+\doxysection{lib/\+Ethernet\+ENC-\/2.0.5/src/utility/uip.c File Reference}
+\label{uip_8c}\index{lib/EthernetENC-\/2.0.5/src/utility/uip.c@{lib/EthernetENC-\/2.0.5/src/utility/uip.c}}
+{\ttfamily \#include "{}uip.\+h"{}}\newline
+{\ttfamily \#include "{}uipopt.\+h"{}}\newline
+{\ttfamily \#include "{}uip\+\_\+arch.\+h"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ DEBUG\+\_\+\+PRINTF}(...)
+\item 
+\#define {\bfseries TCP\+\_\+\+FIN}~0x01
+\item 
+\#define {\bfseries TCP\+\_\+\+SYN}~0x02
+\item 
+\#define {\bfseries TCP\+\_\+\+RST}~0x04
+\item 
+\#define {\bfseries TCP\+\_\+\+PSH}~0x08
+\item 
+\#define {\bfseries TCP\+\_\+\+ACK}~0x10
+\item 
+\#define {\bfseries TCP\+\_\+\+URG}~0x20
+\item 
+\#define {\bfseries TCP\+\_\+\+CTL}~0x3f
+\item 
+\#define {\bfseries TCP\+\_\+\+OPT\+\_\+\+END}~0   /$\ast$ End of TCP options list $\ast$/
+\item 
+\#define {\bfseries TCP\+\_\+\+OPT\+\_\+\+NOOP}~1   /$\ast$ "{}No-\/operation"{} TCP option $\ast$/
+\item 
+\#define {\bfseries TCP\+\_\+\+OPT\+\_\+\+MSS}~2   /$\ast$ Maximum segment size TCP option $\ast$/
+\item 
+\#define {\bfseries TCP\+\_\+\+OPT\+\_\+\+MSS\+\_\+\+LEN}~4   /$\ast$ Length of TCP MSS option. $\ast$/
+\item 
+\#define {\bfseries ICMP\+\_\+\+ECHO\+\_\+\+REPLY}~0
+\item 
+\#define {\bfseries ICMP\+\_\+\+ECHO}~8
+\item 
+\#define {\bfseries ICMP6\+\_\+\+ECHO\+\_\+\+REPLY}~129
+\item 
+\#define {\bfseries ICMP6\+\_\+\+ECHO}~128
+\item 
+\#define {\bfseries ICMP6\+\_\+\+NEIGHBOR\+\_\+\+SOLICITATION}~135
+\item 
+\#define {\bfseries ICMP6\+\_\+\+NEIGHBOR\+\_\+\+ADVERTISEMENT}~136
+\item 
+\#define {\bfseries ICMP6\+\_\+\+FLAG\+\_\+S}~(1 $<$$<$ 6)
+\item 
+\#define {\bfseries ICMP6\+\_\+\+OPTION\+\_\+\+SOURCE\+\_\+\+LINK\+\_\+\+ADDRESS}~1
+\item 
+\#define {\bfseries ICMP6\+\_\+\+OPTION\+\_\+\+TARGET\+\_\+\+LINK\+\_\+\+ADDRESS}~2
+\item 
+\#define {\bfseries BUF}~((struct \textbf{ uip\+\_\+tcpip\+\_\+hdr} $\ast$)\&\textbf{ uip\+\_\+buf}[\textbf{ UIP\+\_\+\+LLH\+\_\+\+LEN}])
+\item 
+\#define {\bfseries FBUF}~((struct \textbf{ uip\+\_\+tcpip\+\_\+hdr} $\ast$)\&uip\+\_\+reassbuf[0])
+\item 
+\#define {\bfseries ICMPBUF}~((struct \textbf{ uip\+\_\+icmpip\+\_\+hdr} $\ast$)\&\textbf{ uip\+\_\+buf}[\textbf{ UIP\+\_\+\+LLH\+\_\+\+LEN}])
+\item 
+\#define {\bfseries UDPBUF}~((struct \textbf{ uip\+\_\+udpip\+\_\+hdr} $\ast$)\&\textbf{ uip\+\_\+buf}[\textbf{ UIP\+\_\+\+LLH\+\_\+\+LEN}])
+\item 
+\#define {\bfseries UIP\+\_\+\+STAT}(s)
+\item 
+\#define {\bfseries UIP\+\_\+\+LOG}(m)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ uip\+\_\+setipid} (u16\+\_\+t id)
+\item 
+void \textbf{ uip\+\_\+add32} (u8\+\_\+t $\ast$op32, u16\+\_\+t op16)
+\item 
+void \textbf{ uip\+\_\+init} (void)
+\item 
+struct \textbf{ uip\+\_\+conn} $\ast$ \textbf{ uip\+\_\+connect} (uip\+\_\+ipaddr\+\_\+t $\ast$ripaddr, u16\+\_\+t rport)
+\item 
+struct \textbf{ uip\+\_\+udp\+\_\+conn} $\ast$ \textbf{ uip\+\_\+udp\+\_\+new} (uip\+\_\+ipaddr\+\_\+t $\ast$ripaddr, u16\+\_\+t rport)
+\item 
+void \textbf{ uip\+\_\+unlisten} (u16\+\_\+t port)
+\item 
+void \textbf{ uip\+\_\+listen} (u16\+\_\+t port)
+\item 
+void {\bfseries uip\+\_\+process} (u8\+\_\+t flag)
+\item 
+u16\+\_\+t \textbf{ htons} (u16\+\_\+t val)
+\item 
+void \textbf{ uip\+\_\+send} (const void $\ast$data, int len)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uip\+\_\+ipaddr\+\_\+t {\bfseries uip\+\_\+hostaddr}
+\item 
+uip\+\_\+ipaddr\+\_\+t {\bfseries uip\+\_\+draddr}
+\item 
+uip\+\_\+ipaddr\+\_\+t {\bfseries uip\+\_\+netmask}
+\item 
+struct \textbf{ uip\+\_\+eth\+\_\+addr} {\bfseries uip\+\_\+ethaddr} = \{\{0,0,0,0,0,0\}\}
+\item 
+u8\+\_\+t \textbf{ uip\+\_\+buf} [\textbf{ UIP\+\_\+\+BUFSIZE}+2]
+\item 
+void $\ast$ \textbf{ uip\+\_\+appdata}
+\item 
+void $\ast$ {\bfseries uip\+\_\+sappdata}
+\item 
+u16\+\_\+t \textbf{ uip\+\_\+len}
+\item 
+u16\+\_\+t {\bfseries uip\+\_\+slen}
+\item 
+u8\+\_\+t {\bfseries uip\+\_\+flags}
+\item 
+struct uip\+\_\+conn $\ast$ \textbf{ uip\+\_\+conn}
+\item 
+struct \textbf{ uip\+\_\+conn} {\bfseries uip\+\_\+conns} [\textbf{ UIP\+\_\+\+CONNS}]
+\item 
+u16\+\_\+t {\bfseries uip\+\_\+listenports} [\textbf{ UIP\+\_\+\+LISTENPORTS}]
+\item 
+struct uip\+\_\+udp\+\_\+conn $\ast$ \textbf{ uip\+\_\+udp\+\_\+conn}
+\item 
+struct \textbf{ uip\+\_\+udp\+\_\+conn} {\bfseries uip\+\_\+udp\+\_\+conns} [\textbf{ UIP\+\_\+\+UDP\+\_\+\+CONNS}]
+\item 
+u8\+\_\+t \textbf{ uip\+\_\+acc32} [4]
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The u\+IP TCP/\+IP stack code. \begin{DoxyAuthor}{Author}
+Adam Dunkels {\texttt{ adam@dunkels.\+com}} 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Macro Definition Documentation}
+\index{uip.c@{uip.c}!DEBUG\_PRINTF@{DEBUG\_PRINTF}}
+\index{DEBUG\_PRINTF@{DEBUG\_PRINTF}!uip.c@{uip.c}}
+\doxysubsubsection{DEBUG\_PRINTF}
+{\footnotesize\ttfamily \label{uip_8c_a5c8ef3c24dad2c469a42784a9a39403b} 
+\#define DEBUG\+\_\+\+PRINTF(\begin{DoxyParamCaption}\item[{}]{}...{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/*printf(\_\_VA\_ARGS\_\_)*/}}
+
+\end{DoxyCode}

@@ -1,0 +1,99 @@
+\doxysection{Rtc\+DS3232$<$ T\+\_\+\+WIRE\+\_\+\+METHOD $>$ Class Template Reference}
+\label{class_rtc_d_s3232}\index{RtcDS3232$<$ T\_WIRE\_METHOD $>$@{RtcDS3232$<$ T\_WIRE\_METHOD $>$}}
+Inheritance diagram for Rtc\+DS3232$<$ T\+\_\+\+WIRE\+\_\+\+METHOD $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_rtc_d_s3232}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_rtc_d_s3232_a400c0c4e95d70b31f479efa55afd57e5} 
+{\bfseries Rtc\+DS3232} (T\+\_\+\+WIRE\+\_\+\+METHOD \&wire)
+\item 
+\label{class_rtc_d_s3232_a60f2a0ae65c71ff1ec45f6bab12e14d8} 
+void {\bfseries Set\+Memory} (uint8\+\_\+t memory\+Address, uint8\+\_\+t value)
+\item 
+\label{class_rtc_d_s3232_a5ee3ea7519d644bfcf82a11e3b199835} 
+uint8\+\_\+t {\bfseries Get\+Memory} (uint8\+\_\+t memory\+Address)
+\item 
+\label{class_rtc_d_s3232_a4698c2fb982d014dfd91a877cdcf20a8} 
+uint8\+\_\+t {\bfseries Set\+Memory} (uint8\+\_\+t memory\+Address, const uint8\+\_\+t $\ast$p\+Value, uint8\+\_\+t count\+Bytes)
+\item 
+\label{class_rtc_d_s3232_a8bb6660bcf561000d5ccbcc70bd469fa} 
+size\+\_\+t {\bfseries Get\+Memory} (uint8\+\_\+t memory\+Address, uint8\+\_\+t $\ast$p\+Value, size\+\_\+t count\+Bytes)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \textbf{ Rtc\+DS3231$<$ T\+\_\+\+WIRE\+\_\+\+METHOD $>$}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Rtc\+DS3231} (T\+\_\+\+WIRE\+\_\+\+METHOD \&wire)
+\item 
+void {\bfseries Begin} ()
+\item 
+void {\bfseries Begin} (int sda, int scl)
+\item 
+uint8\+\_\+t {\bfseries Last\+Error} ()
+\item 
+bool {\bfseries Is\+Date\+Time\+Valid} ()
+\item 
+bool {\bfseries Get\+Is\+Running} ()
+\item 
+void {\bfseries Set\+Is\+Running} (bool is\+Running)
+\item 
+void {\bfseries Set\+Date\+Time} (const \textbf{ Rtc\+Date\+Time} \&dt)
+\item 
+\textbf{ Rtc\+Date\+Time} {\bfseries Get\+Date\+Time} ()
+\item 
+\textbf{ Rtc\+Temperature} {\bfseries Get\+Temperature} ()
+\item 
+void {\bfseries Enable32k\+Hz\+Pin} (bool enable)
+\item 
+void {\bfseries Set\+Square\+Wave\+Pin} (DS3231\+Square\+Wave\+Pin\+Mode pin\+Mode, bool enable\+While\+In\+Battery\+Backup=true)
+\item 
+void {\bfseries Set\+Square\+Wave\+Pin\+Clock\+Frequency} (DS3231\+Square\+Wave\+Clock freq)
+\item 
+void {\bfseries Set\+Alarm\+One} (const \textbf{ DS3231\+Alarm\+One} \&alarm)
+\item 
+void {\bfseries Set\+Alarm\+Two} (const \textbf{ DS3231\+Alarm\+Two} \&alarm)
+\item 
+\textbf{ DS3231\+Alarm\+One} {\bfseries Get\+Alarm\+One} ()
+\item 
+\textbf{ DS3231\+Alarm\+Two} {\bfseries Get\+Alarm\+Two} ()
+\item 
+DS3231\+Alarm\+Flag {\bfseries Latch\+Alarms\+Triggered\+Flags} ()
+\item 
+DS3231\+Alarm\+Flag {\bfseries Latch\+Alarm\+One\+Flag} ()
+\item 
+DS3231\+Alarm\+Flag {\bfseries Latch\+Alarm\+Two\+Flag} ()
+\item 
+bool {\bfseries Get\+Alarm\+One\+Triggered} ()
+\item 
+bool {\bfseries Get\+Alarm\+Two\+Triggered} ()
+\item 
+void {\bfseries Force\+Temperature\+Compensation\+Update} (bool block)
+\item 
+int8\+\_\+t {\bfseries Get\+Aging\+Offset} ()
+\item 
+void {\bfseries Set\+Aging\+Offset} (int8\+\_\+t value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \textbf{ Rtc\+DS3231$<$ T\+\_\+\+WIRE\+\_\+\+METHOD $>$}}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t {\bfseries get\+Reg} (uint8\+\_\+t reg\+Address)
+\item 
+void {\bfseries set\+Reg} (uint8\+\_\+t reg\+Address, uint8\+\_\+t reg\+Value)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \textbf{ Rtc\+DS3231$<$ T\+\_\+\+WIRE\+\_\+\+METHOD $>$}}
+\begin{DoxyCompactItemize}
+\item 
+T\+\_\+\+WIRE\+\_\+\+METHOD \& {\bfseries \+\_\+wire}
+\item 
+uint8\+\_\+t {\bfseries \+\_\+last\+Error}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Rtc-\/master/src/Rtc\+DS3232.\+h\end{DoxyCompactItemize}

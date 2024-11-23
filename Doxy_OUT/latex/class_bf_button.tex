@@ -1,0 +1,60 @@
+\doxysection{Bf\+Button Class Reference}
+\label{class_bf_button}\index{BfButton@{BfButton}}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_bf_button_a76f67d60fbca911305dff799d738f6d9} 
+enum {\bfseries button\+\_\+mode\+\_\+t} \{ {\bfseries STANDALONE\+\_\+\+DIGITAL}
+, {\bfseries ANALOG\+\_\+\+BUTTON\+\_\+\+ARRAY}
+ \}
+\item 
+\label{class_bf_button_a88a12a23fb83da79dd3ca20b36d8ec30} 
+enum {\bfseries button\+\_\+state\+\_\+t} \{ {\bfseries IDLE}
+, {\bfseries PRESSING}
+ \}
+\item 
+\label{class_bf_button_a028a34011c405d0d7cab6cd0122abbf1} 
+enum {\bfseries press\+\_\+pattern\+\_\+t} \{ {\bfseries SINGLE\+\_\+\+PRESS}
+, {\bfseries DOUBLE\+\_\+\+PRESS}
+, {\bfseries LONG\+\_\+\+PRESS}
+ \}
+\item 
+\label{class_bf_button_a295281c176b40e5d3bdee8f75e0a41b9} 
+typedef void($\ast$) {\bfseries callback\+\_\+t}(\textbf{ Bf\+Button} $\ast$btn, press\+\_\+pattern\+\_\+t pattern)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_bf_button_a10b3033f6c98b733cfe38ed14ab78473} 
+{\bfseries Bf\+Button} (button\+\_\+mode\+\_\+t mode, uint8\+\_\+t pin, bool pullup=true, uint8\+\_\+t button\+Logic=LOW)
+\item 
+\label{class_bf_button_ad5074339e4a50b868f88ad8088c697f9} 
+\textbf{ Bf\+Button} \& {\bfseries on\+Press} (callback\+\_\+t callback)
+\item 
+\label{class_bf_button_a741d3741697f8fb885fb279150f6e1aa} 
+\textbf{ Bf\+Button} \& {\bfseries on\+Double\+Press} (callback\+\_\+t callback, unsigned long timeout=300)
+\item 
+\label{class_bf_button_a8588919a0fa5f8bc095fe7a69f836adf} 
+\textbf{ Bf\+Button} \& {\bfseries on\+Press\+For} (callback\+\_\+t callback, unsigned long timeout=3000)
+\item 
+\label{class_bf_button_aa501577e7efa94547d8fc5516255e9eb} 
+\textbf{ Bf\+Button} \& {\bfseries update\+State} (button\+\_\+state\+\_\+t state)
+\item 
+\label{class_bf_button_a8164205940e08de93659267efb85e36f} 
+void {\bfseries read} ()
+\item 
+\label{class_bf_button_a000574b7b86b3e708d0ce4c13f064612} 
+void {\bfseries loop} ()
+\item 
+\label{class_bf_button_aeec4009de601c194897f57d78622316a} 
+uint8\+\_\+t {\bfseries get\+ID} ()
+\item 
+\label{class_bf_button_a3cbc211a98ae5dd5e8792e2b83de65e9} 
+uint8\+\_\+t {\bfseries get\+Pin} ()
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Bf\+Button/Bf\+Button.\+h\item 
+lib/\+Bf\+Button/Bf\+Button.\+cpp\end{DoxyCompactItemize}

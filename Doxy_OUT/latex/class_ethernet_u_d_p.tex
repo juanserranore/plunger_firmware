@@ -1,0 +1,76 @@
+\doxysection{Ethernet\+UDP Class Reference}
+\label{class_ethernet_u_d_p}\index{EthernetUDP@{EthernetUDP}}
+Inheritance diagram for Ethernet\+UDP\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ethernet_u_d_p}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_ethernet_u_d_p_acc88c7818dea3444e3aae38a7c9cd3bb} 
+uint8\+\_\+t {\bfseries begin} (uint16\+\_\+t)
+\item 
+\label{class_ethernet_u_d_p_ab4d9a23aa01957f903e532130e1c4bd0} 
+void {\bfseries stop} ()
+\item 
+\label{class_ethernet_u_d_p_a5eccc990786fc64c734d7be9d6c4a9bb} 
+int {\bfseries begin\+Packet} (IPAddress ip, uint16\+\_\+t port)
+\item 
+\label{class_ethernet_u_d_p_a2ae4b9efdfe4ef293d6f91388a054b42} 
+int {\bfseries begin\+Packet} (const char $\ast$host, uint16\+\_\+t port)
+\item 
+\label{class_ethernet_u_d_p_a7f4bcb1760fba5e065d0b97fa8833194} 
+int {\bfseries end\+Packet} ()
+\item 
+\label{class_ethernet_u_d_p_afed509d7337e5b19f08b9b935621ff40} 
+size\+\_\+t {\bfseries write} (uint8\+\_\+t)
+\item 
+\label{class_ethernet_u_d_p_aaaef011a1a890a62f45ce0fed7056b12} 
+size\+\_\+t {\bfseries write} (const uint8\+\_\+t $\ast$buffer, size\+\_\+t size)
+\item 
+\label{class_ethernet_u_d_p_aea9b61bbe5df481a7e8c37528555709d} 
+void {\bfseries flush} ()
+\item 
+\label{class_ethernet_u_d_p_a64876800834428617ca47a65ddae55c1} 
+int {\bfseries parse\+Packet} ()
+\item 
+\label{class_ethernet_u_d_p_a293644594816c6eaf1b3e5dfee6597ce} 
+int {\bfseries available} ()
+\item 
+\label{class_ethernet_u_d_p_a14b34e1047dc0d8e635f18bed6e2d088} 
+int {\bfseries read} ()
+\item 
+\label{class_ethernet_u_d_p_ac5d3639663358e5b31945680bfcbca90} 
+int {\bfseries read} (unsigned char $\ast$buffer, size\+\_\+t len)
+\item 
+\label{class_ethernet_u_d_p_a4169644557884ffcda6c8250a578831f} 
+int {\bfseries read} (char $\ast$buffer, size\+\_\+t len)
+\item 
+\label{class_ethernet_u_d_p_a9fd6eee9feaaac63ba14902ff3dc2fef} 
+int {\bfseries peek} ()
+\item 
+\label{class_ethernet_u_d_p_a152a7d1951e825f3c4e9125783de1d31} 
+void {\bfseries discard\+Received} ()
+\item 
+\label{class_ethernet_u_d_p_a3dab0e5c19a31058397ffd3c805c4bab} 
+IPAddress {\bfseries remote\+IP} ()
+\item 
+\label{class_ethernet_u_d_p_ab9094de4d416d97a3b1dd4a3c5f5960d} 
+uint16\+\_\+t {\bfseries remote\+Port} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\label{class_ethernet_u_d_p_a83f433fdf9465565521c590201304d6f} 
+class {\bfseries UIPEthernet\+Class}
+\item 
+\label{class_ethernet_u_d_p_aabcb6018b6d071112561466fcac249c0} 
+void {\bfseries uipudp\+\_\+appcall} (void)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Ethernet\+ENC-\/2.\+0.\+5/src/Ethernet\+Udp.\+h\end{DoxyCompactItemize}
